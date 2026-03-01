@@ -370,6 +370,39 @@
                     <label>Ваше конкурентное преимущество</label>
                     <input type="text" name="advantage" placeholder="Чем вы отличаетесь от конкурентов?">
                 </div>
+                <div class="field">
+                    <label>Адрес / город <span class="hint">(для карты и SEO)</span></label>
+                    <input type="text" name="address" placeholder="г. Киев, ул. Крещатик, 1">
+                </div>
+                <div class="field">
+                    <label>Телефон для сайта</label>
+                    <input type="tel" name="business_phone" placeholder="+380 ХХ ХХХ ХХ ХХ">
+                </div>
+                <div class="field">
+                    <label>Часы работы</label>
+                    <input type="text" name="work_hours" placeholder="Пн-Пт 9:00-18:00, Сб 10:00-15:00">
+                </div>
+                <div class="field">
+                    <label>Соцсети <span class="hint">(ссылки)</span></label>
+                    <textarea name="socials" placeholder="Instagram: https://instagram.com/...&#10;Facebook: https://facebook.com/...&#10;TikTok, YouTube и т.д." rows="3"></textarea>
+                </div>
+                <div class="field">
+                    <label>Есть ли сейчас сайт?</label>
+                    <div class="options">
+                        <div class="option-btn">
+                            <input type="radio" name="has_site" id="hs1" value="yes">
+                            <label for="hs1">Да, нужно переделать</label>
+                        </div>
+                        <div class="option-btn">
+                            <input type="radio" name="has_site" id="hs2" value="no">
+                            <label for="hs2">Нет, делаем с нуля</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <label>Ссылка на текущий сайт <span class="hint">(если есть)</span></label>
+                    <input type="url" name="current_site" placeholder="https://ваш-сайт.com">
+                </div>
             </div>
 
             <!-- 2. О сайте -->
@@ -429,6 +462,33 @@
                             <label for="goal4">Информирование</label>
                         </div>
                     </div>
+                </div>
+
+                <div class="field">
+                    <label>Сколько у вас услуг / товаров? <span class="hint">(примерно)</span></label>
+                    <div class="options">
+                        <div class="option-btn">
+                            <input type="radio" name="services_count" id="sc1" value="1-5">
+                            <label for="sc1">1–5</label>
+                        </div>
+                        <div class="option-btn">
+                            <input type="radio" name="services_count" id="sc2" value="5-15">
+                            <label for="sc2">5–15</label>
+                        </div>
+                        <div class="option-btn">
+                            <input type="radio" name="services_count" id="sc3" value="15-50">
+                            <label for="sc3">15–50</label>
+                        </div>
+                        <div class="option-btn">
+                            <input type="radio" name="services_count" id="sc4" value="50+">
+                            <label for="sc4">50+</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label>Перечислите основные услуги / товары <span class="hint">(для структуры сайта)</span></label>
+                    <textarea name="services_list" placeholder="1. Стрижка&#10;2. Покраска&#10;3. Маникюр&#10;..." rows="4"></textarea>
                 </div>
 
                 <div class="field">
@@ -581,6 +641,29 @@
                 </div>
 
                 <div class="field">
+                    <label>Тёмная или светлая тема?</label>
+                    <div class="options">
+                        <div class="option-btn">
+                            <input type="radio" name="theme" id="theme1" value="light">
+                            <label for="theme1">Светлая</label>
+                        </div>
+                        <div class="option-btn">
+                            <input type="radio" name="theme" id="theme2" value="dark">
+                            <label for="theme2">Тёмная</label>
+                        </div>
+                        <div class="option-btn">
+                            <input type="radio" name="theme" id="theme3" value="any">
+                            <label for="theme3">На ваш выбор</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label>Какие цвета нравятся? <span class="hint">(если нет брендбука)</span></label>
+                    <input type="text" name="colors" placeholder="Синий, белый / Тёплые тона / Не знаю — подберите">
+                </div>
+
+                <div class="field">
                     <label>Примеры сайтов, которые нравятся <span class="hint">(2-3 ссылки)</span></label>
                     <textarea name="references" placeholder="https://example1.com — нравится шапка и цвета&#10;https://example2.com — нравится структура"></textarea>
                 </div>
@@ -601,6 +684,11 @@
                             <label for="brand3">Не нужно</label>
                         </div>
                     </div>
+                </div>
+
+                <div class="field">
+                    <label>Слоган / главная фраза для сайта <span class="hint">(для шапки)</span></label>
+                    <input type="text" name="slogan" placeholder="Лучший сервис в городе / Красота начинается здесь...">
                 </div>
 
                 <div class="field">
@@ -666,6 +754,24 @@
                 </div>
 
                 <div class="field">
+                    <label>Нужна ли почта на домене? <span class="hint">(например info@ваш-сайт.com)</span></label>
+                    <div class="options">
+                        <div class="option-btn">
+                            <input type="radio" name="domain_email" id="de1" value="yes">
+                            <label for="de1">Да</label>
+                        </div>
+                        <div class="option-btn">
+                            <input type="radio" name="domain_email" id="de2" value="no">
+                            <label for="de2">Нет</label>
+                        </div>
+                        <div class="option-btn">
+                            <input type="radio" name="domain_email" id="de3" value="not_sure">
+                            <label for="de3">Не знаю</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field">
                     <label>Планируется ли реклама?</label>
                     <div class="options">
                         <div class="option-btn">
@@ -679,6 +785,33 @@
                         <div class="option-btn">
                             <input type="checkbox" name="ads" id="ads3" value="no_ads">
                             <label for="ads3">Пока нет</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label>Город / регион для рекламы <span class="hint">(если нужна реклама)</span></label>
+                    <input type="text" name="ads_region" placeholder="Вся Украина / Киев и область / Одесса...">
+                </div>
+
+                <div class="field">
+                    <label>Бюджет на рекламу в месяц <span class="hint">(отдельно от создания сайта)</span></label>
+                    <div class="options">
+                        <div class="option-btn">
+                            <input type="radio" name="ads_budget" id="ab1" value="30-50">
+                            <label for="ab1">30–50 &euro;/мес</label>
+                        </div>
+                        <div class="option-btn">
+                            <input type="radio" name="ads_budget" id="ab2" value="50-100">
+                            <label for="ab2">50–100 &euro;/мес</label>
+                        </div>
+                        <div class="option-btn">
+                            <input type="radio" name="ads_budget" id="ab3" value="100-300">
+                            <label for="ab3">100–300 &euro;/мес</label>
+                        </div>
+                        <div class="option-btn">
+                            <input type="radio" name="ads_budget" id="ab4" value="not_decided">
+                            <label for="ab4">Ещё не решил</label>
                         </div>
                     </div>
                 </div>
@@ -954,32 +1087,60 @@
 
             // Build Telegram message
             let msg = `<b>📋 НОВЫЙ БРИФ</b>\n\n`;
-            msg += `<b>🏢 Компания:</b> ${entries.company || '-'}\n`;
-            msg += `<b>📝 Деятельность:</b> ${entries.activity || '-'}\n`;
-            msg += `<b>👥 Аудитория:</b> ${entries.audience || '-'}\n`;
-            msg += `<b>💎 Преимущество:</b> ${entries.advantage || '-'}\n\n`;
-            msg += `<b>🌐 Тип сайта:</b> ${entries.site_type || '-'}\n`;
-            msg += `<b>🎯 Цель:</b> ${entries.goal || '-'}\n`;
-            msg += `<b>📄 Страницы:</b> ${pages || '-'}\n`;
-            msg += `<b>🌍 Языки:</b> ${langs || '-'}\n\n`;
-            msg += `<b>⚙️ Функционал:</b> ${features || '-'}\n`;
-            msg += `<b>📌 Доп. пожелания:</b> ${entries.extra_features || '-'}\n\n`;
-            msg += `<b>🎨 Стиль:</b> ${entries.style || '-'}\n`;
-            msg += `<b>🔗 Примеры:</b> ${entries.references || '-'}\n`;
-            msg += `<b>🏷 Брендинг:</b> ${entries.branding || '-'}\n`;
-            msg += `<b>📸 Контент:</b> ${entries.content || '-'}\n\n`;
-            msg += `<b>🔧 Домен:</b> ${entries.domain || '-'} ${entries.domain_name || ''}\n`;
-            msg += `<b>📈 SEO:</b> ${entries.seo || '-'}\n`;
-            msg += `<b>📢 Реклама:</b> ${ads || '-'}\n\n`;
+
+            msg += `<b>━━━ 🏢 О КОМПАНИИ ━━━</b>\n`;
+            msg += `<b>Компания:</b> ${entries.company || '-'}\n`;
+            msg += `<b>Деятельность:</b> ${entries.activity || '-'}\n`;
+            msg += `<b>Аудитория:</b> ${entries.audience || '-'}\n`;
+            msg += `<b>Преимущество:</b> ${entries.advantage || '-'}\n`;
+            msg += `<b>Адрес:</b> ${entries.address || '-'}\n`;
+            msg += `<b>Телефон (для сайта):</b> ${entries.business_phone || '-'}\n`;
+            msg += `<b>Часы работы:</b> ${entries.work_hours || '-'}\n`;
+            msg += `<b>Соцсети:</b> ${entries.socials || '-'}\n`;
+            msg += `<b>Есть сайт:</b> ${entries.has_site || '-'}\n`;
+            msg += `<b>Текущий сайт:</b> ${entries.current_site || '-'}\n\n`;
+
+            msg += `<b>━━━ 🌐 О САЙТЕ ━━━</b>\n`;
+            msg += `<b>Тип:</b> ${entries.site_type || '-'}\n`;
+            msg += `<b>Цель:</b> ${entries.goal || '-'}\n`;
+            msg += `<b>Кол-во услуг:</b> ${entries.services_count || '-'}\n`;
+            msg += `<b>Список услуг:</b> ${entries.services_list || '-'}\n`;
+            msg += `<b>Страницы:</b> ${pages || '-'}\n`;
+            msg += `<b>Языки:</b> ${langs || '-'}\n\n`;
+
+            msg += `<b>━━━ ⚙️ ФУНКЦИОНАЛ ━━━</b>\n`;
+            msg += `<b>Функции:</b> ${features || '-'}\n`;
+            msg += `<b>Доп. пожелания:</b> ${entries.extra_features || '-'}\n\n`;
+
+            msg += `<b>━━━ 🎨 ДИЗАЙН ━━━</b>\n`;
+            msg += `<b>Стиль:</b> ${entries.style || '-'}\n`;
+            msg += `<b>Тема:</b> ${entries.theme || '-'}\n`;
+            msg += `<b>Цвета:</b> ${entries.colors || '-'}\n`;
+            msg += `<b>Слоган:</b> ${entries.slogan || '-'}\n`;
+            msg += `<b>Примеры:</b> ${entries.references || '-'}\n`;
+            msg += `<b>Брендинг:</b> ${entries.branding || '-'}\n`;
+            msg += `<b>Контент:</b> ${entries.content || '-'}\n\n`;
+
+            msg += `<b>━━━ 🔧 ТЕХНИЧЕСКОЕ ━━━</b>\n`;
+            msg += `<b>Домен:</b> ${entries.domain || '-'} ${entries.domain_name || ''}\n`;
+            msg += `<b>Почта на домене:</b> ${entries.domain_email || '-'}\n`;
+            msg += `<b>SEO:</b> ${entries.seo || '-'}\n`;
+            msg += `<b>Реклама:</b> ${ads || '-'}\n`;
+            msg += `<b>Регион рекламы:</b> ${entries.ads_region || '-'}\n`;
+            msg += `<b>Бюджет рекламы/мес:</b> ${entries.ads_budget || '-'}\n\n`;
+
             const curSymbol = currencies[entries.currency || 'UAH'].symbol;
-            msg += `<b>💰 Бюджет:</b> ${parseInt(entries.budget).toLocaleString()} ${curSymbol} (${entries.currency || 'UAH'})\n`;
-            msg += `<b>⏰ Сроки:</b> ${entries.deadline || '-'}\n`;
-            msg += `<b>🛠 Поддержка:</b> ${entries.support || '-'}\n\n`;
-            msg += `<b>👤 Клиент:</b> ${entries.client_name || '-'}\n`;
-            msg += `<b>📞 Телефон:</b> ${entries.client_phone || '-'}\n`;
-            msg += `<b>📧 Email:</b> ${entries.client_email || '-'}\n`;
-            msg += `<b>💬 Связь:</b> ${entries.contact_method || '-'}\n`;
-            msg += `<b>📝 Комментарии:</b> ${entries.comments || '-'}`;
+            msg += `<b>━━━ 💰 БЮДЖЕТ ━━━</b>\n`;
+            msg += `<b>Бюджет на сайт:</b> ${parseInt(entries.budget).toLocaleString()} ${curSymbol} (${entries.currency || 'UAH'})\n`;
+            msg += `<b>Сроки:</b> ${entries.deadline || '-'}\n`;
+            msg += `<b>Поддержка:</b> ${entries.support || '-'}\n\n`;
+
+            msg += `<b>━━━ 👤 КОНТАКТЫ ━━━</b>\n`;
+            msg += `<b>Имя:</b> ${entries.client_name || '-'}\n`;
+            msg += `<b>Телефон:</b> ${entries.client_phone || '-'}\n`;
+            msg += `<b>Email:</b> ${entries.client_email || '-'}\n`;
+            msg += `<b>Способ связи:</b> ${entries.contact_method || '-'}\n`;
+            msg += `<b>Комментарии:</b> ${entries.comments || '-'}`;
 
             const sent = await sendToTelegram(msg);
 
