@@ -692,10 +692,36 @@
                 </div>
 
                 <div class="field">
-                    <label>Бюджет на разработку (грн)</label>
-                    <div class="budget-display" id="budgetDisplay">10 000 грн</div>
+                    <label>Валюта</label>
+                    <div class="options" id="currencyOptions">
+                        <div class="option-btn">
+                            <input type="radio" name="currency" id="cur_uah" value="UAH" checked>
+                            <label for="cur_uah">&#8372; Гривна</label>
+                        </div>
+                        <div class="option-btn">
+                            <input type="radio" name="currency" id="cur_usd" value="USD">
+                            <label for="cur_usd">$ Доллар</label>
+                        </div>
+                        <div class="option-btn">
+                            <input type="radio" name="currency" id="cur_eur" value="EUR">
+                            <label for="cur_eur">&#8364; Евро</label>
+                        </div>
+                        <div class="option-btn">
+                            <input type="radio" name="currency" id="cur_cny" value="CNY">
+                            <label for="cur_cny">&#165; Юань</label>
+                        </div>
+                        <div class="option-btn">
+                            <input type="radio" name="currency" id="cur_rub" value="RUB">
+                            <label for="cur_rub">&#8381; Рубль</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label>Бюджет на разработку</label>
+                    <div class="budget-display" id="budgetDisplay">10 000 &#8372;</div>
                     <input type="range" class="budget-range" name="budget" id="budgetRange" min="3000" max="100000" step="1000" value="10000">
-                    <div class="budget-labels">
+                    <div class="budget-labels" id="budgetLabels">
                         <span>3 000</span>
                         <span>25 000</span>
                         <span>50 000</span>
@@ -805,13 +831,48 @@
     </div>
 
     <script>
-        // Budget slider
+        // Currency & Budget
+        const currencies = {
+            UAH: { symbol: '\u20B4', min: 3000, max: 100000, step: 1000, default: 10000 },
+            USD: { symbol: '$', min: 50, max: 3000, step: 50, default: 300 },
+            EUR: { symbol: '\u20AC', min: 50, max: 2500, step: 50, default: 250 },
+            CNY: { symbol: '\u00A5', min: 500, max: 20000, step: 500, default: 2000 },
+            RUB: { symbol: '\u20BD', min: 10000, max: 500000, step: 5000, default: 50000 }
+        };
+
         const budgetRange = document.getElementById('budgetRange');
         const budgetDisplay = document.getElementById('budgetDisplay');
-        budgetRange.addEventListener('input', () => {
+        const budgetLabels = document.getElementById('budgetLabels');
+        let currentCurrency = 'UAH';
+
+        function updateBudgetDisplay() {
             const val = parseInt(budgetRange.value);
-            budgetDisplay.textContent = val.toLocaleString('uk-UA') + ' грн';
+            const c = currencies[currentCurrency];
+            budgetDisplay.textContent = val.toLocaleString('uk-UA') + ' ' + c.symbol;
+        }
+
+        function setCurrency(code) {
+            currentCurrency = code;
+            const c = currencies[code];
+            budgetRange.min = c.min;
+            budgetRange.max = c.max;
+            budgetRange.step = c.step;
+            budgetRange.value = c.default;
+            const q1 = Math.round(c.min + (c.max - c.min) * 0.25);
+            const q2 = Math.round(c.min + (c.max - c.min) * 0.5);
+            const labels = budgetLabels.querySelectorAll('span');
+            labels[0].textContent = c.min.toLocaleString();
+            labels[1].textContent = q1.toLocaleString();
+            labels[2].textContent = q2.toLocaleString();
+            labels[3].textContent = c.max.toLocaleString();
+            updateBudgetDisplay();
+        }
+
+        document.querySelectorAll('input[name="currency"]').forEach(radio => {
+            radio.addEventListener('change', () => setCurrency(radio.value));
         });
+
+        budgetRange.addEventListener('input', updateBudgetDisplay);
 
         // Progress tracking
         const form = document.getElementById('briefForm');
@@ -910,7 +971,8 @@
             msg += `<b>🔧 Домен:</b> ${entries.domain || '-'} ${entries.domain_name || ''}\n`;
             msg += `<b>📈 SEO:</b> ${entries.seo || '-'}\n`;
             msg += `<b>📢 Реклама:</b> ${ads || '-'}\n\n`;
-            msg += `<b>💰 Бюджет:</b> ${parseInt(entries.budget).toLocaleString()} грн\n`;
+            const curSymbol = currencies[entries.currency || 'UAH'].symbol;
+            msg += `<b>💰 Бюджет:</b> ${parseInt(entries.budget).toLocaleString()} ${curSymbol} (${entries.currency || 'UAH'})\n`;
             msg += `<b>⏰ Сроки:</b> ${entries.deadline || '-'}\n`;
             msg += `<b>🛠 Поддержка:</b> ${entries.support || '-'}\n\n`;
             msg += `<b>👤 Клиент:</b> ${entries.client_name || '-'}\n`;
