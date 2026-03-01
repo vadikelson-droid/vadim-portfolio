@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing — Vadim Dev</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, sans-serif;
+            background: #f8f9fc;
+            color: #2d3748;
+            line-height: 1.6;
+        }
+
+        /* === NAV === */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 16px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(248, 249, 252, 0.9);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+        }
+        .nav-logo {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #1a1a2e;
+            text-decoration: none;
+        }
+        .nav-links { display: flex; gap: 12px; }
+        .nav-links a {
+            text-decoration: none;
+            color: #64748b;
+            font-size: 0.9rem;
+            padding: 6px 14px;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+        .nav-links a:hover { background: #eef2ff; color: #4f46e5; }
+
+        /* === HERO === */
+        .hero {
+            text-align: center;
+            padding: 120px 20px 60px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #2d1b69 100%);
+            color: #fff;
+        }
+        .hero h1 { font-size: 2.5rem; margin-bottom: 12px; }
+        .hero p { font-size: 1.15rem; color: #a5b4fc; max-width: 500px; margin: 0 auto; }
+
+        /* === SECTIONS === */
+        .section {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1a1a2e;
+            margin-bottom: 8px;
+        }
+        .section-sub {
+            text-align: center;
+            color: #64748b;
+            margin-bottom: 40px;
+            font-size: 1rem;
+        }
+
+        /* === PRICING CARDS === */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            align-items: start;
+        }
+        .pricing-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 32px 28px;
+            border: 1px solid #e2e8f0;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+        }
+        .pricing-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(79, 70, 229, 0.1);
+        }
+        .pricing-card.featured {
+            border-color: #4f46e5;
+            box-shadow: 0 4px 20px rgba(79, 70, 229, 0.12);
+        }
+        .pricing-card.featured::before {
+            content: "Popular";
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #4f46e5;
+            color: #fff;
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        .card-name {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #64748b;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .card-price {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: #1a1a2e;
+            margin-bottom: 4px;
+        }
+        .card-price span { font-size: 1rem; font-weight: 400; color: #94a3b8; }
+        .card-desc {
+            color: #64748b;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        .card-features { list-style: none; margin-bottom: 24px; }
+        .card-features li {
+            padding: 6px 0;
+            font-size: 0.92rem;
+            color: #334155;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .card-features li::before {
+            content: "\2713";
+            color: #059669;
+            font-weight: 700;
+            font-size: 0.85rem;
+            flex-shrink: 0;
+        }
+        .card-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            text-align: center;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+        .card-btn.primary {
+            background: #4f46e5;
+            color: #fff;
+            border: none;
+        }
+        .card-btn.primary:hover { background: #4338ca; }
+        .card-btn.outline {
+            background: transparent;
+            color: #4f46e5;
+            border: 2px solid #e2e8f0;
+        }
+        .card-btn.outline:hover { border-color: #4f46e5; background: #eef2ff; }
+
+        /* === TABLES === */
+        .table-wrap {
+            overflow-x: auto;
+            margin-bottom: 40px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+        }
+        thead { background: #1a1a2e; color: #fff; }
+        th {
+            padding: 14px 20px;
+            text-align: left;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+        td {
+            padding: 12px 20px;
+            font-size: 0.92rem;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        tr:last-child td { border-bottom: none; }
+        tbody tr:hover { background: #f8fafc; }
+        .price-cell {
+            color: #4f46e5;
+            font-weight: 700;
+        }
+
+        /* === GOOGLE ADS SECTION === */
+        .ads-section {
+            background: linear-gradient(135deg, #f8faff 0%, #eef2ff 100%);
+            padding: 60px 0;
+        }
+        .ads-intro {
+            text-align: center;
+            max-width: 650px;
+            margin: 0 auto 40px;
+        }
+        .ads-intro p { color: #64748b; font-size: 1rem; }
+        .ads-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+        .ads-card {
+            background: #fff;
+            border-radius: 14px;
+            padding: 28px 24px;
+            border: 1px solid #e2e8f0;
+        }
+        .ads-card h3 {
+            font-size: 1.1rem;
+            color: #1a1a2e;
+            margin-bottom: 4px;
+        }
+        .ads-card .ads-price {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #4f46e5;
+            margin-bottom: 12px;
+        }
+        .ads-card .ads-price span { font-size: 0.85rem; color: #94a3b8; font-weight: 400; }
+
+        /* === TOTAL BOX === */
+        .total-box {
+            background: linear-gradient(135deg, #1a1a2e 0%, #312e81 100%);
+            border-radius: 16px;
+            padding: 40px;
+            color: #fff;
+            text-align: center;
+            max-width: 700px;
+            margin: 40px auto 0;
+        }
+        .total-box h3 {
+            font-size: 1.3rem;
+            margin-bottom: 24px;
+            color: #a5b4fc;
+        }
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            font-size: 1rem;
+        }
+        .total-row:last-of-type { border-bottom: none; }
+        .total-row .label { color: #cbd5e1; }
+        .total-row .value { font-weight: 700; }
+        .total-final {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid rgba(255,255,255,0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .total-final .label { font-size: 1.1rem; }
+        .total-final .value { font-size: 2rem; font-weight: 800; color: #a78bfa; }
+        .total-note {
+            margin-top: 16px;
+            font-size: 0.8rem;
+            color: #94a3b8;
+        }
+
+        /* === FOOTER === */
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #94a3b8;
+            font-size: 0.85rem;
+        }
+        .footer a { color: #4f46e5; text-decoration: none; }
+
+        /* === CTA === */
+        .cta {
+            text-align: center;
+            padding: 60px 20px;
+        }
+        .cta h2 { font-size: 1.8rem; color: #1a1a2e; margin-bottom: 12px; }
+        .cta p { color: #64748b; margin-bottom: 24px; }
+        .cta-btn {
+            display: inline-block;
+            background: #4f46e5;
+            color: #fff;
+            padding: 14px 36px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: background 0.2s;
+        }
+        .cta-btn:hover { background: #4338ca; }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 1.8rem; }
+            .card-price { font-size: 2.2rem; }
+            .pricing-grid { grid-template-columns: 1fr; }
+            .total-box { padding: 24px; }
+            .nav-links { display: none; }
+        }
+
+        /* Print */
+        @media print {
+            .nav, .cta { display: none; }
+            .hero { padding: 30px 20px; }
+            body { background: #fff; }
+            .pricing-card, .ads-card { break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+    <a href="index.html" class="nav-logo">Vadim Dev</a>
+    <div class="nav-links">
+        <a href="index.html">Portfolio</a>
+        <a href="brief.html">Brief</a>
+        <a href="pricing.html" style="color:#4f46e5;background:#eef2ff;">Pricing</a>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <h1>Services & Pricing</h1>
+    <p>Professional web development, Telegram bots, and digital advertising solutions</p>
+</section>
+
+<!-- WEBSITE PACKAGES -->
+<section class="section">
+    <h2 class="section-title">Website Packages</h2>
+    <p class="section-sub">Choose the plan that fits your business needs</p>
+
+    <div class="pricing-grid">
+        <!-- START -->
+        <div class="pricing-card">
+            <div class="card-name">Start</div>
+            <div class="card-price">110&euro;</div>
+            <div class="card-desc">Perfect for small businesses and personal brands</div>
+            <ul class="card-features">
+                <li>Landing page (1 page)</li>
+                <li>Domain name for 1 year</li>
+                <li>Hosting for 1 year</li>
+                <li>SSL certificate (HTTPS)</li>
+                <li>Mobile-responsive design</li>
+            </ul>
+            <a href="brief.html" class="card-btn outline">Get Started</a>
+        </div>
+
+        <!-- BUSINESS -->
+        <div class="pricing-card featured">
+            <div class="card-name">Business</div>
+            <div class="card-price">180&euro;</div>
+            <div class="card-desc">Most popular choice for growing businesses</div>
+            <ul class="card-features">
+                <li>Website (3&ndash;5 pages)</li>
+                <li>Domain + Hosting + SSL for 1 year</li>
+                <li>Contact form with notifications</li>
+                <li>Mobile-responsive design</li>
+                <li>Basic SEO setup</li>
+            </ul>
+            <a href="brief.html" class="card-btn primary">Get Started</a>
+        </div>
+
+        <!-- PREMIUM -->
+        <div class="pricing-card">
+            <div class="card-name">Premium</div>
+            <div class="card-price">300&euro;</div>
+            <div class="card-desc">Full-featured website for established businesses</div>
+            <ul class="card-features">
+                <li>Website (5&ndash;10 pages)</li>
+                <li>Domain + Hosting + SSL for 1 year</li>
+                <li>Brief form with Telegram alerts</li>
+                <li>Multi-language support</li>
+                <li>SEO optimization</li>
+                <li>Google Analytics integration</li>
+            </ul>
+            <a href="brief.html" class="card-btn outline">Get Started</a>
+        </div>
+    </div>
+</section>
+
+<!-- ANNUAL RENEWAL + EXTRAS -->
+<section class="section" style="padding-top:0;">
+    <h2 class="section-title">Annual Renewal</h2>
+    <p class="section-sub">Keep your website running smoothly</p>
+
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Service</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Domain + Hosting + SSL</td><td class="price-cell">35 &euro;/year</td></tr>
+                <tr><td>Domain + Hosting + minor edits (up to 3/month)</td><td class="price-cell">55 &euro;/year</td></tr>
+                <tr><td>Full support + unlimited edits</td><td class="price-cell">100 &euro;/year</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h2 class="section-title">Additional Services</h2>
+    <p class="section-sub">Extend your website with extra features</p>
+
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Service</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Additional page</td><td class="price-cell">20&ndash;30 &euro;</td></tr>
+                <tr><td>Telegram bot (simple)</td><td class="price-cell">80&ndash;150 &euro;</td></tr>
+                <tr><td>Telegram bot (with database &amp; API)</td><td class="price-cell">200&ndash;400 &euro;</td></tr>
+                <tr><td>Google Analytics integration</td><td class="price-cell">15 &euro;</td></tr>
+                <tr><td>Multi-language support (per language)</td><td class="price-cell">25&ndash;40 &euro;</td></tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<!-- GOOGLE ADS -->
+<section class="ads-section">
+    <div class="section">
+        <h2 class="section-title">Google Ads &mdash; Text Advertising</h2>
+        <div class="ads-intro">
+            <p>Reach your customers through Google Search. Pay only when someone clicks your ad. Average conversion rate: 3&ndash;5%.</p>
+        </div>
+
+        <!-- Budget table -->
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Level</th>
+                        <th>Budget/month</th>
+                        <th>Clicks</th>
+                        <th>Leads</th>
+                        <th>Cost per Lead</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Test</td><td>30 &euro;</td><td>60&ndash;150</td><td>2&ndash;7</td><td class="price-cell">~5&ndash;15 &euro;</td></tr>
+                    <tr><td>Standard</td><td>70 &euro;</td><td>140&ndash;350</td><td>5&ndash;15</td><td class="price-cell">~5&ndash;14 &euro;</td></tr>
+                    <tr><td>Active</td><td>150 &euro;</td><td>300&ndash;750</td><td>10&ndash;35</td><td class="price-cell">~4&ndash;15 &euro;</td></tr>
+                    <tr><td>Maximum</td><td>300 &euro;</td><td>600&ndash;1500</td><td>20&ndash;70</td><td class="price-cell">~4&ndash;15 &euro;</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Ads services -->
+        <div class="ads-grid">
+            <div class="ads-card">
+                <h3>Campaign Setup</h3>
+                <div class="ads-price">100&euro; <span>one-time</span></div>
+                <ul class="card-features">
+                    <li>Keyword research &amp; analysis</li>
+                    <li>Campaign structure &amp; ad groups</li>
+                    <li>Ad copy (3&ndash;5 variations)</li>
+                    <li>Negative keywords setup</li>
+                    <li>Conversion tracking</li>
+                </ul>
+            </div>
+            <div class="ads-card" style="border-color:#4f46e5;">
+                <h3>Monthly Management</h3>
+                <div class="ads-price">70&euro; <span>/month</span></div>
+                <ul class="card-features">
+                    <li>Campaign optimization</li>
+                    <li>Bid adjustments</li>
+                    <li>A/B testing of ads</li>
+                    <li>Search term analysis</li>
+                    <li>Monthly performance report</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- TOTAL EXAMPLE -->
+        <div class="total-box">
+            <h3>Complete Package Example</h3>
+            <div class="total-row">
+                <span class="label">Business website (one-time)</span>
+                <span class="value">180 &euro;</span>
+            </div>
+            <div class="total-row">
+                <span class="label">Google Ads setup (one-time)</span>
+                <span class="value">100 &euro;</span>
+            </div>
+            <div class="total-row">
+                <span class="label">Ads management (monthly)</span>
+                <span class="value">70 &euro;/mo</span>
+            </div>
+            <div class="total-row">
+                <span class="label">Google Ads budget (monthly)</span>
+                <span class="value">70 &euro;/mo</span>
+            </div>
+            <div class="total-row">
+                <span class="label">Hosting &amp; domain (monthly)</span>
+                <span class="value">~3 &euro;/mo</span>
+            </div>
+            <div class="total-final">
+                <span class="label">Total first year</span>
+                <span class="value">~ 1 996 &euro;</span>
+            </div>
+            <div class="total-note">* Google Ads budget is paid directly to Google. All prices exclude VAT.</div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+    <h2>Ready to grow your business?</h2>
+    <p>Fill out a brief and I'll get back to you within 24 hours</p>
+    <a href="brief.html" class="cta-btn">Fill Out Brief</a>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <p>&copy; 2026 Vadim Dev. All rights reserved.</p>
+    <p style="margin-top:8px;">
+        <a href="mailto:vadikelson@gmail.com">vadikelson@gmail.com</a> &nbsp;|&nbsp;
+        <a href="https://t.me/lord_elson_05">@lord_elson_05</a>
+    </p>
+</footer>
+
+</body>
+</html>
