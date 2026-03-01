@@ -844,9 +844,36 @@
         form.addEventListener('input', updateProgress);
         form.addEventListener('change', updateProgress);
 
+        // Telegram Bot config
+        const TG_BOT_TOKEN = '7859599362:AAEyToZgVlp_UrNqGMiPXbifTvUBkLQe4WA';
+        const TG_CHAT_ID = '492678324';
+
+        async function sendToTelegram(text) {
+            try {
+                const url = `https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage`;
+                const resp = await fetch(url, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        chat_id: TG_CHAT_ID,
+                        text: text,
+                        parse_mode: 'HTML'
+                    })
+                });
+                return resp.ok;
+            } catch (e) {
+                console.error('Telegram send error:', e);
+                return false;
+            }
+        }
+
         // Submit
-        form.addEventListener('submit', (e) => {
+        form.addEventListener('submit', async (e) => {
             e.preventDefault();
+
+            const submitBtn = form.querySelector('.submit-btn');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Отправляю...';
 
             const data = new FormData(form);
             const entries = {};
@@ -858,19 +885,41 @@
                 }
             });
 
-            // Generate text summary for Telegram
-            let text = '--- НОВЫЙ БРИФ ---\n\n';
-            text += 'Компания: ' + (entries.company || '-') + '\n';
-            text += 'Деятельность: ' + (entries.activity || '-') + '\n';
-            text += 'Аудитория: ' + (entries.audience || '-') + '\n';
-            text += 'Тип сайта: ' + (entries.site_type || '-') + '\n';
-            text += 'Цель: ' + (entries.goal || '-') + '\n';
-            text += 'Бюджет: ' + parseInt(entries.budget).toLocaleString() + ' грн\n';
-            text += 'Сроки: ' + (entries.deadline || '-') + '\n';
-            text += 'Контакт: ' + (entries.client_name || '') + ', ' + (entries.client_phone || '') + '\n';
+            // Collect checkbox values
+            const pages = [...form.querySelectorAll('input[name="pages"]:checked')].map(i => i.value).join(', ');
+            const langs = [...form.querySelectorAll('input[name="langs"]:checked')].map(i => i.value).join(', ');
+            const features = [...form.querySelectorAll('input[name="features"]:checked')].map(i => i.value).join(', ');
+            const ads = [...form.querySelectorAll('input[name="ads"]:checked')].map(i => i.value).join(', ');
 
-            console.log('Brief data:', entries);
-            console.log(text);
+            // Build Telegram message
+            let msg = `<b>📋 НОВЫЙ БРИФ</b>\n\n`;
+            msg += `<b>🏢 Компания:</b> ${entries.company || '-'}\n`;
+            msg += `<b>📝 Деятельность:</b> ${entries.activity || '-'}\n`;
+            msg += `<b>👥 Аудитория:</b> ${entries.audience || '-'}\n`;
+            msg += `<b>💎 Преимущество:</b> ${entries.advantage || '-'}\n\n`;
+            msg += `<b>🌐 Тип сайта:</b> ${entries.site_type || '-'}\n`;
+            msg += `<b>🎯 Цель:</b> ${entries.goal || '-'}\n`;
+            msg += `<b>📄 Страницы:</b> ${pages || '-'}\n`;
+            msg += `<b>🌍 Языки:</b> ${langs || '-'}\n\n`;
+            msg += `<b>⚙️ Функционал:</b> ${features || '-'}\n`;
+            msg += `<b>📌 Доп. пожелания:</b> ${entries.extra_features || '-'}\n\n`;
+            msg += `<b>🎨 Стиль:</b> ${entries.style || '-'}\n`;
+            msg += `<b>🔗 Примеры:</b> ${entries.references || '-'}\n`;
+            msg += `<b>🏷 Брендинг:</b> ${entries.branding || '-'}\n`;
+            msg += `<b>📸 Контент:</b> ${entries.content || '-'}\n\n`;
+            msg += `<b>🔧 Домен:</b> ${entries.domain || '-'} ${entries.domain_name || ''}\n`;
+            msg += `<b>📈 SEO:</b> ${entries.seo || '-'}\n`;
+            msg += `<b>📢 Реклама:</b> ${ads || '-'}\n\n`;
+            msg += `<b>💰 Бюджет:</b> ${parseInt(entries.budget).toLocaleString()} грн\n`;
+            msg += `<b>⏰ Сроки:</b> ${entries.deadline || '-'}\n`;
+            msg += `<b>🛠 Поддержка:</b> ${entries.support || '-'}\n\n`;
+            msg += `<b>👤 Клиент:</b> ${entries.client_name || '-'}\n`;
+            msg += `<b>📞 Телефон:</b> ${entries.client_phone || '-'}\n`;
+            msg += `<b>📧 Email:</b> ${entries.client_email || '-'}\n`;
+            msg += `<b>💬 Связь:</b> ${entries.contact_method || '-'}\n`;
+            msg += `<b>📝 Комментарии:</b> ${entries.comments || '-'}`;
+
+            const sent = await sendToTelegram(msg);
 
             form.style.display = 'none';
             document.querySelector('.submit-section').style.display = 'none';
