@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Бриф на разработку сайта — Vadim Web Dev</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg: #f8f9fc;
+            --bg-card: #ffffff;
+            --text: #2d3748;
+            --text-muted: #64748b;
+            --accent: #6366f1;
+            --accent-light: #818cf8;
+            --border: #e2e8f0;
+            --radius: 12px;
+            --green: #16a34a;
+        }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .header {
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border);
+            padding: 32px 20px;
+            text-align: center;
+        }
+        .header h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1a1a2e;
+            margin-bottom: 8px;
+        }
+        .header p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .header .badge {
+            display: inline-block;
+            margin-top: 12px;
+            background: rgba(99,102,241,0.08);
+            color: var(--accent);
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 4px 14px;
+            border-radius: 20px;
+            border: 1px solid rgba(99,102,241,0.2);
+        }
+
+        /* Container */
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 40px 20px 80px;
+        }
+
+        /* Progress */
+        .progress-bar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border);
+            padding: 12px 20px;
+        }
+        .progress-inner {
+            max-width: 720px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .progress-track {
+            flex: 1;
+            height: 6px;
+            background: var(--border);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background: var(--accent);
+            border-radius: 3px;
+            width: 0%;
+            transition: width 0.4s ease;
+        }
+        .progress-text {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        /* Sections */
+        .section {
+            margin-bottom: 36px;
+        }
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--border);
+        }
+        .section-num {
+            width: 32px;
+            height: 32px;
+            background: var(--accent);
+            color: #fff;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        .section-title {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: #1a1a2e;
+        }
+
+        /* Fields */
+        .field {
+            margin-bottom: 20px;
+        }
+        .field label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text);
+            margin-bottom: 6px;
+        }
+        .field label .required {
+            color: #ef4444;
+            margin-left: 2px;
+        }
+        .field label .hint {
+            font-weight: 400;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+        .field input[type="text"],
+        .field input[type="email"],
+        .field input[type="tel"],
+        .field input[type="url"],
+        .field textarea,
+        .field select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            font-size: 0.9rem;
+            font-family: inherit;
+            color: var(--text);
+            background: var(--bg-card);
+            transition: border-color 0.2s, box-shadow 0.2s;
+            outline: none;
+        }
+        .field input:focus,
+        .field textarea:focus,
+        .field select:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(99,102,241,0.1);
+        }
+        .field textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        .field input::placeholder,
+        .field textarea::placeholder {
+            color: #a0aec0;
+        }
+
+        /* Checkboxes & Radios */
+        .options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .option-btn {
+            position: relative;
+        }
+        .option-btn input {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .option-btn label {
+            display: inline-block;
+            padding: 8px 16px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.2s;
+            background: var(--bg-card);
+            margin-bottom: 0;
+        }
+        .option-btn input:checked + label {
+            border-color: var(--accent);
+            background: rgba(99,102,241,0.06);
+            color: var(--accent);
+        }
+        .option-btn label:hover {
+            border-color: var(--accent-light);
+            color: var(--text);
+        }
+
+        /* Budget slider */
+        .budget-display {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 8px;
+        }
+        .budget-range {
+            width: 100%;
+            -webkit-appearance: none;
+            height: 6px;
+            background: var(--border);
+            border-radius: 3px;
+            outline: none;
+        }
+        .budget-range::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 22px;
+            height: 22px;
+            background: var(--accent);
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(99,102,241,0.3);
+        }
+        .budget-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        /* Submit */
+        .submit-section {
+            text-align: center;
+            padding: 40px 0;
+            border-top: 2px solid var(--border);
+            margin-top: 40px;
+        }
+        .submit-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 48px;
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            border-radius: var(--radius);
+            font-size: 1rem;
+            font-weight: 600;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .submit-btn:hover {
+            background: #4f46e5;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(99,102,241,0.25);
+        }
+        .submit-note {
+            margin-top: 12px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* Success */
+        .success-msg {
+            display: none;
+            text-align: center;
+            padding: 48px 20px;
+        }
+        .success-msg.show {
+            display: block;
+        }
+        .success-icon {
+            font-size: 3rem;
+            margin-bottom: 16px;
+        }
+        .success-msg h2 {
+            font-size: 1.5rem;
+            color: #1a1a2e;
+            margin-bottom: 8px;
+        }
+        .success-msg p {
+            color: var(--text-muted);
+        }
+
+        /* Print */
+        @media print {
+            .progress-bar, .submit-section { display: none; }
+            body { background: #fff; }
+            .container { padding: 0; }
+            .field input, .field textarea, .field select {
+                border: 1px solid #ccc;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .header h1 { font-size: 1.4rem; }
+            .options { flex-direction: column; }
+            .option-btn label { width: 100%; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Бриф на разработку сайта</h1>
+        <p>Заполните анкету, чтобы я мог точно оценить стоимость и сроки вашего проекта</p>
+        <span class="badge">Vadim Web Dev</span>
+    </div>
+
+    <div class="progress-bar">
+        <div class="progress-inner">
+            <div class="progress-track">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <span class="progress-text" id="progressText">0%</span>
+        </div>
+    </div>
+
+    <div class="container">
+        <form id="briefForm">
+
+            <!-- 1. О компании -->
+            <div class="section">
+                <div class="section-header">
+                    <span class="section-num">1</span>
+                    <h2 class="section-title">О вашей компании</h2>
+                </div>
+
+                <div class="field">
+                    <label>Название компании / проекта <span class="required">*</span></label>
+                    <input type="text" name="company" placeholder="Royal Food, ФОП Иванов и т.д." required>
+                </div>
+                <div class="field">
+                    <label>Чем занимаетесь? <span class="required">*</span></label>
+                    <textarea name="activity" placeholder="Опишите вашу деятельность, какие услуги или товары предлагаете" required></textarea>
+                </div>
+                <div class="field">
+                    <label>Кто ваши клиенты? <span class="hint">(целевая аудитория)</span></label>
+                    <input type="text" name="audience" placeholder="Возраст, пол, география, интересы">
+                </div>
+                <div class="field">
+                    <label>Ваше конкурентное преимущество</label>
+                    <input type="text" name="advantage" placeholder="Чем вы отличаетесь от конкурентов?">
+                </div>
+            </div>
+
+            <!-- 2. О сайте -->
+            <div class="section">
+                <div class="section-header">
+                    <span class="section-num">2</span>
+                    <h2 class="section-title">О будущем сайте</h2>
+                </div>
+
+                <div class="field">
+                    <label>Тип сайта <span class="required">*</span></label>
+                    <div class="options">
+                        <div class="option-btn">
+                            <input type="radio" name="site_type" id="type1" value="landing" required>
+                            <label for="type1">Лендинг (1 стр.)</label>
+                        </div>
+                        <div class="option-btn">
+                            <input type="radio" name="site_type" id="type2" value="business_card">
+                            <label for="type2">Сайт-визитка</label>
+                        </div>
+                        <div class="option-btn">
+                            <input type="radio" name="site_type" id="type3" value="corporate">
+                            <label for="type3">Корпоративный</label>
+                        </div>
+                        <div class="option-btn">
+                            <input type="radio" name="site_type" id="type4" value="shop">
+                            <label for="type4">Интернет-магазин</label>
+                        </div>
+                        <div class="option-btn">
+                            <input type="radio" name="site_type" id="type5" value="webapp">
+                            <label for="type5">Веб-приложение</label>
+                        </div>
+                        <div class="option-btn">
+                            <input type="radio" name="site_type" id="type6" value="other_type">
+                            <label for="type6">Другое</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label>Главная цель сайта <span class="required">*</span></label>
+                    <div class="options">
+                        <div class="option-btn">
+                            <input type="radio" name="goal" id="goal1" value="leads" required>
+                            <label for="goal1">Заявки / звонки</label>
+                        </div>
+                        <div class="option-btn">
+                            <input type="radio" name="goal" id="goal2" value="sales">
+                            <label for="goal2">Онлайн-продажи</label>
+                        </div>
+                        <div class="option-btn">
+                            <input type="radio" name="goal" id="goal3" value="image">
+                            <label for="goal3">Имидж / визитка</label>
+                        </div>
+                        <div class="option-btn">
+                            <input type="radio" name="goal" id="goal4" value="info">
+                            <label for="goal4">Информирование</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label>Какие страницы нужны? <span class="hint">(можно несколько)</span></label>
+                    <div class="options">
+                        <div class="option-btn">
+                            <input type="checkbox" name="pages" id="page1" value="home">
+                            <label for="page1">Главная</label>
+                        </div>
+                        <div class="option-btn">
+                            <input type="checkbox" name="pages" id="page2" value="about">
+                            <label for="page2">О нас</label>
+                        </div>
+                        <div class="option-btn">
+                            <input type="checkbox" name="pages" id="page3" value="services">
+                            <label for="page3">Услуги</label>
+                        </div>
+                        <div class="option-btn">
+                            <input type="checkbox" name="pages" id="page4" value="portfolio">
+                            <label for="page4">Портфолио</label>
+                        </div>
+                        <div class="option-btn">
+                            <input type="checkbox" name="pages" id="page5" value="blog">
+                            <label for="page5">Блог</label>
+                        </div>
+                        <div class="option-btn">
+                            <input type="checkbox" name="pages" id="page6" value="contacts">
+                            <label for="page6">Контакты</label>
+                        </div>
+                        <div class="option-btn">
+                            <input type="checkbox" name="pages" id="page7" value="pricing">
+                            <label for="page7">Цены</label>
+                        </div>
+                        <div class="option-btn">
+                            <input type="checkbox" name="pages" id="page8" value="faq">
+                            <label for="page8">FAQ</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label>Языки сайта</label>
+                    <div class="options">
+                        <div class="option-btn">
+                            <input type="checkbox" name="langs" id="lang_ua" value="ua">
+                            <label for="lang_ua">Украинский</label>
+                        </div>
+                        <div class="option-btn">
+                            <input type="checkbox" name="langs" id="lang_ru" value="ru">
+                            <label for="lang_ru">Русский</label>
+                        </div>
+                        <div class="option-btn">
+                            <input type="checkbox" name="langs" id="lang_en" value="en">
+                            <label for="lang_en">Английский</label>
+                        </div>
+                        <div class="option-btn">
+                            <input type="checkbox" name="langs" id="lang_other" value="other">
+                            <label for="lang_other">Другой</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. Функционал -->
+            <div class="section">
+                <div class="section-header">
+                    <span class="section-num">3</span>
+                    <h2 class="section-title">Функционал</h2>
+                </div>
+
+                <div class="field">
+                    <label>Что должно быть на сайте? <span class="hint">(можно несколько)</span></label>
+                    <div class="options">
+                        <div class="option-btn">
+                            <input type="checkbox" name="features" id="feat1" value="contact_form">
+                            <label for="feat1">Форма обратной связи</label>
+                        </div>
+                        <div class="option-btn">
+                            <input type="checkbox" name="features" id="feat2" value="chat">
+                            <label for="feat2">Онлайн-чат</label>
+                        </div>
+                        <div class="option-btn">
+                            <input type="checkbox" name="features" id="feat3" value="telegram">
+                            <label for="feat3">Telegram-уведомления</label>
+                        </div>
+                        <div class="option-btn">
+                            <input type="checkbox" name="features" id="feat4" value="maps">
+                            <label for="feat4">Google Maps</label>
+                        </div>
+                        <div class="option-btn">
+                            <input type="checkbox" name="features" id="feat5" value="gallery">
+                            <label for="feat5">Фото-галерея</label>
+                        </div>
+                        <div class="option-btn">
+                            <input type="checkbox" name="features" id="feat6" value="booking">
+                            <label for="feat6">Онлайн-запись</label>
+                        </div>
+                        <div class="option-btn">
+                            <input type="checkbox" name="features" id="feat7" value="payment">
+                            <label for="feat7">Оплата онлайн</label>
+                        </div>
+                        <div class="option-btn">
+                            <input type="checkbox" name="features" id="feat8" value="admin">
+                            <label for="feat8">Админ-панель</label>
+                        </div>
+                        <div class="option-btn">
+                            <input type="checkbox" name="features" id="feat9" value="crm">
+                            <label for="feat9">CRM-интеграция</label>
+                        </div>
+                        <div class="option-btn">
+                            <input type="checkbox" name="features" id="feat10" value="analytics">
+                            <label for="feat10">Аналитика</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label>Дополнительные пожелания по функционалу</label>
+                    <textarea name="extra_features" placeholder="Опишите дополнительные функции, которые вам нужны"></textarea>
+                </div>
+            </div>
+
+            <!-- 4. Дизайн -->
+            <div class="section">
+                <div class="section-header">
+                    <span class="section-num">4</span>
+                    <h2 class="section-title">Дизайн и контент</h2>
+                </div>
+
+                <div class="field">
+                    <label>Стиль дизайна</label>
+                    <div class="options">
+                        <div class="option-btn">
+                            <input type="radio" name="style" id="style1" value="minimal">
+                            <label for="style1">Минималистичный</label>
+                        </div>
+                        <div class="option-btn">
+                            <input type="radio" name="style" id="style2" value="modern">
+                            <label for="style2">Современный</label>
+                        </div>
+                        <div class="option-btn">
+                            <input type="radio" name="style" id="style3" value="corporate">
+                            <label for="style3">Корпоративный</label>
+                        </div>
+                        <div class="option-btn">
+                            <input type="radio" name="style" id="style4" value="creative">
+                            <label for="style4">Креативный</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label>Примеры сайтов, которые нравятся <span class="hint">(2-3 ссылки)</span></label>
+                    <textarea name="references" placeholder="https://example1.com — нравится шапка и цвета&#10;https://example2.com — нравится структура"></textarea>
+                </div>
+
+                <div class="field">
+                    <label>Есть ли логотип и фирменные цвета?</label>
+                    <div class="options">
+                        <div class="option-btn">
+                            <input type="radio" name="branding" id="brand1" value="yes">
+                            <label for="brand1">Да, есть</label>
+                        </div>
+                        <div class="option-btn">
+                            <input type="radio" name="branding" id="brand2" value="need">
+                            <label for="brand2">Нужно разработать</label>
+                        </div>
+                        <div class="option-btn">
+                            <input type="radio" name="branding" id="brand3" value="no">
+                            <label for="brand3">Не нужно</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label>Тексты и фото для сайта</label>
+                    <div class="options">
+                        <div class="option-btn">
+                            <input type="radio" name="content" id="cont1" value="ready">
+                            <label for="cont1">Предоставлю сам</label>
+                        </div>
+                        <div class="option-btn">
+                            <input type="radio" name="content" id="cont2" value="need_help">
+                            <label for="cont2">Нужна помощь</label>
+                        </div>
+                        <div class="option-btn">
+                            <input type="radio" name="content" id="cont3" value="full_service">
+                            <label for="cont3">Сделайте всё</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. Технические -->
+            <div class="section">
+                <div class="section-header">
+                    <span class="section-num">5</span>
+                    <h2 class="section-title">Технические вопросы</h2>
+                </div>
+
+                <div class="field">
+                    <label>Есть ли домен (адрес сайта)?</label>
+                    <div class="options">
+                        <div class="option-btn">
+                            <input type="radio" name="domain" id="dom1" value="yes">
+                            <label for="dom1">Да, есть</label>
+                        </div>
+                        <div class="option-btn">
+                            <input type="radio" name="domain" id="dom2" value="need">
+                            <label for="dom2">Нужно купить</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <label>Домен <span class="hint">(если есть)</span></label>
+                    <input type="text" name="domain_name" placeholder="example.com">
+                </div>
+
+                <div class="field">
+                    <label>Нужна ли SEO-оптимизация?</label>
+                    <div class="options">
+                        <div class="option-btn">
+                            <input type="radio" name="seo" id="seo1" value="yes">
+                            <label for="seo1">Да</label>
+                        </div>
+                        <div class="option-btn">
+                            <input type="radio" name="seo" id="seo2" value="basic">
+                            <label for="seo2">Базовая</label>
+                        </div>
+                        <div class="option-btn">
+                            <input type="radio" name="seo" id="seo3" value="no">
+                            <label for="seo3">Не нужна</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label>Планируется ли реклама?</label>
+                    <div class="options">
+                        <div class="option-btn">
+                            <input type="checkbox" name="ads" id="ads1" value="google">
+                            <label for="ads1">Google Ads</label>
+                        </div>
+                        <div class="option-btn">
+                            <input type="checkbox" name="ads" id="ads2" value="facebook">
+                            <label for="ads2">Facebook/Instagram</label>
+                        </div>
+                        <div class="option-btn">
+                            <input type="checkbox" name="ads" id="ads3" value="no_ads">
+                            <label for="ads3">Пока нет</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6. Бюджет и сроки -->
+            <div class="section">
+                <div class="section-header">
+                    <span class="section-num">6</span>
+                    <h2 class="section-title">Бюджет и сроки</h2>
+                </div>
+
+                <div class="field">
+                    <label>Бюджет на разработку (грн)</label>
+                    <div class="budget-display" id="budgetDisplay">10 000 грн</div>
+                    <input type="range" class="budget-range" name="budget" id="budgetRange" min="3000" max="100000" step="1000" value="10000">
+                    <div class="budget-labels">
+                        <span>3 000</span>
+                        <span>25 000</span>
+                        <span>50 000</span>
+                        <span>100 000</span>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label>Желаемые сроки</label>
+                    <div class="options">
+                        <div class="option-btn">
+                            <input type="radio" name="deadline" id="dead1" value="asap">
+                            <label for="dead1">Как можно скорее</label>
+                        </div>
+                        <div class="option-btn">
+                            <input type="radio" name="deadline" id="dead2" value="2weeks">
+                            <label for="dead2">2 недели</label>
+                        </div>
+                        <div class="option-btn">
+                            <input type="radio" name="deadline" id="dead3" value="month">
+                            <label for="dead3">Месяц</label>
+                        </div>
+                        <div class="option-btn">
+                            <input type="radio" name="deadline" id="dead4" value="no_rush">
+                            <label for="dead4">Не срочно</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label>Нужна ли поддержка после запуска?</label>
+                    <div class="options">
+                        <div class="option-btn">
+                            <input type="radio" name="support" id="sup1" value="yes">
+                            <label for="sup1">Да, ежемесячная</label>
+                        </div>
+                        <div class="option-btn">
+                            <input type="radio" name="support" id="sup2" value="occasional">
+                            <label for="sup2">По необходимости</label>
+                        </div>
+                        <div class="option-btn">
+                            <input type="radio" name="support" id="sup3" value="no">
+                            <label for="sup3">Нет</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 7. Контакты -->
+            <div class="section">
+                <div class="section-header">
+                    <span class="section-num">7</span>
+                    <h2 class="section-title">Ваши контакты</h2>
+                </div>
+
+                <div class="field">
+                    <label>Имя <span class="required">*</span></label>
+                    <input type="text" name="client_name" placeholder="Как к вам обращаться?" required>
+                </div>
+                <div class="field">
+                    <label>Телефон / Telegram <span class="required">*</span></label>
+                    <input type="tel" name="client_phone" placeholder="+380..." required>
+                </div>
+                <div class="field">
+                    <label>Email</label>
+                    <input type="email" name="client_email" placeholder="email@example.com">
+                </div>
+                <div class="field">
+                    <label>Удобный способ связи</label>
+                    <div class="options">
+                        <div class="option-btn">
+                            <input type="radio" name="contact_method" id="cm1" value="telegram">
+                            <label for="cm1">Telegram</label>
+                        </div>
+                        <div class="option-btn">
+                            <input type="radio" name="contact_method" id="cm2" value="phone">
+                            <label for="cm2">Телефон</label>
+                        </div>
+                        <div class="option-btn">
+                            <input type="radio" name="contact_method" id="cm3" value="email">
+                            <label for="cm3">Email</label>
+                        </div>
+                        <div class="option-btn">
+                            <input type="radio" name="contact_method" id="cm4" value="whatsapp">
+                            <label for="cm4">WhatsApp</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <label>Дополнительные комментарии</label>
+                    <textarea name="comments" placeholder="Всё, что считаете важным и не вошло в анкету"></textarea>
+                </div>
+            </div>
+
+            <!-- Submit -->
+            <div class="submit-section">
+                <button type="submit" class="submit-btn">Отправить бриф</button>
+                <p class="submit-note">Я свяжусь с вами в течение 24 часов для обсуждения деталей</p>
+            </div>
+        </form>
+
+        <div class="success-msg" id="successMsg">
+            <div class="success-icon">&#10003;</div>
+            <h2>Бриф отправлен!</h2>
+            <p>Спасибо! Я свяжусь с вами в ближайшее время для обсуждения проекта.</p>
+        </div>
+    </div>
+
+    <script>
+        // Budget slider
+        const budgetRange = document.getElementById('budgetRange');
+        const budgetDisplay = document.getElementById('budgetDisplay');
+        budgetRange.addEventListener('input', () => {
+            const val = parseInt(budgetRange.value);
+            budgetDisplay.textContent = val.toLocaleString('uk-UA') + ' грн';
+        });
+
+        // Progress tracking
+        const form = document.getElementById('briefForm');
+        const progressFill = document.getElementById('progressFill');
+        const progressText = document.getElementById('progressText');
+        const totalFields = form.querySelectorAll('input[required], textarea[required]').length +
+                           form.querySelectorAll('.section').length;
+
+        function updateProgress() {
+            let filled = 0;
+            const sections = form.querySelectorAll('.section');
+            sections.forEach(section => {
+                const inputs = section.querySelectorAll('input, textarea, select');
+                let sectionFilled = false;
+                inputs.forEach(input => {
+                    if (input.type === 'radio' || input.type === 'checkbox') {
+                        if (input.checked) sectionFilled = true;
+                    } else if (input.value.trim()) {
+                        sectionFilled = true;
+                    }
+                });
+                if (sectionFilled) filled++;
+            });
+
+            const pct = Math.round((filled / sections.length) * 100);
+            progressFill.style.width = pct + '%';
+            progressText.textContent = pct + '%';
+        }
+
+        form.addEventListener('input', updateProgress);
+        form.addEventListener('change', updateProgress);
+
+        // Submit
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const data = new FormData(form);
+            const entries = {};
+            data.forEach((value, key) => {
+                if (entries[key]) {
+                    entries[key] = [].concat(entries[key], value);
+                } else {
+                    entries[key] = value;
+                }
+            });
+
+            // Generate text summary for Telegram
+            let text = '--- НОВЫЙ БРИФ ---\n\n';
+            text += 'Компания: ' + (entries.company || '-') + '\n';
+            text += 'Деятельность: ' + (entries.activity || '-') + '\n';
+            text += 'Аудитория: ' + (entries.audience || '-') + '\n';
+            text += 'Тип сайта: ' + (entries.site_type || '-') + '\n';
+            text += 'Цель: ' + (entries.goal || '-') + '\n';
+            text += 'Бюджет: ' + parseInt(entries.budget).toLocaleString() + ' грн\n';
+            text += 'Сроки: ' + (entries.deadline || '-') + '\n';
+            text += 'Контакт: ' + (entries.client_name || '') + ', ' + (entries.client_phone || '') + '\n';
+
+            console.log('Brief data:', entries);
+            console.log(text);
+
+            form.style.display = 'none';
+            document.querySelector('.submit-section').style.display = 'none';
+            document.getElementById('successMsg').classList.add('show');
+
+            progressFill.style.width = '100%';
+            progressText.textContent = '100%';
+        });
+    </script>
+</body>
+</html>

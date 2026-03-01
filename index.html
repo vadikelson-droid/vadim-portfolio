@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="ru" data-lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вадим — Web Developer Portfolio</title>
+    <meta name="description" content="Full-stack Web Developer — Telegram Bots, Web Applications, Landing Pages">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Language Switcher -->
+    <div class="lang-switcher">
+        <button class="lang-btn active" data-lang="ru">RU</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-logo">V<span class="accent">.</span></div>
+        <div class="nav-links">
+            <a href="#about" data-i18n="nav.about">Обо мне</a>
+            <a href="#skills" data-i18n="nav.skills">Навыки</a>
+            <a href="#projects" data-i18n="nav.projects">Проекты</a>
+            <a href="#contact" data-i18n="nav.contact">Контакты</a>
+        </div>
+        <button class="nav-burger" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <a href="#about" data-i18n="nav.about">Обо мне</a>
+        <a href="#skills" data-i18n="nav.skills">Навыки</a>
+        <a href="#projects" data-i18n="nav.projects">Проекты</a>
+        <a href="#contact" data-i18n="nav.contact">Контакты</a>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-bg">
+            <div class="grid-lines"></div>
+            <div class="glow glow-1"></div>
+            <div class="glow glow-2"></div>
+        </div>
+        <div class="hero-content">
+            <p class="hero-greeting" data-i18n="hero.greeting">Привет, я</p>
+            <h1 class="hero-name">Вадим</h1>
+            <h2 class="hero-title" data-i18n="hero.title">Web Developer</h2>
+            <p class="hero-desc" data-i18n="hero.desc">Telegram-боты, веб-приложения, лендинги и интерактивные 3D-сайты</p>
+            <div class="hero-buttons">
+                <a href="#projects" class="btn btn-primary" data-i18n="hero.projects">Мои проекты</a>
+                <a href="#contact" class="btn btn-outline" data-i18n="hero.contact">Связаться</a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-num" data-count="5">0</span>
+                    <span class="stat-label" data-i18n="hero.stat_projects">Проектов</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-num" data-count="8">0</span>
+                    <span class="stat-label" data-i18n="hero.stat_tech">Технологий</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-num" data-count="3">0</span>
+                    <span class="stat-label" data-i18n="hero.stat_bots">Telegram-ботов</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section" id="about">
+        <div class="container">
+            <h2 class="section-title" data-i18n="about.title">Обо мне</h2>
+            <div class="about-grid">
+                <div class="about-text">
+                    <p data-i18n="about.p1">Я — веб-разработчик с опытом создания полноценных веб-приложений, Telegram-ботов и интерактивных сайтов. Работаю как на backend (Python, Node.js), так и на frontend (HTML/CSS/JS, Three.js).</p>
+                    <p data-i18n="about.p2">Мои проекты включают продакшн-ботов, работающих на VPS, SPA-приложения с Firebase, и luxury-сайты с 3D-графикой уровня Awwwards.</p>
+                    <p data-i18n="about.p3">Сейчас изучаю Laravel + Vue.js для full-stack разработки.</p>
+                </div>
+                <div class="about-highlights">
+                    <div class="highlight-card">
+                        <div class="highlight-icon">&#x1f916;</div>
+                        <h3 data-i18n="about.h_bots">Telegram-боты</h3>
+                        <p data-i18n="about.h_bots_desc">3 бота в продакшне и разработке</p>
+                    </div>
+                    <div class="highlight-card">
+                        <div class="highlight-icon">&#x1f310;</div>
+                        <h3 data-i18n="about.h_web">Веб-приложения</h3>
+                        <p data-i18n="about.h_web_desc">SPA с авторизацией, бронированием и админкой</p>
+                    </div>
+                    <div class="highlight-card">
+                        <div class="highlight-icon">&#x1f3a8;</div>
+                        <h3 data-i18n="about.h_front">Frontend</h3>
+                        <p data-i18n="about.h_front_desc">Лендинги, 3D-сайты, анимации</p>
+                    </div>
+                    <div class="highlight-card">
+                        <div class="highlight-icon">&#x1f680;</div>
+                        <h3 data-i18n="about.h_deploy">Деплой</h3>
+                        <p data-i18n="about.h_deploy_desc">VPS, SSH, systemd, Firebase Hosting</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="section section-dark" id="skills">
+        <div class="container">
+            <h2 class="section-title" data-i18n="skills.title">Навыки</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Backend</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Node.js</span>
+                        <span class="skill-tag">aiogram 3</span>
+                        <span class="skill-tag">aiohttp</span>
+                        <span class="skill-tag">REST API</span>
+                        <span class="skill-tag">Webhooks</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Frontend</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">HTML5</span>
+                        <span class="skill-tag">CSS3</span>
+                        <span class="skill-tag">JavaScript ES6+</span>
+                        <span class="skill-tag">Three.js</span>
+                        <span class="skill-tag">GSAP</span>
+                        <span class="skill-tag">Canvas API</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3 data-i18n="skills.databases">Базы данных</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">SQLite</span>
+                        <span class="skill-tag">MongoDB</span>
+                        <span class="skill-tag">Firebase Firestore</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3 data-i18n="skills.tools">Инструменты</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">Linux / VPS</span>
+                        <span class="skill-tag">SSH / systemd</span>
+                        <span class="skill-tag">Firebase</span>
+                        <span class="skill-tag">Stripe</span>
+                        <span class="skill-tag">Google Sheets API</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Telegram</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">aiogram 3</span>
+                        <span class="skill-tag">Telethon</span>
+                        <span class="skill-tag">node-telegram-bot-api</span>
+                        <span class="skill-tag">Bot API</span>
+                        <span class="skill-tag">FSM</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3 data-i18n="skills.learning">Изучаю</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag learning">Laravel</span>
+                        <span class="skill-tag learning">Vue.js</span>
+                        <span class="skill-tag learning">MySQL</span>
+                        <span class="skill-tag learning">PHP</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="section" id="projects">
+        <div class="container">
+            <h2 class="section-title" data-i18n="projects.title">Проекты</h2>
+            <div class="projects-grid">
+
+                <!-- Project 1: Poster Bot -->
+                <div class="project-card featured">
+                    <div class="project-badge" data-i18n="projects.production">В продакшне</div>
+                    <div class="project-header">
+                        <div class="project-icon">&#x1f4e8;</div>
+                        <h3>Poster Telegram Receipt Bot</h3>
+                    </div>
+                    <p class="project-desc" data-i18n="projects.poster_desc">Автоматическая отправка чеков клиентам ресторана через Telegram при закрытии заказа в Poster POS. Работает в продакшне на VPS.</p>
+                    <div class="project-features">
+                        <span data-i18n="projects.poster_f1">Webhook-сервер</span>
+                        <span data-i18n="projects.poster_f2">Async Python</span>
+                        <span data-i18n="projects.poster_f3">Poster API</span>
+                        <span data-i18n="projects.poster_f4">Админ-панель</span>
+                        <span data-i18n="projects.poster_f5">Рассылка</span>
+                        <span data-i18n="projects.poster_f6">VPS деплой</span>
+                    </div>
+                    <div class="project-stack">
+                        <span>Python</span>
+                        <span>aiogram 3</span>
+                        <span>aiohttp</span>
+                        <span>SQLite</span>
+                        <span>Telethon</span>
+                    </div>
+                </div>
+
+                <!-- Project 2: Dental Bot Advanced -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-icon">&#x1f9b7;</div>
+                        <h3 data-i18n="projects.dental_title">Dental Clinic Booking Bot</h3>
+                    </div>
+                    <p class="project-desc" data-i18n="projects.dental_desc">Полноценная система онлайн-записи к стоматологу через Telegram. MongoDB, Google Sheets синхронизация, автоматические напоминания, система отзывов.</p>
+                    <div class="project-features">
+                        <span data-i18n="projects.dental_f1">Запись к врачу</span>
+                        <span data-i18n="projects.dental_f2">Расписание врачей</span>
+                        <span>Google Sheets</span>
+                        <span data-i18n="projects.dental_f3">Напоминания</span>
+                        <span data-i18n="projects.dental_f4">Отзывы</span>
+                        <span>Cron Jobs</span>
+                    </div>
+                    <div class="project-stack">
+                        <span>Node.js</span>
+                        <span>MongoDB</span>
+                        <span>Google Sheets API</span>
+                        <span>node-cron</span>
+                    </div>
+                </div>
+
+                <!-- Project 3: Nova Rent -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-icon">&#x1f697;</div>
+                        <h3>Nova Rent</h3>
+                    </div>
+                    <p class="project-desc" data-i18n="projects.nova_desc">SPA-платформа аренды и продажи автомобилей. Авторизация (email + Google OAuth), бронирование, калькулятор цен, админ-панель, 14 дизайнов, 4 языка.</p>
+                    <div class="project-features">
+                        <span data-i18n="projects.nova_f1">Авторизация</span>
+                        <span data-i18n="projects.nova_f2">Бронирование</span>
+                        <span data-i18n="projects.nova_f3">Админ-панель</span>
+                        <span data-i18n="projects.nova_f4">4 языка (i18n)</span>
+                        <span data-i18n="projects.nova_f5">14 дизайнов</span>
+                        <span>Stripe</span>
+                    </div>
+                    <div class="project-stack">
+                        <span>JavaScript</span>
+                        <span>Firebase</span>
+                        <span>Firestore</span>
+                        <span>Stripe</span>
+                        <span>i18n</span>
+                    </div>
+                </div>
+
+                <!-- Project 4: Landing Pages -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-icon">&#x2728;</div>
+                        <h3 data-i18n="projects.landing_title">Landing Pages Collection</h3>
+                    </div>
+                    <p class="project-desc" data-i18n="projects.landing_desc">7 адаптивных лендингов (RU/EN) + 3 luxury-портфолио с Three.js, GSAP, Canvas. 3D Nike Store, Particle Universe, Kinetic Typography.</p>
+                    <div class="project-features">
+                        <span data-i18n="projects.landing_f1">Адаптивность</span>
+                        <span>Three.js / WebGL</span>
+                        <span>GSAP ScrollTrigger</span>
+                        <span data-i18n="projects.landing_f2">Частицы Canvas</span>
+                        <span data-i18n="projects.landing_f3">3D модели</span>
+                        <span>SEO</span>
+                    </div>
+                    <div class="project-stack">
+                        <span>HTML5</span>
+                        <span>CSS3</span>
+                        <span>JavaScript</span>
+                        <span>Three.js</span>
+                        <span>GSAP</span>
+                        <span>Canvas</span>
+                    </div>
+                </div>
+
+                <!-- Project 5: Simple Dental Bot -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-icon">&#x1f4ac;</div>
+                        <h3 data-i18n="projects.dental_simple_title">Dental Chatbot (Lite)</h3>
+                    </div>
+                    <p class="project-desc" data-i18n="projects.dental_simple_desc">Лёгкий Telegram-бот для записи к стоматологу. Быстрый деплой, минимальные зависимости, понятная архитектура MVC.</p>
+                    <div class="project-features">
+                        <span data-i18n="projects.dental_simple_f1">Запись онлайн</span>
+                        <span data-i18n="projects.dental_simple_f2">8 услуг</span>
+                        <span>FAQ</span>
+                        <span data-i18n="projects.dental_simple_f3">Уведомления</span>
+                    </div>
+                    <div class="project-stack">
+                        <span>Node.js</span>
+                        <span>Telegram Bot API</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section section-dark" id="contact">
+        <div class="container">
+            <h2 class="section-title" data-i18n="contact.title">Контакты</h2>
+            <p class="contact-subtitle" data-i18n="contact.subtitle">Открыт для предложений о сотрудничестве</p>
+            <div class="contact-cards">
+                <a href="https://t.me/lord_elson_05" target="_blank" class="contact-card">
+                    <div class="contact-icon">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+                    </div>
+                    <span>@lord_elson_05</span>
+                </a>
+                <a href="mailto:vadikelson@gmail.com" class="contact-card">
+                    <div class="contact-icon">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                    </div>
+                    <span>vadikelson@gmail.com</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 Vadim. <span data-i18n="footer.rights">Все права защищены.</span></p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

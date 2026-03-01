@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>План обучения — Laravel + Vue.js</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg: #0a0a0f;
+            --bg-card: #12121a;
+            --text: #e4e4e7;
+            --text-muted: #71717a;
+            --accent: #6366f1;
+            --accent-light: #818cf8;
+            --accent-glow: rgba(99, 102, 241, 0.15);
+            --green: #4ade80;
+            --yellow: #fbbf24;
+            --orange: #fb923c;
+            --border: #1e1e2e;
+            --radius: 12px;
+        }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+        .container { max-width: 900px; margin: 0 auto; }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 8px;
+            color: #fff;
+        }
+        .subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            margin-bottom: 48px;
+        }
+
+        /* Timeline */
+        .timeline { position: relative; padding-left: 40px; }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 14px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--accent), var(--green));
+            border-radius: 2px;
+        }
+
+        .phase {
+            position: relative;
+            margin-bottom: 48px;
+        }
+        .phase::before {
+            content: '';
+            position: absolute;
+            left: -33px;
+            top: 8px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            border: 3px solid var(--accent);
+            background: var(--bg);
+        }
+        .phase:nth-child(2)::before { border-color: var(--yellow); }
+        .phase:nth-child(3)::before { border-color: var(--orange); }
+        .phase:nth-child(4)::before { border-color: var(--green); }
+        .phase:nth-child(5)::before { border-color: #ec4899; }
+        .phase:nth-child(6)::before { border-color: #06b6d4; }
+
+        .phase-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+        .phase-num {
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 20px;
+            color: #fff;
+        }
+        .phase:nth-child(1) .phase-num { background: var(--accent); }
+        .phase:nth-child(2) .phase-num { background: #ca8a04; }
+        .phase:nth-child(3) .phase-num { background: #ea580c; }
+        .phase:nth-child(4) .phase-num { background: #16a34a; }
+        .phase:nth-child(5) .phase-num { background: #db2777; }
+        .phase:nth-child(6) .phase-num { background: #0891b2; }
+
+        .phase-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #fff;
+        }
+        .phase-duration {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            background: var(--bg-card);
+            padding: 4px 12px;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+        }
+
+        .topics {
+            display: grid;
+            gap: 12px;
+        }
+        .topic {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 20px;
+        }
+        .topic h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+        .topic ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .topic li {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            padding-left: 20px;
+            position: relative;
+        }
+        .topic li::before {
+            content: '>';
+            position: absolute;
+            left: 0;
+            color: var(--accent-light);
+            font-weight: 600;
+        }
+        .topic .resource {
+            display: inline-block;
+            margin-top: 8px;
+            font-size: 0.8rem;
+            color: var(--accent-light);
+            border: 1px solid rgba(99,102,241,0.2);
+            padding: 2px 10px;
+            border-radius: 4px;
+            background: var(--accent-glow);
+        }
+
+        .result-box {
+            background: linear-gradient(135deg, var(--bg-card), rgba(99,102,241,0.05));
+            border: 1px solid rgba(99,102,241,0.3);
+            border-radius: var(--radius);
+            padding: 24px;
+            margin-top: 12px;
+        }
+        .result-box h4 {
+            color: var(--accent-light);
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+        .result-box p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        /* Summary */
+        .summary {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 32px;
+            margin-top: 48px;
+            text-align: center;
+        }
+        .summary h2 {
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+        .summary-item {
+            padding: 16px;
+            background: rgba(255,255,255,0.02);
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+        .summary-item .num {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--accent-light);
+        }
+        .summary-item .label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+        .summary p { color: var(--text-muted); font-size: 0.9rem; }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 32px;
+            color: var(--accent-light);
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+        .back-link:hover { color: #fff; }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 1.8rem; }
+            .summary-grid { grid-template-columns: 1fr; }
+            .timeline { padding-left: 30px; }
+            .phase::before { left: -23px; width: 12px; height: 12px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Laravel + Vue.js</h1>
+        <p class="subtitle">План обучения для Full-stack разработчика</p>
+
+        <div class="timeline">
+
+            <!-- Phase 1: PHP -->
+            <div class="phase">
+                <div class="phase-header">
+                    <span class="phase-num">ФАЗА 1</span>
+                    <h3 class="phase-title">Основы PHP</h3>
+                    <span class="phase-duration">1-2 недели</span>
+                </div>
+                <div class="topics">
+                    <div class="topic">
+                        <h4>Синтаксис и основы</h4>
+                        <ul>
+                            <li>Переменные, типы данных, операторы</li>
+                            <li>Условия, циклы, функции</li>
+                            <li>Массивы и строки (array_map, array_filter, implode/explode)</li>
+                            <li>ООП: классы, наследование, интерфейсы, трейты</li>
+                            <li>Namespaces и autoloading (PSR-4)</li>
+                            <li>Composer — менеджер пакетов PHP</li>
+                        </ul>
+                        <span class="resource">php.net docs + Laracasts "PHP for Beginners"</span>
+                    </div>
+                    <div class="topic">
+                        <h4>У тебя уже есть</h4>
+                        <ul>
+                            <li>Python/JS опыт — PHP синтаксис учится быстро</li>
+                            <li>ООП — есть из Python (классы в Telethon, aiohttp)</li>
+                            <li>npm → Composer (аналогичная концепция)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Phase 2: Laravel Basics -->
+            <div class="phase">
+                <div class="phase-header">
+                    <span class="phase-num">ФАЗА 2</span>
+                    <h3 class="phase-title">Laravel — Основы</h3>
+                    <span class="phase-duration">2-3 недели</span>
+                </div>
+                <div class="topics">
+                    <div class="topic">
+                        <h4>Архитектура Laravel</h4>
+                        <ul>
+                            <li>Установка: composer create-project laravel/laravel</li>
+                            <li>Структура проекта (routes, controllers, models, views)</li>
+                            <li>Artisan CLI — генерация кода (make:model, make:controller)</li>
+                            <li>Маршрутизация (web.php, api.php)</li>
+                            <li>Контроллеры и Request/Response</li>
+                            <li>Blade-шаблонизатор (views)</li>
+                        </ul>
+                        <span class="resource">Laravel Docs + Laracasts "Laravel from Scratch"</span>
+                    </div>
+                    <div class="topic">
+                        <h4>Eloquent ORM + Миграции</h4>
+                        <ul>
+                            <li>Миграции — создание/изменение таблиц (как схемы в MongoDB)</li>
+                            <li>Модели — аналог Mongoose в Laravel</li>
+                            <li>Отношения: hasMany, belongsTo, belongsToMany</li>
+                            <li>Seeder и Factory — заполнение тестовыми данными</li>
+                            <li>Query Builder и Eloquent запросы</li>
+                        </ul>
+                        <span class="resource">laravel.com/docs/eloquent</span>
+                    </div>
+                    <div class="topic">
+                        <h4>MySQL</h4>
+                        <ul>
+                            <li>Установка MySQL / использование SQLite для разработки</li>
+                            <li>Основы SQL: SELECT, INSERT, UPDATE, DELETE, JOIN</li>
+                            <li>Индексы и связи (foreign keys)</li>
+                            <li>Миграции Laravel заменяют ручной SQL</li>
+                        </ul>
+                        <span class="resource">MySQL Tutorial + Laravel Migrations</span>
+                    </div>
+                    <div class="result-box">
+                        <h4>Практика</h4>
+                        <p>Создать простой CRUD-блог: статьи, категории, комментарии. Маршруты, контроллеры, Eloquent, миграции.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Phase 3: Laravel Advanced -->
+            <div class="phase">
+                <div class="phase-header">
+                    <span class="phase-num">ФАЗА 3</span>
+                    <h3 class="phase-title">Laravel — REST API</h3>
+                    <span class="phase-duration">2 недели</span>
+                </div>
+                <div class="topics">
+                    <div class="topic">
+                        <h4>API Development</h4>
+                        <ul>
+                            <li>API маршруты (routes/api.php)</li>
+                            <li>Resource Controllers (apiResource)</li>
+                            <li>Form Request Validation</li>
+                            <li>API Resources — форматирование JSON-ответов</li>
+                            <li>Sanctum — аутентификация по токенам</li>
+                            <li>Middleware (auth, cors, throttle)</li>
+                        </ul>
+                        <span class="resource">Laravel API Tutorial + Sanctum Docs</span>
+                    </div>
+                    <div class="topic">
+                        <h4>У тебя уже есть</h4>
+                        <ul>
+                            <li>REST API опыт из webhook серверов (aiohttp)</li>
+                            <li>JSON форматирование из receipt_formatter.py</li>
+                            <li>Auth концепции из Firebase Auth (Nova Rent)</li>
+                        </ul>
+                    </div>
+                    <div class="result-box">
+                        <h4>Практика</h4>
+                        <p>Переписать Dental Bot API на Laravel: CRUD для пациентов, врачей, записей. Авторизация через Sanctum. Тестирование через Postman.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Phase 4: Vue.js -->
+            <div class="phase">
+                <div class="phase-header">
+                    <span class="phase-num">ФАЗА 4</span>
+                    <h3 class="phase-title">Vue.js 3 — Основы</h3>
+                    <span class="phase-duration">2-3 недели</span>
+                </div>
+                <div class="topics">
+                    <div class="topic">
+                        <h4>Основы Vue 3</h4>
+                        <ul>
+                            <li>Создание проекта: npm create vue@latest (Vite)</li>
+                            <li>Компоненты (.vue файлы: template + script + style)</li>
+                            <li>Реактивность: ref(), reactive(), computed()</li>
+                            <li>Директивы: v-if, v-for, v-model, v-bind, v-on</li>
+                            <li>Props и Emit — общение между компонентами</li>
+                            <li>Lifecycle hooks: onMounted, onUpdated</li>
+                        </ul>
+                        <span class="resource">vuejs.org + Vue Mastery "Intro to Vue 3"</span>
+                    </div>
+                    <div class="topic">
+                        <h4>Composition API</h4>
+                        <ul>
+                            <li>setup() и &lt;script setup&gt; (рекомендуемый стиль)</li>
+                            <li>Composables — переиспользуемая логика</li>
+                            <li>watch() и watchEffect()</li>
+                        </ul>
+                    </div>
+                    <div class="topic">
+                        <h4>У тебя уже есть</h4>
+                        <ul>
+                            <li>Продвинутый JS — Vue учится намного быстрее</li>
+                            <li>Компонентный подход — был в GSAP/Three.js проектах</li>
+                            <li>Реактивность — понимание из Firebase Firestore</li>
+                        </ul>
+                    </div>
+                    <div class="result-box">
+                        <h4>Практика</h4>
+                        <p>Создать Todo-приложение на Vue 3: добавление, удаление, фильтрация, localStorage. Потом — список карточек (как в Nova Rent) на Vue.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Phase 5: Vue Advanced -->
+            <div class="phase">
+                <div class="phase-header">
+                    <span class="phase-num">ФАЗА 5</span>
+                    <h3 class="phase-title">Vue.js — Продвинутый уровень</h3>
+                    <span class="phase-duration">2 недели</span>
+                </div>
+                <div class="topics">
+                    <div class="topic">
+                        <h4>Экосистема Vue</h4>
+                        <ul>
+                            <li>Vue Router — маршрутизация SPA (как в Nova Rent, но встроенная)</li>
+                            <li>Pinia — state management (замена Vuex)</li>
+                            <li>Axios — HTTP-клиент для запросов к Laravel API</li>
+                            <li>Vite — сборщик проекта</li>
+                        </ul>
+                        <span class="resource">Pinia Docs + Vue Router Docs</span>
+                    </div>
+                    <div class="topic">
+                        <h4>Интеграция с Laravel</h4>
+                        <ul>
+                            <li>Vue как отдельный SPA + Laravel как API</li>
+                            <li>CORS настройка</li>
+                            <li>Axios interceptors для токена авторизации</li>
+                            <li>Загрузка файлов через API</li>
+                            <li>Пагинация (Laravel paginate + Vue компонент)</li>
+                        </ul>
+                    </div>
+                    <div class="result-box">
+                        <h4>Практика</h4>
+                        <p>Подключить Vue frontend к Laravel API из Фазы 3. Полный CRUD с авторизацией. Роутинг, Pinia store, Axios.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Phase 6: Final Project -->
+            <div class="phase">
+                <div class="phase-header">
+                    <span class="phase-num">ФАЗА 6</span>
+                    <h3 class="phase-title">Финальный проект</h3>
+                    <span class="phase-duration">2-3 недели</span>
+                </div>
+                <div class="topics">
+                    <div class="topic">
+                        <h4>Full-stack приложение (Laravel + Vue)</h4>
+                        <ul>
+                            <li>Система управления рестораном (близко к твоему опыту)</li>
+                            <li>Авторизация (login/register) — Laravel Sanctum</li>
+                            <li>Меню с категориями — CRUD + фильтрация</li>
+                            <li>Онлайн-заказы — корзина, оформление</li>
+                            <li>Админ-панель — управление заказами и меню</li>
+                            <li>Уведомления — Laravel Events + Broadcasting</li>
+                            <li>Деплой на VPS (Nginx + PHP-FPM + MySQL)</li>
+                        </ul>
+                    </div>
+                    <div class="result-box">
+                        <h4>Результат</h4>
+                        <p>Готовый full-stack проект в портфолио. Можно показать работодателю как доказательство навыков Laravel + Vue.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Summary -->
+        <div class="summary">
+            <h2>Итого</h2>
+            <div class="summary-grid">
+                <div class="summary-item">
+                    <div class="num">6</div>
+                    <div class="label">Фаз обучения</div>
+                </div>
+                <div class="summary-item">
+                    <div class="num">~12</div>
+                    <div class="label">Недель</div>
+                </div>
+                <div class="summary-item">
+                    <div class="num">4</div>
+                    <div class="label">Практических проекта</div>
+                </div>
+            </div>
+            <p>PHP основы &rarr; Laravel CRUD &rarr; REST API &rarr; Vue 3 &rarr; Vue + Laravel &rarr; Финальный проект</p>
+            <p style="margin-top: 12px; color: var(--accent-light);">При 2-3 часах в день — реально за 3 месяца стать готовым к вакансии</p>
+
+            <a href="index.html" class="back-link">&larr; Назад к портфолио</a>
+        </div>
+    </div>
+</body>
+</html>
