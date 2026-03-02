@@ -1,0 +1,3388 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GLOW Beauty | Косметика та догляд</title>
+<meta name="description" content="GLOW Beauty - Інтернет-магазин косметики та засобів для догляду. Найкращі бренди, доступні ціни.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* ============================================
+   CSS RESET & BASE
+   ============================================ */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --pink: #e91e8b;
+  --pink-light: #f472b6;
+  --pink-dark: #be185d;
+  --pink-bg: #fdf2f8;
+  --black: #0a0a0a;
+  --dark: #1a1a1a;
+  --gray-900: #111111;
+  --gray-800: #1f1f1f;
+  --gray-700: #333333;
+  --gray-600: #555555;
+  --gray-500: #777777;
+  --gray-400: #999999;
+  --gray-300: #cccccc;
+  --gray-200: #e5e5e5;
+  --gray-100: #f5f5f5;
+  --white: #ffffff;
+  --gold: #f59e0b;
+  --green: #10b981;
+  --red: #ef4444;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 6px rgba(0,0,0,0.07), 0 2px 4px rgba(0,0,0,0.05);
+  --shadow-lg: 0 10px 15px rgba(0,0,0,0.1), 0 4px 6px rgba(0,0,0,0.05);
+  --shadow-xl: 0 20px 25px rgba(0,0,0,0.1), 0 10px 10px rgba(0,0,0,0.04);
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--white);
+  color: var(--dark);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: color var(--transition);
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+input, select, textarea {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+.container {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.section {
+  padding: 80px 0;
+}
+
+.section-title {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin-bottom: 12px;
+  color: var(--black);
+}
+
+.section-subtitle {
+  font-size: 1.05rem;
+  color: var(--gray-500);
+  margin-bottom: 48px;
+  max-width: 500px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 32px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: 50px;
+  transition: all var(--transition);
+  white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary {
+  background: var(--black);
+  color: var(--white);
+}
+
+.btn-primary:hover {
+  background: var(--gray-700);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.btn-pink {
+  background: var(--pink);
+  color: var(--white);
+}
+
+.btn-pink:hover {
+  background: var(--pink-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(233, 30, 139, 0.3);
+}
+
+.btn-outline {
+  border: 2px solid var(--black);
+  color: var(--black);
+  background: transparent;
+}
+
+.btn-outline:hover {
+  background: var(--black);
+  color: var(--white);
+  transform: translateY(-2px);
+}
+
+.btn-sm {
+  padding: 10px 20px;
+  font-size: 0.8rem;
+}
+
+.btn-lg {
+  padding: 18px 42px;
+  font-size: 1rem;
+}
+
+/* ============================================
+   HEADER / NAVIGATION
+   ============================================ */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  transition: all var(--transition);
+}
+
+.header.scrolled {
+  box-shadow: var(--shadow-md);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.logo-icon {
+  width: 38px;
+  height: 38px;
+  background: linear-gradient(135deg, var(--pink), var(--pink-dark));
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 900;
+}
+
+.logo-text {
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  color: var(--black);
+}
+
+.logo-text span {
+  color: var(--pink);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-link {
+  padding: 8px 18px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--gray-600);
+  border-radius: 50px;
+  transition: all var(--transition);
+  cursor: pointer;
+  position: relative;
+}
+
+.nav-link:hover {
+  color: var(--black);
+  background: var(--gray-100);
+}
+
+.nav-link.active {
+  color: var(--pink);
+  background: var(--pink-bg);
+  font-weight: 600;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nav-icon-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gray-600);
+  transition: all var(--transition);
+  position: relative;
+  font-size: 1.15rem;
+}
+
+.nav-icon-btn:hover {
+  background: var(--gray-100);
+  color: var(--black);
+}
+
+.cart-badge {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  width: 18px;
+  height: 18px;
+  background: var(--pink);
+  color: var(--white);
+  font-size: 0.65rem;
+  font-weight: 700;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: scale(0.5);
+  transition: all var(--transition);
+}
+
+.cart-badge.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Mobile menu toggle */
+.mobile-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 8px;
+  z-index: 1010;
+}
+
+.mobile-toggle span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--black);
+  border-radius: 2px;
+  transition: all var(--transition);
+}
+
+.mobile-toggle.open span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.mobile-toggle.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.mobile-toggle.open span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* ============================================
+   PAGE TRANSITIONS
+   ============================================ */
+.page {
+  display: none;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  min-height: calc(100vh - 72px);
+  padding-top: 72px;
+}
+
+.page.active {
+  display: block;
+}
+
+.page.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================
+   HOME PAGE - HERO
+   ============================================ */
+.hero {
+  min-height: calc(100vh - 72px);
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 30%, #fbcfe8 60%, #f9a8d4 100%);
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -30%;
+  right: -10%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(233,30,139,0.15) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: pulse-glow 4s ease-in-out infinite;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -20%;
+  left: -5%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(233,30,139,0.1) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: pulse-glow 5s ease-in-out infinite reverse;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { transform: scale(1); opacity: 0.7; }
+  50% { transform: scale(1.1); opacity: 1; }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.hero-text {
+  max-width: 560px;
+}
+
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 20px;
+  background: rgba(233,30,139,0.1);
+  border: 1px solid rgba(233,30,139,0.2);
+  border-radius: 50px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--pink);
+  margin-bottom: 28px;
+  animation: fadeInDown 0.6s ease;
+}
+
+.hero-tag::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  background: var(--pink);
+  border-radius: 50%;
+  animation: blink 2s ease infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.hero h1 {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  color: var(--black);
+  margin-bottom: 24px;
+  animation: fadeInUp 0.7s ease;
+}
+
+.hero h1 .highlight {
+  background: linear-gradient(135deg, var(--pink), var(--pink-dark));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-desc {
+  font-size: 1.1rem;
+  color: var(--gray-600);
+  line-height: 1.7;
+  margin-bottom: 36px;
+  max-width: 440px;
+  animation: fadeInUp 0.8s ease;
+}
+
+.hero-btns {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  animation: fadeInUp 0.9s ease;
+}
+
+.hero-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  animation: fadeInRight 1s ease;
+}
+
+.hero-product-showcase {
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(255,255,255,0.8), rgba(255,255,255,0.4));
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-shadow: 0 30px 60px rgba(233,30,139,0.15);
+}
+
+.hero-product-showcase::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--pink), var(--pink-light), var(--pink-dark));
+  z-index: -1;
+  opacity: 0.4;
+}
+
+.hero-emoji-product {
+  font-size: 8rem;
+  filter: drop-shadow(0 10px 30px rgba(0,0,0,0.1));
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+.hero-floating-badge {
+  position: absolute;
+  padding: 10px 18px;
+  background: var(--white);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  font-size: 0.78rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  animation: float-badge 4s ease-in-out infinite;
+}
+
+.hero-floating-badge:nth-child(2) {
+  top: 30px;
+  right: -20px;
+  animation-delay: 0.5s;
+}
+
+.hero-floating-badge:nth-child(3) {
+  bottom: 50px;
+  left: -30px;
+  animation-delay: 1s;
+}
+
+.hero-floating-badge:nth-child(4) {
+  bottom: -10px;
+  right: 20px;
+  animation-delay: 1.5s;
+}
+
+@keyframes float-badge {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* STATS SECTION */
+.stats {
+  background: var(--black);
+  padding: 60px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.stats::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(233,30,139,0.08) 0%, transparent 50%);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+  position: relative;
+  z-index: 1;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-number {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 900;
+  color: var(--white);
+  letter-spacing: -0.03em;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.stat-number .counter {
+  display: inline;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: var(--gray-400);
+  font-weight: 400;
+}
+
+/* BESTSELLERS SECTION */
+.bestsellers {
+  padding: 100px 0;
+  background: var(--white);
+}
+
+.bestsellers-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 48px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 24px;
+}
+
+/* PRODUCT CARD */
+.product-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: all var(--transition);
+  border: 1px solid var(--gray-200);
+  position: relative;
+}
+
+.product-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-xl);
+  border-color: transparent;
+}
+
+.product-card-image {
+  height: 260px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.product-card-image .product-emoji {
+  font-size: 5rem;
+  transition: transform 0.5s ease;
+  filter: drop-shadow(0 8px 16px rgba(0,0,0,0.08));
+}
+
+.product-card:hover .product-emoji {
+  transform: scale(1.12) rotate(-3deg);
+}
+
+.product-badges {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  z-index: 3;
+}
+
+.badge {
+  padding: 5px 12px;
+  border-radius: 50px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.badge-hit {
+  background: var(--pink);
+  color: var(--white);
+}
+
+.badge-new {
+  background: var(--green);
+  color: var(--white);
+}
+
+.badge-sale {
+  background: var(--red);
+  color: var(--white);
+}
+
+.product-wishlist {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 36px;
+  height: 36px;
+  background: var(--white);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  transition: all var(--transition);
+  z-index: 3;
+  font-size: 0.9rem;
+  color: var(--gray-400);
+}
+
+.product-wishlist:hover {
+  color: var(--pink);
+  transform: scale(1.1);
+}
+
+.product-wishlist.liked {
+  color: var(--pink);
+}
+
+.product-card-body {
+  padding: 20px;
+}
+
+.product-category-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--gray-400);
+  margin-bottom: 6px;
+}
+
+.product-name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--black);
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+
+.product-rating {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.stars {
+  display: flex;
+  gap: 1px;
+  color: var(--gold);
+  font-size: 0.82rem;
+}
+
+.stars .empty {
+  color: var(--gray-300);
+}
+
+.rating-count {
+  font-size: 0.75rem;
+  color: var(--gray-400);
+}
+
+.product-price-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 14px;
+}
+
+.product-price {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.price-current {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--black);
+}
+
+.price-old {
+  font-size: 0.85rem;
+  color: var(--gray-400);
+  text-decoration: line-through;
+}
+
+.btn-add-cart {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--black);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  transition: all var(--transition);
+  flex-shrink: 0;
+}
+
+.btn-add-cart:hover {
+  background: var(--pink);
+  transform: scale(1.1);
+}
+
+.btn-add-cart.added {
+  background: var(--green);
+  animation: cartPop 0.4s ease;
+}
+
+@keyframes cartPop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.3); }
+  100% { transform: scale(1); }
+}
+
+/* BRANDS BANNER */
+.brands-banner {
+  padding: 60px 0;
+  background: var(--gray-100);
+  overflow: hidden;
+}
+
+.brands-banner h3 {
+  text-align: center;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--gray-400);
+  margin-bottom: 32px;
+}
+
+.brands-scroll {
+  display: flex;
+  gap: 60px;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.brand-item {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--gray-300);
+  letter-spacing: -0.02em;
+  transition: color var(--transition);
+  white-space: nowrap;
+}
+
+.brand-item:hover {
+  color: var(--gray-600);
+}
+
+/* CTA SECTION */
+.cta-section {
+  padding: 100px 0;
+  background: linear-gradient(135deg, var(--black) 0%, #1a0a12 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-section::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(233,30,139,0.2) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.cta-content {
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.cta-content h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 900;
+  color: var(--white);
+  margin-bottom: 16px;
+  letter-spacing: -0.03em;
+}
+
+.cta-content p {
+  color: var(--gray-400);
+  font-size: 1.05rem;
+  margin-bottom: 36px;
+  line-height: 1.7;
+}
+
+/* ============================================
+   CATALOG PAGE
+   ============================================ */
+.catalog-header {
+  padding: 40px 0 0;
+}
+
+.catalog-header h1 {
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  margin-bottom: 8px;
+}
+
+.catalog-count {
+  color: var(--gray-500);
+  font-size: 0.95rem;
+  margin-bottom: 32px;
+}
+
+.catalog-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 40px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.filter-group {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  padding: 9px 20px;
+  border-radius: 50px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--gray-600);
+  background: var(--gray-100);
+  border: 1px solid transparent;
+  transition: all var(--transition);
+  cursor: pointer;
+}
+
+.filter-btn:hover {
+  border-color: var(--gray-300);
+  color: var(--black);
+}
+
+.filter-btn.active {
+  background: var(--black);
+  color: var(--white);
+  border-color: var(--black);
+}
+
+.sort-select {
+  padding: 9px 36px 9px 16px;
+  border-radius: 50px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--gray-600);
+  background: var(--gray-100);
+  border: 1px solid transparent;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M6 8L1 3h10z' fill='%23666'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  transition: all var(--transition);
+}
+
+.sort-select:hover {
+  border-color: var(--gray-300);
+}
+
+.price-filter {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.price-input {
+  width: 100px;
+  padding: 9px 14px;
+  border-radius: 50px;
+  border: 1px solid var(--gray-200);
+  font-size: 0.82rem;
+  text-align: center;
+  transition: border-color var(--transition);
+  background: var(--gray-100);
+}
+
+.price-input:focus {
+  border-color: var(--pink);
+  outline: none;
+  background: var(--white);
+}
+
+.price-separator {
+  color: var(--gray-400);
+  font-size: 0.8rem;
+}
+
+.catalog-grid {
+  padding-bottom: 80px;
+}
+
+.no-results {
+  text-align: center;
+  padding: 80px 20px;
+  color: var(--gray-500);
+}
+
+.no-results span {
+  font-size: 3rem;
+  display: block;
+  margin-bottom: 16px;
+}
+
+/* ============================================
+   SALES PAGE
+   ============================================ */
+.sales-hero {
+  padding: 60px 0;
+  background: linear-gradient(135deg, #fdf2f8, #fce7f3);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.sales-hero::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(233,30,139,0.1), transparent 70%);
+  border-radius: 50%;
+}
+
+.sales-hero h1 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  margin-bottom: 12px;
+  position: relative;
+}
+
+.sales-hero p {
+  font-size: 1.05rem;
+  color: var(--gray-600);
+  margin-bottom: 36px;
+  position: relative;
+}
+
+.countdown-wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  position: relative;
+}
+
+.countdown-item {
+  background: var(--black);
+  color: var(--white);
+  border-radius: var(--radius-md);
+  padding: 16px 22px;
+  min-width: 80px;
+  text-align: center;
+}
+
+.countdown-item .number {
+  font-size: 2rem;
+  font-weight: 900;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.countdown-item .label {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--gray-400);
+  font-weight: 500;
+}
+
+.sale-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid var(--gray-200);
+  transition: all var(--transition);
+  margin-bottom: 24px;
+}
+
+.sale-card:hover {
+  box-shadow: var(--shadow-xl);
+  transform: translateY(-4px);
+  border-color: transparent;
+}
+
+.sale-card-visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  position: relative;
+  min-height: 250px;
+}
+
+.sale-card-visual .product-emoji {
+  font-size: 5rem;
+  filter: drop-shadow(0 8px 16px rgba(0,0,0,0.08));
+}
+
+.sale-discount-badge {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: var(--red);
+  color: var(--white);
+  padding: 8px 16px;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.sale-card-body {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.sale-card-body h3 {
+  font-size: 1.4rem;
+  font-weight: 800;
+  margin-bottom: 8px;
+  letter-spacing: -0.02em;
+}
+
+.sale-card-body .sale-description {
+  color: var(--gray-500);
+  font-size: 0.92rem;
+  margin-bottom: 16px;
+  line-height: 1.6;
+}
+
+.sale-prices {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.sale-prices .new-price {
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: var(--red);
+}
+
+.sale-prices .old-price {
+  font-size: 1rem;
+  color: var(--gray-400);
+  text-decoration: line-through;
+}
+
+/* ============================================
+   CART PAGE
+   ============================================ */
+.cart-page-content {
+  padding: 40px 0 100px;
+}
+
+.cart-page-content h1 {
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  margin-bottom: 8px;
+}
+
+.cart-item-count-label {
+  color: var(--gray-500);
+  font-size: 0.95rem;
+  margin-bottom: 40px;
+}
+
+.cart-layout {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 40px;
+  align-items: start;
+}
+
+.cart-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cart-item {
+  display: grid;
+  grid-template-columns: 90px 1fr auto;
+  gap: 20px;
+  align-items: center;
+  padding: 20px;
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-md);
+  transition: all var(--transition);
+}
+
+.cart-item:hover {
+  border-color: var(--gray-300);
+  box-shadow: var(--shadow-sm);
+}
+
+.cart-item-img {
+  width: 90px;
+  height: 90px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  flex-shrink: 0;
+}
+
+.cart-item-info h4 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.cart-item-info .cart-item-cat {
+  font-size: 0.75rem;
+  color: var(--gray-400);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 10px;
+}
+
+.cart-item-info .cart-item-price-single {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--gray-600);
+}
+
+.cart-item-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+.cart-item-total {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--black);
+  white-space: nowrap;
+}
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  border: 1px solid var(--gray-200);
+  border-radius: 50px;
+  overflow: hidden;
+}
+
+.quantity-controls button {
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  color: var(--gray-600);
+  background: var(--gray-100);
+  transition: all var(--transition);
+}
+
+.quantity-controls button:hover {
+  background: var(--gray-200);
+  color: var(--black);
+}
+
+.quantity-controls .qty-value {
+  width: 40px;
+  text-align: center;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--black);
+}
+
+.cart-remove-btn {
+  font-size: 0.75rem;
+  color: var(--gray-400);
+  cursor: pointer;
+  transition: color var(--transition);
+  background: none;
+  border: none;
+  padding: 4px 8px;
+}
+
+.cart-remove-btn:hover {
+  color: var(--red);
+}
+
+/* Cart summary */
+.cart-summary {
+  background: var(--gray-100);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  position: sticky;
+  top: 92px;
+}
+
+.cart-summary h3 {
+  font-size: 1.15rem;
+  font-weight: 800;
+  margin-bottom: 24px;
+  letter-spacing: -0.02em;
+}
+
+.cart-summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  font-size: 0.9rem;
+}
+
+.cart-summary-row span:first-child {
+  color: var(--gray-500);
+}
+
+.cart-summary-row span:last-child {
+  font-weight: 600;
+  color: var(--black);
+}
+
+.cart-summary-row.discount span:last-child {
+  color: var(--green);
+}
+
+.cart-summary-divider {
+  height: 1px;
+  background: var(--gray-300);
+  margin: 12px 0;
+}
+
+.cart-summary-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0 24px;
+}
+
+.cart-summary-total span:first-child {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.cart-summary-total span:last-child {
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: var(--black);
+}
+
+.cart-summary .btn {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.cart-promo {
+  display: flex;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.cart-promo input {
+  flex: 1;
+  padding: 10px 16px;
+  border-radius: 50px;
+  border: 1px solid var(--gray-300);
+  font-size: 0.82rem;
+  transition: border-color var(--transition);
+  background: var(--white);
+}
+
+.cart-promo input:focus {
+  outline: none;
+  border-color: var(--pink);
+}
+
+.cart-promo button {
+  padding: 10px 20px;
+  border-radius: 50px;
+  background: var(--black);
+  color: var(--white);
+  font-size: 0.8rem;
+  font-weight: 600;
+  transition: all var(--transition);
+}
+
+.cart-promo button:hover {
+  background: var(--gray-700);
+}
+
+.cart-empty {
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.cart-empty span {
+  font-size: 4rem;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.cart-empty h3 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.cart-empty p {
+  color: var(--gray-500);
+  margin-bottom: 24px;
+}
+
+/* ============================================
+   AUTH PAGE
+   ============================================ */
+.auth-page-content {
+  min-height: calc(100vh - 72px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px 80px;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 440px;
+  background: var(--white);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-xl);
+  padding: 48px 40px;
+  border: 1px solid var(--gray-200);
+}
+
+.auth-card h2 {
+  font-size: 1.6rem;
+  font-weight: 900;
+  text-align: center;
+  margin-bottom: 8px;
+  letter-spacing: -0.03em;
+}
+
+.auth-card .auth-subtitle {
+  text-align: center;
+  color: var(--gray-500);
+  font-size: 0.9rem;
+  margin-bottom: 32px;
+}
+
+.auth-tabs {
+  display: flex;
+  background: var(--gray-100);
+  border-radius: 50px;
+  padding: 4px;
+  margin-bottom: 32px;
+}
+
+.auth-tab {
+  flex: 1;
+  padding: 10px;
+  text-align: center;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all var(--transition);
+  color: var(--gray-500);
+}
+
+.auth-tab.active {
+  background: var(--white);
+  color: var(--black);
+  box-shadow: var(--shadow-sm);
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.auth-form[style*="display: none"] {
+  display: none !important;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--gray-600);
+}
+
+.form-group input {
+  padding: 12px 16px;
+  border: 1.5px solid var(--gray-200);
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  transition: all var(--transition);
+  background: var(--gray-100);
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: var(--pink);
+  background: var(--white);
+  box-shadow: 0 0 0 3px rgba(233,30,139,0.1);
+}
+
+.form-group input.error {
+  border-color: var(--red);
+  background: #fef2f2;
+}
+
+.form-error-msg {
+  font-size: 0.72rem;
+  color: var(--red);
+  display: none;
+}
+
+.form-group input.error + .form-error-msg,
+.form-group input.error ~ .form-error-msg {
+  display: block;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.auth-form .btn {
+  margin-top: 8px;
+}
+
+.auth-alt {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 0.82rem;
+  color: var(--gray-500);
+}
+
+.auth-alt a {
+  color: var(--pink);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.auth-alt a:hover {
+  text-decoration: underline;
+}
+
+/* Profile view */
+.profile-card {
+  width: 100%;
+  max-width: 500px;
+  text-align: center;
+}
+
+.profile-avatar {
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(135deg, var(--pink), var(--pink-dark));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  font-size: 2.5rem;
+  color: var(--white);
+  font-weight: 900;
+}
+
+.profile-card h2 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-bottom: 4px;
+}
+
+.profile-card .profile-email {
+  color: var(--gray-500);
+  font-size: 0.9rem;
+  margin-bottom: 32px;
+}
+
+.profile-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.profile-stat {
+  background: var(--gray-100);
+  padding: 20px;
+  border-radius: var(--radius-md);
+}
+
+.profile-stat .num {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: var(--black);
+}
+
+.profile-stat .lbl {
+  font-size: 0.75rem;
+  color: var(--gray-500);
+  margin-top: 4px;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.footer {
+  background: var(--black);
+  color: var(--gray-400);
+  padding: 60px 0 30px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 40px;
+  margin-bottom: 48px;
+}
+
+.footer-brand .logo-text {
+  color: var(--white);
+  font-size: 1.3rem;
+  margin-bottom: 12px;
+}
+
+.footer-brand p {
+  font-size: 0.85rem;
+  line-height: 1.7;
+  max-width: 280px;
+}
+
+.footer-col h4 {
+  color: var(--white);
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 18px;
+}
+
+.footer-col ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-col ul li a {
+  font-size: 0.85rem;
+  color: var(--gray-400);
+  transition: color var(--transition);
+}
+
+.footer-col ul li a:hover {
+  color: var(--white);
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding-top: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.78rem;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.footer-payments {
+  display: flex;
+  gap: 10px;
+  font-size: 1.4rem;
+}
+
+/* ============================================
+   VADIM DEV BADGE
+   ============================================ */
+.dev-badge {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+  background: var(--black);
+  color: var(--white);
+  padding: 10px 18px;
+  border-radius: 50px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: var(--shadow-lg);
+  transition: all var(--transition);
+  text-decoration: none;
+  letter-spacing: 0.01em;
+}
+
+.dev-badge:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+  background: var(--pink);
+}
+
+.dev-badge .pulse-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--green);
+  border-radius: 50%;
+  animation: blink 2s ease infinite;
+}
+
+/* ============================================
+   TOAST NOTIFICATION
+   ============================================ */
+.toast-container {
+  position: fixed;
+  top: 84px;
+  right: 20px;
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.toast {
+  background: var(--black);
+  color: var(--white);
+  padding: 14px 22px;
+  border-radius: var(--radius-md);
+  font-size: 0.85rem;
+  font-weight: 500;
+  box-shadow: var(--shadow-xl);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transform: translateX(120%);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  max-width: 340px;
+}
+
+.toast.show {
+  transform: translateX(0);
+}
+
+.toast.success {
+  border-left: 3px solid var(--green);
+}
+
+.toast.error {
+  border-left: 3px solid var(--red);
+}
+
+/* ============================================
+   SCROLL TO TOP
+   ============================================ */
+.scroll-top {
+  position: fixed;
+  bottom: 70px;
+  right: 20px;
+  width: 42px;
+  height: 42px;
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  color: var(--black);
+  box-shadow: var(--shadow-md);
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all var(--transition);
+  z-index: 999;
+}
+
+.scroll-top.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scroll-top:hover {
+  background: var(--black);
+  color: var(--white);
+  border-color: var(--black);
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInRight {
+  from { opacity: 0; transform: translateX(40px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.animate-on-scroll.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 1024px) {
+  .hero-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .hero-text {
+    max-width: 100%;
+  }
+  .hero-desc {
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .hero-btns {
+    justify-content: center;
+  }
+  .hero-visual {
+    display: none;
+  }
+  .sale-card {
+    grid-template-columns: 1fr;
+  }
+  .cart-layout {
+    grid-template-columns: 1fr;
+  }
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255,255,255,0.98);
+    backdrop-filter: blur(20px);
+    flex-direction: column;
+    justify-content: center;
+    gap: 8px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--transition);
+    z-index: 1005;
+  }
+  .nav.open {
+    opacity: 1;
+    pointer-events: all;
+  }
+  .nav-link {
+    font-size: 1.2rem;
+    padding: 12px 24px;
+  }
+  .mobile-toggle {
+    display: flex;
+  }
+  .section {
+    padding: 60px 0;
+  }
+  .bestsellers-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .products-grid {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px;
+  }
+  .product-card-image {
+    height: 200px;
+  }
+  .catalog-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .filter-group {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 4px;
+  }
+  .countdown-wrapper {
+    gap: 10px;
+  }
+  .countdown-item {
+    min-width: 60px;
+    padding: 12px 14px;
+  }
+  .countdown-item .number {
+    font-size: 1.4rem;
+  }
+  .cart-item {
+    grid-template-columns: 70px 1fr;
+    gap: 14px;
+  }
+  .cart-item-actions {
+    grid-column: 1 / -1;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  .auth-card {
+    padding: 32px 24px;
+  }
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+  .profile-stats {
+    grid-template-columns: 1fr;
+  }
+  .hero {
+    min-height: auto;
+    padding: 60px 0 80px;
+  }
+}
+
+@media (max-width: 480px) {
+  .products-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .product-card-image {
+    height: 160px;
+  }
+  .product-card-body {
+    padding: 14px;
+  }
+  .product-name {
+    font-size: 0.85rem;
+  }
+  .price-current {
+    font-size: 1rem;
+  }
+  .btn-add-cart {
+    width: 34px;
+    height: 34px;
+    font-size: 0.9rem;
+  }
+  .stats-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .stat-number {
+    font-size: 1.6rem;
+  }
+  .dev-badge {
+    bottom: 12px;
+    right: 12px;
+    font-size: 0.65rem;
+    padding: 8px 14px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ============================================
+     HEADER
+     ============================================ -->
+<header class="header" id="header">
+  <div class="header-inner">
+    <div class="logo" onclick="navigateTo('home')">
+      <div class="logo-icon">G</div>
+      <div class="logo-text">GLOW<span>.</span></div>
+    </div>
+
+    <nav class="nav" id="mainNav">
+      <a class="nav-link active" data-page="home" onclick="navigateTo('home')">Головна</a>
+      <a class="nav-link" data-page="catalog" onclick="navigateTo('catalog')">Каталог</a>
+      <a class="nav-link" data-page="sales" onclick="navigateTo('sales')">Акції</a>
+      <a class="nav-link" data-page="cart" onclick="navigateTo('cart')">Кошик</a>
+      <a class="nav-link" data-page="auth" onclick="navigateTo('auth')">Увійти</a>
+    </nav>
+
+    <div class="nav-actions">
+      <button class="nav-icon-btn" onclick="navigateTo('cart')" title="Кошик" aria-label="Кошик">
+        <span>&#128722;</span>
+        <span class="cart-badge" id="cartBadge">0</span>
+      </button>
+      <button class="nav-icon-btn" onclick="navigateTo('auth')" title="Профіль" aria-label="Профіль">
+        <span>&#128100;</span>
+      </button>
+      <div class="mobile-toggle" id="mobileToggle" onclick="toggleMobileMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Toast Container -->
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- Scroll to top -->
+<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Нагору">&#8593;</button>
+
+<!-- ============================================
+     PAGE: HOME
+     ============================================ -->
+<main class="page active" id="page-home">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-text">
+        <div class="hero-tag">Новий сезон 2026</div>
+        <h1>Розкрий свою<br><span class="highlight">природну красу</span></h1>
+        <p class="hero-desc">Преміальна косметика та засоби для догляду від найкращих світових брендів. Знижки до 40% на бестселери.</p>
+        <div class="hero-btns">
+          <button class="btn btn-pink btn-lg" onclick="navigateTo('catalog')">Перейти до каталогу</button>
+          <button class="btn btn-outline btn-lg" onclick="navigateTo('sales')">Акції</button>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-product-showcase">
+          <span class="hero-emoji-product">&#128132;</span>
+          <div class="hero-floating-badge">
+            <span>&#11088;</span> 4.9 рейтинг
+          </div>
+          <div class="hero-floating-badge">
+            <span>&#128293;</span> Хіт продажів
+          </div>
+          <div class="hero-floating-badge">
+            <span>&#127873;</span> Безкоштовна доставка
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="stats" id="statsSection">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-number"><span class="counter" data-target="1200">0</span>+</div>
+          <div class="stat-label">Задоволених клієнтів</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number"><span class="counter" data-target="580">0</span>+</div>
+          <div class="stat-label">Відгуків</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number"><span class="counter" data-target="54">0</span>+</div>
+          <div class="stat-label">Брендів</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number"><span class="counter" data-target="320">0</span>+</div>
+          <div class="stat-label">Товарів</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bestsellers -->
+  <section class="bestsellers" id="bestsellersSection">
+    <div class="container">
+      <div class="bestsellers-header">
+        <div>
+          <h2 class="section-title">Бестселери</h2>
+          <p class="section-subtitle">Найпопулярніші товари за останній місяць</p>
+        </div>
+        <button class="btn btn-outline btn-sm" onclick="navigateTo('catalog')">Дивитись усе &rarr;</button>
+      </div>
+      <div class="products-grid" id="bestsellersGrid">
+        <!-- Filled by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Brands -->
+  <section class="brands-banner">
+    <div class="container">
+      <h3>Наші бренди-партнери</h3>
+      <div class="brands-scroll">
+        <span class="brand-item">L'OREAL</span>
+        <span class="brand-item">CLINIQUE</span>
+        <span class="brand-item">LANCOME</span>
+        <span class="brand-item">CHANEL</span>
+        <span class="brand-item">ESTEE LAUDER</span>
+        <span class="brand-item">NARS</span>
+        <span class="brand-item">MAC</span>
+        <span class="brand-item">CLARINS</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-content">
+        <h2>Отримай <span style="color:var(--pink)">-15%</span> на перше замовлення</h2>
+        <p>Зареєструйся та отримай персональну знижку на будь-який товар з каталогу. Акція діє для нових клієнтів.</p>
+        <button class="btn btn-pink btn-lg" onclick="navigateTo('auth')">Зареєструватись</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================================
+     PAGE: CATALOG
+     ============================================ -->
+<main class="page" id="page-catalog">
+  <div class="container">
+    <div class="catalog-header">
+      <h1>Каталог</h1>
+      <p class="catalog-count" id="catalogCount">Показано 8 товарів</p>
+    </div>
+
+    <div class="catalog-toolbar">
+      <div class="filter-group" id="categoryFilters">
+        <button class="filter-btn active" data-filter="all">Усі</button>
+        <button class="filter-btn" data-filter="face">Обличчя</button>
+        <button class="filter-btn" data-filter="makeup">Макіяж</button>
+        <button class="filter-btn" data-filter="body">Тіло</button>
+        <button class="filter-btn" data-filter="hair">Волосся</button>
+        <button class="filter-btn" data-filter="fragrance">Парфумерія</button>
+      </div>
+
+      <div style="display:flex; gap:12px; align-items:center; flex-wrap:wrap;">
+        <div class="price-filter">
+          <input type="number" class="price-input" id="priceMin" placeholder="Від" min="0">
+          <span class="price-separator">&mdash;</span>
+          <input type="number" class="price-input" id="priceMax" placeholder="До" min="0">
+          <button class="btn btn-sm btn-primary" onclick="applyFilters()" style="padding:9px 16px;">OK</button>
+        </div>
+        <select class="sort-select" id="sortSelect" onchange="applyFilters()">
+          <option value="popular">За популярністю</option>
+          <option value="price-asc">Ціна: від дешевих</option>
+          <option value="price-desc">Ціна: від дорогих</option>
+          <option value="rating">За рейтингом</option>
+          <option value="name">За назвою (А-Я)</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="catalog-grid">
+      <div class="products-grid" id="catalogGrid">
+        <!-- Filled by JS -->
+      </div>
+      <div class="no-results" id="noResults" style="display:none;">
+        <span>&#128269;</span>
+        <h3>Нічого не знайдено</h3>
+        <p>Спробуйте змінити фільтри або пошуковий запит</p>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- ============================================
+     PAGE: SALES
+     ============================================ -->
+<main class="page" id="page-sales">
+
+  <section class="sales-hero">
+    <h1>&#128293; Гарячі акції</h1>
+    <p>Встигніть придбати улюблені засоби за найкращими цінами</p>
+    <div class="countdown-wrapper">
+      <div class="countdown-item">
+        <div class="number" id="countDays">00</div>
+        <div class="label">Днів</div>
+      </div>
+      <div class="countdown-item">
+        <div class="number" id="countHours">00</div>
+        <div class="label">Годин</div>
+      </div>
+      <div class="countdown-item">
+        <div class="number" id="countMinutes">00</div>
+        <div class="label">Хвилин</div>
+      </div>
+      <div class="countdown-item">
+        <div class="number" id="countSeconds">00</div>
+        <div class="label">Секунд</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container" id="salesCards">
+      <!-- Filled by JS -->
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================================
+     PAGE: CART
+     ============================================ -->
+<main class="page" id="page-cart">
+  <div class="container">
+    <div class="cart-page-content">
+      <h1>Кошик</h1>
+      <p class="cart-item-count-label" id="cartItemCountLabel">0 товарів</p>
+
+      <div id="cartContent">
+        <!-- Filled by JS -->
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- ============================================
+     PAGE: AUTH
+     ============================================ -->
+<main class="page" id="page-auth">
+  <div class="auth-page-content">
+    <!-- Login / Register -->
+    <div class="auth-card" id="authFormsCard">
+      <h2>&#128075; Ласкаво просимо</h2>
+      <p class="auth-subtitle">Увійдіть або створіть акаунт</p>
+
+      <div class="auth-tabs">
+        <div class="auth-tab active" id="tabLogin" onclick="switchAuthTab('login')">Вхід</div>
+        <div class="auth-tab" id="tabRegister" onclick="switchAuthTab('register')">Реєстрація</div>
+      </div>
+
+      <!-- Login Form -->
+      <form class="auth-form" id="loginForm" onsubmit="handleLogin(event)">
+        <div class="form-group">
+          <label for="loginEmail">Електронна пошта</label>
+          <input type="email" id="loginEmail" placeholder="email@example.com" required>
+          <span class="form-error-msg">Введіть коректну пошту</span>
+        </div>
+        <div class="form-group">
+          <label for="loginPassword">Пароль</label>
+          <input type="password" id="loginPassword" placeholder="Ваш пароль" required minlength="6">
+          <span class="form-error-msg">Пароль має бути не менше 6 символів</span>
+        </div>
+        <button type="submit" class="btn btn-pink btn-lg">Увійти</button>
+      </form>
+
+      <!-- Register Form -->
+      <form class="auth-form" id="registerForm" onsubmit="handleRegister(event)" style="display:none;">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="regFirstName">Ім'я</label>
+            <input type="text" id="regFirstName" placeholder="Олена" required>
+            <span class="form-error-msg">Обов'язкове поле</span>
+          </div>
+          <div class="form-group">
+            <label for="regLastName">Прізвище</label>
+            <input type="text" id="regLastName" placeholder="Іваненко" required>
+            <span class="form-error-msg">Обов'язкове поле</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="regEmail">Електронна пошта</label>
+          <input type="email" id="regEmail" placeholder="email@example.com" required>
+          <span class="form-error-msg">Введіть коректну пошту</span>
+        </div>
+        <div class="form-group">
+          <label for="regPhone">Телефон</label>
+          <input type="tel" id="regPhone" placeholder="+380 __ ___ __ __" required>
+          <span class="form-error-msg">Введіть номер телефону</span>
+        </div>
+        <div class="form-group">
+          <label for="regPassword">Пароль</label>
+          <input type="password" id="regPassword" placeholder="Мінімум 6 символів" required minlength="6">
+          <span class="form-error-msg">Пароль має бути не менше 6 символів</span>
+        </div>
+        <div class="form-group">
+          <label for="regPasswordConfirm">Підтвердити пароль</label>
+          <input type="password" id="regPasswordConfirm" placeholder="Повторіть пароль" required minlength="6">
+          <span class="form-error-msg">Паролі не співпадають</span>
+        </div>
+        <button type="submit" class="btn btn-pink btn-lg">Зареєструватись</button>
+      </form>
+
+      <p class="auth-alt" id="authAlt">Немає акаунту? <a onclick="switchAuthTab('register')">Зареєструватись</a></p>
+    </div>
+
+    <!-- Profile (shown after login) -->
+    <div class="profile-card" id="profileCard" style="display:none;">
+      <div class="profile-avatar" id="profileAvatar">O</div>
+      <h2 id="profileName">Олена Іваненко</h2>
+      <p class="profile-email" id="profileEmail">olena@example.com</p>
+      <div class="profile-stats">
+        <div class="profile-stat">
+          <div class="num">3</div>
+          <div class="lbl">Замовлення</div>
+        </div>
+        <div class="profile-stat">
+          <div class="num">245</div>
+          <div class="lbl">Бонусів</div>
+        </div>
+        <div class="profile-stat">
+          <div class="num">2</div>
+          <div class="lbl">Відгуки</div>
+        </div>
+      </div>
+      <button class="btn btn-outline" onclick="handleLogout()">Вийти з акаунту</button>
+    </div>
+  </div>
+</main>
+
+<!-- ============================================
+     FOOTER
+     ============================================ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo-text" style="margin-bottom:12px;">GLOW<span style="color:var(--pink)">.</span></div>
+        <p>Ваш надійний інтернет-магазин косметики та засобів для догляду. Доставляємо по всій Україні.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Магазин</h4>
+        <ul>
+          <li><a href="#" onclick="navigateTo('catalog');return false;">Каталог</a></li>
+          <li><a href="#" onclick="navigateTo('sales');return false;">Акції</a></li>
+          <li><a href="#" onclick="navigateTo('home');return false;">Бестселери</a></li>
+          <li><a href="#" onclick="return false;">Новинки</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Допомога</h4>
+        <ul>
+          <li><a href="#" onclick="return false;">Доставка і оплата</a></li>
+          <li><a href="#" onclick="return false;">Повернення</a></li>
+          <li><a href="#" onclick="return false;">FAQ</a></li>
+          <li><a href="#" onclick="return false;">Контакти</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Контакти</h4>
+        <ul>
+          <li><a href="#" onclick="return false;">+380 (66) 123 45 67</a></li>
+          <li><a href="#" onclick="return false;">info@glow.ua</a></li>
+          <li><a href="#" onclick="return false;">Instagram</a></li>
+          <li><a href="#" onclick="return false;">Telegram</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 GLOW Beauty. Усі права захищено. Demo by Vadim Dev</span>
+      <div class="footer-payments">
+        <span title="Visa">&#128179;</span>
+        <span title="MasterCard">&#128179;</span>
+        <span title="Apple Pay">&#127822;</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Vadim Dev Badge -->
+<a class="dev-badge" href="https://vadikelson-droid.github.io/vadim-portfolio/" target="_blank" rel="noopener">
+  <span class="pulse-dot"></span>
+  Made by Vadim Dev
+</a>
+
+<!-- ============================================
+     JAVASCRIPT
+     ============================================ -->
+<script>
+/* ============================================
+   PRODUCT DATA
+   ============================================ */
+const PRODUCTS = [
+  {
+    id: 1,
+    name: "Крем для обличчя зволожувальний",
+    category: "face",
+    categoryLabel: "Догляд за обличчям",
+    price: 890,
+    oldPrice: 1250,
+    rating: 4.8,
+    reviews: 234,
+    badges: ["hit"],
+    emoji: "\u{1F9F4}",
+    bgGradient: "linear-gradient(135deg, #fce4ec, #f8bbd0)",
+    description: "Інтенсивне зволоження на 24 години. Гіалуронова кислота та вітамін Е."
+  },
+  {
+    id: 2,
+    name: "Сироватка з вітаміном С",
+    category: "face",
+    categoryLabel: "Догляд за обличчям",
+    price: 1450,
+    oldPrice: null,
+    rating: 4.9,
+    reviews: 189,
+    badges: ["new"],
+    emoji: "\u{1F9EA}",
+    bgGradient: "linear-gradient(135deg, #fff9c4, #fff176)",
+    description: "Освітлює шкіру, зменшує пігментацію. Концентрація 20%."
+  },
+  {
+    id: 3,
+    name: "Палетка тіней Sunset Vibes",
+    category: "makeup",
+    categoryLabel: "Макіяж",
+    price: 1680,
+    oldPrice: 2400,
+    rating: 4.7,
+    reviews: 156,
+    badges: ["hit", "sale"],
+    emoji: "\u{1F308}",
+    bgGradient: "linear-gradient(135deg, #f3e5f5, #ce93d8)",
+    description: "12 відтінків від нюдового до яскравого. Стійкість до 12 годин."
+  },
+  {
+    id: 4,
+    name: "Помада матова Rouge Velvet",
+    category: "makeup",
+    categoryLabel: "Макіяж",
+    price: 520,
+    oldPrice: 680,
+    rating: 4.5,
+    reviews: 312,
+    badges: ["hit"],
+    emoji: "\u{1F484}",
+    bgGradient: "linear-gradient(135deg, #ffebee, #ef9a9a)",
+    description: "Насичений колір та оксамитова текстура. Не висушує губи."
+  },
+  {
+    id: 5,
+    name: "Тональний крем Skin Perfect",
+    category: "face",
+    categoryLabel: "Догляд за обличчям",
+    price: 1290,
+    oldPrice: null,
+    rating: 4.6,
+    reviews: 98,
+    badges: ["new"],
+    emoji: "\u{1F3A8}",
+    bgGradient: "linear-gradient(135deg, #fff3e0, #ffcc80)",
+    description: "Легке покриття з ефектом другої шкіри. SPF 25."
+  },
+  {
+    id: 6,
+    name: "Маска для волосся Keratin Pro",
+    category: "hair",
+    categoryLabel: "Догляд за волоссям",
+    price: 680,
+    oldPrice: 950,
+    rating: 4.4,
+    reviews: 145,
+    badges: ["sale"],
+    emoji: "\u{1F9D6}",
+    bgGradient: "linear-gradient(135deg, #e8f5e9, #a5d6a7)",
+    description: "Відновлення пошкодженого волосся. Кератин та олія аргани."
+  },
+  {
+    id: 7,
+    name: "Парфум Fleur de Nuit",
+    category: "fragrance",
+    categoryLabel: "Парфумерія",
+    price: 2890,
+    oldPrice: 3400,
+    rating: 4.9,
+    reviews: 87,
+    badges: ["hit"],
+    emoji: "\u{1F338}",
+    bgGradient: "linear-gradient(135deg, #fce4ec, #f48fb1)",
+    description: "Квіткові ноти жасмину та троянди. Стійкість 8+ годин."
+  },
+  {
+    id: 8,
+    name: "Олія для тіла Golden Glow",
+    category: "body",
+    categoryLabel: "Догляд за тілом",
+    price: 750,
+    oldPrice: null,
+    rating: 4.3,
+    reviews: 67,
+    badges: [],
+    emoji: "\u2728",
+    bgGradient: "linear-gradient(135deg, #fffde7, #fff59d)",
+    description: "Живильна олія з шимером. Миттєвий ефект сяяння шкіри."
+  },
+  {
+    id: 9,
+    name: "Міцелярна вода Pure Clean",
+    category: "face",
+    categoryLabel: "Догляд за обличчям",
+    price: 380,
+    oldPrice: 520,
+    rating: 4.6,
+    reviews: 201,
+    badges: ["sale"],
+    emoji: "\u{1F4A7}",
+    bgGradient: "linear-gradient(135deg, #e3f2fd, #90caf9)",
+    description: "М'яке очищення без сухості. Підходить для чутливої шкіри."
+  },
+  {
+    id: 10,
+    name: "Скраб для тіла Coffee Boost",
+    category: "body",
+    categoryLabel: "Догляд за тілом",
+    price: 490,
+    oldPrice: null,
+    rating: 4.2,
+    reviews: 78,
+    badges: ["new"],
+    emoji: "\u2615",
+    bgGradient: "linear-gradient(135deg, #efebe9, #bcaaa4)",
+    description: "Натуральний кавовий скраб з кокосовою олією. Антицелюлітний ефект."
+  },
+  {
+    id: 11,
+    name: "Шампунь Volume Up",
+    category: "hair",
+    categoryLabel: "Догляд за волоссям",
+    price: 420,
+    oldPrice: null,
+    rating: 4.5,
+    reviews: 134,
+    badges: [],
+    emoji: "\u{1F9F4}",
+    bgGradient: "linear-gradient(135deg, #e0f7fa, #80deea)",
+    description: "Надає об'єм тонкому волоссю. Без сульфатів та парабенів."
+  },
+  {
+    id: 12,
+    name: "Туш для вій Mega Lash",
+    category: "makeup",
+    categoryLabel: "Макіяж",
+    price: 590,
+    oldPrice: 790,
+    rating: 4.7,
+    reviews: 256,
+    badges: ["hit", "sale"],
+    emoji: "\u{1F441}",
+    bgGradient: "linear-gradient(135deg, #ede7f6, #b39ddb)",
+    description: "Екстремальний об'єм та подовження. Водостійка формула."
+  }
+];
+
+/* ============================================
+   STATE
+   ============================================ */
+let currentPage = 'home';
+let currentFilter = 'all';
+let cart = JSON.parse(localStorage.getItem('glow_cart') || '[]');
+let currentUser = JSON.parse(localStorage.getItem('glow_user') || 'null');
+let countersAnimated = false;
+
+/* ============================================
+   NAVIGATION
+   ============================================ */
+function navigateTo(page) {
+  if (currentPage === page && document.querySelector(`#page-${page}.visible`)) {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    closeMobileMenu();
+    return;
+  }
+
+  const currentEl = document.getElementById(`page-${currentPage}`);
+  if (currentEl) {
+    currentEl.classList.remove('visible');
+    setTimeout(() => { currentEl.classList.remove('active'); }, 300);
+  }
+
+  currentPage = page;
+  window.location.hash = page === 'home' ? '' : page;
+
+  setTimeout(() => {
+    const nextEl = document.getElementById(`page-${page}`);
+    if (nextEl) {
+      nextEl.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'instant' });
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          nextEl.classList.add('visible');
+        });
+      });
+    }
+
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.classList.toggle('active', link.dataset.page === page);
+    });
+
+    if (page === 'catalog') renderCatalog();
+    if (page === 'cart') renderCart();
+    if (page === 'sales') renderSales();
+    if (page === 'auth') renderAuth();
+
+    closeMobileMenu();
+  }, currentEl ? 250 : 0);
+}
+
+function handleHashChange() {
+  const hash = window.location.hash.replace('#', '') || 'home';
+  const validPages = ['home', 'catalog', 'sales', 'cart', 'auth'];
+  navigateTo(validPages.includes(hash) ? hash : 'home');
+}
+
+/* ============================================
+   MOBILE MENU
+   ============================================ */
+function toggleMobileMenu() {
+  const nav = document.getElementById('mainNav');
+  const toggle = document.getElementById('mobileToggle');
+  nav.classList.toggle('open');
+  toggle.classList.toggle('open');
+}
+
+function closeMobileMenu() {
+  document.getElementById('mainNav').classList.remove('open');
+  document.getElementById('mobileToggle').classList.remove('open');
+}
+
+/* ============================================
+   PRODUCT CARD RENDERER
+   ============================================ */
+function createProductCard(product) {
+  const stars = renderStars(product.rating);
+  const badges = product.badges.map(b => {
+    if (b === 'hit') return '<span class="badge badge-hit">&#128293; Hit</span>';
+    if (b === 'new') return '<span class="badge badge-new">Новинка</span>';
+    if (b === 'sale') {
+      const pct = product.oldPrice ? Math.round((1 - product.price / product.oldPrice) * 100) : 0;
+      return `<span class="badge badge-sale">-${pct}%</span>`;
+    }
+    return '';
+  }).join('');
+
+  const oldPriceHtml = product.oldPrice
+    ? `<span class="price-old">${product.oldPrice} &#8372;</span>`
+    : '';
+
+  const isInCart = cart.some(c => c.id === product.id);
+
+  return `
+    <div class="product-card" data-id="${product.id}">
+      <div class="product-card-image" style="background:${product.bgGradient}">
+        <div class="product-badges">${badges}</div>
+        <button class="product-wishlist" onclick="toggleWishlist(this)" aria-label="Вподобати">&#9825;</button>
+        <span class="product-emoji">${product.emoji}</span>
+      </div>
+      <div class="product-card-body">
+        <div class="product-category-label">${product.categoryLabel}</div>
+        <div class="product-name">${product.name}</div>
+        <div class="product-rating">
+          <div class="stars">${stars}</div>
+          <span class="rating-count">${product.rating} (${product.reviews})</span>
+        </div>
+        <div class="product-price-row">
+          <div class="product-price">
+            <span class="price-current">${product.price} &#8372;</span>
+            ${oldPriceHtml}
+          </div>
+          <button class="btn-add-cart ${isInCart ? 'added' : ''}"
+                  onclick="addToCart(${product.id}, this)"
+                  title="Додати в кошик"
+                  aria-label="Додати в кошик">
+            ${isInCart ? '&#10003;' : '+'}
+          </button>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function renderStars(rating) {
+  let html = '';
+  for (let i = 1; i <= 5; i++) {
+    html += i <= Math.round(rating)
+      ? '<span>&#9733;</span>'
+      : '<span class="empty">&#9733;</span>';
+  }
+  return html;
+}
+
+/* ============================================
+   BESTSELLERS (HOME)
+   ============================================ */
+function renderBestsellers() {
+  const bestsellers = PRODUCTS.filter(p => p.badges.includes('hit')).slice(0, 4);
+  const grid = document.getElementById('bestsellersGrid');
+  grid.innerHTML = bestsellers.map(createProductCard).join('');
+}
+
+/* ============================================
+   CATALOG
+   ============================================ */
+function renderCatalog() {
+  applyFilters();
+}
+
+function applyFilters() {
+  const filter = currentFilter;
+  const sortVal = document.getElementById('sortSelect').value;
+  const minPrice = parseInt(document.getElementById('priceMin').value) || 0;
+  const maxPrice = parseInt(document.getElementById('priceMax').value) || Infinity;
+
+  let filtered = PRODUCTS.filter(p => {
+    if (filter !== 'all' && p.category !== filter) return false;
+    if (p.price < minPrice || p.price > maxPrice) return false;
+    return true;
+  });
+
+  switch (sortVal) {
+    case 'price-asc':
+      filtered.sort((a, b) => a.price - b.price);
+      break;
+    case 'price-desc':
+      filtered.sort((a, b) => b.price - a.price);
+      break;
+    case 'rating':
+      filtered.sort((a, b) => b.rating - a.rating);
+      break;
+    case 'name':
+      filtered.sort((a, b) => a.name.localeCompare(b.name, 'uk'));
+      break;
+    default:
+      filtered.sort((a, b) => b.reviews - a.reviews);
+  }
+
+  const grid = document.getElementById('catalogGrid');
+  const noResults = document.getElementById('noResults');
+  const count = document.getElementById('catalogCount');
+
+  if (filtered.length === 0) {
+    grid.innerHTML = '';
+    noResults.style.display = 'block';
+  } else {
+    noResults.style.display = 'none';
+    grid.innerHTML = filtered.map(createProductCard).join('');
+  }
+
+  count.textContent = `Показано ${filtered.length} ${pluralize(filtered.length, 'товар', 'товари', 'товарів')}`;
+}
+
+function pluralize(n, one, few, many) {
+  const mod10 = n % 10;
+  const mod100 = n % 100;
+  if (mod100 >= 11 && mod100 <= 19) return many;
+  if (mod10 === 1) return one;
+  if (mod10 >= 2 && mod10 <= 4) return few;
+  return many;
+}
+
+/* Category filter buttons */
+document.getElementById('categoryFilters').addEventListener('click', function(e) {
+  if (!e.target.classList.contains('filter-btn')) return;
+  document.querySelectorAll('#categoryFilters .filter-btn').forEach(b => b.classList.remove('active'));
+  e.target.classList.add('active');
+  currentFilter = e.target.dataset.filter;
+  applyFilters();
+});
+
+/* ============================================
+   SALES
+   ============================================ */
+function renderSales() {
+  const saleProducts = PRODUCTS.filter(p => p.oldPrice && p.oldPrice > p.price);
+  const container = document.getElementById('salesCards');
+
+  container.innerHTML = saleProducts.map(product => {
+    const pct = Math.round((1 - product.price / product.oldPrice) * 100);
+    const isInCart = cart.some(c => c.id === product.id);
+    return `
+      <div class="sale-card">
+        <div class="sale-card-visual" style="background:${product.bgGradient}">
+          <span class="sale-discount-badge">-${pct}%</span>
+          <span class="product-emoji">${product.emoji}</span>
+        </div>
+        <div class="sale-card-body">
+          <div class="product-category-label">${product.categoryLabel}</div>
+          <h3>${product.name}</h3>
+          <p class="sale-description">${product.description}</p>
+          <div class="product-rating" style="margin-bottom:12px;">
+            <div class="stars">${renderStars(product.rating)}</div>
+            <span class="rating-count">${product.rating} (${product.reviews} відгуків)</span>
+          </div>
+          <div class="sale-prices">
+            <span class="new-price">${product.price} &#8372;</span>
+            <span class="old-price">${product.oldPrice} &#8372;</span>
+          </div>
+          <button class="btn ${isInCart ? 'btn-outline' : 'btn-pink'}"
+                  onclick="addToCart(${product.id}, this)">
+            ${isInCart ? '&#10003; У кошику' : 'Додати в кошик'}
+          </button>
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  startCountdown();
+}
+
+/* Countdown timer */
+function startCountdown() {
+  const endDate = new Date();
+  endDate.setDate(endDate.getDate() + 3);
+  endDate.setHours(23, 59, 59, 0);
+
+  function update() {
+    const now = new Date();
+    const diff = endDate - now;
+    if (diff <= 0) return;
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+
+    const daysEl = document.getElementById('countDays');
+    const hoursEl = document.getElementById('countHours');
+    const minutesEl = document.getElementById('countMinutes');
+    const secondsEl = document.getElementById('countSeconds');
+
+    if (daysEl) daysEl.textContent = String(days).padStart(2, '0');
+    if (hoursEl) hoursEl.textContent = String(hours).padStart(2, '0');
+    if (minutesEl) minutesEl.textContent = String(minutes).padStart(2, '0');
+    if (secondsEl) secondsEl.textContent = String(seconds).padStart(2, '0');
+  }
+
+  update();
+  setInterval(update, 1000);
+}
+
+/* ============================================
+   CART
+   ============================================ */
+function addToCart(productId, btnEl) {
+  const product = PRODUCTS.find(p => p.id === productId);
+  if (!product) return;
+
+  const existing = cart.find(c => c.id === productId);
+  if (existing) {
+    existing.qty += 1;
+  } else {
+    cart.push({ id: productId, qty: 1 });
+  }
+
+  saveCart();
+  updateCartBadge();
+
+  if (btnEl) {
+    if (btnEl.classList.contains('btn-add-cart')) {
+      btnEl.classList.add('added');
+      btnEl.innerHTML = '&#10003;';
+    } else {
+      btnEl.className = 'btn btn-outline';
+      btnEl.innerHTML = '&#10003; У кошику';
+    }
+  }
+
+  showToast(`${product.name} додано в кошик`, 'success');
+}
+
+function removeFromCart(productId) {
+  cart = cart.filter(c => c.id !== productId);
+  saveCart();
+  updateCartBadge();
+  renderCart();
+}
+
+function updateCartQty(productId, delta) {
+  const item = cart.find(c => c.id === productId);
+  if (!item) return;
+
+  item.qty += delta;
+  if (item.qty <= 0) {
+    removeFromCart(productId);
+    return;
+  }
+
+  saveCart();
+  renderCart();
+}
+
+function saveCart() {
+  localStorage.setItem('glow_cart', JSON.stringify(cart));
+}
+
+function updateCartBadge() {
+  const total = cart.reduce((sum, c) => sum + c.qty, 0);
+  const badge = document.getElementById('cartBadge');
+  badge.textContent = total;
+  badge.classList.toggle('visible', total > 0);
+}
+
+function getCartTotal() {
+  return cart.reduce((sum, item) => {
+    const product = PRODUCTS.find(p => p.id === item.id);
+    return sum + (product ? product.price * item.qty : 0);
+  }, 0);
+}
+
+function getCartDiscount() {
+  return cart.reduce((sum, item) => {
+    const product = PRODUCTS.find(p => p.id === item.id);
+    if (product && product.oldPrice) {
+      return sum + (product.oldPrice - product.price) * item.qty;
+    }
+    return sum;
+  }, 0);
+}
+
+function renderCart() {
+  const container = document.getElementById('cartContent');
+  const countLabel = document.getElementById('cartItemCountLabel');
+  const totalItems = cart.reduce((s, c) => s + c.qty, 0);
+
+  countLabel.textContent = `${totalItems} ${pluralize(totalItems, 'товар', 'товари', 'товарів')}`;
+
+  if (cart.length === 0) {
+    container.innerHTML = `
+      <div class="cart-empty">
+        <span>&#128722;</span>
+        <h3>Кошик порожній</h3>
+        <p>Додайте товари з каталогу, щоб оформити замовлення</p>
+        <button class="btn btn-pink" onclick="navigateTo('catalog')">Перейти до каталогу</button>
+      </div>
+    `;
+    return;
+  }
+
+  const itemsHtml = cart.map(item => {
+    const product = PRODUCTS.find(p => p.id === item.id);
+    if (!product) return '';
+    const total = product.price * item.qty;
+
+    return `
+      <div class="cart-item">
+        <div class="cart-item-img" style="background:${product.bgGradient}">
+          ${product.emoji}
+        </div>
+        <div class="cart-item-info">
+          <h4>${product.name}</h4>
+          <div class="cart-item-cat">${product.categoryLabel}</div>
+          <div class="cart-item-price-single">${product.price} &#8372; / шт.</div>
+        </div>
+        <div class="cart-item-actions">
+          <div class="cart-item-total">${total} &#8372;</div>
+          <div class="quantity-controls">
+            <button onclick="updateCartQty(${product.id}, -1)" aria-label="Менше">&minus;</button>
+            <span class="qty-value">${item.qty}</span>
+            <button onclick="updateCartQty(${product.id}, 1)" aria-label="Більше">+</button>
+          </div>
+          <button class="cart-remove-btn" onclick="removeFromCart(${product.id})">Видалити</button>
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  const subtotal = getCartTotal();
+  const discount = getCartDiscount();
+  const delivery = subtotal >= 1500 ? 0 : 80;
+  const grandTotal = subtotal + delivery;
+
+  container.innerHTML = `
+    <div class="cart-layout">
+      <div class="cart-items-list">
+        ${itemsHtml}
+      </div>
+      <div class="cart-summary">
+        <h3>Разом</h3>
+        <div class="cart-summary-row">
+          <span>Товари (${totalItems})</span>
+          <span>${subtotal} &#8372;</span>
+        </div>
+        ${discount > 0 ? `
+          <div class="cart-summary-row discount">
+            <span>Знижка</span>
+            <span>-${discount} &#8372;</span>
+          </div>
+        ` : ''}
+        <div class="cart-summary-row">
+          <span>Доставка</span>
+          <span>${delivery === 0 ? 'Безкоштовно' : delivery + ' &#8372;'}</span>
+        </div>
+        ${delivery > 0 ? `<div style="font-size:0.72rem;color:var(--gray-400);margin-top:-4px;margin-bottom:4px;">Безкоштовна від 1500 &#8372;</div>` : ''}
+        <div class="cart-summary-divider"></div>
+        <div class="cart-summary-total">
+          <span>До сплати</span>
+          <span>${grandTotal} &#8372;</span>
+        </div>
+        <button class="btn btn-pink btn-lg" onclick="handleCheckout()">Оформити замовлення</button>
+        <button class="btn btn-outline btn-sm" onclick="navigateTo('catalog')" style="width:100%;margin-top:6px;">Продовжити покупки</button>
+        <div class="cart-promo">
+          <input type="text" placeholder="Промокод">
+          <button onclick="showToast('Промокод GLOW15 застосовано! -15%','success')">OK</button>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function handleCheckout() {
+  if (currentUser) {
+    showToast('Замовлення оформлено! Дякуємо за покупку!', 'success');
+    cart = [];
+    saveCart();
+    updateCartBadge();
+    setTimeout(() => renderCart(), 500);
+  } else {
+    showToast('Увійдіть або зареєструйтесь для оформлення', 'error');
+    setTimeout(() => navigateTo('auth'), 1000);
+  }
+}
+
+/* ============================================
+   AUTH
+   ============================================ */
+function renderAuth() {
+  if (currentUser) {
+    document.getElementById('authFormsCard').style.display = 'none';
+    document.getElementById('profileCard').style.display = 'block';
+    document.getElementById('profileName').textContent = currentUser.firstName + ' ' + currentUser.lastName;
+    document.getElementById('profileEmail').textContent = currentUser.email;
+    document.getElementById('profileAvatar').textContent = currentUser.firstName.charAt(0).toUpperCase();
+
+    document.querySelectorAll('.nav-link').forEach(link => {
+      if (link.dataset.page === 'auth') link.textContent = 'Профіль';
+    });
+  } else {
+    document.getElementById('authFormsCard').style.display = 'block';
+    document.getElementById('profileCard').style.display = 'none';
+
+    document.querySelectorAll('.nav-link').forEach(link => {
+      if (link.dataset.page === 'auth') link.textContent = 'Увійти';
+    });
+  }
+}
+
+function switchAuthTab(tab) {
+  const loginForm = document.getElementById('loginForm');
+  const registerForm = document.getElementById('registerForm');
+  const tabLogin = document.getElementById('tabLogin');
+  const tabRegister = document.getElementById('tabRegister');
+  const authAlt = document.getElementById('authAlt');
+
+  if (tab === 'login') {
+    loginForm.style.display = 'flex';
+    registerForm.style.display = 'none';
+    tabLogin.classList.add('active');
+    tabRegister.classList.remove('active');
+    authAlt.innerHTML = 'Немає акаунту? <a onclick="switchAuthTab(\'register\')">Зареєструватись</a>';
+  } else {
+    loginForm.style.display = 'none';
+    registerForm.style.display = 'flex';
+    tabRegister.classList.add('active');
+    tabLogin.classList.remove('active');
+    authAlt.innerHTML = 'Вже є акаунт? <a onclick="switchAuthTab(\'login\')">Увійти</a>';
+  }
+}
+
+function handleLogin(e) {
+  e.preventDefault();
+
+  const emailInput = document.getElementById('loginEmail');
+  const passwordInput = document.getElementById('loginPassword');
+  let valid = true;
+
+  emailInput.classList.remove('error');
+  passwordInput.classList.remove('error');
+
+  if (!emailInput.value || !emailInput.validity.valid) {
+    emailInput.classList.add('error');
+    valid = false;
+  }
+  if (!passwordInput.value || passwordInput.value.length < 6) {
+    passwordInput.classList.add('error');
+    valid = false;
+  }
+
+  if (!valid) return;
+
+  const stored = JSON.parse(localStorage.getItem('glow_users') || '[]');
+  const user = stored.find(u => u.email === emailInput.value);
+
+  if (user && user.password === passwordInput.value) {
+    currentUser = user;
+    localStorage.setItem('glow_user', JSON.stringify(currentUser));
+    showToast(`Ласкаво просимо, ${user.firstName}!`, 'success');
+    renderAuth();
+  } else if (user) {
+    passwordInput.classList.add('error');
+    showToast('Невірний пароль', 'error');
+  } else {
+    showToast('Акаунт не знайдено. Зареєструйтесь.', 'error');
+    switchAuthTab('register');
+  }
+}
+
+function handleRegister(e) {
+  e.preventDefault();
+
+  const fields = {
+    firstName: document.getElementById('regFirstName'),
+    lastName: document.getElementById('regLastName'),
+    email: document.getElementById('regEmail'),
+    phone: document.getElementById('regPhone'),
+    password: document.getElementById('regPassword'),
+    passwordConfirm: document.getElementById('regPasswordConfirm')
+  };
+
+  let valid = true;
+
+  Object.values(fields).forEach(input => input.classList.remove('error'));
+
+  if (!fields.firstName.value.trim()) {
+    fields.firstName.classList.add('error');
+    valid = false;
+  }
+  if (!fields.lastName.value.trim()) {
+    fields.lastName.classList.add('error');
+    valid = false;
+  }
+  if (!fields.email.value || !fields.email.validity.valid) {
+    fields.email.classList.add('error');
+    valid = false;
+  }
+  if (!fields.phone.value.trim() || fields.phone.value.replace(/\D/g, '').length < 10) {
+    fields.phone.classList.add('error');
+    valid = false;
+  }
+  if (!fields.password.value || fields.password.value.length < 6) {
+    fields.password.classList.add('error');
+    valid = false;
+  }
+  if (fields.passwordConfirm.value !== fields.password.value) {
+    fields.passwordConfirm.classList.add('error');
+    valid = false;
+  }
+
+  if (!valid) {
+    showToast('Будь ласка, заповніть всі поля коректно', 'error');
+    return;
+  }
+
+  const userData = {
+    firstName: fields.firstName.value.trim(),
+    lastName: fields.lastName.value.trim(),
+    email: fields.email.value.trim(),
+    phone: fields.phone.value.trim(),
+    password: fields.password.value
+  };
+
+  const stored = JSON.parse(localStorage.getItem('glow_users') || '[]');
+  if (stored.find(u => u.email === userData.email)) {
+    fields.email.classList.add('error');
+    showToast('Цей email вже зареєстровано', 'error');
+    return;
+  }
+
+  stored.push(userData);
+  localStorage.setItem('glow_users', JSON.stringify(stored));
+
+  currentUser = userData;
+  localStorage.setItem('glow_user', JSON.stringify(currentUser));
+
+  showToast(`Вітаємо, ${userData.firstName}! Акаунт створено.`, 'success');
+  renderAuth();
+}
+
+function handleLogout() {
+  currentUser = null;
+  localStorage.removeItem('glow_user');
+  showToast('Ви вийшли з акаунту', 'success');
+  renderAuth();
+}
+
+/* ============================================
+   WISHLIST (VISUAL ONLY)
+   ============================================ */
+function toggleWishlist(btn) {
+  btn.classList.toggle('liked');
+  if (btn.classList.contains('liked')) {
+    btn.innerHTML = '&#9829;';
+    showToast('Додано до вподобань', 'success');
+  } else {
+    btn.innerHTML = '&#9825;';
+  }
+}
+
+/* ============================================
+   TOAST NOTIFICATIONS
+   ============================================ */
+function showToast(message, type) {
+  const container = document.getElementById('toastContainer');
+  const toast = document.createElement('div');
+  toast.className = `toast ${type || ''}`;
+  const icon = type === 'success' ? '&#10003;' : type === 'error' ? '&#10007;' : '&#9432;';
+  toast.innerHTML = `<span>${icon}</span> ${message}`;
+  container.appendChild(toast);
+
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      toast.classList.add('show');
+    });
+  });
+
+  setTimeout(() => {
+    toast.classList.remove('show');
+    setTimeout(() => toast.remove(), 400);
+  }, 3000);
+}
+
+/* ============================================
+   ANIMATED COUNTERS
+   ============================================ */
+function animateCounters() {
+  if (countersAnimated) return;
+  const counters = document.querySelectorAll('.counter');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !countersAnimated) {
+        countersAnimated = true;
+        counters.forEach(counter => {
+          const target = parseInt(counter.dataset.target);
+          const duration = 2000;
+          const startTime = performance.now();
+
+          function updateCounter(currentTime) {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            counter.textContent = Math.floor(target * eased);
+
+            if (progress < 1) {
+              requestAnimationFrame(updateCounter);
+            } else {
+              counter.textContent = target;
+            }
+          }
+
+          requestAnimationFrame(updateCounter);
+        });
+        observer.disconnect();
+      }
+    });
+  }, { threshold: 0.3 });
+
+  const statsSection = document.getElementById('statsSection');
+  if (statsSection) observer.observe(statsSection);
+}
+
+/* ============================================
+   SCROLL EFFECTS
+   ============================================ */
+function handleScroll() {
+  const header = document.getElementById('header');
+  const scrollTop = document.getElementById('scrollTop');
+  const scrollY = window.scrollY;
+
+  header.classList.toggle('scrolled', scrollY > 10);
+
+  if (scrollTop) {
+    scrollTop.classList.toggle('visible', scrollY > 400);
+  }
+}
+
+/* ============================================
+   SCROLL-TRIGGERED ANIMATIONS
+   ============================================ */
+function initScrollAnimations() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+  document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+}
+
+/* ============================================
+   INITIALIZATION
+   ============================================ */
+function init() {
+  renderBestsellers();
+  updateCartBadge();
+  animateCounters();
+
+  handleHashChange();
+
+  const initialPage = document.getElementById(`page-${currentPage}`);
+  if (initialPage) {
+    initialPage.classList.add('active');
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        initialPage.classList.add('visible');
+      });
+    });
+  }
+
+  if (currentUser) {
+    document.querySelectorAll('.nav-link').forEach(link => {
+      if (link.dataset.page === 'auth') link.textContent = 'Профіль';
+    });
+  }
+
+  window.addEventListener('scroll', handleScroll, { passive: true });
+  window.addEventListener('hashchange', handleHashChange);
+
+  initScrollAnimations();
+}
+
+document.addEventListener('DOMContentLoaded', init);
+</script>
+
+</body>
+</html>

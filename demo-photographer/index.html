@@ -1,0 +1,2192 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Марія Коваленко | Весільний та портретний фотограф</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+    <style>
+        /* ===== RESET & BASE ===== */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --blush: #f8e8e0;
+            --blush-light: #fdf5f0;
+            --blush-dark: #ecd4c8;
+            --charcoal: #2d2d2d;
+            --charcoal-light: #4a4a4a;
+            --charcoal-muted: #6b6b6b;
+            --white: #ffffff;
+            --off-white: #faf8f6;
+            --cream: #f5efe8;
+            --rose: #d4a69a;
+            --rose-dark: #c48d7f;
+            --sage: #a8b5a0;
+            --sage-dark: #8fa085;
+            --gold-warm: #c9a96e;
+            --text: #3d3d3d;
+            --text-light: #7a7a7a;
+            --shadow-soft: rgba(45, 45, 45, 0.06);
+            --shadow-medium: rgba(45, 45, 45, 0.1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--off-white);
+            color: var(--text);
+            line-height: 1.7;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Playfair Display', serif;
+            color: var(--charcoal);
+            line-height: 1.3;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s ease;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ===== ANIMATIONS ===== */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .fade-left {
+            opacity: 0;
+            transform: translateX(-40px);
+            transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .fade-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .fade-right {
+            opacity: 0;
+            transform: translateX(40px);
+            transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .fade-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .scale-in {
+            opacity: 0;
+            transform: scale(0.92);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .scale-in.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* ===== HEADER ===== */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 0 24px;
+            transition: all 0.4s ease;
+            background: transparent;
+        }
+
+        .header.scrolled {
+            background: rgba(250, 248, 246, 0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 2px 30px var(--shadow-soft);
+        }
+
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 80px;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--charcoal);
+        }
+
+        .logo em {
+            font-style: italic;
+            color: var(--rose);
+            font-weight: 400;
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 36px;
+        }
+
+        .nav a {
+            font-size: 0.88rem;
+            font-weight: 500;
+            color: var(--charcoal-muted);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            position: relative;
+            padding: 4px 0;
+        }
+
+        .nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--rose);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .nav a:hover {
+            color: var(--charcoal);
+        }
+
+        .nav a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            background: var(--charcoal) !important;
+            color: var(--white) !important;
+            padding: 10px 24px !important;
+            border-radius: 50px !important;
+            font-size: 0.85rem !important;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease !important;
+        }
+
+        .nav-cta::after {
+            display: none !important;
+        }
+
+        .nav-cta:hover {
+            background: var(--charcoal-light) !important;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px var(--shadow-medium);
+        }
+
+        /* Burger */
+        .burger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1001;
+            padding: 8px;
+        }
+
+        .burger span {
+            width: 26px;
+            height: 2px;
+            background: var(--charcoal);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .burger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .burger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .burger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background: var(--off-white);
+            padding-top: 80px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            right: -15%;
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(ellipse, rgba(248, 232, 224, 0.6) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -20%;
+            left: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(ellipse, rgba(168, 181, 160, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .hero-text {
+            max-width: 520px;
+        }
+
+        .hero-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--rose-dark);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 24px;
+        }
+
+        .hero-label::before {
+            content: '';
+            width: 40px;
+            height: 1px;
+            background: var(--rose);
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 3.8rem);
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--charcoal);
+        }
+
+        .hero h1 .italic {
+            font-style: italic;
+            color: var(--rose-dark);
+            display: block;
+            font-weight: 400;
+        }
+
+        .hero-subtitle {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            color: var(--charcoal-muted);
+            font-weight: 400;
+            font-style: italic;
+            margin-bottom: 24px;
+            letter-spacing: 0.5px;
+        }
+
+        .hero-description {
+            font-size: 1.02rem;
+            color: var(--text-light);
+            line-height: 1.8;
+            margin-bottom: 40px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .btn-dark {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--charcoal);
+            color: var(--white);
+            padding: 16px 36px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.92rem;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-dark:hover {
+            background: var(--charcoal-light);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px var(--shadow-medium);
+        }
+
+        .btn-soft {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--blush);
+            color: var(--charcoal);
+            padding: 16px 36px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.92rem;
+            letter-spacing: 0.5px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-soft:hover {
+            background: var(--blush-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Visual */
+        .hero-visual {
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-mosaic {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            max-width: 450px;
+        }
+
+        .hero-photo {
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 10px 40px var(--shadow-soft);
+            transition: all 0.4s ease;
+        }
+
+        .hero-photo:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 50px var(--shadow-medium);
+        }
+
+        .hero-photo:nth-child(1) {
+            height: 280px;
+            background: linear-gradient(135deg, #f7d1a0 0%, #f0a07c 40%, #e8836a 100%);
+        }
+
+        .hero-photo:nth-child(2) {
+            height: 220px;
+            margin-top: 40px;
+            background: linear-gradient(135deg, #a8c6df 0%, #7ba3c4 40%, #5d87ad 100%);
+        }
+
+        .hero-photo:nth-child(3) {
+            height: 220px;
+            background: linear-gradient(135deg, #d4c5a9 0%, #bfac8a 40%, #a89670 100%);
+        }
+
+        .hero-photo:nth-child(4) {
+            height: 280px;
+            margin-top: -40px;
+            background: linear-gradient(135deg, #c9ddd0 0%, #a3c4b0 40%, #7eab93 100%);
+        }
+
+        .hero-photo-label {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px 16px 14px;
+            background: linear-gradient(to top, rgba(0,0,0,0.4), transparent);
+            color: white;
+            font-size: 0.78rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .hero-floating-stat {
+            position: absolute;
+            background: var(--white);
+            border-radius: 16px;
+            padding: 16px 22px;
+            box-shadow: 0 10px 40px var(--shadow-soft);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            animation: floatSoft 5s ease-in-out infinite;
+            z-index: 5;
+        }
+
+        .hero-floating-stat:nth-of-type(5) {
+            bottom: 20px;
+            left: -20px;
+        }
+
+        .hero-floating-stat:nth-of-type(6) {
+            top: 20px;
+            right: -20px;
+            animation-delay: -2.5s;
+        }
+
+        .hero-floating-stat-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .hero-floating-stat-icon.pink {
+            background: rgba(248, 232, 224, 0.8);
+        }
+
+        .hero-floating-stat-icon.green {
+            background: rgba(168, 181, 160, 0.3);
+        }
+
+        .hero-floating-stat-icon svg {
+            width: 20px;
+            height: 20px;
+            color: var(--charcoal);
+        }
+
+        .hero-floating-stat .num {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--charcoal);
+        }
+
+        .hero-floating-stat .txt {
+            font-size: 0.72rem;
+            color: var(--text-light);
+        }
+
+        @keyframes floatSoft {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        /* ===== SECTION COMMON ===== */
+        section {
+            padding: 100px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.82rem;
+            color: var(--rose-dark);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .section-label::before,
+        .section-label::after {
+            content: '';
+            width: 30px;
+            height: 1px;
+            background: var(--rose);
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .section-title em {
+            font-style: italic;
+            color: var(--rose-dark);
+            font-weight: 400;
+        }
+
+        .section-subtitle {
+            font-size: 1.02rem;
+            color: var(--text-light);
+            max-width: 550px;
+            margin: 0 auto;
+        }
+
+        /* ===== GALLERY ===== */
+        .gallery {
+            background: var(--white);
+            position: relative;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .gallery-card {
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 4px 20px var(--shadow-soft);
+        }
+
+        .gallery-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px var(--shadow-medium);
+        }
+
+        .gallery-card:nth-child(1) {
+            aspect-ratio: 1;
+        }
+
+        .gallery-card:nth-child(2) {
+            aspect-ratio: 1;
+            grid-row: span 2;
+        }
+
+        .gallery-card:nth-child(3) {
+            aspect-ratio: 1;
+        }
+
+        .gallery-card:nth-child(4) {
+            aspect-ratio: 1;
+        }
+
+        .gallery-card:nth-child(5) {
+            aspect-ratio: 1;
+        }
+
+        .gallery-card:nth-child(6) {
+            aspect-ratio: 1;
+        }
+
+        .gallery-img {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        /* Gradient 1: Golden Hour */
+        .gallery-card:nth-child(1) .gallery-img {
+            background: linear-gradient(135deg, #f7c67c 0%, #f2985e 30%, #e87341 60%, #c94f2c 100%);
+        }
+
+        /* Gradient 2: Blue Hour - taller card */
+        .gallery-card:nth-child(2) .gallery-img {
+            background: linear-gradient(180deg, #1a2a44 0%, #2d4a6f 25%, #5e8aad 50%, #a8cce0 75%, #f0d8c8 100%);
+        }
+
+        /* Gradient 3: Studio Portrait */
+        .gallery-card:nth-child(3) .gallery-img {
+            background: linear-gradient(145deg, #2d2d2d 0%, #4a4a4a 30%, #8a7d6b 60%, #c9b99a 100%);
+        }
+
+        /* Gradient 4: Outdoor Spring */
+        .gallery-card:nth-child(4) .gallery-img {
+            background: linear-gradient(135deg, #c5e0b4 0%, #8ab67b 30%, #5d9c4e 60%, #3d7a3a 100%);
+        }
+
+        /* Gradient 5: Sunset Romance */
+        .gallery-card:nth-child(5) .gallery-img {
+            background: linear-gradient(135deg, #f8d5c8 0%, #f0a8a0 30%, #d07888 60%, #a04e6e 100%);
+        }
+
+        /* Gradient 6: Moody Cinematic */
+        .gallery-card:nth-child(6) .gallery-img {
+            background: linear-gradient(145deg, #1f1f2e 0%, #2e3045 30%, #525470 60%, #8a8db0 100%);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.05) 50%, transparent 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 24px;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .gallery-card:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-overlay h4 {
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .gallery-overlay p {
+            color: rgba(255,255,255,0.75);
+            font-size: 0.82rem;
+            font-weight: 400;
+        }
+
+        .gallery-overlay .view-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.8);
+            width: 56px;
+            height: 56px;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(8px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-card:hover .gallery-overlay .view-icon {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .gallery-overlay .view-icon svg {
+            width: 24px;
+            height: 24px;
+            color: white;
+        }
+
+        /* ===== SERVICES ===== */
+        .services {
+            background: var(--off-white);
+            position: relative;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .service-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 36px 28px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 1px solid rgba(0,0,0,0.04);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            border-radius: 20px 20px 0 0;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .service-card:nth-child(1)::before {
+            background: linear-gradient(90deg, #f8e8e0, #d4a69a);
+        }
+
+        .service-card:nth-child(2)::before {
+            background: linear-gradient(90deg, #a8b5a0, #7eab93);
+        }
+
+        .service-card:nth-child(3)::before {
+            background: linear-gradient(90deg, #a8c6df, #5d87ad);
+        }
+
+        .service-card:nth-child(4)::before {
+            background: linear-gradient(90deg, #f7d1a0, #e8836a);
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px var(--shadow-medium);
+        }
+
+        .service-card:hover::before {
+            opacity: 1;
+        }
+
+        .service-icon {
+            width: 72px;
+            height: 72px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.05);
+        }
+
+        .service-card:nth-child(1) .service-icon {
+            background: rgba(248, 232, 224, 0.7);
+        }
+
+        .service-card:nth-child(2) .service-icon {
+            background: rgba(168, 181, 160, 0.25);
+        }
+
+        .service-card:nth-child(3) .service-icon {
+            background: rgba(168, 198, 223, 0.3);
+        }
+
+        .service-card:nth-child(4) .service-icon {
+            background: rgba(247, 209, 160, 0.4);
+        }
+
+        .service-icon svg {
+            width: 30px;
+            height: 30px;
+            color: var(--charcoal);
+        }
+
+        .service-card h3 {
+            font-size: 1.15rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .service-card p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .service-price {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--charcoal);
+        }
+
+        .service-price span {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 400;
+            color: var(--text-light);
+        }
+
+        /* ===== ABOUT ===== */
+        .about {
+            background: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(ellipse, rgba(248, 232, 224, 0.3) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-img-main {
+            width: 100%;
+            aspect-ratio: 3/4;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 20px 60px var(--shadow-soft);
+        }
+
+        .about-img-main-bg {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(145deg, #f8e8e0, #ecd4c8, #d4a69a);
+            position: relative;
+        }
+
+        .about-img-main-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 50% 40%, rgba(255,255,255,0.25) 0%, transparent 60%);
+        }
+
+        .about-img-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0.2;
+        }
+
+        .about-img-icon svg {
+            width: 120px;
+            height: 120px;
+            color: var(--charcoal);
+        }
+
+        .about-floating-card {
+            position: absolute;
+            bottom: -20px;
+            right: -30px;
+            background: var(--white);
+            border-radius: 16px;
+            padding: 20px 24px;
+            box-shadow: 0 10px 40px var(--shadow-medium);
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            z-index: 2;
+        }
+
+        .about-floating-card-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(248, 232, 224, 0.6);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .about-floating-card-icon svg {
+            width: 24px;
+            height: 24px;
+            color: var(--rose-dark);
+        }
+
+        .about-floating-card .num {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--charcoal);
+        }
+
+        .about-floating-card .txt {
+            font-size: 0.75rem;
+            color: var(--text-light);
+        }
+
+        .about-decoration {
+            position: absolute;
+            top: -30px;
+            left: -20px;
+            width: 100px;
+            height: 100px;
+            border: 2px solid var(--blush);
+            border-radius: 20px;
+            z-index: 0;
+        }
+
+        .about-text .section-label {
+            justify-content: flex-start;
+        }
+
+        .about-text h2 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+        }
+
+        .about-text h2 em {
+            font-style: italic;
+            color: var(--rose-dark);
+            font-weight: 400;
+        }
+
+        .about-text > p {
+            color: var(--text-light);
+            font-size: 1rem;
+            margin-bottom: 16px;
+            line-height: 1.85;
+        }
+
+        .about-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin: 32px 0 36px;
+        }
+
+        .about-feature {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.92rem;
+            color: var(--text);
+        }
+
+        .about-feature-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--rose);
+            flex-shrink: 0;
+        }
+
+        /* ===== INSTAGRAM FEED ===== */
+        .insta-feed {
+            background: var(--off-white);
+            padding: 80px 0;
+        }
+
+        .insta-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .insta-handle {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--charcoal);
+            margin-bottom: 8px;
+        }
+
+        .insta-handle svg {
+            width: 22px;
+            height: 22px;
+        }
+
+        .insta-tagline {
+            font-size: 0.92rem;
+            color: var(--text-light);
+        }
+
+        .insta-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 8px;
+        }
+
+        .insta-item {
+            aspect-ratio: 1;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .insta-item:hover {
+            transform: scale(1.03);
+            z-index: 2;
+            box-shadow: 0 10px 30px var(--shadow-medium);
+        }
+
+        .insta-item:nth-child(1) { background: linear-gradient(135deg, #f7d1a0, #e8836a); }
+        .insta-item:nth-child(2) { background: linear-gradient(135deg, #c9ddd0, #7eab93); }
+        .insta-item:nth-child(3) { background: linear-gradient(135deg, #f8d5c8, #d07888); }
+        .insta-item:nth-child(4) { background: linear-gradient(135deg, #a8c6df, #5d87ad); }
+        .insta-item:nth-child(5) { background: linear-gradient(135deg, #d4c5a9, #a89670); }
+        .insta-item:nth-child(6) { background: linear-gradient(135deg, #1f1f2e, #525470); }
+        .insta-item:nth-child(7) { background: linear-gradient(135deg, #c5e0b4, #5d9c4e); }
+        .insta-item:nth-child(8) { background: linear-gradient(135deg, #f0a8a0, #a04e6e); }
+        .insta-item:nth-child(9) { background: linear-gradient(135deg, #f7c67c, #c94f2c); }
+        .insta-item:nth-child(10) { background: linear-gradient(135deg, #e8d8c4, #c4a882); }
+        .insta-item:nth-child(11) { background: linear-gradient(135deg, #b8d4e3, #6a9bb5); }
+        .insta-item:nth-child(12) { background: linear-gradient(135deg, #dfc8d8, #a67d95); }
+
+        .insta-item-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .insta-item:hover .insta-item-overlay {
+            opacity: 1;
+        }
+
+        .insta-item-overlay svg {
+            width: 28px;
+            height: 28px;
+            color: white;
+        }
+
+        /* ===== CONTACT ===== */
+        .contact {
+            background: var(--white);
+            position: relative;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        .contact-info h3 {
+            font-size: 1.6rem;
+            margin-bottom: 16px;
+        }
+
+        .contact-info h3 em {
+            font-style: italic;
+            color: var(--rose-dark);
+            font-weight: 400;
+        }
+
+        .contact-info > p {
+            font-size: 1rem;
+            color: var(--text-light);
+            margin-bottom: 36px;
+            line-height: 1.8;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .contact-item-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(248, 232, 224, 0.6);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .contact-item-icon svg {
+            width: 22px;
+            height: 22px;
+            color: var(--rose-dark);
+        }
+
+        .contact-item-text {
+            padding-top: 4px;
+        }
+
+        .contact-item-label {
+            font-size: 0.78rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 4px;
+            font-weight: 600;
+        }
+
+        .contact-item-value {
+            font-size: 1rem;
+            color: var(--charcoal);
+            font-weight: 500;
+        }
+
+        .contact-item-value a {
+            color: var(--rose-dark);
+        }
+
+        .contact-item-value a:hover {
+            color: var(--charcoal);
+        }
+
+        .contact-socials {
+            display: flex;
+            gap: 12px;
+            margin-top: 32px;
+        }
+
+        .contact-social {
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            border: 1px solid rgba(0,0,0,0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .contact-social:hover {
+            background: var(--blush);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px var(--shadow-soft);
+        }
+
+        .contact-social svg {
+            width: 20px;
+            height: 20px;
+            color: var(--charcoal);
+        }
+
+        /* Contact Form */
+        .contact-form {
+            background: var(--off-white);
+            border-radius: 24px;
+            padding: 40px;
+            border: 1px solid rgba(0,0,0,0.04);
+        }
+
+        .contact-form h3 {
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+        }
+
+        .contact-form .form-subtitle {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 28px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.82rem;
+            color: var(--text);
+            margin-bottom: 8px;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 14px 18px;
+            background: var(--white);
+            border: 1px solid rgba(0,0,0,0.08);
+            border-radius: 12px;
+            color: var(--charcoal);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: var(--rose);
+            box-shadow: 0 0 0 3px rgba(212, 166, 154, 0.15);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: #bbb;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 16px;
+            background: var(--charcoal);
+            color: var(--white);
+            border: none;
+            border-radius: 50px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-submit:hover {
+            background: var(--charcoal-light);
+            box-shadow: 0 8px 25px var(--shadow-medium);
+            transform: translateY(-2px);
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: var(--charcoal);
+            padding: 50px 0;
+            color: rgba(255,255,255,0.6);
+        }
+
+        .footer-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--white);
+        }
+
+        .footer-logo em {
+            font-style: italic;
+            color: var(--blush);
+            font-weight: 400;
+        }
+
+        .footer-copy {
+            font-size: 0.85rem;
+        }
+
+        .footer-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 18px;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 50px;
+            font-size: 0.8rem;
+            color: var(--blush);
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .footer-badge:hover {
+            background: rgba(255,255,255,0.12);
+        }
+
+        .footer-badge svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        /* ===== SCROLL TO TOP ===== */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 48px;
+            height: 48px;
+            background: var(--charcoal);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+            border: none;
+            box-shadow: 0 4px 20px var(--shadow-medium);
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-4px);
+            background: var(--charcoal-light);
+        }
+
+        .scroll-top svg {
+            width: 22px;
+            height: 22px;
+            color: var(--white);
+        }
+
+        /* ===== PARALLAX DIVIDERS ===== */
+        .parallax-divider {
+            height: 300px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .parallax-divider-bg {
+            position: absolute;
+            inset: -50px;
+            background: linear-gradient(135deg, #f8e8e0 0%, #ecd4c8 25%, #d4a69a 50%, #c48d7f 75%, #a8b5a0 100%);
+            background-size: 200% 200%;
+            animation: gradientShift 10s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .parallax-divider-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            color: white;
+        }
+
+        .parallax-divider-content h2 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 600;
+            color: white;
+            margin-bottom: 8px;
+        }
+
+        .parallax-divider-content p {
+            font-size: 1.05rem;
+            opacity: 0.85;
+            font-style: italic;
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 48px;
+                text-align: center;
+            }
+
+            .hero-text {
+                max-width: 100%;
+            }
+
+            .hero-label {
+                justify-content: center;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .hero-visual {
+                display: none;
+            }
+
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+
+            .about-image {
+                max-width: 400px;
+                margin: 0 auto;
+            }
+
+            .about-text {
+                text-align: center;
+            }
+
+            .about-text .section-label {
+                justify-content: center;
+            }
+
+            .about-features {
+                max-width: 400px;
+                margin: 32px auto 36px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .gallery-card:nth-child(2) {
+                grid-row: auto;
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+
+            .insta-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: 70px 0;
+            }
+
+            .nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 280px;
+                height: 100vh;
+                background: rgba(250, 248, 246, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                justify-content: center;
+                gap: 24px;
+                padding: 40px;
+                transition: right 0.4s ease;
+                box-shadow: -10px 0 30px var(--shadow-soft);
+            }
+
+            .nav.open {
+                right: 0;
+            }
+
+            .nav a {
+                font-size: 1.05rem;
+            }
+
+            .burger {
+                display: flex;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .insta-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .parallax-divider {
+                height: 220px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 16px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .btn-dark, .btn-soft {
+                justify-content: center;
+            }
+
+            .contact-form {
+                padding: 28px 20px;
+            }
+
+            .about-features {
+                grid-template-columns: 1fr;
+            }
+
+            .insta-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="header" id="header">
+        <div class="header-inner">
+            <a href="#" class="logo">Марія <em>Коваленко</em></a>
+            <nav class="nav" id="nav">
+                <a href="#gallery" onclick="closeMenu()">Портфоліо</a>
+                <a href="#services" onclick="closeMenu()">Послуги</a>
+                <a href="#about" onclick="closeMenu()">Про мене</a>
+                <a href="#contact" onclick="closeMenu()" class="nav-cta">Забронювати</a>
+            </nav>
+            <div class="burger" id="burger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero" id="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text fade-up">
+                    <div class="hero-label">
+                        Фотограф
+                    </div>
+                    <h1>Марія <span class="italic">Коваленко</span></h1>
+                    <div class="hero-subtitle">Весільний та портретний фотограф</div>
+                    <p class="hero-description">
+                        Я ловлю щирі емоції та перетворюю миттєвості вашого життя
+                        на вічні спогади. Кожна фотографія -- це маленька історія,
+                        розказана через світло, колір та почуття.
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#contact" class="btn-dark">
+                            Забронювати зйомку
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                        </a>
+                        <a href="#gallery" class="btn-soft">Переглянути портфоліо</a>
+                    </div>
+                </div>
+                <div class="hero-visual fade-right">
+                    <div class="hero-mosaic">
+                        <div class="hero-photo">
+                            <div class="hero-photo-label">Golden Hour</div>
+                        </div>
+                        <div class="hero-photo">
+                            <div class="hero-photo-label">Blue Hour</div>
+                        </div>
+                        <div class="hero-photo">
+                            <div class="hero-photo-label">Warm Tones</div>
+                        </div>
+                        <div class="hero-photo">
+                            <div class="hero-photo-label">Nature</div>
+                        </div>
+                    </div>
+                    <div class="hero-floating-stat">
+                        <div class="hero-floating-stat-icon pink">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+                        </div>
+                        <div>
+                            <div class="num">200+</div>
+                            <div class="txt">Весіль знято</div>
+                        </div>
+                    </div>
+                    <div class="hero-floating-stat">
+                        <div class="hero-floating-stat-icon green">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                        </div>
+                        <div>
+                            <div class="num">8 років</div>
+                            <div class="txt">Досвіду</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="gallery" id="gallery">
+        <div class="container">
+            <div class="section-header fade-up">
+                <div class="section-label">Портфоліо</div>
+                <h2 class="section-title">Мої <em>найкращі</em> роботи</h2>
+                <p class="section-subtitle">
+                    Кожна зйомка -- це унікальна історія. Ось деякі моменти,
+                    якими я особливо пишаюся.
+                </p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-card fade-up" style="transition-delay: 0.05s">
+                    <div class="gallery-img"></div>
+                    <div class="gallery-overlay">
+                        <div class="view-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                        </div>
+                        <h4>Золота година</h4>
+                        <p>Весільна зйомка, Одеса</p>
+                    </div>
+                </div>
+                <div class="gallery-card fade-up" style="transition-delay: 0.1s">
+                    <div class="gallery-img"></div>
+                    <div class="gallery-overlay">
+                        <div class="view-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                        </div>
+                        <h4>Блакитна година</h4>
+                        <p>Портретна зйомка, Київ</p>
+                    </div>
+                </div>
+                <div class="gallery-card fade-up" style="transition-delay: 0.15s">
+                    <div class="gallery-img"></div>
+                    <div class="gallery-overlay">
+                        <div class="view-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                        </div>
+                        <h4>Студійний портрет</h4>
+                        <p>Індивідуальна зйомка</p>
+                    </div>
+                </div>
+                <div class="gallery-card fade-up" style="transition-delay: 0.2s">
+                    <div class="gallery-img"></div>
+                    <div class="gallery-overlay">
+                        <div class="view-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                        </div>
+                        <h4>Весняна прогулянка</h4>
+                        <p>Сімейна зйомка, Львів</p>
+                    </div>
+                </div>
+                <div class="gallery-card fade-up" style="transition-delay: 0.25s">
+                    <div class="gallery-img"></div>
+                    <div class="gallery-overlay">
+                        <div class="view-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                        </div>
+                        <h4>Love Story</h4>
+                        <p>Романтична зйомка</p>
+                    </div>
+                </div>
+                <div class="gallery-card fade-up" style="transition-delay: 0.3s">
+                    <div class="gallery-img"></div>
+                    <div class="gallery-overlay">
+                        <div class="view-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                        </div>
+                        <h4>Кінематографічний стиль</h4>
+                        <p>Авторська зйомка</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PARALLAX DIVIDER -->
+    <div class="parallax-divider">
+        <div class="parallax-divider-bg"></div>
+        <div class="parallax-divider-content fade-up">
+            <h2>Кожна мить -- неповторна</h2>
+            <p>Дозвольте мені зберегти ваші найщасливіші моменти назавжди</p>
+        </div>
+    </div>
+
+    <!-- SERVICES -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-header fade-up">
+                <div class="section-label">Послуги та ціни</div>
+                <h2 class="section-title">Що я <em>пропоную</em></h2>
+                <p class="section-subtitle">
+                    Оберіть формат зйомки, який підходить саме вам.
+                    Кожен пакет включає професійну обробку фотографій.
+                </p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card fade-up" style="transition-delay: 0.1s">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+                    </div>
+                    <h3>Весільна зйомка</h3>
+                    <p>Повний день зйомки, від зборів до першого танцю. 300+ оброблених фото.</p>
+                    <div class="service-price">від 8 000 <span>грн</span></div>
+                </div>
+                <div class="service-card fade-up" style="transition-delay: 0.2s">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4-4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    </div>
+                    <h3>Портретна зйомка</h3>
+                    <p>Індивідуальна або ділова фотосесія. 1.5 години зйомки, 50+ фото.</p>
+                    <div class="service-price">від 2 500 <span>грн</span></div>
+                </div>
+                <div class="service-card fade-up" style="transition-delay: 0.3s">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4-4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+                    </div>
+                    <h3>Сімейна зйомка</h3>
+                    <p>Тепла атмосфера та природні кадри вашої родини. 2 години, 80+ фото.</p>
+                    <div class="service-price">від 4 000 <span>грн</span></div>
+                </div>
+                <div class="service-card fade-up" style="transition-delay: 0.4s">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/><circle cx="12" cy="12" r="3" stroke-width="1.5" fill="none"/></svg>
+                    </div>
+                    <h3>Love Story</h3>
+                    <p>Романтична історія кохання у кадрах. Ідеально для закоханих пар.</p>
+                    <div class="service-price">від 3 500 <span>грн</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-image fade-left">
+                    <div class="about-decoration"></div>
+                    <div class="about-img-main">
+                        <div class="about-img-main-bg">
+                            <div class="about-img-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/>
+                                    <circle cx="12" cy="13" r="4"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="about-floating-card scale-in">
+                        <div class="about-floating-card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg>
+                        </div>
+                        <div>
+                            <div class="num">50 000+</div>
+                            <div class="txt">Знятих кадрів</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-text fade-right">
+                    <div class="section-label">Про мене</div>
+                    <h2>Привіт, я <em>Марія</em></h2>
+                    <p>
+                        Я -- фотограф з душею. Вже 8 років я фіксую найважливіші
+                        моменти людського життя: весілля, народження дітей,
+                        сімейні свята та історії кохання.
+                    </p>
+                    <p>
+                        Мій стиль -- це поєднання природного світла, м'яких тонів
+                        та щирих емоцій. Я вірю, що найкращі кадри народжуються тоді,
+                        коли люди забувають про камеру та просто живуть моментом.
+                    </p>
+                    <div class="about-features">
+                        <div class="about-feature">
+                            <div class="about-feature-dot"></div>
+                            Природне світло
+                        </div>
+                        <div class="about-feature">
+                            <div class="about-feature-dot"></div>
+                            Авторська обробка
+                        </div>
+                        <div class="about-feature">
+                            <div class="about-feature-dot"></div>
+                            Щирі емоції
+                        </div>
+                        <div class="about-feature">
+                            <div class="about-feature-dot"></div>
+                            М'які тони
+                        </div>
+                        <div class="about-feature">
+                            <div class="about-feature-dot"></div>
+                            Виїзд по Україні
+                        </div>
+                        <div class="about-feature">
+                            <div class="about-feature-dot"></div>
+                            Онлайн галерея
+                        </div>
+                    </div>
+                    <a href="#contact" class="btn-dark">
+                        Давайте познайомимось
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INSTAGRAM FEED -->
+    <section class="insta-feed" id="instagram">
+        <div class="container">
+            <div class="insta-header fade-up">
+                <div class="insta-handle">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                    @maria_kovalenko_photo
+                </div>
+                <p class="insta-tagline">Слідкуйте за мною в Instagram для щоденного натхнення</p>
+            </div>
+        </div>
+        <div class="insta-grid fade-up">
+            <div class="insta-item">
+                <div class="insta-item-overlay">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+                </div>
+            </div>
+            <div class="insta-item">
+                <div class="insta-item-overlay">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+                </div>
+            </div>
+            <div class="insta-item">
+                <div class="insta-item-overlay">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+                </div>
+            </div>
+            <div class="insta-item">
+                <div class="insta-item-overlay">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+                </div>
+            </div>
+            <div class="insta-item">
+                <div class="insta-item-overlay">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+                </div>
+            </div>
+            <div class="insta-item">
+                <div class="insta-item-overlay">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+                </div>
+            </div>
+            <div class="insta-item">
+                <div class="insta-item-overlay">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+                </div>
+            </div>
+            <div class="insta-item">
+                <div class="insta-item-overlay">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+                </div>
+            </div>
+            <div class="insta-item">
+                <div class="insta-item-overlay">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+                </div>
+            </div>
+            <div class="insta-item">
+                <div class="insta-item-overlay">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+                </div>
+            </div>
+            <div class="insta-item">
+                <div class="insta-item-overlay">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+                </div>
+            </div>
+            <div class="insta-item">
+                <div class="insta-item-overlay">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-header fade-up">
+                <div class="section-label">Контакти</div>
+                <h2 class="section-title">Давайте <em>створимо</em> щось красиве</h2>
+                <p class="section-subtitle">
+                    Напишіть мені, і ми обговоримо деталі вашої зйомки.
+                    Я відповідаю протягом 24 годин.
+                </p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info fade-left">
+                    <h3>Зв'яжіться <em>зі мною</em></h3>
+                    <p>
+                        Я завжди рада новим знайомствам та цікавим проєктам.
+                        Оберіть зручний спосіб зв'язку.
+                    </p>
+
+                    <div class="contact-item">
+                        <div class="contact-item-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+                        </div>
+                        <div class="contact-item-text">
+                            <div class="contact-item-label">Телефон</div>
+                            <div class="contact-item-value">
+                                <a href="tel:+380671234567">+380 67 123 45 67</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-item-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                        </div>
+                        <div class="contact-item-text">
+                            <div class="contact-item-label">Email</div>
+                            <div class="contact-item-value">
+                                <a href="mailto:maria.photo@gmail.com">maria.photo@gmail.com</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-item-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
+                        </div>
+                        <div class="contact-item-text">
+                            <div class="contact-item-label">Telegram</div>
+                            <div class="contact-item-value">
+                                <a href="https://t.me/maria_photo" target="_blank">@maria_photo</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-item-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                        </div>
+                        <div class="contact-item-text">
+                            <div class="contact-item-label">Instagram</div>
+                            <div class="contact-item-value">
+                                <a href="https://instagram.com/maria_kovalenko_photo" target="_blank">@maria_kovalenko_photo</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-socials">
+                        <a href="https://t.me/maria_photo" target="_blank" class="contact-social" aria-label="Telegram">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
+                        </a>
+                        <a href="https://instagram.com/maria_kovalenko_photo" target="_blank" class="contact-social" aria-label="Instagram">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                        </a>
+                        <a href="tel:+380671234567" class="contact-social" aria-label="Phone">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="contact-form fade-right">
+                    <h3>Забронювати зйомку</h3>
+                    <p class="form-subtitle">Заповніть форму, і я зв'яжуся з вами найближчим часом</p>
+                    <form id="contactForm" onsubmit="handleSubmit(event)">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Ваше ім'я</label>
+                                <input type="text" placeholder="Як до вас звертатись?" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Телефон</label>
+                                <input type="tel" placeholder="+380 XX XXX XX XX" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Тип зйомки</label>
+                            <select required>
+                                <option value="" disabled selected>Оберіть тип зйомки</option>
+                                <option>Весільна зйомка</option>
+                                <option>Портретна зйомка</option>
+                                <option>Сімейна зйомка</option>
+                                <option>Love Story</option>
+                                <option>Інше</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Бажана дата</label>
+                            <input type="date">
+                        </div>
+                        <div class="form-group">
+                            <label>Додаткова інформація</label>
+                            <textarea placeholder="Розкажіть більше про ваші побажання..."></textarea>
+                        </div>
+                        <button type="submit" class="btn-submit">
+                            Надіслати заявку
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">Марія <em>Коваленко</em></div>
+                <div class="footer-copy">
+                    &copy; 2024 Марія Коваленко. Усі права захищені.
+                </div>
+                <a href="https://vadikelson-droid.github.io/vadim-portfolio/" target="_blank" class="footer-badge">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                    Made by Vadim Dev
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SCROLL TO TOP -->
+    <button class="scroll-top" id="scrollTop" onclick="scrollToTop()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+    </button>
+
+    <script>
+        // ===== HEADER SCROLL =====
+        const header = document.getElementById('header');
+        const scrollTopBtn = document.getElementById('scrollTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 60) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+
+            if (window.scrollY > 500) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        });
+
+        // ===== MOBILE MENU =====
+        function toggleMenu() {
+            document.getElementById('nav').classList.toggle('open');
+            document.getElementById('burger').classList.toggle('active');
+        }
+
+        function closeMenu() {
+            document.getElementById('nav').classList.remove('open');
+            document.getElementById('burger').classList.remove('active');
+        }
+
+        // ===== SCROLL TO TOP =====
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // ===== FADE ANIMATIONS =====
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -40px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-up, .fade-left, .fade-right, .scale-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // ===== PARALLAX EFFECT =====
+        window.addEventListener('scroll', () => {
+            const parallaxBg = document.querySelector('.parallax-divider-bg');
+            if (parallaxBg) {
+                const divider = document.querySelector('.parallax-divider');
+                const rect = divider.getBoundingClientRect();
+                const viewH = window.innerHeight;
+
+                if (rect.top < viewH && rect.bottom > 0) {
+                    const progress = (viewH - rect.top) / (viewH + rect.height);
+                    const offset = (progress - 0.5) * 60;
+                    parallaxBg.style.transform = `translateY(${offset}px)`;
+                }
+            }
+        });
+
+        // ===== FORM SUBMIT =====
+        function handleSubmit(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('.btn-submit');
+            const originalText = btn.textContent;
+            btn.textContent = 'Дякую! Заявку надіслано';
+            btn.style.background = '#7eab93';
+            setTimeout(() => {
+                btn.textContent = originalText;
+                btn.style.background = '';
+                e.target.reset();
+            }, 3000);
+        }
+
+        // ===== SMOOTH SCROLL (fallback) =====
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
