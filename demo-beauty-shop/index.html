@@ -664,7 +664,16 @@ input, select, textarea {
   filter: drop-shadow(0 8px 16px rgba(0,0,0,0.08));
 }
 
-.product-card:hover .product-emoji {
+.product-card-image .product-img {
+  max-height: 75%;
+  max-width: 75%;
+  object-fit: contain;
+  transition: transform 0.5s ease;
+  filter: drop-shadow(0 8px 16px rgba(0,0,0,0.08));
+}
+
+.product-card:hover .product-emoji,
+.product-card:hover .product-img {
   transform: scale(1.12) rotate(-3deg);
 }
 
@@ -1131,6 +1140,13 @@ input, select, textarea {
 
 .sale-card-visual .product-emoji {
   font-size: 5rem;
+  filter: drop-shadow(0 8px 16px rgba(0,0,0,0.08));
+}
+
+.sale-card-visual .product-img {
+  max-height: 170px;
+  max-width: 80%;
+  object-fit: contain;
   filter: drop-shadow(0 8px 16px rgba(0,0,0,0.08));
 }
 
@@ -2100,7 +2116,7 @@ input, select, textarea {
       </div>
       <div class="hero-visual">
         <div class="hero-product-showcase">
-          <span class="hero-emoji-product">&#128132;</span>
+          <img class="hero-emoji-product" src="img/hero-cosmetics.png" alt="Beauty Products" style="width:220px;height:220px;object-fit:contain;" onerror="this.outerHTML='<span class=hero-emoji-product>&#128132;</span>'">
           <div class="hero-floating-badge">
             <span>&#11088;</span> 4.9 рейтинг
           </div>
@@ -2455,6 +2471,7 @@ const PRODUCTS = [
     reviews: 234,
     badges: ["hit"],
     emoji: "\u{1F9F4}",
+    image: "img/cream.png",
     bgGradient: "linear-gradient(135deg, #fce4ec, #f8bbd0)",
     description: "Інтенсивне зволоження на 24 години. Гіалуронова кислота та вітамін Е."
   },
@@ -2469,6 +2486,7 @@ const PRODUCTS = [
     reviews: 189,
     badges: ["new"],
     emoji: "\u{1F9EA}",
+    image: "img/serum.png",
     bgGradient: "linear-gradient(135deg, #fff9c4, #fff176)",
     description: "Освітлює шкіру, зменшує пігментацію. Концентрація 20%."
   },
@@ -2483,6 +2501,7 @@ const PRODUCTS = [
     reviews: 156,
     badges: ["hit", "sale"],
     emoji: "\u{1F308}",
+    image: "img/palette.png",
     bgGradient: "linear-gradient(135deg, #f3e5f5, #ce93d8)",
     description: "12 відтінків від нюдового до яскравого. Стійкість до 12 годин."
   },
@@ -2497,6 +2516,7 @@ const PRODUCTS = [
     reviews: 312,
     badges: ["hit"],
     emoji: "\u{1F484}",
+    image: "img/lipstick.png",
     bgGradient: "linear-gradient(135deg, #ffebee, #ef9a9a)",
     description: "Насичений колір та оксамитова текстура. Не висушує губи."
   },
@@ -2511,6 +2531,7 @@ const PRODUCTS = [
     reviews: 98,
     badges: ["new"],
     emoji: "\u{1F3A8}",
+    image: "img/foundation.png",
     bgGradient: "linear-gradient(135deg, #fff3e0, #ffcc80)",
     description: "Легке покриття з ефектом другої шкіри. SPF 25."
   },
@@ -2525,6 +2546,7 @@ const PRODUCTS = [
     reviews: 145,
     badges: ["sale"],
     emoji: "\u{1F9D6}",
+    image: "img/hairmask.png",
     bgGradient: "linear-gradient(135deg, #e8f5e9, #a5d6a7)",
     description: "Відновлення пошкодженого волосся. Кератин та олія аргани."
   },
@@ -2539,6 +2561,7 @@ const PRODUCTS = [
     reviews: 87,
     badges: ["hit"],
     emoji: "\u{1F338}",
+    image: "img/perfume.png",
     bgGradient: "linear-gradient(135deg, #fce4ec, #f48fb1)",
     description: "Квіткові ноти жасмину та троянди. Стійкість 8+ годин."
   },
@@ -2553,6 +2576,7 @@ const PRODUCTS = [
     reviews: 67,
     badges: [],
     emoji: "\u2728",
+    image: "img/bodyoil.png",
     bgGradient: "linear-gradient(135deg, #fffde7, #fff59d)",
     description: "Живильна олія з шимером. Миттєвий ефект сяяння шкіри."
   },
@@ -2567,6 +2591,7 @@ const PRODUCTS = [
     reviews: 201,
     badges: ["sale"],
     emoji: "\u{1F4A7}",
+    image: "img/micellar.png",
     bgGradient: "linear-gradient(135deg, #e3f2fd, #90caf9)",
     description: "М'яке очищення без сухості. Підходить для чутливої шкіри."
   },
@@ -2581,6 +2606,7 @@ const PRODUCTS = [
     reviews: 78,
     badges: ["new"],
     emoji: "\u2615",
+    image: "img/scrub.png",
     bgGradient: "linear-gradient(135deg, #efebe9, #bcaaa4)",
     description: "Натуральний кавовий скраб з кокосовою олією. Антицелюлітний ефект."
   },
@@ -2595,6 +2621,7 @@ const PRODUCTS = [
     reviews: 134,
     badges: [],
     emoji: "\u{1F9F4}",
+    image: "img/shampoo.png",
     bgGradient: "linear-gradient(135deg, #e0f7fa, #80deea)",
     description: "Надає об'єм тонкому волоссю. Без сульфатів та парабенів."
   },
@@ -2609,6 +2636,7 @@ const PRODUCTS = [
     reviews: 256,
     badges: ["hit", "sale"],
     emoji: "\u{1F441}",
+    image: "img/mascara.png",
     bgGradient: "linear-gradient(135deg, #ede7f6, #b39ddb)",
     description: "Екстремальний об'єм та подовження. Водостійка формула."
   }
@@ -2714,7 +2742,9 @@ function createProductCard(product) {
       <div class="product-card-image" style="background:${product.bgGradient}">
         <div class="product-badges">${badges}</div>
         <button class="product-wishlist" onclick="toggleWishlist(this)" aria-label="Вподобати">&#9825;</button>
-        <span class="product-emoji">${product.emoji}</span>
+        ${product.image
+          ? `<img class="product-img" src="${product.image}" alt="${product.name}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="product-emoji" style="display:none">${product.emoji}</span>`
+          : `<span class="product-emoji">${product.emoji}</span>`}
       </div>
       <div class="product-card-body">
         <div class="product-category-label">${product.categoryLabel}</div>
@@ -2842,7 +2872,9 @@ function renderSales() {
       <div class="sale-card">
         <div class="sale-card-visual" style="background:${product.bgGradient}">
           <span class="sale-discount-badge">-${pct}%</span>
-          <span class="product-emoji">${product.emoji}</span>
+          ${product.image
+            ? `<img class="product-img" src="${product.image}" alt="${product.name}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="product-emoji" style="display:none">${product.emoji}</span>`
+            : `<span class="product-emoji">${product.emoji}</span>`}
         </div>
         <div class="sale-card-body">
           <div class="product-category-label">${product.categoryLabel}</div>
@@ -3005,7 +3037,9 @@ function renderCart() {
     return `
       <div class="cart-item">
         <div class="cart-item-img" style="background:${product.bgGradient}">
-          ${product.emoji}
+          ${product.image
+            ? `<img src="${product.image}" alt="${product.name}" style="max-width:80%;max-height:80%;object-fit:contain;" onerror="this.outerHTML='${product.emoji}'">`
+            : product.emoji}
         </div>
         <div class="cart-item-info">
           <h4>${product.name}</h4>

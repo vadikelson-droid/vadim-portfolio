@@ -199,6 +199,29 @@
             transform: translateY(-4px);
             box-shadow: 0 12px 40px rgba(99,102,241,0.12);
         }
+        a.portfolio-card {
+            text-decoration: none;
+            color: inherit;
+            cursor: pointer;
+        }
+        a.portfolio-card .portfolio-preview::after {
+            content: '&#128279; Переглянути сайт';
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 600;
+            opacity: 0;
+            transition: opacity 0.3s;
+            border-radius: 0;
+        }
+        a.portfolio-card:hover .portfolio-preview::after {
+            opacity: 1;
+        }
         .portfolio-card.featured {
             grid-column: 1 / -1;
         }
@@ -578,7 +601,7 @@
                 </div>
             </div>
 
-            <div class="portfolio-card fade-up">
+            <a class="portfolio-card fade-up" href="demo-beauty-shop/index.html" target="_blank">
                 <div class="portfolio-preview demo-bg" style="background: linear-gradient(135deg, #831843, #e91e8b);">
                     <span>&#128132;</span>
                     <span class="live-badge">DEMO</span>
@@ -594,9 +617,9 @@
                         <span class="tech-tag">SPA</span>
                     </div>
                 </div>
-            </div>
+            </a>
 
-            <div class="portfolio-card fade-up">
+            <a class="portfolio-card fade-up" href="demo-landing/index.html" target="_blank">
                 <div class="portfolio-preview landing-bg">
                     <span>&#9749;</span>
                     <span class="live-badge">DEMO</span>
@@ -611,9 +634,9 @@
                         <span class="tech-tag">Анімації</span>
                     </div>
                 </div>
-            </div>
+            </a>
 
-            <div class="portfolio-card fade-up">
+            <a class="portfolio-card fade-up" href="demo-lawyer/index.html" target="_blank">
                 <div class="portfolio-preview" style="background: linear-gradient(135deg, #1a2332, #2a3f5f);">
                     <span>&#9878;</span>
                     <span class="live-badge">DEMO</span>
@@ -628,9 +651,9 @@
                         <span class="tech-tag">Responsive</span>
                     </div>
                 </div>
-            </div>
+            </a>
 
-            <div class="portfolio-card fade-up">
+            <a class="portfolio-card fade-up" href="demo-photographer/index.html" target="_blank">
                 <div class="portfolio-preview" style="background: linear-gradient(135deg, #f8e8e0, #e8c4b8);">
                     <span style="filter: none;">&#128247;</span>
                     <span class="live-badge">DEMO</span>
@@ -645,9 +668,9 @@
                         <span class="tech-tag">Responsive</span>
                     </div>
                 </div>
-            </div>
+            </a>
 
-            <div class="portfolio-card fade-up">
+            <a class="portfolio-card fade-up" href="https://vadikelson-droid.github.io/vadim-portfolio/" target="_blank">
                 <div class="portfolio-preview web-bg">
                     <span>&#127968;</span>
                     <span class="live-badge">LIVE</span>
@@ -662,7 +685,7 @@
                         <span class="tech-tag">i18n</span>
                     </div>
                 </div>
-            </div>
+            </a>
         </div>
     </div>
 </section>
