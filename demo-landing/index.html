@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aroma Coffee — Найкраща кава у місті</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --coffee: #2c1810;
+            --coffee-light: #6b4423;
+            --cream: #f5f0eb;
+            --gold: #c8a97e;
+            --gold-light: #e8d5b7;
+            --text: #3d2c1e;
+            --text-muted: #8b7355;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+            background: var(--cream);
+        }
+
+        /* === NAV === */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 16px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(245, 240, 235, 0.92);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(200, 169, 126, 0.2);
+            transition: all 0.3s;
+        }
+        .nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--coffee);
+            text-decoration: none;
+        }
+        .nav-logo span { color: var(--gold); }
+        .nav-links { display: flex; gap: 8px; }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+        .nav-links a:hover { color: var(--coffee); background: rgba(200, 169, 126, 0.15); }
+
+        /* === HERO === */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #1a0e08 0%, #2c1810 40%, #3d2415 100%);
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+            padding: 100px 20px 60px;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 80%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(200, 169, 126, 0.08) 0%, transparent 60%);
+        }
+        .hero-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            width: 100%;
+        }
+        .hero-text { position: relative; z-index: 2; }
+        .hero-label {
+            display: inline-block;
+            background: rgba(200, 169, 126, 0.15);
+            color: var(--gold);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            border: 1px solid rgba(200, 169, 126, 0.25);
+        }
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.4rem, 5vw, 3.6rem);
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 20px;
+        }
+        .hero h1 span { color: var(--gold); }
+        .hero-desc {
+            font-size: 1.1rem;
+            color: #b8a08a;
+            margin-bottom: 32px;
+            max-width: 480px;
+        }
+        .hero-buttons { display: flex; gap: 12px; flex-wrap: wrap; }
+        .btn {
+            display: inline-block;
+            padding: 14px 28px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+        }
+        .btn-gold { background: var(--gold); color: var(--coffee); }
+        .btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(200,169,126,0.3); }
+        .btn-ghost { background: transparent; color: var(--gold); border: 1.5px solid rgba(200,169,126,0.4); }
+        .btn-ghost:hover { border-color: var(--gold); background: rgba(200,169,126,0.1); }
+
+        .hero-visual {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .coffee-cup {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle at 40% 40%, #5c3a20, #2c1810);
+            border-radius: 50%;
+            position: relative;
+            box-shadow: 0 40px 80px rgba(0,0,0,0.4), inset 0 -10px 30px rgba(200,169,126,0.2);
+        }
+        .coffee-cup::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            bottom: 20px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, #8b6240, #4a2a15);
+            box-shadow: inset 0 5px 20px rgba(0,0,0,0.3);
+        }
+        .coffee-cup::after {
+            content: '';
+            position: absolute;
+            top: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 40px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 50%;
+            filter: blur(8px);
+        }
+        .steam {
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+        }
+        .steam span {
+            display: block;
+            width: 3px;
+            height: 40px;
+            background: rgba(200,169,126,0.3);
+            border-radius: 3px;
+            animation: steam 2s infinite ease-out;
+        }
+        .steam span:nth-child(2) { animation-delay: 0.3s; height: 50px; }
+        .steam span:nth-child(3) { animation-delay: 0.6s; height: 35px; }
+
+        @keyframes steam {
+            0% { opacity: 0; transform: translateY(0) scaleX(1); }
+            50% { opacity: 0.6; transform: translateY(-20px) scaleX(1.5); }
+            100% { opacity: 0; transform: translateY(-40px) scaleX(2); }
+        }
+
+        /* === SECTION === */
+        .section {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            text-align: center;
+            font-size: clamp(1.8rem, 3vw, 2.4rem);
+            font-weight: 800;
+            color: var(--coffee);
+            margin-bottom: 8px;
+        }
+        .section-sub {
+            text-align: center;
+            color: var(--text-muted);
+            margin-bottom: 48px;
+        }
+
+        /* === MENU === */
+        .menu-section { background: var(--white); }
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 24px;
+            background: var(--cream);
+            border-radius: 12px;
+            transition: all 0.3s;
+        }
+        .menu-item:hover {
+            transform: translateX(4px);
+            box-shadow: 0 4px 20px rgba(44,24,16,0.06);
+        }
+        .menu-item-info h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--coffee);
+            margin-bottom: 2px;
+        }
+        .menu-item-info p {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+        }
+        .menu-price {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--gold);
+            white-space: nowrap;
+            margin-left: 16px;
+        }
+
+        /* === ABOUT === */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: center;
+        }
+        .about-text h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--coffee);
+            margin-bottom: 16px;
+        }
+        .about-text p {
+            color: var(--text-muted);
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+        }
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-top: 24px;
+        }
+        .about-stat {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid rgba(200,169,126,0.2);
+        }
+        .about-stat .num {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--coffee);
+        }
+        .about-stat .label {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+        .about-image {
+            background: linear-gradient(135deg, #3d2415, #5c3a20);
+            border-radius: 20px;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            box-shadow: 0 20px 60px rgba(44,24,16,0.15);
+        }
+
+        /* === FEATURES === */
+        .features-section { background: var(--coffee); color: var(--white); }
+        .features-section .section-title { color: var(--white); }
+        .features-section .section-sub { color: #b8a08a; }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 24px;
+        }
+        .feature-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(200,169,126,0.15);
+            border-radius: 14px;
+            padding: 28px 24px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        .feature-card:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-4px);
+        }
+        .feature-icon { font-size: 2rem; margin-bottom: 14px; }
+        .feature-card h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 8px; }
+        .feature-card p { font-size: 0.85rem; color: #b8a08a; }
+
+        /* === CONTACTS === */
+        .contacts-section { background: var(--white); }
+        .contacts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+        .contact-card {
+            background: var(--cream);
+            border-radius: 14px;
+            padding: 28px 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            transition: all 0.3s;
+        }
+        .contact-card:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(44,24,16,0.08); }
+        .contact-icon {
+            width: 48px;
+            height: 48px;
+            min-width: 48px;
+            border-radius: 12px;
+            background: rgba(200,169,126,0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+        .contact-info h3 { font-size: 0.85rem; color: var(--text-muted); font-weight: 500; }
+        .contact-info p { font-size: 1rem; font-weight: 600; color: var(--coffee); }
+
+        /* === MAP PLACEHOLDER === */
+        .map-placeholder {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, #e8d5b7, #d4c0a5);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 32px;
+            font-size: 1.2rem;
+            color: var(--text-muted);
+        }
+
+        /* === CTA === */
+        .cta-section {
+            text-align: center;
+            padding: 80px 20px;
+            background: linear-gradient(135deg, #1a0e08, #2c1810);
+            color: var(--white);
+        }
+        .cta-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.6rem, 3vw, 2.2rem);
+            margin-bottom: 12px;
+        }
+        .cta-section p { color: #b8a08a; margin-bottom: 28px; font-size: 1.05rem; }
+
+        /* === FOOTER === */
+        .footer {
+            background: #0f0a07;
+            text-align: center;
+            padding: 24px 20px;
+            color: #6b5a4a;
+            font-size: 0.8rem;
+        }
+
+        /* === BADGE === */
+        .made-by {
+            position: fixed;
+            bottom: 16px;
+            right: 16px;
+            background: var(--coffee);
+            color: var(--gold);
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            z-index: 99;
+            text-decoration: none;
+            opacity: 0.9;
+            transition: opacity 0.2s;
+        }
+        .made-by:hover { opacity: 1; }
+
+        /* === ANIMATIONS === */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 768px) {
+            .hero-inner { grid-template-columns: 1fr; text-align: center; }
+            .hero-visual { display: none; }
+            .hero-buttons { justify-content: center; }
+            .about-grid { grid-template-columns: 1fr; }
+            .about-image { height: 250px; }
+            .nav-links { display: none; }
+            .section { padding: 60px 16px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+    <a href="#" class="nav-logo">Aroma<span>.</span></a>
+    <div class="nav-links">
+        <a href="#menu">Меню</a>
+        <a href="#about">Про нас</a>
+        <a href="#contacts">Контакти</a>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-inner">
+        <div class="hero-text">
+            <div class="hero-label">&#9749; Specialty Coffee</div>
+            <h1>Кава, яка <span>надихає</span> на великі справи</h1>
+            <p class="hero-desc">Свіжообсмажена specialty кава, авторські напої та затишна атмосфера в серці міста. Щоранку з 7:00.</p>
+            <div class="hero-buttons">
+                <a href="#menu" class="btn btn-gold">Переглянути меню</a>
+                <a href="#contacts" class="btn btn-ghost">Як нас знайти</a>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="coffee-cup">
+                <div class="steam">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- MENU -->
+<section class="menu-section" id="menu">
+    <div class="section">
+        <h2 class="section-title">Наше меню</h2>
+        <p class="section-sub">Зерно від найкращих ферм Ефіопії, Колумбії та Бразилії</p>
+
+        <div class="menu-grid fade-up">
+            <div class="menu-item">
+                <div class="menu-item-info">
+                    <h3>Espresso</h3>
+                    <p>Класичний подвійний еспресо, 30 мл</p>
+                </div>
+                <div class="menu-price">45 &#8372;</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info">
+                    <h3>Flat White</h3>
+                    <p>Подвійний еспресо, мікрофом молока</p>
+                </div>
+                <div class="menu-price">75 &#8372;</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info">
+                    <h3>Cappuccino</h3>
+                    <p>Еспресо, молочна пінка, какао</p>
+                </div>
+                <div class="menu-price">70 &#8372;</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info">
+                    <h3>Latte</h3>
+                    <p>Еспресо, багато молока, ніжна пінка</p>
+                </div>
+                <div class="menu-price">75 &#8372;</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info">
+                    <h3>Cold Brew</h3>
+                    <p>Кава холодної екстракції, 12 годин</p>
+                </div>
+                <div class="menu-price">85 &#8372;</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info">
+                    <h3>Авторський Aroma Special</h3>
+                    <p>Лавандовий латте з медом</p>
+                </div>
+                <div class="menu-price">95 &#8372;</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info">
+                    <h3>Cheesecake</h3>
+                    <p>Ніжний чізкейк з ягодами</p>
+                </div>
+                <div class="menu-price">110 &#8372;</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info">
+                    <h3>Круасан з лососем</h3>
+                    <p>Свіжий круасан, крем-сир, лосось</p>
+                </div>
+                <div class="menu-price">135 &#8372;</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+    <div class="section">
+        <div class="about-grid">
+            <div class="about-text fade-up">
+                <h3>Кава — це більше ніж напій</h3>
+                <p>Ми відкрились у 2023 році з простою ідеєю: створити місце, де кожна чашка кави — це маленька подорож. Ми обираємо зерно особисто, обсмажуємо його щотижня та готуємо з любов'ю.</p>
+                <p>Наші барісти — сертифіковані спеціалісти з досвідом роботи в найкращих кав'ярнях Києва та Львова.</p>
+                <div class="about-stats">
+                    <div class="about-stat">
+                        <div class="num">3</div>
+                        <div class="label">Роки роботи</div>
+                    </div>
+                    <div class="about-stat">
+                        <div class="num">12K+</div>
+                        <div class="label">Чашок на місяць</div>
+                    </div>
+                    <div class="about-stat">
+                        <div class="num">4.9</div>
+                        <div class="label">Рейтинг Google</div>
+                    </div>
+                    <div class="about-stat">
+                        <div class="num">98%</div>
+                        <div class="label">Задоволених гостей</div>
+                    </div>
+                </div>
+            </div>
+            <div class="about-image fade-up">
+                &#9749;
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features-section">
+    <div class="section">
+        <h2 class="section-title">Чому обирають нас</h2>
+        <p class="section-sub">Те, що робить Aroma особливою</p>
+
+        <div class="features-grid fade-up">
+            <div class="feature-card">
+                <div class="feature-icon">&#127793;</div>
+                <h3>Свіже зерно</h3>
+                <p>Обсмажуємо щотижня. Ніякої кави зі складу.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">&#128666;</div>
+                <h3>Доставка</h3>
+                <p>Гаряча кава до вашого офісу за 20 хвилин.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">&#128241;</div>
+                <h3>Замовлення онлайн</h3>
+                <p>Telegram-бот для попереднього замовлення.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">&#127775;</div>
+                <h3>Програма лояльності</h3>
+                <p>Кожна 10-та чашка — безкоштовно.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACTS -->
+<section class="contacts-section" id="contacts">
+    <div class="section">
+        <h2 class="section-title">Контакти</h2>
+        <p class="section-sub">Завітайте до нас або напишіть</p>
+
+        <div class="contacts-grid fade-up">
+            <div class="contact-card">
+                <div class="contact-icon">&#128205;</div>
+                <div class="contact-info">
+                    <h3>Адреса</h3>
+                    <p>вул. Центральна, 15, Київ</p>
+                </div>
+            </div>
+            <div class="contact-card">
+                <div class="contact-icon">&#128222;</div>
+                <div class="contact-info">
+                    <h3>Телефон</h3>
+                    <p>+380 67 123 45 67</p>
+                </div>
+            </div>
+            <div class="contact-card">
+                <div class="contact-icon">&#128172;</div>
+                <div class="contact-info">
+                    <h3>Telegram</h3>
+                    <p>@aroma_coffee_bot</p>
+                </div>
+            </div>
+            <div class="contact-card">
+                <div class="contact-icon">&#128338;</div>
+                <div class="contact-info">
+                    <h3>Графік</h3>
+                    <p>Пн-Нд: 7:00 — 21:00</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="map-placeholder fade-up">
+            &#128506; Тут буде карта Google Maps
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+    <h2>Спробуйте каву, яка змінює настрій</h2>
+    <p>Замовте онлайн або завітайте до нас</p>
+    <a href="#" class="btn btn-gold">Замовити в Telegram</a>
+</section>
+
+<footer class="footer">
+    &copy; 2026 Aroma Coffee. Всі права захищені.
+</footer>
+
+<!-- MADE BY BADGE -->
+<a href="https://vadikelson-droid.github.io/vadim-portfolio/" class="made-by" target="_blank">
+    Made by Vadim Dev
+</a>
+
+<script>
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', e => {
+            e.preventDefault();
+            const t = document.querySelector(a.getAttribute('href'));
+            if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+    });
+
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
