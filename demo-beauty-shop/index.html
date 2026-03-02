@@ -2116,7 +2116,8 @@ input, select, textarea {
       </div>
       <div class="hero-visual">
         <div class="hero-product-showcase">
-          <img class="hero-emoji-product" src="img/hero-cosmetics.png" alt="Beauty Products" style="width:220px;height:220px;object-fit:contain;" onerror="this.outerHTML='<span class=hero-emoji-product>&#128132;</span>'">
+          <img class="hero-emoji-product" src="img/hero-cosmetics.png" alt="Beauty Products" style="width:220px;height:220px;object-fit:contain;" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+          <span class="hero-emoji-product" style="display:none">&#128132;</span>
           <div class="hero-floating-badge">
             <span>&#11088;</span> 4.9 рейтинг
           </div>
@@ -3038,7 +3039,7 @@ function renderCart() {
       <div class="cart-item">
         <div class="cart-item-img" style="background:${product.bgGradient}">
           ${product.image
-            ? `<img src="${product.image}" alt="${product.name}" style="max-width:80%;max-height:80%;object-fit:contain;" onerror="this.outerHTML='${product.emoji}'">`
+            ? `<img src="${product.image}" alt="${product.name}" style="max-width:80%;max-height:80%;object-fit:contain;" onerror="this.style.display='none'">`
             : product.emoji}
         </div>
         <div class="cart-item-info">
@@ -3391,9 +3392,19 @@ function init() {
   updateCartBadge();
   animateCounters();
 
-  handleHashChange();
+  /* Determine start page from URL hash without calling navigateTo
+     (navigateTo has a race condition when navigating to the same page) */
+  const hash = window.location.hash.replace('#', '') || 'home';
+  const validPages = ['home', 'catalog', 'sales', 'cart', 'auth'];
+  const startPage = validPages.includes(hash) ? hash : 'home';
+  currentPage = startPage;
 
-  const initialPage = document.getElementById(`page-${currentPage}`);
+  /* Hide all pages, then activate the start page */
+  document.querySelectorAll('.page').forEach(p => {
+    p.classList.remove('active', 'visible');
+  });
+
+  const initialPage = document.getElementById(`page-${startPage}`);
   if (initialPage) {
     initialPage.classList.add('active');
     requestAnimationFrame(() => {
@@ -3402,6 +3413,17 @@ function init() {
       });
     });
   }
+
+  /* Render page-specific content */
+  if (startPage === 'catalog') renderCatalog();
+  if (startPage === 'cart') renderCart();
+  if (startPage === 'sales') renderSales();
+  if (startPage === 'auth') renderAuth();
+
+  /* Update nav links */
+  document.querySelectorAll('.nav-link').forEach(link => {
+    link.classList.toggle('active', link.dataset.page === startPage);
+  });
 
   if (currentUser) {
     document.querySelectorAll('.nav-link').forEach(link => {
