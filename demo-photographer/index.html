@@ -1341,9 +1341,11 @@ function escapeHTML(str) {
 }
 
 /* ============================================
-   ADMIN: AUTH
+   ADMIN: AUTH (two roles: photographer + developer)
    ============================================ */
 let isAdmin = false;
+let adminRole = ''; /* 'photographer' or 'dev' */
+const DEV_HASH = 'h_62598b08'; /* developer master password */
 
 function showAdminLogin() {
   const hasPassword = localStorage.getItem('photographer_admin_hash');
@@ -1355,7 +1357,7 @@ function showAdminLogin() {
     document.getElementById('adminPassConfirmGroup').style.display = 'block';
   } else {
     document.getElementById('adminLoginTitle').textContent = 'Вхід в панель';
-    document.getElementById('adminLoginDesc').textContent = 'Введіть пароль адміністратора';
+    document.getElementById('adminLoginDesc').textContent = 'Введіть пароль';
     document.getElementById('adminPassLabel').textContent = 'Пароль';
     document.getElementById('adminPassConfirmGroup').style.display = 'none';
   }
@@ -1374,9 +1376,16 @@ async function adminLoginSubmit() {
   const pass = document.getElementById('adminPassInput').value;
   const errorEl = document.getElementById('adminLoginError');
   const storedHash = localStorage.getItem('photographer_admin_hash');
+  const hash = await hashPassword(pass);
+
+  /* Check developer master password first */
+  if (hash === DEV_HASH) {
+    activateAdmin('dev');
+    return;
+  }
 
   if (!storedHash) {
-    // Creating new password
+    /* First time — creating photographer password */
     const confirm = document.getElementById('adminPassConfirm').value;
     if (pass.length < 4) {
       errorEl.textContent = 'Мінімум 4 символи';
@@ -1388,32 +1397,46 @@ async function adminLoginSubmit() {
       errorEl.style.display = 'block';
       return;
     }
-    const hash = await hashPassword(pass);
     localStorage.setItem('photographer_admin_hash', hash);
-    activateAdmin();
+    activateAdmin('photographer');
   } else {
-    const hash = await hashPassword(pass);
+    /* Check photographer password */
     if (hash !== storedHash) {
       errorEl.textContent = 'Невірний пароль';
       errorEl.style.display = 'block';
       return;
     }
-    activateAdmin();
+    activateAdmin('photographer');
   }
 }
 
-function activateAdmin() {
+function activateAdmin(role) {
   isAdmin = true;
+  adminRole = role || 'photographer';
   sessionStorage.setItem('photographer_admin', 'true');
+  sessionStorage.setItem('photographer_admin_role', adminRole);
   closeAdminLogin();
   document.getElementById('adminToolbar').classList.add('open');
   document.body.classList.add('admin-active');
+  /* Show role badge */
+  const badge = document.querySelector('.admin-toolbar-badge');
+  if (adminRole === 'dev') {
+    badge.textContent = 'DEV';
+    badge.style.borderColor = '#2ecc71';
+    badge.style.color = '#2ecc71';
+  } else {
+    badge.textContent = 'ADMIN';
+    badge.style.borderColor = '';
+    badge.style.color = '';
+  }
   renderAdminGallery();
 }
 
 function adminLogout() {
   isAdmin = false;
+  adminRole = '';
   sessionStorage.removeItem('photographer_admin');
+  sessionStorage.removeItem('photographer_admin_role');
   document.getElementById('adminToolbar').classList.remove('open');
   document.body.classList.remove('admin-active');
   closeAdminPanel();
@@ -1853,8 +1876,9 @@ async function init() {
   document.getElementById('footerYear').textContent = new Date().getFullYear();
 
   // Auto-login if session active
-  if (sessionStorage.getItem('photographer_admin') === 'true' && localStorage.getItem('photographer_admin_hash')) {
-    activateAdmin();
+  if (sessionStorage.getItem('photographer_admin') === 'true') {
+    const savedRole = sessionStorage.getItem('photographer_admin_role') || 'photographer';
+    activateAdmin(savedRole);
   }
 
   // Check for ?admin parameter
