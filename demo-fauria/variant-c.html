@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grup Fauria — Desde 1964</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@300;400;500;600;700&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#f5f5f0;--bg-dark:#0a0a0a;--bg-panel:#fff;
+  --text:#0a0a0a;--text2:#555;--text3:#999;--text-light:#f5f5f0;
+  --accent:#e63328;--accent-dark:#c42b22;--accent-soft:rgba(230,51,40,.08);
+  --border:#d4d4d0;--border-dark:rgba(255,255,255,.1);
+  --font-h:'Bebas Neue',sans-serif;--font-b:'Space Grotesk',sans-serif;--font-i:'Playfair Display',serif;
+  --ease:cubic-bezier(.77,0,.175,1);--ease-out:cubic-bezier(.16,1,.3,1);
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-b);background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+::selection{background:var(--accent);color:#fff}
+a{text-decoration:none;color:inherit}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+
+/* ═══ CURTAIN PRELOADER ═══ */
+.curtain{position:fixed;inset:0;z-index:10000;background:var(--accent);display:flex;align-items:center;justify-content:center;transition:transform .8s var(--ease);transform-origin:top}
+.curtain.done{transform:translateY(-100%);pointer-events:none}
+.curtain-text{font-family:var(--font-h);font-size:clamp(3rem,8vw,6rem);color:#fff;letter-spacing:6px;text-transform:uppercase}
+
+/* ═══ PROGRESS BAR ═══ */
+.progress-bar{position:fixed;top:0;left:0;height:2px;background:var(--accent);z-index:1001;width:0%;transition:width .1s linear}
+
+/* ═══ NAV ═══ */
+.nav{position:fixed;top:2px;left:0;right:0;z-index:1000;display:grid;grid-template-columns:auto 1fr auto;align-items:center;height:54px;padding:0 32px;background:var(--bg-dark);color:var(--text-light);font-family:var(--font-h);font-size:12px;letter-spacing:3px}
+.nav-logo{font-size:14px;letter-spacing:4px;text-transform:uppercase}
+.nav-logo span{color:var(--accent)}
+.nav-sections{display:flex;gap:0;justify-self:center}
+.nav-sec{padding:0 20px;height:54px;line-height:54px;text-transform:uppercase;cursor:pointer;position:relative;transition:color .3s}
+.nav-sec.active{color:var(--accent)}
+.nav-underline{position:absolute;bottom:0;height:3px;background:var(--accent);transition:left .4s var(--ease-out),width .4s var(--ease-out)}
+.nav-cta{padding:8px 20px;border:1px solid var(--text-light);font-family:var(--font-h);font-size:11px;letter-spacing:3px;text-transform:uppercase;transition:all .3s}
+.nav-cta:hover{background:var(--accent);border-color:var(--accent)}
+.burger-c{display:none;width:24px;height:14px;flex-direction:column;justify-content:space-between;cursor:pointer}
+.burger-c span{height:1.5px;background:var(--text-light);transition:all .3s var(--ease);transform-origin:center}
+.burger-c.active span:nth-child(1){transform:rotate(45deg) translate(4px,4px)}
+.burger-c.active span:nth-child(2){opacity:0}
+.burger-c.active span:nth-child(3){transform:rotate(-45deg) translate(4px,-4px)}
+.side-menu{position:fixed;top:0;left:-300px;bottom:0;width:280px;z-index:999;background:var(--bg-dark);padding:80px 32px;transition:left .4s var(--ease-out);display:flex;flex-direction:column;gap:4px}
+.side-menu.open{left:0}
+.side-menu a{font-family:var(--font-h);font-size:1.8rem;letter-spacing:3px;text-transform:uppercase;color:var(--text-light);padding:12px 0;border-bottom:1px solid var(--border-dark);transition:color .3s}
+.side-menu a:hover{color:var(--accent)}
+
+/* ═══ HERO — Split screen ═══ */
+.hero{min-height:100vh;display:grid;grid-template-columns:55% 45%;position:relative;margin-top:56px}
+.hero-left{background:var(--bg);display:flex;flex-direction:column;justify-content:center;padding:80px 64px}
+.hero-left .small{font-family:var(--font-b);font-size:.65rem;letter-spacing:4px;text-transform:uppercase;color:var(--text2);margin-bottom:24px}
+.hero-left h1{font-family:var(--font-h);font-size:clamp(4rem,10vw,9rem);line-height:.9;text-transform:uppercase;letter-spacing:-2px;margin-bottom:16px}
+.hero-left .sub{font-family:var(--font-i);font-style:italic;font-size:clamp(1rem,2vw,1.4rem);color:var(--text2);margin-bottom:32px}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn-c{padding:14px 32px;font-family:var(--font-h);font-size:.8rem;letter-spacing:3px;text-transform:uppercase;transition:all .3s var(--ease)}
+.btn-fill{background:var(--accent);color:#fff}
+.btn-fill:hover{background:var(--accent-dark)}
+.btn-outline{border:2px solid var(--text);color:var(--text)}
+.btn-outline:hover{background:var(--text);color:var(--bg)}
+.hero-right{background:var(--accent);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.hero-big{font-family:var(--font-h);font-size:clamp(15rem,30vw,25rem);color:rgba(255,255,255,.08);line-height:.85;animation:slowSpin 120s linear infinite;user-select:none}
+@keyframes slowSpin{to{transform:rotate(360deg)}}
+.hero-badge-circle{position:absolute;width:160px;height:160px}
+.hero-badge-circle svg{width:100%;height:100%;animation:spinBadge 15s linear infinite}
+@keyframes spinBadge{to{transform:rotate(360deg)}}
+
+/* ═══ SECTION ═══ */
+.section{padding:100px clamp(24px,5vw,80px)}
+.section-center{max-width:1100px;margin:0 auto}
+.s-label{font-family:var(--font-b);font-size:.55rem;letter-spacing:5px;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+.s-title{font-family:var(--font-h);font-size:clamp(2.5rem,6vw,4.5rem);text-transform:uppercase;letter-spacing:-1px;line-height:.95;margin-bottom:24px}
+.s-dark{background:var(--bg-dark);color:var(--text-light)}
+.s-dark .s-label{color:var(--accent)}
+[data-a]{opacity:0;transform:translateY(24px);transition:all .7s var(--ease-out)}
+[data-a].vis{opacity:1;transform:translateY(0)}
+.red-line{width:0;height:3px;background:var(--accent);transition:width .8s var(--ease-out)}
+.red-line.vis{width:60px}
+
+/* ═══ SERVICES — Accordion ═══ */
+.srv-rows{margin-top:48px}
+.srv-row{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--border);min-height:140px;cursor:pointer;transition:all .4s var(--ease)}
+.srv-left{padding:32px;display:flex;align-items:center;gap:20px;transition:background .4s var(--ease),color .4s}
+.srv-row.active .srv-left{background:var(--bg-dark);color:var(--text-light)}
+.srv-left-num{font-family:var(--font-h);font-size:3rem;color:var(--accent);line-height:1}
+.srv-left-title{font-family:var(--font-h);font-size:1.5rem;text-transform:uppercase;letter-spacing:1px}
+.srv-right{max-height:0;overflow:hidden;padding:0 32px;transition:max-height .5s var(--ease),padding .5s var(--ease);display:flex;flex-direction:column;justify-content:center}
+.srv-row.active .srv-right{max-height:300px;padding:32px}
+.srv-right ul{list-style:none}
+.srv-right li{font-size:.85rem;color:var(--text2);padding:8px 0;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px}
+.srv-right li::before{content:'';width:6px;height:2px;background:var(--accent);flex-shrink:0}
+.srv-line{position:absolute;bottom:0;left:0;height:2px;background:var(--accent);width:0;transition:width .6s var(--ease-out)}
+.srv-row.active .srv-line{width:100%}
+
+/* ═══ VEHICLES — Masonry ═══ */
+.veh-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:2px;margin-top:48px}
+.veh-card{position:relative;overflow:hidden;background:linear-gradient(135deg,#e8e4dc,#d4cfc5);cursor:pointer;min-height:200px;transition:all .3s var(--ease)}
+.veh-card:nth-child(1){grid-column:span 7;grid-row:span 2;min-height:420px}
+.veh-card:nth-child(2){grid-column:span 5}
+.veh-card:nth-child(3){grid-column:span 5}
+.veh-card:nth-child(4){grid-column:span 4}
+.veh-card:nth-child(5){grid-column:span 4}
+.veh-card:nth-child(6){grid-column:span 4}
+.veh-card-content{position:absolute;bottom:0;left:0;right:0;padding:20px;background:linear-gradient(transparent,rgba(0,0,0,.7));color:#fff}
+.veh-card-name{font-family:var(--font-h);font-size:1.2rem;letter-spacing:1px;text-transform:uppercase}
+.veh-card-meta{font-size:.7rem;color:rgba(255,255,255,.6);margin-top:2px}
+.veh-card-price-tag{position:absolute;top:16px;right:16px;background:var(--accent);color:#fff;padding:6px 14px;font-family:var(--font-h);font-size:1rem;letter-spacing:1px;opacity:0;transform:translateY(-8px);transition:all .3s var(--ease-out);pointer-events:none}
+.veh-card:hover .veh-card-price-tag{opacity:1;transform:translateY(0)}
+.veh-curtain{position:absolute;inset:0;background:var(--accent);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;transform:translateY(100%);transition:transform .5s var(--ease-out)}
+.veh-card:hover .veh-curtain{transform:translateY(0)}
+.veh-curtain span{font-family:var(--font-h);font-size:1rem;letter-spacing:3px;text-transform:uppercase}
+
+/* ═══ HISTORY — Filmstrip ═══ */
+.film-wrap{margin-top:48px;position:relative;height:340px;overflow:hidden}
+.film-strip{display:flex;gap:0;position:absolute;top:0;left:0;animation:filmScroll 20s linear infinite}
+.film-strip.paused{animation-play-state:paused}
+.film-card{min-width:400px;height:340px;padding:40px;border-right:2px solid var(--border-dark);display:flex;flex-direction:column;justify-content:center;position:relative;cursor:pointer;flex-shrink:0;background:var(--bg-dark);transition:min-width .4s var(--ease)}
+.film-card.expanded{min-width:600px}
+.film-sprocket-top,.film-sprocket-bot{position:absolute;left:0;right:0;height:16px;display:flex;gap:20px;padding:0 20px}
+.film-sprocket-top{top:0}
+.film-sprocket-bot{bottom:0}
+.film-sprocket{width:12px;height:8px;border-radius:2px;background:rgba(255,255,255,.08);flex-shrink:0}
+.film-decade{font-family:var(--font-b);font-size:.55rem;letter-spacing:4px;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+.film-title{font-family:var(--font-h);font-size:clamp(1.5rem,3vw,2.2rem);color:var(--text-light);text-transform:uppercase;margin-bottom:12px}
+.film-text{font-size:.8rem;color:rgba(255,255,255,.5);line-height:1.7;max-height:0;overflow:hidden;transition:max-height .4s var(--ease)}
+.film-card.expanded .film-text{max-height:150px}
+.film-year-bg{position:absolute;right:24px;top:50%;transform:translateY(-50%);font-family:var(--font-h);font-size:8rem;color:rgba(255,255,255,.03);pointer-events:none}
+@keyframes filmScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* ═══ STATS — Giant inline ═══ */
+.stats-line{font-size:clamp(.9rem,1.5vw,1.1rem);line-height:2.2;text-align:center;margin-top:40px;color:var(--text2);max-width:800px;margin-left:auto;margin-right:auto}
+.stats-line .big{font-family:var(--font-h);font-size:clamp(2.5rem,5vw,4rem);color:var(--accent);vertical-align:middle;line-height:1}
+
+/* ═══ LOCATIONS — Stack → Grid ═══ */
+.loc-stack{position:relative;height:400px;margin-top:48px}
+.loc-scard{position:absolute;width:280px;padding:28px;background:var(--bg-panel);border:1px solid var(--border);transition:all .8s var(--ease-out);cursor:pointer}
+.loc-scard-name{font-family:var(--font-h);font-size:1.3rem;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
+.loc-scard-addr{font-size:.8rem;color:var(--text2);line-height:1.6}
+.loc-scard-phone{font-size:.8rem;color:var(--accent);margin-top:8px}
+
+/* ═══ TESTIMONIALS ═══ */
+.test-row{display:flex;flex-direction:column;gap:32px;margin-top:48px;max-width:700px}
+.test-item{padding:32px 0;border-bottom:1px solid var(--border)}
+.test-text{font-family:var(--font-i);font-style:italic;font-size:clamp(1.1rem,2vw,1.4rem);line-height:1.7;color:var(--text);margin-bottom:16px}
+.test-author{font-family:var(--font-h);font-size:.9rem;letter-spacing:2px;text-transform:uppercase;color:var(--accent)}
+.test-role{font-size:.7rem;color:var(--text3);margin-top:2px}
+
+/* ═══ CONTACT — Split dark/light ═══ */
+.contact-split{display:grid;grid-template-columns:1fr 1fr;min-height:500px}
+.contact-dark{background:var(--bg-dark);color:var(--text-light);padding:64px 48px;display:flex;flex-direction:column;gap:20px}
+.contact-dark h3{font-family:var(--font-h);font-size:2rem;text-transform:uppercase;letter-spacing:2px}
+.ct-item{display:flex;gap:12px;align-items:flex-start}
+.ct-item svg{width:18px;height:18px;stroke:var(--accent);fill:none;stroke-width:1.5;flex-shrink:0;margin-top:2px}
+.ct-item span{font-size:.85rem;color:rgba(255,255,255,.6);line-height:1.5}
+.wa-c{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:var(--accent);color:#fff;font-family:var(--font-h);font-size:.85rem;letter-spacing:2px;text-transform:uppercase;margin-top:8px;transition:all .3s}
+.wa-c:hover{background:#fff;color:var(--bg-dark)}
+.contact-light{background:var(--bg-panel);padding:64px 48px;display:flex;flex-direction:column;gap:20px;justify-content:center}
+.contact-light label{font-family:var(--font-h);font-size:.7rem;letter-spacing:3px;text-transform:uppercase;color:var(--text3);display:block;margin-bottom:6px}
+.contact-light input,.contact-light textarea,.contact-light select{width:100%;padding:12px 0;border:none;border-bottom:2px solid var(--border);background:transparent;font-family:var(--font-b);font-size:.85rem;color:var(--text);outline:none;transition:border-color .3s}
+.contact-light input:focus,.contact-light textarea:focus,.contact-light select:focus{border-color:var(--accent)}
+.contact-light textarea{resize:none;height:80px}
+.contact-light select{cursor:pointer;appearance:none}
+.ct-submit{padding:16px 40px;background:var(--accent);color:#fff;font-family:var(--font-h);font-size:.85rem;letter-spacing:3px;text-transform:uppercase;border:none;cursor:pointer;transition:all .3s;align-self:flex-start}
+.ct-submit:hover{background:var(--bg-dark)}
+
+/* ═══ FOOTER ═══ */
+footer{padding:32px clamp(24px,5vw,80px);background:var(--bg-dark);color:var(--text-light);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.ft-brand{font-family:var(--font-h);font-size:1rem;letter-spacing:3px;text-transform:uppercase}
+.ft-brand span{color:var(--accent)}
+.ft-right{font-size:.6rem;color:rgba(255,255,255,.4);text-align:right;letter-spacing:1px}
+.ft-right a{color:var(--accent)}
+
+/* ═══ RESPONSIVE ═══ */
+@media(max-width:1024px){
+  .nav-sections,.nav-cta{display:none}
+  .burger-c{display:flex}
+  .hero{grid-template-columns:1fr;min-height:auto}
+  .hero-left{padding:100px 24px 48px}
+  .hero-right{min-height:40vh}
+  .srv-row{grid-template-columns:1fr}
+  .srv-right{padding:0 32px!important}
+  .srv-row.active .srv-right{padding:0 32px 32px!important}
+  .veh-grid{grid-template-columns:repeat(2,1fr)}
+  .veh-card{min-height:200px!important;grid-column:span 1!important;grid-row:span 1!important}
+  .veh-card:nth-child(1){grid-column:span 2!important;min-height:280px!important}
+  .loc-stack{height:auto;display:grid;grid-template-columns:1fr 1fr;gap:12px;position:static}
+  .loc-scard{position:static!important;width:auto!important;transform:none!important}
+  .contact-split{grid-template-columns:1fr}
+  .film-card{min-width:300px}
+}
+@media(max-width:768px){
+  .hero-left h1{font-size:clamp(3rem,12vw,5rem)}
+  .veh-grid{grid-template-columns:1fr}
+  .veh-card:nth-child(1){grid-column:span 1!important}
+  .loc-stack{grid-template-columns:1fr}
+  .film-card{min-width:260px}
+}
+</style>
+</head>
+<body>
+
+<!-- CURTAIN -->
+<div class="curtain" id="curtain"><div class="curtain-text">Fauria</div></div>
+
+<!-- PROGRESS BAR -->
+<div class="progress-bar" id="progressBar"></div>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="nav-logo">Grup <span>Fauria</span></div>
+  <div class="nav-sections" id="navSecs">
+    <div class="nav-underline" id="navUnderline"></div>
+    <div class="nav-sec active" data-target="hero">Inicio</div>
+    <div class="nav-sec" data-target="services">Servicios</div>
+    <div class="nav-sec" data-target="vehicles">Vehículos</div>
+    <div class="nav-sec" data-target="history">Historia</div>
+    <div class="nav-sec" data-target="contact">Contacto</div>
+  </div>
+  <a href="#contact" class="nav-cta">Contactar</a>
+  <div class="burger-c" id="burgerC"><span></span><span></span><span></span></div>
+</nav>
+<div class="side-menu" id="sideMenu">
+  <a href="#hero">Inicio</a>
+  <a href="#services">Servicios</a>
+  <a href="#vehicles">Vehículos</a>
+  <a href="#history">Historia</a>
+  <a href="#locations">Sedes</a>
+  <a href="#contact">Contacto</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-left">
+    <div class="small">Desde 1964 · Lloret de Mar · Costa Brava</div>
+    <h1>Grup<br>Fauria</h1>
+    <div class="sub">Tres generaciones de confianza al servicio del automóvil</div>
+    <div class="hero-btns">
+      <a href="#vehicles" class="btn-c btn-fill">Ver Vehículos</a>
+      <a href="#history" class="btn-c btn-outline">Historia</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-big">64</div>
+    <div class="hero-badge-circle">
+      <svg viewBox="0 0 160 160">
+        <defs><path id="cp" d="M80,10 a70,70 0 1,1 0,140 a70,70 0 1,1 0,-140"/></defs>
+        <text fill="#fff" font-size="10" font-family="'Space Grotesk',sans-serif" letter-spacing="4" text-transform="uppercase">
+          <textPath href="#cp">TRES GENERACIONES · DE CONFIANZA · DESDE 1964 · </textPath>
+        </text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section" id="services">
+  <div class="section-center">
+    <div data-a><div class="s-label">Servicios</div><div class="s-title">Todo bajo<br>un techo</div><div class="red-line"></div></div>
+    <div class="srv-rows">
+      <div class="srv-row active" data-a>
+        <div class="srv-left"><div class="srv-left-num">01</div><div class="srv-left-title">Taller Mecánico</div></div>
+        <div class="srv-right"><ul><li>Diagnóstico electrónico avanzado</li><li>Mecánica general y especializada</li><li>Carrocería y pintura</li><li>Pre-ITV y preparación</li><li>Servicio de grúa</li></ul></div>
+      </div>
+      <div class="srv-row" data-a>
+        <div class="srv-left"><div class="srv-left-num">02</div><div class="srv-left-title">Venta de Vehículos</div></div>
+        <div class="srv-right"><ul><li>50+ vehículos en stock</li><li>Km 0, seminuevos y ocasión</li><li>Garantía incluida</li><li>Financiación a medida</li><li>Entrega inmediata</li></ul></div>
+      </div>
+      <div class="srv-row" data-a>
+        <div class="srv-left"><div class="srv-left-num">03</div><div class="srv-left-title">Alquiler de Coches</div></div>
+        <div class="srv-right"><ul><li>Desde 45 €/día</li><li>SUVs y premium desde 85 €/día</li><li>Entrega en aeropuerto de Girona</li><li>Seguro a todo riesgo sin franquicia</li><li>Soporte 24 horas</li></ul></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="section s-dark" id="stats">
+  <div class="section-center" data-a>
+    <div class="s-label">En números</div>
+    <div class="stats-line">
+      Más de <span class="big" data-count="60">0</span>+ años de experiencia,
+      <span class="big" data-count="50">0</span>+ vehículos en stock,
+      <span class="big" data-count="4">0</span> sedes en Girona y
+      <span class="big" data-count="3">0</span> generaciones familiares al servicio del automóvil.
+    </div>
+  </div>
+</section>
+
+<!-- VEHICLES -->
+<section class="section" id="vehicles">
+  <div class="section-center">
+    <div data-a><div class="s-label">Stock</div><div class="s-title">Vehículos<br>de ocasión</div><div class="red-line"></div></div>
+    <div class="veh-grid">
+      <div class="veh-card" data-a><div class="veh-card-content"><div class="veh-card-name">Renault Clio V</div><div class="veh-card-meta">2022 · 71.250 km · Gasolina</div></div><div class="veh-card-price-tag">12.990 €</div><div class="veh-curtain"><span>Ver Detalles</span></div></div>
+      <div class="veh-card" data-a><div class="veh-card-content"><div class="veh-card-name">Mini Cooper Cabrio</div><div class="veh-card-meta">2022 · 46.890 km</div></div><div class="veh-card-price-tag">24.990 €</div><div class="veh-curtain"><span>Ver Detalles</span></div></div>
+      <div class="veh-card" data-a><div class="veh-card-content"><div class="veh-card-name">Audi Q7 3.0 TDI</div><div class="veh-card-meta">2022 · 59.800 km</div></div><div class="veh-card-price-tag">59.200 €</div><div class="veh-curtain"><span>Ver Detalles</span></div></div>
+      <div class="veh-card" data-a><div class="veh-card-content"><div class="veh-card-name">Mercedes GLC</div><div class="veh-card-meta">2021 · 102k km</div></div><div class="veh-card-price-tag">39.200 €</div><div class="veh-curtain"><span>Ver Detalles</span></div></div>
+      <div class="veh-card" data-a><div class="veh-card-content"><div class="veh-card-name">VW T-Roc</div><div class="veh-card-meta">2026 · 72k km</div></div><div class="veh-card-price-tag">25.990 €</div><div class="veh-curtain"><span>Ver Detalles</span></div></div>
+      <div class="veh-card" data-a><div class="veh-card-content"><div class="veh-card-name">Dacia Spring</div><div class="veh-card-meta">2024 · Eléctrico</div></div><div class="veh-card-price-tag">13.990 €</div><div class="veh-curtain"><span>Ver Detalles</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- HISTORY — Filmstrip -->
+<section class="section s-dark" id="history">
+  <div class="section-center">
+    <div data-a><div class="s-label">Historia</div><div class="s-title" style="color:var(--text-light)">60 años en<br>movimiento</div></div>
+    <div class="film-wrap" id="filmWrap">
+      <div class="film-strip" id="filmStrip">
+        <div class="film-card" data-idx="0"><div class="film-sprocket-top"><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div></div><div class="film-year-bg">1964</div><div class="film-decade">1960s — Los Orígenes</div><div class="film-title">Donde todo empezó</div><p class="film-text">Fundada por el Sr. Antolino Fauria y la Sra. Josefa Masó en Sant Hilari Sacalm. Un pequeño taller convertido en concesionario Renault de referencia.</p><div class="film-sprocket-bot"><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div></div></div>
+        <div class="film-card" data-idx="1"><div class="film-sprocket-top"><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div></div><div class="film-year-bg">1985</div><div class="film-decade">1980s — Crecimiento</div><div class="film-title">La segunda generación</div><p class="film-text">Nuevos servicios de venta, tecnología moderna de diagnóstico. El negocio crece más allá del taller original.</p><div class="film-sprocket-bot"><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div></div></div>
+        <div class="film-card" data-idx="2"><div class="film-sprocket-top"><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div></div><div class="film-year-bg">2005</div><div class="film-decade">2000s — Expansión</div><div class="film-title">Cuatro sedes</div><p class="film-text">Lloret de Mar, Platja d'Aro, Girona. Lanzamiento del alquiler de vehículos para turistas y residentes.</p><div class="film-sprocket-bot"><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div></div></div>
+        <div class="film-card" data-idx="3"><div class="film-sprocket-top"><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div></div><div class="film-year-bg">2024</div><div class="film-decade">2020s — El Futuro</div><div class="film-title">Tercera generación</div><p class="film-text">50+ vehículos, 4 sedes, alquiler premium. Transparencia y proximidad siguen siendo nuestros pilares.</p><div class="film-sprocket-bot"><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div></div></div>
+        <!-- Duplicate for infinite -->
+        <div class="film-card"><div class="film-sprocket-top"><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div></div><div class="film-year-bg">1964</div><div class="film-decade">1960s — Los Orígenes</div><div class="film-title">Donde todo empezó</div><p class="film-text">Fundada en Sant Hilari Sacalm.</p><div class="film-sprocket-bot"><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div></div></div>
+        <div class="film-card"><div class="film-sprocket-top"><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div></div><div class="film-year-bg">1985</div><div class="film-decade">1980s — Crecimiento</div><div class="film-title">La segunda generación</div><p class="film-text">Nuevos servicios de venta.</p><div class="film-sprocket-bot"><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div></div></div>
+        <div class="film-card"><div class="film-sprocket-top"><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div></div><div class="film-year-bg">2005</div><div class="film-decade">2000s — Expansión</div><div class="film-title">Cuatro sedes</div><p class="film-text">Alquiler para turistas.</p><div class="film-sprocket-bot"><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div></div></div>
+        <div class="film-card"><div class="film-sprocket-top"><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div></div><div class="film-year-bg">2024</div><div class="film-decade">2020s — El Futuro</div><div class="film-title">Tercera generación</div><p class="film-text">Transparencia y proximidad.</p><div class="film-sprocket-bot"><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div><div class="film-sprocket"></div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATIONS -->
+<section class="section" id="locations">
+  <div class="section-center">
+    <div data-a><div class="s-label">Sedes</div><div class="s-title">4 ubicaciones<br>en Girona</div><div class="red-line"></div></div>
+    <div class="loc-stack" id="locStack">
+      <div class="loc-scard" data-loc="0" style="z-index:4"><div class="loc-scard-name">Lloret de Mar</div><div class="loc-scard-addr">Avda Vidreres 3, 17310 · Sede Principal</div><div class="loc-scard-phone">+34 972 367 808</div></div>
+      <div class="loc-scard" data-loc="1" style="z-index:3"><div class="loc-scard-name">Platja d'Aro</div><div class="loc-scard-addr">Venta y alquiler de vehículos</div><div class="loc-scard-phone">+34 661 586 225</div></div>
+      <div class="loc-scard" data-loc="2" style="z-index:2"><div class="loc-scard-name">Girona</div><div class="loc-scard-addr">Oficina y punto de entrega de alquiler</div><div class="loc-scard-phone">+34 623 427 796</div></div>
+      <div class="loc-scard" data-loc="3" style="z-index:1"><div class="loc-scard-name">Sant Hilari Sacalm</div><div class="loc-scard-addr">El taller original — desde 1964</div><div class="loc-scard-phone">+34 972 367 808</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section" id="testimonials" style="background:var(--bg-panel)">
+  <div class="section-center">
+    <div data-a><div class="s-label">Testimonios</div><div class="s-title">Nuestros<br>clientes</div></div>
+    <div class="test-row">
+      <div class="test-item" data-a><p class="test-text">"Llevo 20 años confiando en Fauria para toda mi familia. Tres generaciones de la mía han comprado aquí."</p><div class="test-author">Miguel Rodríguez</div><div class="test-role">Cliente desde 2004 — Lloret de Mar</div></div>
+      <div class="test-item" data-a><p class="test-text">"Un taller de toda la vida con mentalidad moderna. Te explican cada detalle antes de tocar el coche."</p><div class="test-author">Laura Puig</div><div class="test-role">Cliente desde 2018 — Girona</div></div>
+      <div class="test-item" data-a><p class="test-text">"El mejor servicio de alquiler de la Costa Brava. Nos entregaron el coche en el aeropuerto, impecable."</p><div class="test-author">Thomas Keller</div><div class="test-role">Turista — Berlín, Alemania</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-split">
+    <div class="contact-dark" data-a>
+      <h3>Contacto</h3>
+      <div class="ct-item"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Avda Vidreres 3, 17310<br>Lloret de Mar, Girona</span></div>
+      <div class="ct-item"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg><span>+34 972 367 808</span></div>
+      <div class="ct-item"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><span>Lun—Vie: 09:00–13:00 / 15:30–19:30<br>Sáb: 09:00–13:00</span></div>
+      <a href="https://wa.me/34661586225" class="wa-c" target="_blank">WhatsApp</a>
+    </div>
+    <form class="contact-light" id="ctForm" data-a>
+      <div><label>Nombre</label><input type="text" required></div>
+      <div><label>Teléfono</label><input type="tel"></div>
+      <div><label>Email</label><input type="email" required></div>
+      <div><label>Servicio</label><select><option value="">Selecciona...</option><option>Comprar vehículo</option><option>Taller</option><option>Alquiler</option><option>Otro</option></select></div>
+      <div><label>Mensaje</label><textarea></textarea></div>
+      <button type="submit" class="ct-submit">Enviar</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-brand">Grup <span>Fauria</span></div>
+  <div class="ft-right">&copy; 2026 Grup Fauria · Diseñado por <a href="https://vadikelson-droid.github.io/vadim-portfolio/" target="_blank">Vadim Dev</a></div>
+</footer>
+
+<script>
+(function(){
+'use strict';
+
+/* CURTAIN */
+setTimeout(()=>document.getElementById('curtain').classList.add('done'),1200);
+
+/* PROGRESS BAR */
+const pb=document.getElementById('progressBar');
+window.addEventListener('scroll',()=>{
+  const max=document.documentElement.scrollHeight-window.innerHeight;
+  pb.style.width=(window.scrollY/max*100)+'%';
+},{passive:true});
+
+/* NAV UNDERLINE */
+const navSecs=document.querySelectorAll('.nav-sec');
+const navUL=document.getElementById('navUnderline');
+const sections=['hero','services','vehicles','history','contact'];
+function moveUL(el){
+  const r=el.getBoundingClientRect();
+  const pr=el.parentElement.getBoundingClientRect();
+  navUL.style.left=(r.left-pr.left)+'px';
+  navUL.style.width=r.width+'px';
+}
+navSecs.forEach(s=>s.addEventListener('click',()=>{
+  const t=document.getElementById(s.dataset.target);
+  if(t)t.scrollIntoView({behavior:'smooth'});
+}));
+function updateNav(){
+  const sy=window.scrollY+200;
+  let active=0;
+  sections.forEach((id,i)=>{const el=document.getElementById(id);if(el&&el.offsetTop<=sy)active=i});
+  navSecs.forEach((s,i)=>s.classList.toggle('active',i===active));
+  if(navSecs[active])moveUL(navSecs[active]);
+}
+window.addEventListener('scroll',updateNav,{passive:true});
+window.addEventListener('resize',()=>{const a=document.querySelector('.nav-sec.active');if(a)moveUL(a)});
+setTimeout(()=>{const a=document.querySelector('.nav-sec.active');if(a)moveUL(a)},200);
+
+/* MOBILE NAV */
+const burgerC=document.getElementById('burgerC');
+const sideMenu=document.getElementById('sideMenu');
+burgerC.addEventListener('click',()=>{burgerC.classList.toggle('active');sideMenu.classList.toggle('open')});
+sideMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{burgerC.classList.remove('active');sideMenu.classList.remove('open')}));
+
+/* REVEAL */
+const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');obs.unobserve(e.target)}})},{threshold:.1});
+document.querySelectorAll('[data-a],.red-line').forEach(el=>obs.observe(el));
+
+/* ACCORDION SERVICES */
+document.querySelectorAll('.srv-row').forEach(row=>{
+  row.addEventListener('click',()=>{
+    const wasActive=row.classList.contains('active');
+    document.querySelectorAll('.srv-row').forEach(r=>r.classList.remove('active'));
+    if(!wasActive)row.classList.add('active');
+  });
+});
+
+/* STATS COUNT */
+const statObs=new IntersectionObserver(es=>{es.forEach(e=>{
+  if(e.isIntersecting){
+    e.target.querySelectorAll('[data-count]').forEach(el=>{
+      const target=+el.dataset.count;
+      const start=performance.now();
+      (function step(now){
+        const p=Math.min((now-start)/1500,1);
+        el.textContent=Math.floor(target*(1-Math.pow(1-p,4)));
+        if(p<1)requestAnimationFrame(step);
+      })(performance.now());
+    });
+    statObs.unobserve(e.target);
+  }
+})},{threshold:.5});
+document.querySelectorAll('.stats-line').forEach(el=>statObs.observe(el));
+
+/* FILMSTRIP — click to expand */
+document.querySelectorAll('.film-card[data-idx]').forEach(card=>{
+  card.addEventListener('click',()=>{
+    const strip=document.getElementById('filmStrip');
+    const wasExpanded=card.classList.contains('expanded');
+    document.querySelectorAll('.film-card').forEach(c=>c.classList.remove('expanded'));
+    if(!wasExpanded){
+      card.classList.add('expanded');
+      strip.classList.add('paused');
+    }else{
+      strip.classList.remove('paused');
+    }
+  });
+});
+
+/* LOCATION STACK FAN-OUT */
+const locStack=document.getElementById('locStack');
+if(window.innerWidth>1024){
+  const cards=locStack.querySelectorAll('.loc-scard');
+  function positionCards(){
+    const rect=locStack.getBoundingClientRect();
+    const progress=Math.max(0,Math.min(1,(-rect.top+300)/(rect.height+200)));
+    const cardW=280,cardH=130,gap=16;
+    cards.forEach((c,i)=>{
+      const row=Math.floor(i/2),col=i%2;
+      const x=progress*col*(cardW+gap)+(1-progress)*i*6;
+      const y=progress*row*(cardH+gap)+(1-progress)*i*8;
+      c.style.transform=`translate(${x}px,${y}px)`;
+    });
+  }
+  window.addEventListener('scroll',positionCards,{passive:true});
+  positionCards();
+}
+
+/* FORM */
+document.getElementById('ctForm')?.addEventListener('submit',e=>{
+  e.preventDefault();
+  const btn=e.target.querySelector('.ct-submit');
+  btn.textContent='¡Enviado!';btn.style.background='#34c759';
+  setTimeout(()=>{btn.textContent='Enviar';btn.style.background='';e.target.reset()},2500);
+});
+
+})();
+</script>
+</body>
+</html>

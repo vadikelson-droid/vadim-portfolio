@@ -24,7 +24,7 @@ stdin, stdout, stderr = ssh.exec_command(f"mkdir -p {remote_dir}")
 stdout.channel.recv_exit_status()
 
 # Upload
-for rel_path in ["index.html"]:
+for rel_path in ["index.html", "variant-b.html", "variant-c.html", "variant-d.html"]:
     local_path = local_dir / rel_path
     remote_path = f"{remote_dir}/{rel_path}"
     if local_path.exists():
