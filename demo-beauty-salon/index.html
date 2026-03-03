@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bloom — Салон краси</title>
+<meta name="description" content="Салон краси Bloom. Стрижки, манікюр, масаж, догляд за обличчям. Професійні майстри, затишна атмосфера.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#faf5f0;--bg2:#fff;--cream:#f5ede4;--card:#fff;
+  --pink:#e8a0bf;--pink-light:#f2c4d8;--pink-dark:#d4789e;
+  --gold:#c9a96e;--gold-light:#d4bb8a;
+  --text:#2d2d2d;--text2:#6a6a6a;--text3:#aaa;
+  --border:rgba(0,0,0,.07);--border2:rgba(0,0,0,.1);
+  --font-head:'Cormorant Garamond',serif;--font-body:'Montserrat',sans-serif;
+  --radius:6px;--transition:.4s cubic-bezier(.25,.46,.45,.94);
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-body);background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit;transition:color var(--transition)}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+::selection{background:var(--pink);color:#fff}
+
+/* SCROLL PROGRESS */
+.scroll-progress{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--pink),var(--gold));z-index:9999;width:0}
+
+/* FLOATING PARTICLES */
+.particles{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.particle{position:absolute;border-radius:50%;opacity:.15;animation:floatParticle linear infinite}
+.particle:nth-child(1){width:120px;height:120px;background:var(--pink-light);top:10%;left:5%;animation-duration:20s}
+.particle:nth-child(2){width:80px;height:80px;background:var(--gold-light);top:60%;right:10%;animation-duration:25s;animation-delay:-5s}
+.particle:nth-child(3){width:60px;height:60px;background:var(--pink);bottom:20%;left:15%;animation-duration:18s;animation-delay:-10s}
+.particle:nth-child(4){width:100px;height:100px;background:var(--cream);top:30%;right:25%;animation-duration:22s;animation-delay:-3s}
+@keyframes floatParticle{0%{transform:translateY(0) translateX(0)}25%{transform:translateY(-30px) translateX(20px)}50%{transform:translateY(-10px) translateX(-15px)}75%{transform:translateY(-40px) translateX(10px)}100%{transform:translateY(0) translateX(0)}}
+
+/* HEADER */
+.header{position:fixed;top:0;left:0;right:0;z-index:1000;padding:24px 60px;display:flex;align-items:center;justify-content:space-between;transition:all var(--transition)}
+.header.scrolled{background:rgba(250,245,240,.95);backdrop-filter:blur(12px);padding:16px 60px;box-shadow:0 1px 0 var(--border)}
+.logo{font-family:var(--font-head);font-size:2rem;font-weight:400;font-style:italic;color:var(--text)}
+.logo span{color:var(--pink)}
+.nav{display:flex;gap:32px;align-items:center}
+.nav-link{font-size:.72rem;text-transform:uppercase;letter-spacing:2px;font-weight:500;color:var(--text2);transition:color var(--transition);position:relative}
+.nav-link::after{content:'';position:absolute;bottom:-4px;left:50%;width:0;height:1px;background:var(--pink);transition:all var(--transition);transform:translateX(-50%)}
+.nav-link:hover{color:var(--text)}
+.nav-link:hover::after{width:100%}
+.nav-cta{padding:10px 28px;background:var(--pink);color:#fff;border-radius:40px;font-size:.72rem;text-transform:uppercase;letter-spacing:2px;font-weight:600;transition:all var(--transition)}
+.nav-cta::after{display:none}
+.nav-cta:hover{background:var(--pink-dark);box-shadow:0 8px 24px rgba(232,160,191,.3);transform:translateY(-2px)}
+.burger{display:none;flex-direction:column;gap:5px;width:24px;cursor:pointer;padding:4px 0}
+.burger span{display:block;height:1.5px;background:var(--text);transition:all var(--transition)}
+.burger.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.burger.active span:nth-child(2){opacity:0}
+.burger.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+
+/* HERO SPLIT */
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;position:relative;overflow:hidden}
+.hero-text{padding:120px 80px 80px;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:1}
+.hero-label{font-size:.68rem;text-transform:uppercase;letter-spacing:4px;color:var(--pink);margin-bottom:24px;font-weight:500;opacity:0;animation:fadeUp .8s .3s forwards}
+.hero h1{font-family:var(--font-head);font-size:clamp(2.8rem,5.5vw,5rem);font-weight:400;line-height:1.1;margin-bottom:24px;opacity:0;animation:fadeUp .8s .5s forwards}
+.hero h1 em{display:block;font-style:italic;font-weight:300;color:var(--pink-dark)}
+.hero-desc{font-size:.92rem;color:var(--text2);max-width:420px;line-height:1.8;font-weight:300;margin-bottom:40px;opacity:0;animation:fadeUp .8s .7s forwards}
+.hero-btns{display:flex;gap:16px;opacity:0;animation:fadeUp .8s .9s forwards}
+.hero-btn-primary{padding:16px 40px;background:var(--pink);color:#fff;font-size:.72rem;text-transform:uppercase;letter-spacing:3px;font-weight:600;border-radius:40px;transition:all var(--transition)}
+.hero-btn-primary:hover{background:var(--pink-dark);box-shadow:0 8px 24px rgba(232,160,191,.3);transform:translateY(-2px)}
+.hero-btn-secondary{padding:16px 40px;border:1px solid var(--border2);color:var(--text);font-size:.72rem;text-transform:uppercase;letter-spacing:3px;font-weight:500;border-radius:40px;transition:all var(--transition)}
+.hero-btn-secondary:hover{border-color:var(--pink);color:var(--pink)}
+.hero-photo{height:100vh;position:relative;overflow:hidden}
+.hero-photo-bg{width:100%;height:100%;background:linear-gradient(135deg,var(--pink-light) 0%,#e8c4d0 40%,var(--pink) 100%);display:flex;align-items:flex-end;justify-content:center}
+.hero-photo-circle{position:absolute;top:50%;left:50%;width:70%;height:70%;border:1px solid rgba(255,255,255,.3);border-radius:50%;transform:translate(-50%,-50%);animation:rotateSlow 30s linear infinite}
+@keyframes rotateSlow{to{transform:translate(-50%,-50%) rotate(360deg)}}
+.hero-photo-placeholder{width:60%;height:80%;background:linear-gradient(180deg,#f2c4d8 0%,#e8a0bf 50%,#d4789e 100%);border-radius:200px 200px 0 0}
+@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+
+/* SECTIONS */
+.section{padding:120px 60px;position:relative;z-index:1}
+.section-cream{background:var(--cream)}
+.section-header{text-align:center;margin-bottom:72px}
+.section-label{font-size:.68rem;text-transform:uppercase;letter-spacing:5px;color:var(--pink);margin-bottom:16px;font-weight:500}
+.section-title{font-family:var(--font-head);font-size:clamp(2rem,4vw,3.5rem);font-weight:400;line-height:1.2}
+.section-title em{font-style:italic;font-weight:300;color:var(--text3)}
+.section-divider{width:40px;height:1px;background:var(--pink);margin:24px auto 0}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-left{opacity:0;transform:translateX(-40px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+.reveal-left.visible{opacity:1;transform:translateX(0)}
+.reveal-right{opacity:0;transform:translateX(40px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+.reveal-right.visible{opacity:1;transform:translateX(0)}
+.stagger:nth-child(1){transition-delay:.05s}.stagger:nth-child(2){transition-delay:.1s}.stagger:nth-child(3){transition-delay:.15s}.stagger:nth-child(4){transition-delay:.2s}.stagger:nth-child(5){transition-delay:.25s}
+
+/* SERVICES */
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
+.service-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:40px 32px;text-align:center;transition:all var(--transition)}
+.service-card:hover{transform:translateY(-8px);box-shadow:0 16px 48px rgba(232,160,191,.12);border-color:var(--pink-light)}
+.service-icon{font-size:2.5rem;margin-bottom:20px;display:block}
+.service-card h3{font-family:var(--font-head);font-size:1.3rem;font-weight:500;margin-bottom:8px}
+.service-card p{font-size:.82rem;color:var(--text2);line-height:1.7;font-weight:300;margin-bottom:16px}
+.service-price{font-family:var(--font-head);font-size:1.2rem;color:var(--pink-dark);font-weight:500}
+.service-price small{font-family:var(--font-body);font-size:.7rem;color:var(--text3);font-weight:400}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:80px;align-items:center}
+.about-image{position:relative;aspect-ratio:3/4;border-radius:var(--radius);overflow:hidden}
+.about-image-bg{width:100%;height:100%;background:linear-gradient(135deg,var(--cream),var(--pink-light));display:flex;align-items:center;justify-content:center;font-size:5rem}
+.about-image-blob{position:absolute;top:-30px;right:-30px;width:200px;height:200px;background:var(--pink-light);border-radius:60% 40% 50% 50%;opacity:.3;animation:blobFloat 8s ease-in-out infinite}
+@keyframes blobFloat{0%,100%{transform:translate(0,0) rotate(0deg)}50%{transform:translate(-10px,15px) rotate(10deg)}}
+.about-image-badge{position:absolute;bottom:24px;left:-16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:16px 24px;text-align:center;box-shadow:0 8px 24px rgba(0,0,0,.06);z-index:1}
+.about-image-badge .num{font-family:var(--font-head);font-size:2rem;color:var(--pink-dark);line-height:1}
+.about-image-badge .label{font-size:.6rem;color:var(--text3);text-transform:uppercase;letter-spacing:2px;margin-top:4px}
+.about-text h2{font-family:var(--font-head);font-size:clamp(2rem,3.5vw,3rem);font-weight:400;line-height:1.2;margin-bottom:24px}
+.about-text h2 em{font-style:italic;font-weight:300;color:var(--pink)}
+.about-desc{font-size:.9rem;color:var(--text2);line-height:1.9;margin-bottom:16px;font-weight:300}
+.about-features{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:28px}
+.about-feature{display:flex;align-items:center;gap:10px;font-size:.82rem;color:var(--text2)}
+.about-feature::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--pink);flex-shrink:0}
+
+/* TEAM */
+.team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.team-card{text-align:center;position:relative}
+.team-photo{width:140px;height:140px;border-radius:50%;margin:0 auto 20px;overflow:hidden;position:relative;border:3px solid var(--bg);box-shadow:0 8px 24px rgba(0,0,0,.06);transition:all var(--transition)}
+.team-photo-bg{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:3rem;transition:filter .6s}
+.team-card:nth-child(1) .team-photo-bg{background:linear-gradient(135deg,#f2c4d8,#e8a0bf)}
+.team-card:nth-child(2) .team-photo-bg{background:linear-gradient(135deg,#e8d5c4,#d4bb8a)}
+.team-card:nth-child(3) .team-photo-bg{background:linear-gradient(135deg,#c4d8e8,#a0bfe8)}
+.team-card:nth-child(4) .team-photo-bg{background:linear-gradient(135deg,#d8c4e8,#bfa0e8)}
+.team-card:hover .team-photo{transform:scale(1.05);box-shadow:0 12px 32px rgba(232,160,191,.2)}
+.team-card:hover .team-photo-bg{filter:brightness(1.1)}
+.team-name{font-family:var(--font-head);font-size:1.1rem;font-weight:500;margin-bottom:4px}
+.team-role{font-size:.75rem;color:var(--text3);letter-spacing:1px}
+.team-social{display:flex;justify-content:center;gap:12px;margin-top:12px;opacity:0;transform:translateY(8px);transition:all var(--transition)}
+.team-card:hover .team-social{opacity:1;transform:translateY(0)}
+.team-social a{font-size:.8rem;color:var(--text3);transition:color var(--transition)}
+.team-social a:hover{color:var(--pink)}
+
+/* GALLERY */
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.gallery-item{aspect-ratio:1;border-radius:var(--radius);overflow:hidden;position:relative;cursor:pointer}
+.gallery-item:nth-child(1){grid-row:span 2;aspect-ratio:auto}
+.gallery-item-bg{width:100%;height:100%;transition:transform .6s;display:flex;align-items:center;justify-content:center;font-size:3rem}
+.gallery-item:nth-child(1) .gallery-item-bg{background:linear-gradient(135deg,var(--pink-light),var(--pink))}
+.gallery-item:nth-child(2) .gallery-item-bg{background:linear-gradient(135deg,#e8d5c4,#d4bb8a)}
+.gallery-item:nth-child(3) .gallery-item-bg{background:linear-gradient(135deg,var(--cream),var(--pink-light))}
+.gallery-item:nth-child(4) .gallery-item-bg{background:linear-gradient(135deg,#d8c4e8,#bfa0e8)}
+.gallery-item:nth-child(5) .gallery-item-bg{background:linear-gradient(135deg,#c4e8d8,#a0e8bf)}
+.gallery-item:hover .gallery-item-bg{transform:scale(1.06)}
+.gallery-item-overlay{position:absolute;inset:0;background:rgba(45,45,45,.5);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity var(--transition)}
+.gallery-item:hover .gallery-item-overlay{opacity:1}
+.gallery-item-overlay span{color:#fff;font-family:var(--font-head);font-size:1rem;font-style:italic}
+
+/* TESTIMONIALS */
+.testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.testimonial-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:36px;position:relative}
+.testimonial-card::before{content:'\201C';font-family:var(--font-head);font-size:4rem;color:var(--pink-light);position:absolute;top:8px;right:20px;line-height:1}
+.testimonial-stars{color:var(--gold);font-size:.8rem;letter-spacing:2px;margin-bottom:16px}
+.testimonial-text{font-size:.88rem;color:var(--text2);line-height:1.9;font-style:italic;font-weight:300;margin-bottom:24px}
+.testimonial-author{display:flex;align-items:center;gap:12px}
+.testimonial-avatar{width:40px;height:40px;border-radius:50%;background:var(--pink-light);display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-size:.9rem;color:var(--pink-dark)}
+.testimonial-name{font-size:.82rem;font-weight:500}
+.testimonial-date{font-size:.72rem;color:var(--text3)}
+
+/* BOOKING */
+.booking-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.booking-info-item{margin-bottom:28px}
+.booking-label{font-size:.62rem;text-transform:uppercase;letter-spacing:4px;color:var(--text3);margin-bottom:6px;font-weight:500}
+.booking-value{font-family:var(--font-head);font-size:1.2rem}
+.booking-value a{color:var(--text);transition:color var(--transition)}
+.booking-value a:hover{color:var(--pink)}
+.booking-form{display:flex;flex-direction:column;gap:24px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:48px;box-shadow:0 8px 32px rgba(0,0,0,.04)}
+.booking-form .form-group label{font-size:.62rem;text-transform:uppercase;letter-spacing:3px;color:var(--text3);margin-bottom:8px;display:block;font-weight:500}
+.booking-form .form-group input,.booking-form .form-group textarea,.booking-form .form-group select{width:100%;font-family:var(--font-body);font-size:.88rem;padding:14px 0;border:none;border-bottom:1px solid var(--border);background:transparent;color:var(--text);outline:none;transition:border-color var(--transition);font-weight:300}
+.booking-form .form-group input:focus,.booking-form .form-group textarea:focus,.booking-form .form-group select:focus{border-color:var(--pink)}
+.booking-form .form-group textarea{resize:vertical;min-height:60px}
+.booking-form .form-group select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M6 8L1 3h10z' fill='%23aaa'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 0 center}
+.booking-submit{align-self:flex-start;padding:16px 48px;background:var(--pink);color:#fff;font-family:var(--font-body);font-size:.72rem;text-transform:uppercase;letter-spacing:3px;font-weight:600;border:none;border-radius:40px;cursor:pointer;transition:all var(--transition)}
+.booking-submit:hover{background:var(--pink-dark);box-shadow:0 8px 24px rgba(232,160,191,.3);transform:translateY(-2px)}
+
+/* FOOTER */
+.footer{padding:40px 60px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border);position:relative;z-index:1}
+.footer-logo{font-family:var(--font-head);font-size:1.3rem;font-style:italic}
+.footer-logo span{color:var(--pink)}
+.footer-copy{font-size:.68rem;color:var(--text3);letter-spacing:1px}
+.footer-badge{font-size:.68rem;color:var(--text3)}
+.footer-badge a{color:var(--pink);transition:color var(--transition)}
+
+/* SCROLL TOP */
+.scroll-top{position:fixed;bottom:30px;right:30px;width:44px;height:44px;border-radius:50%;background:var(--bg2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--pink);font-size:1rem;z-index:900;opacity:0;visibility:hidden;transition:all var(--transition);cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.06)}
+.scroll-top.visible{opacity:1;visibility:visible}
+.scroll-top:hover{background:var(--pink);color:#fff;border-color:var(--pink)}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .about-grid,.booking-grid{grid-template-columns:1fr;gap:48px}
+  .team-grid{grid-template-columns:repeat(2,1fr)}
+  .testimonials-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:768px){
+  .section{padding:80px 24px}
+  .header{padding:16px 24px}
+  .header.scrolled{padding:12px 24px}
+  .hero{grid-template-columns:1fr;min-height:auto}
+  .hero-text{padding:120px 32px 60px;text-align:center}
+  .hero-desc{margin-left:auto;margin-right:auto}
+  .hero-btns{justify-content:center;flex-wrap:wrap}
+  .hero-photo{height:50vh}
+  .nav{position:fixed;top:0;right:-100%;width:280px;height:100vh;background:var(--bg2);flex-direction:column;padding:80px 32px 32px;gap:24px;transition:right var(--transition);border-left:1px solid var(--border);box-shadow:-8px 0 24px rgba(0,0,0,.08)}
+  .nav.open{right:0}
+  .burger{display:flex}
+  .gallery-grid{grid-template-columns:1fr 1fr}
+  .gallery-item:nth-child(1){grid-row:auto}
+  .testimonials-grid{grid-template-columns:1fr}
+  .team-grid{grid-template-columns:1fr 1fr}
+  .footer{flex-direction:column;gap:12px;text-align:center;padding:32px 24px}
+}
+@media(max-width:480px){
+  .hero h1{font-size:2.5rem}
+  .hero-btns{flex-direction:column;width:100%}
+  .hero-btn-primary,.hero-btn-secondary{text-align:center}
+  .services-grid{grid-template-columns:1fr}
+  .team-grid{grid-template-columns:1fr}
+  .gallery-grid{grid-template-columns:1fr}
+  .about-features{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- PARTICLES -->
+<div class="particles">
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+</div>
+
+<!-- HEADER -->
+<header class="header" id="header">
+  <a href="#" class="logo">Bl<span>oo</span>m</a>
+  <nav class="nav" id="mainNav">
+    <a href="#services" class="nav-link">Послуги</a>
+    <a href="#about" class="nav-link">Про нас</a>
+    <a href="#team" class="nav-link">Майстри</a>
+    <a href="#gallery" class="nav-link">Галерея</a>
+    <a href="#booking" class="nav-link nav-cta">Записатись</a>
+  </nav>
+  <button class="burger" id="burger" aria-label="Меню">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <div class="hero-label">Салон краси</div>
+    <h1>Ваша краса —<em>наше натхнення</em></h1>
+    <p class="hero-desc">Професійний догляд, індивідуальний підхід та атмосфера затишку. Довірте свою красу нашим майстрам.</p>
+    <div class="hero-btns">
+      <a href="#booking" class="hero-btn-primary">Записатись</a>
+      <a href="#services" class="hero-btn-secondary">Наші послуги</a>
+    </div>
+  </div>
+  <div class="hero-photo">
+    <div class="hero-photo-bg">
+      <div class="hero-photo-circle"></div>
+      <div class="hero-photo-placeholder"></div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section section-cream" id="services">
+  <div class="section-header reveal">
+    <div class="section-label">Послуги</div>
+    <div class="section-title">Що ми <em>пропонуємо</em></div>
+    <div class="section-divider"></div>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal stagger">
+      <span class="service-icon">&#9986;</span>
+      <h3>Стрижки</h3>
+      <p>Жіночі та чоловічі стрижки, укладки, фарбування від провідних майстрів</p>
+      <div class="service-price">від 400 <small>грн</small></div>
+    </div>
+    <div class="service-card reveal stagger">
+      <span class="service-icon">&#128133;</span>
+      <h3>Манікюр</h3>
+      <p>Класичний, апаратний, гель-лак, дизайн нігтів, зміцнення</p>
+      <div class="service-price">від 350 <small>грн</small></div>
+    </div>
+    <div class="service-card reveal stagger">
+      <span class="service-icon">&#128134;</span>
+      <h3>Макіяж</h3>
+      <p>Денний, вечірній, весільний макіяж. Індивідуальний підбір кольорів</p>
+      <div class="service-price">від 800 <small>грн</small></div>
+    </div>
+    <div class="service-card reveal stagger">
+      <span class="service-icon">&#128156;</span>
+      <h3>Масаж</h3>
+      <p>Розслаблюючий, антицелюлітний, масаж обличчя та шиї</p>
+      <div class="service-price">від 600 <small>грн</small></div>
+    </div>
+    <div class="service-card reveal stagger">
+      <span class="service-icon">&#10024;</span>
+      <h3>Догляд за обличчям</h3>
+      <p>Пілінги, маски, чистки, anti-age програми від косметолога</p>
+      <div class="service-price">від 500 <small>грн</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="about-grid">
+    <div class="about-image reveal-left">
+      <div class="about-image-bg">&#127804;</div>
+      <div class="about-image-blob"></div>
+      <div class="about-image-badge">
+        <div class="num">5+</div>
+        <div class="label">років</div>
+      </div>
+    </div>
+    <div class="about-text reveal-right">
+      <div class="section-label" style="text-align:left">Про нас</div>
+      <h2>Простір, де розкривається <em>ваша краса</em></h2>
+      <p class="about-desc">Bloom — це більше, ніж салон. Це місце, де ви можете відпочити, подбати про себе та відчути себе особливою. Ми використовуємо тільки професійну косметику та сучасні техніки.</p>
+      <p class="about-desc">Кожен наш майстер — сертифікований спеціаліст з постійним навчанням та любов'ю до своєї справи.</p>
+      <div class="about-features">
+        <div class="about-feature">Професійна косметика</div>
+        <div class="about-feature">Сертифіковані майстри</div>
+        <div class="about-feature">Затишна атмосфера</div>
+        <div class="about-feature">Індивідуальний підхід</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="section section-cream" id="team">
+  <div class="section-header reveal">
+    <div class="section-label">Команда</div>
+    <div class="section-title">Наші <em>майстри</em></div>
+    <div class="section-divider"></div>
+  </div>
+  <div class="team-grid">
+    <div class="team-card reveal stagger">
+      <div class="team-photo"><div class="team-photo-bg">&#128131;</div></div>
+      <div class="team-name">Анна Коваленко</div>
+      <div class="team-role">Стиліст-перукар</div>
+      <div class="team-social"><a href="#">IG</a><a href="#">TG</a></div>
+    </div>
+    <div class="team-card reveal stagger">
+      <div class="team-photo"><div class="team-photo-bg">&#128133;</div></div>
+      <div class="team-name">Марія Петренко</div>
+      <div class="team-role">Майстер манікюру</div>
+      <div class="team-social"><a href="#">IG</a><a href="#">TG</a></div>
+    </div>
+    <div class="team-card reveal stagger">
+      <div class="team-photo"><div class="team-photo-bg">&#128134;</div></div>
+      <div class="team-name">Олена Сидоренко</div>
+      <div class="team-role">Візажист</div>
+      <div class="team-social"><a href="#">IG</a><a href="#">TG</a></div>
+    </div>
+    <div class="team-card reveal stagger">
+      <div class="team-photo"><div class="team-photo-bg">&#10024;</div></div>
+      <div class="team-name">Вікторія Бондар</div>
+      <div class="team-role">Косметолог</div>
+      <div class="team-social"><a href="#">IG</a><a href="#">TG</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="section" id="gallery">
+  <div class="section-header reveal">
+    <div class="section-label">Галерея</div>
+    <div class="section-title">Наші <em>роботи</em></div>
+    <div class="section-divider"></div>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item reveal stagger"><div class="gallery-item-bg">&#128135;&#8205;&#9792;&#65039;</div><div class="gallery-item-overlay"><span>Стрижки</span></div></div>
+    <div class="gallery-item reveal stagger"><div class="gallery-item-bg">&#128133;</div><div class="gallery-item-overlay"><span>Манікюр</span></div></div>
+    <div class="gallery-item reveal stagger"><div class="gallery-item-bg">&#128134;</div><div class="gallery-item-overlay"><span>Макіяж</span></div></div>
+    <div class="gallery-item reveal stagger"><div class="gallery-item-bg">&#128156;</div><div class="gallery-item-overlay"><span>SPA</span></div></div>
+    <div class="gallery-item reveal stagger"><div class="gallery-item-bg">&#10024;</div><div class="gallery-item-overlay"><span>Догляд</span></div></div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section section-cream" id="testimonials">
+  <div class="section-header reveal">
+    <div class="section-label">Відгуки</div>
+    <div class="section-title">Що кажуть <em>клієнтки</em></div>
+    <div class="section-divider"></div>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial-card reveal stagger">
+      <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <p class="testimonial-text">Найкращий салон у місті! Анна зробила неймовірну стрижку, яка тримає форму вже місяць. Дуже рекомендую!</p>
+      <div class="testimonial-author"><div class="testimonial-avatar">ОМ</div><div><div class="testimonial-name">Оксана Мельник</div><div class="testimonial-date">Лютий 2026</div></div></div>
+    </div>
+    <div class="testimonial-card reveal stagger">
+      <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <p class="testimonial-text">Ходжу на манікюр до Марії вже рік. Завжди ідеальний результат, акуратна робота. Атмосфера дуже приємна.</p>
+      <div class="testimonial-author"><div class="testimonial-avatar">КП</div><div><div class="testimonial-name">Катерина Полякова</div><div class="testimonial-date">Січень 2026</div></div></div>
+    </div>
+    <div class="testimonial-card reveal stagger">
+      <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <p class="testimonial-text">Робила весільний макіяж у Олени — результат перевершив очікування! Тримався весь день, фото вийшли чудові.</p>
+      <div class="testimonial-author"><div class="testimonial-avatar">ІС</div><div><div class="testimonial-name">Ірина Савченко</div><div class="testimonial-date">Грудень 2025</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section class="section" id="booking">
+  <div class="section-header reveal">
+    <div class="section-label">Запис</div>
+    <div class="section-title">Записатись <em>на візит</em></div>
+    <div class="section-divider"></div>
+  </div>
+  <div class="booking-grid">
+    <div class="reveal-left">
+      <div class="booking-info-item"><div class="booking-label">Адреса</div><div class="booking-value">вул. Шевченка, 48</div></div>
+      <div class="booking-info-item"><div class="booking-label">Телефон</div><div class="booking-value"><a href="tel:+380671234567">+380 67 123 45 67</a></div></div>
+      <div class="booking-info-item"><div class="booking-label">Графік</div><div class="booking-value">Пн-Сб: 09:00 — 20:00</div></div>
+      <div class="booking-info-item"><div class="booking-label">Instagram</div><div class="booking-value"><a href="#">@bloom_beauty</a></div></div>
+      <div class="booking-info-item"><div class="booking-label">Telegram</div><div class="booking-value"><a href="#">@bloom_salon</a></div></div>
+    </div>
+    <div class="reveal-right">
+      <form class="booking-form" onsubmit="handleBooking(event)">
+        <div class="form-group"><label>Ваше ім'я</label><input type="text" placeholder="Олена" required></div>
+        <div class="form-group"><label>Телефон</label><input type="tel" placeholder="+380 __ ___ __ __" required></div>
+        <div class="form-group"><label>Послуга</label><select><option value="">Оберіть послугу</option><option>Стрижка</option><option>Манікюр</option><option>Макіяж</option><option>Масаж</option><option>Догляд за обличчям</option></select></div>
+        <div class="form-group"><label>Бажана дата</label><input type="date"></div>
+        <div class="form-group"><label>Побажання</label><textarea placeholder="Розкажіть про ваші побажання..."></textarea></div>
+        <button type="submit" class="booking-submit">Записатись</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-logo">Bl<span>oo</span>m</div>
+  <div class="footer-copy">&copy; 2026 Bloom Beauty Salon</div>
+  <div class="footer-badge">Створено <a href="https://vadikelson-droid.github.io/vadim-portfolio/" target="_blank">Vadim Dev</a></div>
+</footer>
+
+<button class="scroll-top" id="scrollTop" aria-label="Вгору">&#8593;</button>
+
+<script>
+/* HEADER */
+const header=document.getElementById('header');
+window.addEventListener('scroll',()=>{header.classList.toggle('scrolled',window.scrollY>80)});
+
+/* BURGER */
+const burger=document.getElementById('burger'),nav=document.getElementById('mainNav');
+burger.addEventListener('click',()=>{burger.classList.toggle('active');nav.classList.toggle('open')});
+document.querySelectorAll('.nav-link').forEach(l=>l.addEventListener('click',()=>{burger.classList.remove('active');nav.classList.remove('open')}));
+
+/* REVEAL */
+const revealObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el=>revealObs.observe(el));
+
+/* SCROLL PROGRESS */
+const sp=document.getElementById('scrollProgress');
+window.addEventListener('scroll',()=>{const h=document.documentElement.scrollHeight-window.innerHeight;sp.style.width=(window.scrollY/h)*100+'%'});
+
+/* SCROLL TOP */
+const st=document.getElementById('scrollTop');
+window.addEventListener('scroll',()=>{st.classList.toggle('visible',window.scrollY>600)});
+st.addEventListener('click',()=>{window.scrollTo({top:0,behavior:'smooth'})});
+
+/* SMOOTH SCROLL */
+document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();const t=document.querySelector(a.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth'})})});
+
+/* FORM */
+function handleBooking(e){e.preventDefault();const btn=e.target.querySelector('.booking-submit');btn.textContent='Записано ✓';btn.style.background='#2a9d5c';setTimeout(()=>{btn.textContent='Записатись';btn.style.background='';e.target.reset()},3000)}
+</script>
+</body>
+</html>

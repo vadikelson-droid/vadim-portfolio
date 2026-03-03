@@ -3,651 +3,200 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Марія Коваленко | Весільний та портретний фотограф</title>
+<title>Каріна Захараш | Весільний та портретний фотограф</title>
 <meta name="description" content="Професійний весільний та портретний фотограф. Натуральне світло, щирі емоції, авторська обробка.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<style>
-/* ============================================
-   RESET & BASE
-   ============================================ */
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-:root{
-  --bg:#f7f3ee;
-  --bg2:#fff;
-  --bg3:#efe9e1;
-  --bg4:#e8e0d6;
-  --text:#2c2420;
-  --text2:#6b5e54;
-  --text3:#9a8d83;
-  --gold:#b08850;
-  --gold-light:#c49a5c;
-  --gold-muted:rgba(176,136,80,.1);
-  --gold-border:rgba(176,136,80,.3);
-  --border:rgba(44,36,32,.08);
-  --border2:rgba(44,36,32,.14);
-  --overlay:rgba(0,0,0,.7);
-  --overlay-heavy:rgba(0,0,0,.85);
-  --white:#fff;
-  --red:#d44;
-  --green:#2a9d5c;
-  --radius:8px;
-  --radius-lg:16px;
-  --transition:.3s cubic-bezier(.4,0,.2,1);
-  --font-head:'Cormorant Garamond',Georgia,serif;
-  --font-body:'Inter',-apple-system,sans-serif;
-}
-html{scroll-behavior:smooth;font-size:16px}
-body{font-family:var(--font-body);background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
-a{text-decoration:none;color:inherit;transition:color var(--transition)}
-button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
-img{max-width:100%;display:block}
-input,select,textarea{font-family:inherit;font-size:inherit;color:inherit;background:transparent}
-::selection{background:var(--gold);color:#fff}
-
-/* ============================================
-   UTILITY
-   ============================================ */
-.container{max-width:1200px;margin:0 auto;padding:0 24px}
-.section{padding:100px 0}
-.section-label{font-family:var(--font-body);font-size:.75rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
-.section-title{font-family:var(--font-head);font-size:clamp(2rem,5vw,3.2rem);font-weight:400;line-height:1.2;margin-bottom:16px;color:var(--text)}
-.section-subtitle{font-size:1rem;color:var(--text2);max-width:560px;line-height:1.7}
-.section-header{text-align:center;margin-bottom:60px}
-.section-header .section-subtitle{margin:0 auto}
-.gold-line{width:60px;height:2px;background:var(--gold);margin:20px auto 0}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 32px;font-size:.875rem;font-weight:500;letter-spacing:1px;text-transform:uppercase;border-radius:var(--radius);transition:all var(--transition);cursor:pointer}
-.btn-gold{background:var(--gold);color:#fff;border:1px solid var(--gold)}
-.btn-gold:hover{background:var(--gold-light);border-color:var(--gold-light);transform:translateY(-2px);box-shadow:0 8px 24px rgba(201,169,110,.25)}
-.btn-outline{background:transparent;color:var(--text);border:1px solid var(--border2)}
-.btn-outline:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px)}
-.btn-sm{padding:10px 20px;font-size:.8rem}
-.btn-danger{background:var(--red);color:var(--white);border:1px solid var(--red)}
-.btn-danger:hover{opacity:.85}
-
-/* Animations */
-.fade-up{opacity:0;transform:translateY(30px);transition:opacity .8s ease,transform .8s ease}
-.fade-up.visible{opacity:1;transform:translateY(0)}
-.fade-left{opacity:0;transform:translateX(-30px);transition:opacity .8s ease,transform .8s ease}
-.fade-left.visible{opacity:1;transform:translateX(0)}
-.fade-right{opacity:0;transform:translateX(30px);transition:opacity .8s ease,transform .8s ease}
-.fade-right.visible{opacity:1;transform:translateX(0)}
-
-/* ============================================
-   HEADER
-   ============================================ */
-.header{position:fixed;top:0;left:0;right:0;z-index:1000;padding:20px 0;transition:all var(--transition)}
-.header.scrolled{padding:12px 0;background:rgba(247,243,238,.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);box-shadow:0 2px 20px rgba(44,36,32,.06)}
-.header-inner{display:flex;align-items:center;justify-content:space-between}
-.logo{font-family:var(--font-head);font-size:1.5rem;font-weight:400;letter-spacing:1px}
-.logo em{font-style:italic;color:var(--gold)}
-.nav{display:flex;align-items:center;gap:32px}
-.nav-link{font-size:.85rem;font-weight:400;color:var(--text2);letter-spacing:.5px;transition:color var(--transition);position:relative}
-.nav-link:hover,.nav-link.active{color:var(--text)}
-.nav-link::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--gold);transition:width var(--transition)}
-.nav-link:hover::after,.nav-link.active::after{width:100%}
-.nav-cta{padding:10px 24px;border:1px solid var(--gold-border);border-radius:var(--radius);color:var(--gold);font-size:.8rem;font-weight:500;letter-spacing:1px;text-transform:uppercase;transition:all var(--transition)}
-.nav-cta:hover{background:var(--gold);color:#fff}
-.burger{display:none;flex-direction:column;gap:5px;width:24px;cursor:pointer;padding:4px 0}
-.burger span{display:block;height:1.5px;background:var(--text);transition:all var(--transition);border-radius:1px}
-.burger.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
-.burger.active span:nth-child(2){opacity:0}
-.burger.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
-
-/* ============================================
-   HERO
-   ============================================ */
-.hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden}
-.hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,#e8dfd4 0%,#d6cbbe 40%,#cfc3b3 100%);z-index:0}
-.hero-bg img{width:100%;height:100%;object-fit:cover;opacity:.55;transition:opacity 1s ease}
-.hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(247,243,238,.2) 0%,rgba(247,243,238,.5) 50%,var(--bg) 100%);z-index:1}
-.hero-content{position:relative;z-index:2;max-width:800px;padding:0 24px}
-.hero-label{font-size:.75rem;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:24px;display:flex;align-items:center;justify-content:center;gap:12px}
-.hero-label::before,.hero-label::after{content:'';width:40px;height:1px;background:var(--gold)}
-.hero h1{font-family:var(--font-head);font-size:clamp(2.8rem,7vw,5.5rem);font-weight:300;line-height:1.1;margin-bottom:24px;letter-spacing:-1px}
-.hero h1 em{font-style:italic;font-weight:400}
-.hero-desc{font-size:1.05rem;color:var(--text2);max-width:500px;margin:0 auto 40px;line-height:1.8}
-.hero-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
-.hero-scroll{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--text3);font-size:.7rem;letter-spacing:2px;text-transform:uppercase;animation:float 3s ease-in-out infinite}
-.hero-scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,var(--gold),transparent)}
-@keyframes float{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
-
-/* ============================================
-   GALLERY
-   ============================================ */
-.gallery{background:var(--bg)}
-.gallery-filters{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:40px}
-.filter-btn{padding:8px 20px;font-size:.8rem;font-weight:500;color:var(--text3);border:1px solid var(--border);border-radius:30px;transition:all var(--transition);letter-spacing:.5px}
-.filter-btn:hover{color:var(--text);border-color:var(--border2)}
-.filter-btn.active{color:var(--gold);border-color:var(--gold);background:var(--gold-muted)}
-.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.gallery-item{position:relative;aspect-ratio:3/4;overflow:hidden;border-radius:4px;cursor:pointer;background:var(--bg3)}
-.gallery-item.wide{grid-column:span 2;aspect-ratio:16/9}
-.gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease,filter .6s ease}
-.gallery-item:hover img{transform:scale(1.05);filter:brightness(1.1)}
-.gallery-item-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.7) 0%,transparent 50%);opacity:0;transition:opacity var(--transition);display:flex;align-items:flex-end;padding:20px}
-.gallery-item:hover .gallery-item-overlay{opacity:1}
-.gallery-item-info{color:var(--white)}
-.gallery-item-info h4{font-family:var(--font-head);font-size:1.2rem;font-weight:400;margin-bottom:4px}
-.gallery-item-info span{font-size:.75rem;color:var(--text2)}
-.gallery-empty{text-align:center;padding:80px 20px;color:var(--text3)}
-.gallery-empty-icon{font-size:4rem;margin-bottom:20px;opacity:.3}
-.gallery-empty p{font-size:1rem}
-/* Placeholder cards */
-.gallery-placeholder{position:relative;aspect-ratio:3/4;border-radius:4px;overflow:hidden}
-.gallery-placeholder.wide{grid-column:span 2;aspect-ratio:16/9}
-
-/* ============================================
-   STATS
-   ============================================ */
-.stats{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);box-shadow:inset 0 1px 0 rgba(255,255,255,.5)}
-.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:40px;text-align:center;padding:60px 0}
-.stat-number{font-family:var(--font-head);font-size:clamp(2.5rem,5vw,3.5rem);font-weight:300;color:var(--gold);line-height:1}
-.stat-label{font-size:.85rem;color:var(--text2);margin-top:8px}
-
-/* ============================================
-   SERVICES
-   ============================================ */
-.services{background:var(--bg)}
-.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
-.service-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:40px 32px;position:relative;overflow:hidden;transition:all var(--transition)}
-.service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gold);transform:scaleX(0);transition:transform var(--transition);transform-origin:left}
-.service-card:hover{border-color:var(--gold-border);transform:translateY(-4px);box-shadow:0 20px 40px rgba(44,36,32,.1)}
-.service-card:hover::before{transform:scaleX(1)}
-.service-icon{width:48px;height:48px;display:flex;align-items:center;justify-content:center;border-radius:12px;background:var(--gold-muted);color:var(--gold);font-size:1.3rem;margin-bottom:24px}
-.service-card h3{font-family:var(--font-head);font-size:1.5rem;font-weight:400;margin-bottom:12px}
-.service-desc{font-size:.9rem;color:var(--text2);line-height:1.7;margin-bottom:24px}
-.service-price{font-family:var(--font-head);font-size:1.8rem;font-weight:400;color:var(--gold)}
-.service-price small{font-size:.85rem;color:var(--text3);font-family:var(--font-body)}
-.service-card .btn{margin-top:20px;width:100%}
-
-/* ============================================
-   ABOUT
-   ============================================ */
-.about{background:var(--bg2)}
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
-.about-image{position:relative;aspect-ratio:3/4;border-radius:var(--radius-lg);overflow:hidden;background:var(--bg3)}
-.about-image img{width:100%;height:100%;object-fit:cover}
-.about-image-badge{position:absolute;bottom:24px;right:-20px;background:var(--bg2);border:1px solid var(--gold-border);border-radius:var(--radius);padding:16px 24px;text-align:center;box-shadow:0 8px 24px rgba(44,36,32,.1)}
-.about-image-badge .num{font-family:var(--font-head);font-size:2rem;color:var(--gold);line-height:1}
-.about-image-badge .label{font-size:.7rem;color:var(--text2);letter-spacing:1px;text-transform:uppercase;margin-top:4px}
-.about-text h2{font-family:var(--font-head);font-size:clamp(2rem,4vw,3rem);font-weight:400;line-height:1.2;margin-bottom:24px}
-.about-text h2 em{font-style:italic;color:var(--gold)}
-.about-bio{font-size:.95rem;color:var(--text2);line-height:1.8;margin-bottom:32px}
-.about-features{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:32px}
-.about-feature{display:flex;align-items:center;gap:12px;font-size:.85rem;color:var(--text2)}
-.about-feature::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--gold);flex-shrink:0}
-
-/* ============================================
-   TESTIMONIALS
-   ============================================ */
-.testimonials{background:var(--bg)}
-.testimonials-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:24px}
-.testimonial-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:36px;position:relative}
-.testimonial-card::before{content:'\201C';font-family:var(--font-head);font-size:4rem;color:var(--gold);opacity:.2;position:absolute;top:16px;right:28px;line-height:1}
-.testimonial-stars{color:var(--gold);font-size:.9rem;margin-bottom:16px;letter-spacing:2px}
-.testimonial-text{font-size:.95rem;color:var(--text2);line-height:1.8;margin-bottom:20px;font-style:italic}
-.testimonial-author{display:flex;align-items:center;gap:12px}
-.testimonial-author-avatar{width:40px;height:40px;border-radius:50%;background:var(--gold-muted);display:flex;align-items:center;justify-content:center;color:var(--gold);font-family:var(--font-head);font-size:1.1rem;font-weight:500}
-.testimonial-author-info h5{font-size:.85rem;font-weight:500;color:var(--text)}
-.testimonial-author-info span{font-size:.75rem;color:var(--text3)}
-.testimonials-empty{text-align:center;padding:40px;color:var(--text3);font-style:italic}
-
-/* ============================================
-   CONTACT
-   ============================================ */
-.contact{background:var(--bg3)}
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px}
-.contact-info h2{font-family:var(--font-head);font-size:clamp(2rem,4vw,2.8rem);font-weight:400;margin-bottom:16px}
-.contact-info-desc{font-size:.95rem;color:var(--text2);line-height:1.7;margin-bottom:40px}
-.contact-item{display:flex;align-items:center;gap:16px;margin-bottom:24px}
-.contact-item-icon{width:44px;height:44px;border-radius:12px;background:var(--gold-muted);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:1.1rem;flex-shrink:0}
-.contact-item-text{font-size:.9rem;color:var(--text2)}
-.contact-item-text strong{display:block;color:var(--text);font-weight:500;margin-bottom:2px;font-size:.85rem}
-.contact-socials{display:flex;gap:12px;margin-top:32px}
-.contact-social{width:44px;height:44px;border-radius:12px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--text2);transition:all var(--transition);font-size:1.1rem}
-.contact-social:hover{border-color:var(--gold);color:var(--gold);background:var(--gold-muted)}
-.booking-form{background:var(--bg2);border:1px solid var(--border2);border-radius:var(--radius-lg);padding:40px;box-shadow:0 8px 32px rgba(44,36,32,.08)}
-.booking-form h3{font-family:var(--font-head);font-size:1.6rem;font-weight:400;margin-bottom:8px}
-.booking-form-sub{font-size:.85rem;color:var(--text3);margin-bottom:32px}
-.form-group{margin-bottom:20px}
-.form-group label{display:block;font-size:.8rem;font-weight:500;color:var(--text2);margin-bottom:8px;letter-spacing:.5px}
-.form-input{width:100%;padding:12px 16px;background:var(--bg2);border:1px solid var(--border2);border-radius:var(--radius);color:var(--text);font-size:.9rem;transition:border-color var(--transition)}
-.form-input:focus{outline:none;border-color:var(--gold)}
-.form-input::placeholder{color:var(--text3)}
-textarea.form-input{min-height:100px;resize:vertical}
-select.form-input{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M6 8L1 3h10z' fill='%236b6560'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center}
-select.form-input option{background:var(--bg2);color:var(--text)}
-.form-submit{width:100%;margin-top:8px}
-.form-success{display:none;text-align:center;padding:40px 20px}
-.form-success-icon{font-size:3rem;margin-bottom:16px}
-.form-success h4{font-family:var(--font-head);font-size:1.5rem;margin-bottom:8px}
-.form-success p{color:var(--text2);font-size:.9rem}
-
-/* ============================================
-   FOOTER
-   ============================================ */
-.footer{background:var(--bg3);border-top:1px solid var(--border);padding:40px 0}
-.footer-inner{display:flex;align-items:center;justify-content:space-between}
-.footer-logo{font-family:var(--font-head);font-size:1.2rem}
-.footer-logo em{font-style:italic;color:var(--gold)}
-.footer-copy{font-size:.8rem;color:var(--text3)}
-.footer-badge{font-size:.7rem;color:var(--text3);opacity:.5}
-.footer-badge a{color:var(--gold);opacity:1}
-
-/* ============================================
-   LIGHTBOX
-   ============================================ */
-.lightbox{position:fixed;inset:0;z-index:5000;background:rgba(0,0,0,.95);display:none;align-items:center;justify-content:center;opacity:0;transition:opacity .3s ease}
-.lightbox.open{display:flex;opacity:1}
-.lightbox-close{position:absolute;top:20px;right:24px;color:var(--text2);font-size:1.5rem;z-index:2;padding:8px;cursor:pointer;transition:color var(--transition)}
-.lightbox-close:hover{color:var(--white)}
-.lightbox-counter{position:absolute;top:24px;left:24px;color:var(--text3);font-size:.85rem;z-index:2}
-.lightbox-img-wrap{max-width:90vw;max-height:80vh;display:flex;align-items:center;justify-content:center}
-.lightbox-img-wrap img{max-width:100%;max-height:80vh;object-fit:contain;border-radius:4px}
-.lightbox-caption{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);text-align:center;z-index:2}
-.lightbox-caption h4{font-family:var(--font-head);font-size:1.2rem;font-weight:400;margin-bottom:4px}
-.lightbox-caption span{font-size:.8rem;color:var(--text3)}
-.lightbox-nav{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:48px;display:flex;align-items:center;justify-content:center;color:var(--text2);font-size:1.5rem;cursor:pointer;border-radius:50%;border:1px solid var(--border);transition:all var(--transition);z-index:2}
-.lightbox-nav:hover{color:var(--white);border-color:var(--gold);background:rgba(201,169,110,.15)}
-.lightbox-prev{left:20px}
-.lightbox-next{right:20px}
-
-/* ============================================
-   SCROLL TOP
-   ============================================ */
-.scroll-top{position:fixed;bottom:30px;right:30px;width:44px;height:44px;border-radius:50%;background:var(--bg2);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:1.1rem;z-index:900;opacity:0;visibility:hidden;transition:all var(--transition);cursor:pointer;box-shadow:0 4px 12px rgba(44,36,32,.1)}
-.scroll-top.visible{opacity:1;visibility:visible}
-.scroll-top:hover{background:var(--gold);color:#fff;border-color:var(--gold)}
-
-/* ============================================
-   ADMIN PANEL
-   ============================================ */
-/* Login Modal */
-.admin-login-overlay{position:fixed;inset:0;z-index:6000;background:var(--overlay-heavy);display:none;align-items:center;justify-content:center}
-.admin-login-overlay.open{display:flex}
-.admin-login-box{background:var(--bg2);border:1px solid var(--border2);border-radius:var(--radius-lg);padding:48px;width:100%;max-width:400px;text-align:center;box-shadow:0 24px 48px rgba(0,0,0,.15)}
-.admin-login-box h2{font-family:var(--font-head);font-size:1.8rem;font-weight:400;margin-bottom:8px}
-.admin-login-box p{font-size:.85rem;color:var(--text3);margin-bottom:28px}
-.admin-login-box .form-group{text-align:left}
-.admin-login-error{color:var(--red);font-size:.8rem;margin-top:8px;display:none}
-
-/* Admin Toolbar */
-.admin-toolbar{position:fixed;top:0;left:0;right:0;z-index:4000;background:var(--bg2);border-bottom:1px solid var(--border2);height:48px;display:none;align-items:center;padding:0 20px;gap:8px;box-shadow:0 2px 8px rgba(44,36,32,.06)}
-.admin-toolbar.open{display:flex}
-.admin-toolbar-badge{font-size:.7rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);padding:4px 12px;border:1px solid var(--gold-border);border-radius:4px;margin-right:12px}
-.admin-tab{padding:6px 16px;font-size:.8rem;color:var(--text2);border-radius:4px;transition:all var(--transition)}
-.admin-tab:hover{color:var(--text);background:rgba(255,255,255,.05)}
-.admin-tab.active{color:var(--gold);background:var(--gold-muted)}
-.admin-toolbar-spacer{flex:1}
-.admin-logout{font-size:.8rem;color:var(--text3);padding:6px 16px;border:1px solid var(--border);border-radius:4px;transition:all var(--transition)}
-.admin-logout:hover{color:var(--red);border-color:var(--red)}
-
-/* Admin Panels */
-.admin-panel{position:fixed;top:48px;left:0;right:0;bottom:0;z-index:3500;background:var(--bg);overflow-y:auto;display:none;padding:40px;border-top:1px solid var(--border)}
-.admin-panel.open{display:block}
-.admin-panel-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:32px}
-.admin-panel-header h2{font-family:var(--font-head);font-size:2rem;font-weight:400}
-.admin-panel-close{font-size:1.3rem;color:var(--text3);padding:8px;cursor:pointer;transition:color var(--transition)}
-.admin-panel-close:hover{color:var(--text)}
-
-/* Gallery Admin */
-.admin-upload-zone{border:2px dashed var(--border2);border-radius:var(--radius-lg);padding:60px 20px;text-align:center;cursor:pointer;transition:all var(--transition);margin-bottom:32px}
-.admin-upload-zone:hover,.admin-upload-zone.dragover{border-color:var(--gold);background:var(--gold-muted)}
-.admin-upload-zone-icon{font-size:2.5rem;margin-bottom:12px;opacity:.5}
-.admin-upload-zone p{font-size:.9rem;color:var(--text2)}
-.admin-upload-zone small{font-size:.75rem;color:var(--text3)}
-.admin-photos-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
-.admin-photo-card{position:relative;aspect-ratio:1;border-radius:var(--radius);overflow:hidden;background:var(--bg3);border:1px solid var(--border)}
-.admin-photo-card img{width:100%;height:100%;object-fit:cover}
-.admin-photo-card-overlay{position:absolute;inset:0;background:rgba(0,0,0,.6);display:flex;align-items:center;justify-content:center;gap:8px;opacity:0;transition:opacity var(--transition)}
-.admin-photo-card:hover .admin-photo-card-overlay{opacity:1}
-.admin-photo-btn{width:36px;height:36px;border-radius:50%;background:var(--bg2);display:flex;align-items:center;justify-content:center;color:var(--text);font-size:.9rem;transition:all var(--transition);border:1px solid var(--border2)}
-.admin-photo-btn.delete:hover{background:var(--red);color:var(--white);border-color:var(--red)}
-.admin-photo-btn.hero:hover{background:var(--gold);color:var(--bg);border-color:var(--gold)}
-.admin-photo-card .photo-label{position:absolute;top:8px;left:8px;font-size:.6rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:3px 8px;border-radius:3px;color:var(--white)}
-.admin-photo-card .photo-label.hero-label{background:var(--gold)}
-.admin-photo-card .photo-label.about-label{background:var(--green)}
-.admin-cat-manager{margin-bottom:24px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
-.admin-cat-tag{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;background:var(--bg3);border:1px solid var(--border);border-radius:20px;font-size:.8rem;color:var(--text2)}
-.admin-cat-tag button{color:var(--text3);font-size:.7rem}
-.admin-cat-tag button:hover{color:var(--red)}
-.admin-cat-input{display:inline-flex;align-items:center;gap:6px}
-.admin-cat-input input{padding:6px 12px;background:var(--bg2);border:1px solid var(--border2);border-radius:20px;font-size:.8rem;width:140px;color:var(--text)}
-
-/* Services Admin */
-.admin-service-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:24px;margin-bottom:16px}
-.admin-service-card .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.admin-service-card input,.admin-service-card textarea{width:100%;padding:10px 12px;background:var(--bg2);border:1px solid var(--border2);border-radius:var(--radius);color:var(--text);font-size:.85rem;transition:border-color var(--transition)}
-.admin-service-card input:focus,.admin-service-card textarea:focus{outline:none;border-color:var(--gold)}
-.admin-service-card textarea{min-height:60px;resize:vertical}
-.admin-service-card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
-.admin-service-card-header h4{font-size:1rem;font-weight:500}
-
-/* Testimonials Admin */
-.admin-testimonial-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:24px;margin-bottom:16px}
-.admin-testimonial-card .form-row{display:grid;grid-template-columns:1fr 1fr 80px;gap:16px}
-.admin-testimonial-card input,.admin-testimonial-card textarea{width:100%;padding:10px 12px;background:var(--bg2);border:1px solid var(--border2);border-radius:var(--radius);color:var(--text);font-size:.85rem;transition:border-color var(--transition)}
-.admin-testimonial-card input:focus,.admin-testimonial-card textarea:focus{outline:none;border-color:var(--gold)}
-.admin-testimonial-card textarea{min-height:60px;resize:vertical}
-
-/* Settings */
-.admin-settings-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px}
-.admin-settings-section{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:32px}
-.admin-settings-section h3{font-family:var(--font-head);font-size:1.3rem;font-weight:400;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid var(--border)}
-.admin-settings-section .form-group{margin-bottom:16px}
-.admin-settings-section input{width:100%;padding:10px 12px;background:var(--bg2);border:1px solid var(--border2);border-radius:var(--radius);color:var(--text);font-size:.85rem}
-.admin-settings-section input:focus{outline:none;border-color:var(--gold)}
-.admin-tg-test{margin-top:12px;display:flex;gap:12px;align-items:center}
-.admin-tg-status{font-size:.8rem}
-
-/* About Admin */
-.admin-about-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px}
-.admin-about-section{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:32px}
-.admin-about-section h3{font-family:var(--font-head);font-size:1.3rem;font-weight:400;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid var(--border)}
-.admin-about-section textarea{width:100%;padding:12px;background:var(--bg2);border:1px solid var(--border2);border-radius:var(--radius);color:var(--text);font-size:.85rem;min-height:150px;resize:vertical}
-.admin-about-section textarea:focus{outline:none;border-color:var(--gold)}
-.admin-about-section input{width:100%;padding:10px 12px;background:var(--bg2);border:1px solid var(--border2);border-radius:var(--radius);color:var(--text);font-size:.85rem}
-.admin-about-section input:focus{outline:none;border-color:var(--gold)}
-
-/* ============================================
-   RESPONSIVE
-   ============================================ */
-@media(max-width:1024px){
-  .about-grid,.contact-grid{grid-template-columns:1fr;gap:40px}
-  .about-image{max-width:500px;margin:0 auto}
-  .admin-settings-grid,.admin-about-grid{grid-template-columns:1fr}
-}
-@media(max-width:768px){
-  .nav{position:fixed;top:0;right:-100%;width:280px;height:100vh;background:var(--bg2);flex-direction:column;padding:80px 32px 32px;gap:24px;transition:right var(--transition);border-left:1px solid var(--border);box-shadow:-8px 0 24px rgba(44,36,32,.1)}
-  .nav.open{right:0}
-  .nav-cta{width:100%;text-align:center}
-  .burger{display:flex}
-  .hero h1{font-size:clamp(2.2rem,8vw,3.5rem)}
-  .gallery-grid{grid-template-columns:1fr 1fr;gap:4px}
-  .gallery-item.wide{grid-column:span 2}
-  .stats-grid{grid-template-columns:repeat(2,1fr);gap:24px}
-  .services-grid{grid-template-columns:1fr}
-  .testimonials-grid{grid-template-columns:1fr}
-  .contact-grid{gap:40px}
-  .footer-inner{flex-direction:column;gap:16px;text-align:center}
-  .admin-panel{padding:20px}
-  .admin-photos-grid{grid-template-columns:repeat(auto-fill,minmax(120px,1fr))}
-  .admin-service-card .form-row,.admin-testimonial-card .form-row{grid-template-columns:1fr}
-}
-@media(max-width:480px){
-  .section{padding:60px 0}
-  .gallery-grid{grid-template-columns:1fr;gap:4px}
-  .gallery-item.wide{grid-column:span 1}
-  .stats-grid{grid-template-columns:1fr 1fr}
-  .hero-btns{flex-direction:column;width:100%;padding:0 20px}
-  .hero-btns .btn{width:100%}
-  .about-features{grid-template-columns:1fr}
-  .admin-toolbar{overflow-x:auto}
-}
-
-/* Body padding when admin toolbar is active */
-body.admin-active{padding-top:48px}
-body.admin-active .header{top:48px}
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<!-- ============================================
-     HEADER
-     ============================================ -->
+<!-- HEADER -->
 <header class="header" id="header">
-  <div class="container header-inner">
-    <a href="#" class="logo" id="siteLogo">Марія <em>Коваленко</em></a>
-    <nav class="nav" id="mainNav">
-      <a href="#gallery" class="nav-link">Портфоліо</a>
-      <a href="#services" class="nav-link">Послуги</a>
-      <a href="#about" class="nav-link">Про мене</a>
-      <a href="#testimonials" class="nav-link">Відгуки</a>
-      <a href="#contact" class="nav-cta">Забронювати</a>
-    </nav>
-    <button class="burger" id="burger" onclick="toggleMenu()" aria-label="Меню">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
+  <a href="#" class="logo" id="siteLogo">Каріна <em>Захараш</em></a>
+  <nav class="nav" id="mainNav">
+    <a href="#gallery" class="nav-link">Портфоліо</a>
+    <a href="#services" class="nav-link">Послуги</a>
+    <a href="#about" class="nav-link">Про мене</a>
+    <a href="#testimonials" class="nav-link">Відгуки</a>
+    <a href="#contact" class="nav-link nav-cta">Забронювати</a>
+  </nav>
+  <button class="burger" id="burger" onclick="toggleMenu()" aria-label="Меню">
+    <span></span><span></span><span></span>
+  </button>
 </header>
 
-<!-- ============================================
-     HERO
-     ============================================ -->
+<!-- HERO -->
 <section class="hero" id="hero">
-  <div class="hero-bg" id="heroBg">
-    <!-- Hero image loaded from IndexedDB or gradient fallback -->
-  </div>
-  <div class="hero-overlay"></div>
-  <div class="hero-content fade-up">
+  <div class="hero-text">
     <div class="hero-label" id="heroLabel">Весільний та портретний фотограф</div>
-    <h1 id="heroTitle">Марія <em>Коваленко</em></h1>
+    <h1 id="heroTitle">Каріна <em>Захараш</em></h1>
     <p class="hero-desc" id="heroDesc">Фіксую щирі емоції та створюю історії, які ви будете переглядати знову і знову. Натуральне світло, авторська обробка, індивідуальний підхід.</p>
     <div class="hero-btns">
-      <a href="#contact" class="btn btn-gold">Забронювати зйомку</a>
-      <a href="#gallery" class="btn btn-outline">Портфоліо</a>
+      <a href="#contact" class="hero-cta">
+        <span>Забронювати зйомку</span>
+        <span class="hero-cta-line"></span>
+      </a>
     </div>
   </div>
-  <div class="hero-scroll">
-    <span>Scroll</span>
-    <div class="hero-scroll-line"></div>
+  <div class="hero-photo">
+    <div class="hero-photo-inner" id="heroBg">
+      <div class="hero-photo-placeholder"></div>
+      <div class="hero-photo-frame"></div>
+    </div>
   </div>
 </section>
 
-<!-- ============================================
-     GALLERY
-     ============================================ -->
-<section class="gallery section" id="gallery">
+<!-- GALLERY -->
+<section class="section" id="gallery">
   <div class="container">
-    <div class="section-header fade-up">
-      <div class="section-label">Портфоліо</div>
-      <h2 class="section-title">Мої роботи</h2>
-      <p class="section-subtitle">Кожна зйомка — це унікальна історія. Ось деякі з моїх найулюбленіших моментів.</p>
-      <div class="gold-line"></div>
-    </div>
-    <div class="gallery-filters fade-up" id="galleryFilters">
+    <div class="section-sub">Портфоліо</div>
+    <h2 class="section-title">Мої <em>роботи</em></h2>
+    <div class="section-divider"></div>
+    <div class="gallery-filters" id="galleryFilters">
       <button class="filter-btn active" data-filter="all">Усі</button>
     </div>
-    <div class="gallery-grid fade-up" id="galleryGrid">
-      <!-- Filled by JS from IndexedDB -->
-    </div>
+    <div class="gallery-grid fade-up" id="galleryGrid"></div>
   </div>
 </section>
 
-<!-- ============================================
-     STATS
-     ============================================ -->
-<section class="stats" id="statsSection">
-  <div class="container">
-    <div class="stats-grid">
-      <div class="stat-item fade-up">
-        <div class="stat-number"><span class="counter" data-target="200" id="statShoots">0</span>+</div>
-        <div class="stat-label" id="statShootsLabel">Проведених зйомок</div>
-      </div>
-      <div class="stat-item fade-up" style="transition-delay:.1s">
-        <div class="stat-number"><span class="counter" data-target="8" id="statYears">0</span>+</div>
-        <div class="stat-label" id="statYearsLabel">Років досвіду</div>
-      </div>
-      <div class="stat-item fade-up" style="transition-delay:.2s">
-        <div class="stat-number"><span class="counter" data-target="150" id="statClients">0</span>+</div>
-        <div class="stat-label" id="statClientsLabel">Задоволених клієнтів</div>
-      </div>
-      <div class="stat-item fade-up" style="transition-delay:.3s">
-        <div class="stat-number"><span class="counter" data-target="50000" id="statPhotos">0</span>+</div>
-        <div class="stat-label" id="statPhotosLabel">Знятих кадрів</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================
-     SERVICES
-     ============================================ -->
-<section class="services section" id="services">
-  <div class="container">
-    <div class="section-header fade-up">
-      <div class="section-label">Послуги</div>
-      <h2 class="section-title">Оберіть свою зйомку</h2>
-      <p class="section-subtitle">Кожен пакет включає професійну обробку, онлайн-галерею та індивідуальний підхід.</p>
-      <div class="gold-line"></div>
-    </div>
-    <div class="services-grid" id="servicesGrid">
-      <!-- Filled by JS -->
-    </div>
-  </div>
-</section>
-
-<!-- ============================================
-     ABOUT
-     ============================================ -->
-<section class="about section" id="about">
+<!-- ABOUT -->
+<section class="about-section" id="about">
   <div class="container">
     <div class="about-grid">
-      <div class="about-image fade-left" id="aboutImage">
-        <!-- Image from IndexedDB or gradient fallback -->
-        <div class="about-image-badge">
-          <div class="num" id="aboutBadgeNum">8+</div>
-          <div class="label">років досвіду</div>
+      <div class="about-photo-wrap">
+        <div class="about-photo-frame"></div>
+        <div class="about-image" id="aboutImage">
+          <div class="about-image-badge">
+            <div class="num" id="aboutBadgeNum">8+</div>
+            <div class="label">років досвіду</div>
+          </div>
         </div>
       </div>
-      <div class="about-text fade-right">
-        <div class="section-label">Про мене</div>
-        <h2 id="aboutTitle">Привіт, я <em>Марія</em></h2>
+      <div class="about-text fade-up">
+        <div class="section-sub">Про мене</div>
+        <h2 id="aboutTitle">Привіт, я <em>Каріна</em></h2>
         <div class="about-bio" id="aboutBio">
-          <p>Вже понад 8 років я фіксую найважливіші моменти у житті людей. Моя філософія — натуральне світло, щирі емоції та мінімум постановки.</p>
-          <p style="margin-top:12px">Я вірю, що найкращі фотографії народжуються тоді, коли люди просто живуть своїм моментом. Моє завдання — зробити так, щоб ви забули про камеру і насолоджувались процесом.</p>
+          <p>Вже понад 8 років я фіксую найважливіші моменти у житті людей.</p>
         </div>
         <div class="about-features" id="aboutFeatures">
           <div class="about-feature">Натуральне світло</div>
-          <div class="about-feature">Авторська обробка</div>
-          <div class="about-feature">Щирі емоції</div>
-          <div class="about-feature">Ніжні тони</div>
-          <div class="about-feature">Зйомки по Україні</div>
-          <div class="about-feature">Онлайн-галерея</div>
         </div>
-        <a href="#contact" class="btn btn-gold">Давайте познайомимось</a>
+        <div class="about-stats" id="statsSection">
+          <div class="about-stat">
+            <div class="about-stat-num"><span class="counter" data-target="200" id="statShoots">0</span>+</div>
+            <div class="about-stat-label">Зйомок</div>
+          </div>
+          <div class="about-stat">
+            <div class="about-stat-num"><span class="counter" data-target="8" id="statYears">0</span>+</div>
+            <div class="about-stat-label">Років</div>
+          </div>
+          <div class="about-stat">
+            <div class="about-stat-num"><span class="counter" data-target="150" id="statClients">0</span>+</div>
+            <div class="about-stat-label">Клієнтів</div>
+          </div>
+          <div class="about-stat">
+            <div class="about-stat-num"><span class="counter" data-target="50000" id="statPhotos">0</span>+</div>
+            <div class="about-stat-label">Кадрів</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============================================
-     TESTIMONIALS
-     ============================================ -->
-<section class="testimonials section" id="testimonials">
+<!-- SERVICES -->
+<section class="services-section" id="services">
   <div class="container">
-    <div class="section-header fade-up">
-      <div class="section-label">Відгуки</div>
-      <h2 class="section-title">Що кажуть клієнти</h2>
-      <p class="section-subtitle">Найбільша нагорода — щасливі обличчя та теплі слова після зйомки.</p>
-      <div class="gold-line"></div>
-    </div>
-    <div class="testimonials-grid" id="testimonialsGrid">
-      <!-- Filled by JS -->
-    </div>
+    <div class="section-sub">Послуги</div>
+    <h2 class="section-title">Що я <em>пропоную</em></h2>
+    <div class="section-divider"></div>
+    <div class="services-grid fade-up" id="servicesGrid"></div>
   </div>
 </section>
 
-<!-- ============================================
-     CONTACT
-     ============================================ -->
-<section class="contact section" id="contact">
+<!-- TESTIMONIALS -->
+<section class="section" id="testimonials">
+  <div class="container">
+    <div class="section-sub">Відгуки</div>
+    <h2 class="section-title">Що кажуть <em>клієнти</em></h2>
+    <div class="section-divider"></div>
+    <div class="testimonials-grid fade-up" id="testimonialsGrid"></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
   <div class="container">
     <div class="contact-grid">
-      <div class="contact-info fade-left">
-        <div class="section-label">Контакти</div>
-        <h2>Зв'яжіться <em>зі мною</em></h2>
-        <p class="contact-info-desc">Готові створити незабутні фотографії? Заповніть форму або напишіть мені напряму — я відповідаю протягом кількох годин.</p>
-        <div id="contactDetails">
-          <div class="contact-item">
-            <div class="contact-item-icon">&#9742;</div>
-            <div class="contact-item-text">
-              <strong>Телефон</strong>
-              <span id="contactPhone">+380 67 123 45 67</span>
-            </div>
-          </div>
-          <div class="contact-item">
-            <div class="contact-item-icon">&#9993;</div>
-            <div class="contact-item-text">
-              <strong>Email</strong>
-              <span id="contactEmail">maria.photo@gmail.com</span>
-            </div>
-          </div>
-          <div class="contact-item">
-            <div class="contact-item-icon">&#9992;</div>
-            <div class="contact-item-text">
-              <strong>Telegram</strong>
-              <span id="contactTelegram">@maria_photo</span>
-            </div>
-          </div>
-          <div class="contact-item">
-            <div class="contact-item-icon">&#9733;</div>
-            <div class="contact-item-text">
-              <strong>Instagram</strong>
-              <span id="contactInstagram">@maria_kovalenko_photo</span>
-            </div>
-          </div>
+      <div class="contact-info fade-up">
+        <div class="section-sub">Контакти</div>
+        <h2 class="section-title" style="margin-bottom:40px">Забронювати <em>зйомку</em></h2>
+        <div class="contact-info-item">
+          <div class="contact-info-label">Телефон</div>
+          <div class="contact-info-value" id="contactPhone">+380 67 123 45 67</div>
         </div>
-        <div class="contact-socials" id="contactSocials">
+        <div class="contact-info-item">
+          <div class="contact-info-label">Email</div>
+          <div class="contact-info-value" id="contactEmail">karina.photo@gmail.com</div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-info-label">Telegram</div>
+          <div class="contact-info-value" id="contactTelegram">@karina_photo</div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-info-label">Instagram</div>
+          <div class="contact-info-value" id="contactInstagram">@karina_zakharash_photo</div>
         </div>
       </div>
-      <div class="fade-right">
+      <div class="fade-up">
         <form class="booking-form" id="bookingForm" onsubmit="handleBooking(event)">
-          <h3>Забронювати зйомку</h3>
-          <p class="booking-form-sub">Заповніть форму і я зв'яжусь з вами найближчим часом</p>
           <div class="form-group">
-            <label>Ваше ім'я *</label>
-            <input type="text" class="form-input" name="name" placeholder="Анна" required>
+            <label>Ваше ім'я</label>
+            <input type="text" name="name" placeholder="Олена Коваленко" required>
           </div>
           <div class="form-group">
-            <label>Телефон *</label>
-            <input type="tel" class="form-input" name="phone" placeholder="+380..." required>
+            <label>Телефон</label>
+            <input type="tel" name="phone" placeholder="+380 __ ___ __ __" required>
           </div>
           <div class="form-group">
             <label>Тип зйомки</label>
-            <select class="form-input" name="service" id="bookingService">
-              <!-- Filled by JS from services -->
+            <select name="service" id="bookingService">
+              <option value="">Оберіть тип зйомки</option>
             </select>
           </div>
           <div class="form-group">
             <label>Бажана дата</label>
-            <input type="date" class="form-input" name="date">
+            <input type="date" name="date">
           </div>
           <div class="form-group">
-            <label>Додатково</label>
-            <textarea class="form-input" name="message" placeholder="Розкажіть про ваші побажання..."></textarea>
+            <label>Повідомлення</label>
+            <textarea name="message" placeholder="Розкажіть про ваші побажання..."></textarea>
           </div>
-          <button type="submit" class="btn btn-gold form-submit" id="bookingBtn">Надіслати заявку</button>
+          <button type="submit" class="btn-submit" id="bookingBtn">Надіслати заявку</button>
         </form>
         <div class="form-success" id="bookingSuccess">
           <div class="form-success-icon">&#10004;</div>
           <h4>Дякую за заявку!</h4>
-          <p>Я зв'яжусь з вами найближчим часом для обговорення деталей.</p>
+          <p>Я зв'яжусь з вами найближчим часом.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============================================
-     FOOTER
-     ============================================ -->
+<!-- FOOTER -->
 <footer class="footer">
-  <div class="container footer-inner">
-    <div class="footer-logo" id="footerLogo">Марія <em>Коваленко</em></div>
-    <div class="footer-copy">&copy; <span id="footerYear">2026</span> Усі права захищені</div>
-    <div class="footer-badge">Створено <a href="https://vadikelson-droid.github.io/vadim-portfolio/" target="_blank">Vadim Dev</a></div>
-  </div>
+  <div class="footer-logo" id="footerLogo">Каріна <em>Захараш</em></div>
+  <div class="footer-copy">&copy; <span id="footerYear">2026</span></div>
+  <div class="footer-badge">Створено <a href="https://vadikelson-droid.github.io/vadim-portfolio/" target="_blank">Vadim Dev</a></div>
 </footer>
 
 <!-- Scroll Top -->
 <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Вгору">&#8593;</button>
 
-<!-- ============================================
-     LIGHTBOX
-     ============================================ -->
+<!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox">
   <button class="lightbox-close" onclick="closeLightbox()">&#10005;</button>
   <div class="lightbox-counter" id="lightboxCounter"></div>
@@ -662,9 +211,7 @@ body.admin-active .header{top:48px}
   </div>
 </div>
 
-<!-- ============================================
-     ADMIN LOGIN
-     ============================================ -->
+<!-- ADMIN LOGIN -->
 <div class="admin-login-overlay" id="adminLogin">
   <div class="admin-login-box">
     <h2 id="adminLoginTitle">Вхід в панель</h2>
@@ -683,9 +230,7 @@ body.admin-active .header{top:48px}
   </div>
 </div>
 
-<!-- ============================================
-     ADMIN TOOLBAR
-     ============================================ -->
+<!-- ADMIN TOOLBAR -->
 <div class="admin-toolbar" id="adminToolbar">
   <span class="admin-toolbar-badge">ADMIN</span>
   <button class="admin-tab" data-panel="gallery" onclick="openAdminPanel('gallery')">Галерея</button>
@@ -697,17 +242,17 @@ body.admin-active .header{top:48px}
   <button class="admin-logout" onclick="adminLogout()">Вийти</button>
 </div>
 
-<!-- ============================================
-     ADMIN PANEL: GALLERY
-     ============================================ -->
+<!-- ADMIN PANEL: GALLERY -->
 <div class="admin-panel" id="adminPanelGallery">
   <div class="container">
     <div class="admin-panel-header">
       <h2>Управління галереєю</h2>
       <button class="admin-panel-close" onclick="closeAdminPanel()">&#10005;</button>
     </div>
-    <div class="admin-cat-manager" id="adminCatManager">
-      <span style="font-size:.85rem;color:var(--text2);margin-right:8px">Категорії:</span>
+    <div class="admin-cat-manager" id="adminCatManager"></div>
+    <div style="margin-bottom:16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+      <label style="font-size:.85rem;color:var(--text2)">Категорія для завантаження:</label>
+      <select id="uploadCategory" style="padding:8px 12px;border:1px solid var(--border2);border-radius:var(--radius);background:var(--bg2);color:var(--text);font-size:.85rem;min-width:180px"></select>
     </div>
     <div class="admin-upload-zone" id="uploadZone" onclick="document.getElementById('fileInput').click()">
       <div class="admin-upload-zone-icon">&#128247;</div>
@@ -719,9 +264,7 @@ body.admin-active .header{top:48px}
   </div>
 </div>
 
-<!-- ============================================
-     ADMIN PANEL: SERVICES
-     ============================================ -->
+<!-- ADMIN PANEL: SERVICES -->
 <div class="admin-panel" id="adminPanelServices">
   <div class="container">
     <div class="admin-panel-header">
@@ -734,9 +277,7 @@ body.admin-active .header{top:48px}
   </div>
 </div>
 
-<!-- ============================================
-     ADMIN PANEL: ABOUT
-     ============================================ -->
+<!-- ADMIN PANEL: ABOUT -->
 <div class="admin-panel" id="adminPanelAbout">
   <div class="container">
     <div class="admin-panel-header">
@@ -745,7 +286,22 @@ body.admin-active .header{top:48px}
     </div>
     <div class="admin-about-grid">
       <div class="admin-about-section">
-        <h3>Біографія</h3>
+        <h3>Фото та ім'я</h3>
+        <div class="admin-about-photo">
+          <div class="admin-about-photo-preview" id="aboutPhotoPreview" onclick="document.getElementById('aboutPhotoInput').click()">
+            <span class="placeholder-text">Натисніть, щоб завантажити фото</span>
+          </div>
+          <input type="file" id="aboutPhotoInput" accept="image/*" style="display:none" onchange="handleAboutPhoto(this.files)">
+          <div class="admin-about-photo-actions">
+            <button class="btn btn-outline btn-sm" onclick="document.getElementById('aboutPhotoInput').click()">Обрати фото</button>
+            <button class="btn btn-sm btn-danger" onclick="removeAboutPhoto()">Видалити</button>
+          </div>
+        </div>
+        <div class="form-group" style="margin-top:20px">
+          <label>Ім'я та прізвище</label>
+          <input type="text" id="adminAboutName" placeholder="Каріна Захараш">
+        </div>
+        <h3 style="margin-top:24px">Біографія</h3>
         <div class="form-group">
           <label>Основний текст</label>
           <textarea id="adminAboutBio" rows="6"></textarea>
@@ -761,31 +317,17 @@ body.admin-active .header{top:48px}
       </div>
       <div class="admin-about-section">
         <h3>Статистика</h3>
-        <div class="form-group">
-          <label>Кількість зйомок</label>
-          <input type="number" id="adminStatShoots" value="200">
-        </div>
-        <div class="form-group">
-          <label>Років досвіду</label>
-          <input type="number" id="adminStatYears" value="8">
-        </div>
-        <div class="form-group">
-          <label>Задоволених клієнтів</label>
-          <input type="number" id="adminStatClients" value="150">
-        </div>
-        <div class="form-group">
-          <label>Знятих кадрів</label>
-          <input type="number" id="adminStatPhotos" value="50000">
-        </div>
+        <div class="form-group"><label>Кількість зйомок</label><input type="number" id="adminStatShoots" value="200"></div>
+        <div class="form-group"><label>Років досвіду</label><input type="number" id="adminStatYears" value="8"></div>
+        <div class="form-group"><label>Задоволених клієнтів</label><input type="number" id="adminStatClients" value="150"></div>
+        <div class="form-group"><label>Знятих кадрів</label><input type="number" id="adminStatPhotos" value="50000"></div>
       </div>
     </div>
     <button class="btn btn-gold" style="margin-top:24px" onclick="saveAbout()">Зберегти</button>
   </div>
 </div>
 
-<!-- ============================================
-     ADMIN PANEL: TESTIMONIALS
-     ============================================ -->
+<!-- ADMIN PANEL: TESTIMONIALS -->
 <div class="admin-panel" id="adminPanelTestimonials">
   <div class="container">
     <div class="admin-panel-header">
@@ -798,9 +340,7 @@ body.admin-active .header{top:48px}
   </div>
 </div>
 
-<!-- ============================================
-     ADMIN PANEL: SETTINGS
-     ============================================ -->
+<!-- ADMIN PANEL: SETTINGS -->
 <div class="admin-panel" id="adminPanelSettings">
   <div class="container">
     <div class="admin-panel-header">
@@ -810,55 +350,25 @@ body.admin-active .header{top:48px}
     <div class="admin-settings-grid">
       <div class="admin-settings-section">
         <h3>Особиста інформація</h3>
-        <div class="form-group">
-          <label>Ім'я (для заголовків)</label>
-          <input type="text" id="settingName" placeholder="Марія Коваленко">
-        </div>
-        <div class="form-group">
-          <label>Підзаголовок</label>
-          <input type="text" id="settingTagline" placeholder="Весільний та портретний фотограф">
-        </div>
-        <div class="form-group">
-          <label>Телефон</label>
-          <input type="tel" id="settingPhone" placeholder="+380 67 123 45 67">
-        </div>
-        <div class="form-group">
-          <label>Email</label>
-          <input type="email" id="settingEmail" placeholder="maria.photo@gmail.com">
-        </div>
-        <div class="form-group">
-          <label>Telegram</label>
-          <input type="text" id="settingTelegram" placeholder="@maria_photo">
-        </div>
-        <div class="form-group">
-          <label>Instagram</label>
-          <input type="text" id="settingInstagram" placeholder="@maria_kovalenko_photo">
-        </div>
+        <div class="form-group"><label>Ім'я</label><input type="text" id="settingName"></div>
+        <div class="form-group"><label>Підзаголовок</label><input type="text" id="settingTagline"></div>
+        <div class="form-group"><label>Телефон</label><input type="tel" id="settingPhone"></div>
+        <div class="form-group"><label>Email</label><input type="email" id="settingEmail"></div>
+        <div class="form-group"><label>Telegram</label><input type="text" id="settingTelegram"></div>
+        <div class="form-group"><label>Instagram</label><input type="text" id="settingInstagram"></div>
       </div>
       <div class="admin-settings-section">
         <h3>Telegram сповіщення</h3>
-        <p style="font-size:.8rem;color:var(--text3);margin-bottom:16px">Коли клієнт заповнює форму бронювання, ви отримаєте повідомлення в Telegram.</p>
-        <div class="form-group">
-          <label>Bot Token</label>
-          <input type="text" id="settingTgToken" placeholder="123456:ABCdef...">
-        </div>
-        <div class="form-group">
-          <label>Chat ID</label>
-          <input type="text" id="settingTgChatId" placeholder="492678324">
-        </div>
+        <p style="font-size:.8rem;color:var(--text3);margin-bottom:16px">Сповіщення про нові бронювання.</p>
+        <div class="form-group"><label>Bot Token</label><input type="text" id="settingTgToken"></div>
+        <div class="form-group"><label>Chat ID</label><input type="text" id="settingTgChatId"></div>
         <div class="admin-tg-test">
           <button class="btn btn-outline btn-sm" onclick="testTelegram()">Тест</button>
           <span class="admin-tg-status" id="tgTestStatus"></span>
         </div>
         <h3 style="margin-top:32px">Змінити пароль</h3>
-        <div class="form-group">
-          <label>Новий пароль</label>
-          <input type="password" id="settingNewPass">
-        </div>
-        <div class="form-group">
-          <label>Повторіть</label>
-          <input type="password" id="settingNewPassConfirm">
-        </div>
+        <div class="form-group"><label>Новий пароль</label><input type="password" id="settingNewPass"></div>
+        <div class="form-group"><label>Повторіть</label><input type="password" id="settingNewPassConfirm"></div>
         <button class="btn btn-outline btn-sm" onclick="changePassword()">Змінити пароль</button>
       </div>
     </div>
@@ -866,1037 +376,6 @@ body.admin-active .header{top:48px}
   </div>
 </div>
 
-<!-- ============================================
-     JAVASCRIPT
-     ============================================ -->
-<script>
-/* ============================================
-   DEFAULT DATA
-   ============================================ */
-const DEFAULTS = {
-  settings: {
-    name: 'Марія Коваленко',
-    tagline: 'Весільний та портретний фотограф',
-    phone: '+380 67 123 45 67',
-    email: 'maria.photo@gmail.com',
-    telegram: '@maria_photo',
-    instagram: '@maria_kovalenko_photo',
-    tgBotToken: '',
-    tgChatId: ''
-  },
-  services: [
-    { id: 's1', icon: '&#10084;', name: 'Весільна зйомка', description: 'Повний день зйомки — від зборів до першого танцю. 300+ оброблених фото, онлайн-галерея, авторська обробка.', price: 8000, currency: 'грн', prefix: 'від' },
-    { id: 's2', icon: '&#128100;', name: 'Портретна зйомка', description: '1.5 години зйомки в студії або на вулиці. 50+ оброблених фото, допомога з позуванням.', price: 2500, currency: 'грн', prefix: 'від' },
-    { id: 's3', icon: '&#128106;', name: 'Сімейна зйомка', description: '2 години на природі або вдома. 80+ фото, тепла атмосфера та щирі емоції всієї родини.', price: 4000, currency: 'грн', prefix: 'від' },
-    { id: 's4', icon: '&#128150;', name: 'Love Story', description: 'Романтична зйомка для пари. Ідеально для запрошень або просто на згадку. 60+ фото.', price: 3500, currency: 'грн', prefix: 'від' }
-  ],
-  about: {
-    bio: 'Вже понад 8 років я фіксую найважливіші моменти у житті людей. Моя філософія — натуральне світло, щирі емоції та мінімум постановки.',
-    bio2: 'Я вірю, що найкращі фотографії народжуються тоді, коли люди просто живуть своїм моментом. Моє завдання — зробити так, щоб ви забули про камеру і насолоджувались процесом.',
-    features: 'Натуральне світло,Авторська обробка,Щирі емоції,Ніжні тони,Зйомки по Україні,Онлайн-галерея',
-    statShoots: 200,
-    statYears: 8,
-    statClients: 150,
-    statPhotos: 50000
-  },
-  testimonials: [
-    { id: 't1', name: 'Олена та Дмитро', type: 'Весільна зйомка', text: 'Марія — це справжній талант! Вона зловила кожен щирий момент нашого весілля. Фотографії вийшли неймовірно теплими та емоційними.', rating: 5 },
-    { id: 't2', name: 'Анна К.', type: 'Портретна зйомка', text: 'Дуже комфортно почувалася на зйомці. Марія створює таку атмосферу, що забуваєш про камеру. Результат перевершив очікування!', rating: 5 },
-    { id: 't3', name: 'Родина Мельник', type: 'Сімейна зйомка', text: 'Замовляли сімейну зйомку з дітьми — це було неймовірно весело! Діти одразу полюбили Марію. Фото — просто казка.', rating: 5 }
-  ],
-  categories: ['Весілля', 'Портрет', "Сім'я", 'Love Story']
-};
-
-/* ============================================
-   DATA HELPERS
-   ============================================ */
-function getData(key, fallback) {
-  try {
-    const raw = localStorage.getItem('photographer_' + key);
-    return raw ? JSON.parse(raw) : fallback;
-  } catch { return fallback; }
-}
-function setData(key, value) {
-  localStorage.setItem('photographer_' + key, JSON.stringify(value));
-}
-
-/* ============================================
-   INDEXEDDB
-   ============================================ */
-let db = null;
-const DB_NAME = 'PhotographerPortfolioDB';
-const DB_VERSION = 1;
-
-function openDB() {
-  return new Promise((resolve, reject) => {
-    const req = indexedDB.open(DB_NAME, DB_VERSION);
-    req.onupgradeneeded = (e) => {
-      const d = e.target.result;
-      if (!d.objectStoreNames.contains('photos')) {
-        const store = d.createObjectStore('photos', { keyPath: 'id', autoIncrement: true });
-        store.createIndex('category', 'category', { unique: false });
-        store.createIndex('order', 'order', { unique: false });
-      }
-    };
-    req.onsuccess = (e) => { db = e.target.result; resolve(db); };
-    req.onerror = (e) => reject(e.target.error);
-  });
-}
-
-function dbAdd(photo) {
-  return new Promise((resolve, reject) => {
-    const tx = db.transaction('photos', 'readwrite');
-    const req = tx.objectStore('photos').add(photo);
-    req.onsuccess = () => resolve(req.result);
-    req.onerror = () => reject(req.error);
-  });
-}
-
-function dbGetAll() {
-  return new Promise((resolve, reject) => {
-    const tx = db.transaction('photos', 'readonly');
-    const req = tx.objectStore('photos').getAll();
-    req.onsuccess = () => resolve(req.result);
-    req.onerror = () => reject(req.error);
-  });
-}
-
-function dbGet(id) {
-  return new Promise((resolve, reject) => {
-    const tx = db.transaction('photos', 'readonly');
-    const req = tx.objectStore('photos').get(id);
-    req.onsuccess = () => resolve(req.result);
-    req.onerror = () => reject(req.error);
-  });
-}
-
-function dbDelete(id) {
-  return new Promise((resolve, reject) => {
-    const tx = db.transaction('photos', 'readwrite');
-    const req = tx.objectStore('photos').delete(id);
-    req.onsuccess = () => resolve();
-    req.onerror = () => reject(req.error);
-  });
-}
-
-function dbUpdate(photo) {
-  return new Promise((resolve, reject) => {
-    const tx = db.transaction('photos', 'readwrite');
-    const req = tx.objectStore('photos').put(photo);
-    req.onsuccess = () => resolve();
-    req.onerror = () => reject(req.error);
-  });
-}
-
-/* ============================================
-   IMAGE PROCESSING
-   ============================================ */
-function processImage(file, maxWidth, quality) {
-  return new Promise((resolve) => {
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      const img = new Image();
-      img.onload = () => {
-        const canvas = document.createElement('canvas');
-        let w = img.width, h = img.height;
-        if (w > maxWidth) { h = Math.round(h * maxWidth / w); w = maxWidth; }
-        canvas.width = w;
-        canvas.height = h;
-        const ctx = canvas.getContext('2d');
-        ctx.drawImage(img, 0, 0, w, h);
-        canvas.toBlob((blob) => resolve(blob), 'image/jpeg', quality);
-      };
-      img.src = e.target.result;
-    };
-    reader.readAsDataURL(file);
-  });
-}
-
-/* ============================================
-   HASHING
-   ============================================ */
-async function hashPassword(password) {
-  /* crypto.subtle requires HTTPS; fallback for HTTP */
-  if (window.crypto && crypto.subtle) {
-    try {
-      const data = new TextEncoder().encode(password);
-      const buf = await crypto.subtle.digest('SHA-256', data);
-      return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
-    } catch {}
-  }
-  /* Simple hash fallback for HTTP contexts */
-  let h = 0;
-  for (let i = 0; i < password.length; i++) {
-    h = ((h << 5) - h + password.charCodeAt(i)) | 0;
-  }
-  return 'h_' + Math.abs(h).toString(16).padStart(8, '0');
-}
-
-/* ============================================
-   RENDER: GALLERY
-   ============================================ */
-let allPhotos = [];
-let currentFilter = 'all';
-const objectURLs = [];
-
-function revokeURLs() {
-  objectURLs.forEach(u => URL.revokeObjectURL(u));
-  objectURLs.length = 0;
-}
-
-function createObjectURL(blob) {
-  const url = URL.createObjectURL(blob);
-  objectURLs.push(url);
-  return url;
-}
-
-async function renderGallery() {
-  const grid = document.getElementById('galleryGrid');
-  allPhotos = db ? await dbGetAll() : [];
-  allPhotos.sort((a, b) => (a.order || 0) - (b.order || 0));
-  revokeURLs();
-
-  const categories = getData('categories', DEFAULTS.categories);
-  renderGalleryFilters(categories);
-
-  const filtered = currentFilter === 'all' ? allPhotos : allPhotos.filter(p => p.category === currentFilter);
-
-  if (filtered.length === 0) {
-    grid.innerHTML = renderGalleryPlaceholders();
-    return;
-  }
-
-  grid.innerHTML = filtered.map((photo, i) => {
-    const url = createObjectURL(photo.thumb || photo.full);
-    const wideClass = (i === 1 || i === 5) && filtered.length > 3 ? ' wide' : '';
-    return `<div class="gallery-item${wideClass}" onclick="openLightbox(${photo.id})">
-      <img src="${url}" alt="${photo.title || ''}" loading="lazy">
-      <div class="gallery-item-overlay">
-        <div class="gallery-item-info">
-          <h4>${photo.title || ''}</h4>
-          <span>${photo.category || ''}</span>
-        </div>
-      </div>
-    </div>`;
-  }).join('');
-}
-
-function renderGalleryPlaceholders() {
-  const gradients = [
-    'linear-gradient(135deg,#e8dfd4,#d6cbbe)','linear-gradient(135deg,#dce4e8,#c8d5dd)',
-    'linear-gradient(135deg,#e0dbe8,#cec6da)','linear-gradient(135deg,#e8dbd8,#dac8c4)',
-    'linear-gradient(135deg,#dbe8db,#c4d6c4)','linear-gradient(135deg,#e8e4d4,#dad3c0)'
-  ];
-  return gradients.map((g, i) => {
-    const wide = i === 1 ? ' wide' : '';
-    return `<div class="gallery-placeholder${wide}" style="background:${g}"></div>`;
-  }).join('');
-}
-
-function renderGalleryFilters(categories) {
-  const cont = document.getElementById('galleryFilters');
-  cont.innerHTML = `<button class="filter-btn${currentFilter === 'all' ? ' active' : ''}" data-filter="all" onclick="filterGallery('all')">Усі</button>` +
-    categories.map(c => `<button class="filter-btn${currentFilter === c ? ' active' : ''}" data-filter="${c}" onclick="filterGallery('${c}')">${c}</button>`).join('');
-}
-
-function filterGallery(cat) {
-  currentFilter = cat;
-  renderGallery();
-}
-
-/* ============================================
-   RENDER: HERO
-   ============================================ */
-async function renderHero() {
-  const settings = getData('settings', DEFAULTS.settings);
-  const parts = settings.name.split(' ');
-  const firstName = parts[0] || '';
-  const lastName = parts.slice(1).join(' ') || '';
-
-  document.getElementById('heroTitle').innerHTML = `${firstName} <em>${lastName}</em>`;
-  document.getElementById('heroLabel').textContent = settings.tagline;
-  document.getElementById('siteLogo').innerHTML = `${firstName} <em>${lastName}</em>`;
-  document.getElementById('footerLogo').innerHTML = `${firstName} <em>${lastName}</em>`;
-
-  // Hero background from IndexedDB
-  if (db) {
-    const photos = await dbGetAll();
-    const heroPhoto = photos.find(p => p.isHero);
-    if (heroPhoto) {
-      const url = createObjectURL(heroPhoto.full);
-      document.getElementById('heroBg').innerHTML = `<img src="${url}" alt="">`;
-    }
-  }
-}
-
-/* ============================================
-   RENDER: SERVICES
-   ============================================ */
-function renderServices() {
-  const services = getData('services', DEFAULTS.services);
-  const grid = document.getElementById('servicesGrid');
-  const select = document.getElementById('bookingService');
-
-  grid.innerHTML = services.map(s => `
-    <div class="service-card fade-up">
-      <div class="service-icon">${s.icon}</div>
-      <h3>${s.name}</h3>
-      <p class="service-desc">${s.description}</p>
-      <div class="service-price">${s.prefix || 'від'} ${s.price.toLocaleString()} <small>${s.currency}</small></div>
-      <a href="#contact" class="btn btn-outline btn-sm" onclick="preselectService('${s.name}')">Забронювати</a>
-    </div>
-  `).join('');
-
-  select.innerHTML = '<option value="">Оберіть тип зйомки</option>' +
-    services.map(s => `<option value="${s.name}">${s.name} — ${s.prefix || 'від'} ${s.price.toLocaleString()} ${s.currency}</option>`).join('');
-
-  initAnimations();
-}
-
-function preselectService(name) {
-  document.getElementById('bookingService').value = name;
-}
-
-/* ============================================
-   RENDER: ABOUT
-   ============================================ */
-async function renderAbout() {
-  const about = getData('about', DEFAULTS.about);
-  const settings = getData('settings', DEFAULTS.settings);
-  const parts = settings.name.split(' ');
-
-  document.getElementById('aboutTitle').innerHTML = `Привіт, я <em>${parts[0] || 'Марія'}</em>`;
-  document.getElementById('aboutBio').innerHTML =
-    `<p>${about.bio}</p>` + (about.bio2 ? `<p style="margin-top:12px">${about.bio2}</p>` : '');
-
-  const features = about.features.split(',').map(f => f.trim()).filter(Boolean);
-  document.getElementById('aboutFeatures').innerHTML = features.map(f => `<div class="about-feature">${f}</div>`).join('');
-
-  // Stats
-  document.getElementById('statShoots').dataset.target = about.statShoots;
-  document.getElementById('statYears').dataset.target = about.statYears;
-  document.getElementById('statClients').dataset.target = about.statClients;
-  document.getElementById('statPhotos').dataset.target = about.statPhotos;
-  document.getElementById('aboutBadgeNum').textContent = about.statYears + '+';
-
-  // About image
-  if (db) {
-    const photos = await dbGetAll();
-    const aboutPhoto = photos.find(p => p.isAbout);
-    if (aboutPhoto) {
-      const url = createObjectURL(aboutPhoto.full);
-      const imgEl = document.getElementById('aboutImage');
-      const badge = imgEl.querySelector('.about-image-badge');
-      imgEl.insertBefore(Object.assign(document.createElement('img'), { src: url, alt: '' }), badge);
-    }
-  }
-}
-
-/* ============================================
-   RENDER: TESTIMONIALS
-   ============================================ */
-function renderTestimonials() {
-  const testimonials = getData('testimonials', DEFAULTS.testimonials);
-  const grid = document.getElementById('testimonialsGrid');
-
-  if (testimonials.length === 0) {
-    grid.innerHTML = '<div class="testimonials-empty">Відгуків поки немає</div>';
-    return;
-  }
-
-  grid.innerHTML = testimonials.map(t => {
-    const stars = '&#9733;'.repeat(t.rating) + '<span style="opacity:.3">' + '&#9733;'.repeat(5 - t.rating) + '</span>';
-    const initial = t.name.charAt(0).toUpperCase();
-    return `
-      <div class="testimonial-card fade-up">
-        <div class="testimonial-stars">${stars}</div>
-        <p class="testimonial-text">${t.text}</p>
-        <div class="testimonial-author">
-          <div class="testimonial-author-avatar">${initial}</div>
-          <div class="testimonial-author-info">
-            <h5>${t.name}</h5>
-            <span>${t.type}</span>
-          </div>
-        </div>
-      </div>
-    `;
-  }).join('');
-
-  initAnimations();
-}
-
-/* ============================================
-   RENDER: CONTACT
-   ============================================ */
-function renderContact() {
-  const settings = getData('settings', DEFAULTS.settings);
-  document.getElementById('contactPhone').textContent = settings.phone;
-  document.getElementById('contactEmail').textContent = settings.email;
-  document.getElementById('contactTelegram').textContent = settings.telegram;
-  document.getElementById('contactInstagram').textContent = settings.instagram;
-}
-
-/* ============================================
-   LIGHTBOX
-   ============================================ */
-let lightboxPhotos = [];
-let lightboxIndex = 0;
-
-async function openLightbox(photoId) {
-  const photo = await dbGet(photoId);
-  if (!photo) return;
-
-  const filtered = currentFilter === 'all' ? allPhotos : allPhotos.filter(p => p.category === currentFilter);
-  lightboxPhotos = filtered;
-  lightboxIndex = filtered.findIndex(p => p.id === photoId);
-  if (lightboxIndex < 0) lightboxIndex = 0;
-
-  showLightboxPhoto();
-  document.getElementById('lightbox').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-
-async function showLightboxPhoto() {
-  const photo = lightboxPhotos[lightboxIndex];
-  if (!photo) return;
-
-  const fullPhoto = await dbGet(photo.id);
-  const url = createObjectURL(fullPhoto.full);
-  document.getElementById('lightboxImg').src = url;
-  document.getElementById('lightboxTitle').textContent = photo.title || '';
-  document.getElementById('lightboxCaption').textContent = photo.category || '';
-  document.getElementById('lightboxCounter').textContent = `${lightboxIndex + 1} / ${lightboxPhotos.length}`;
-}
-
-function closeLightbox() {
-  document.getElementById('lightbox').classList.remove('open');
-  document.body.style.overflow = '';
-}
-
-function navLightbox(dir) {
-  lightboxIndex += dir;
-  if (lightboxIndex < 0) lightboxIndex = lightboxPhotos.length - 1;
-  if (lightboxIndex >= lightboxPhotos.length) lightboxIndex = 0;
-  showLightboxPhoto();
-}
-
-document.addEventListener('keydown', (e) => {
-  if (!document.getElementById('lightbox').classList.contains('open')) return;
-  if (e.key === 'Escape') closeLightbox();
-  if (e.key === 'ArrowLeft') navLightbox(-1);
-  if (e.key === 'ArrowRight') navLightbox(1);
-});
-
-/* ============================================
-   TELEGRAM
-   ============================================ */
-async function sendToTelegram(text) {
-  const settings = getData('settings', DEFAULTS.settings);
-  if (!settings.tgBotToken || !settings.tgChatId) return false;
-  try {
-    const resp = await fetch(`https://api.telegram.org/bot${settings.tgBotToken}/sendMessage`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ chat_id: settings.tgChatId, text, parse_mode: 'HTML' })
-    });
-    return resp.ok;
-  } catch { return false; }
-}
-
-/* ============================================
-   BOOKING FORM
-   ============================================ */
-async function handleBooking(e) {
-  e.preventDefault();
-  const form = e.target;
-  const btn = document.getElementById('bookingBtn');
-  const name = form.name.value.trim();
-  const phone = form.phone.value.trim();
-  const service = form.service.value;
-  const date = form.date.value;
-  const message = form.message.value.trim();
-  const settings = getData('settings', DEFAULTS.settings);
-
-  btn.textContent = 'Надсилаю...';
-  btn.disabled = true;
-
-  const msg = `<b>&#128248; НОВЕ БРОНЮВАННЯ</b>\n\n<b>Ім'я:</b> ${escapeHTML(name)}\n<b>Телефон:</b> ${escapeHTML(phone)}\n<b>Тип зйомки:</b> ${escapeHTML(service || 'Не обрано')}\n<b>Бажана дата:</b> ${date || 'Не вказано'}\n<b>Повідомлення:</b> ${escapeHTML(message || '—')}\n\n<i>Надіслано з сайту ${escapeHTML(settings.name)}</i>`;
-
-  await sendToTelegram(msg);
-
-  form.style.display = 'none';
-  document.getElementById('bookingSuccess').style.display = 'block';
-
-  setTimeout(() => {
-    form.style.display = '';
-    document.getElementById('bookingSuccess').style.display = 'none';
-    form.reset();
-    btn.textContent = 'Надіслати заявку';
-    btn.disabled = false;
-  }, 5000);
-}
-
-function escapeHTML(str) {
-  return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-}
-
-/* ============================================
-   ADMIN: AUTH (two roles: photographer + developer)
-   ============================================ */
-let isAdmin = false;
-let adminRole = ''; /* 'photographer' or 'dev' */
-const DEV_HASH = 'h_62598b08'; /* developer master password */
-
-function showAdminLogin() {
-  const hasPassword = localStorage.getItem('photographer_admin_hash');
-  const overlay = document.getElementById('adminLogin');
-  if (!hasPassword) {
-    document.getElementById('adminLoginTitle').textContent = 'Створення паролю';
-    document.getElementById('adminLoginDesc').textContent = 'Створіть пароль для адмін-панелі';
-    document.getElementById('adminPassLabel').textContent = 'Новий пароль';
-    document.getElementById('adminPassConfirmGroup').style.display = 'block';
-  } else {
-    document.getElementById('adminLoginTitle').textContent = 'Вхід в панель';
-    document.getElementById('adminLoginDesc').textContent = 'Введіть пароль';
-    document.getElementById('adminPassLabel').textContent = 'Пароль';
-    document.getElementById('adminPassConfirmGroup').style.display = 'none';
-  }
-  document.getElementById('adminLoginError').style.display = 'none';
-  document.getElementById('adminPassInput').value = '';
-  document.getElementById('adminPassConfirm').value = '';
-  overlay.classList.add('open');
-  setTimeout(() => document.getElementById('adminPassInput').focus(), 100);
-}
-
-function closeAdminLogin() {
-  document.getElementById('adminLogin').classList.remove('open');
-}
-
-async function adminLoginSubmit() {
-  const pass = document.getElementById('adminPassInput').value;
-  const errorEl = document.getElementById('adminLoginError');
-  const storedHash = localStorage.getItem('photographer_admin_hash');
-  const hash = await hashPassword(pass);
-
-  /* Check developer master password first */
-  if (hash === DEV_HASH) {
-    activateAdmin('dev');
-    return;
-  }
-
-  if (!storedHash) {
-    /* First time — creating photographer password */
-    const confirm = document.getElementById('adminPassConfirm').value;
-    if (pass.length < 4) {
-      errorEl.textContent = 'Мінімум 4 символи';
-      errorEl.style.display = 'block';
-      return;
-    }
-    if (pass !== confirm) {
-      errorEl.textContent = 'Паролі не збігаються';
-      errorEl.style.display = 'block';
-      return;
-    }
-    localStorage.setItem('photographer_admin_hash', hash);
-    activateAdmin('photographer');
-  } else {
-    /* Check photographer password */
-    if (hash !== storedHash) {
-      errorEl.textContent = 'Невірний пароль';
-      errorEl.style.display = 'block';
-      return;
-    }
-    activateAdmin('photographer');
-  }
-}
-
-function activateAdmin(role) {
-  isAdmin = true;
-  adminRole = role || 'photographer';
-  sessionStorage.setItem('photographer_admin', 'true');
-  sessionStorage.setItem('photographer_admin_role', adminRole);
-  closeAdminLogin();
-  document.getElementById('adminToolbar').classList.add('open');
-  document.body.classList.add('admin-active');
-  /* Show role badge */
-  const badge = document.querySelector('.admin-toolbar-badge');
-  if (adminRole === 'dev') {
-    badge.textContent = 'DEV';
-    badge.style.borderColor = '#2ecc71';
-    badge.style.color = '#2ecc71';
-  } else {
-    badge.textContent = 'ADMIN';
-    badge.style.borderColor = '';
-    badge.style.color = '';
-  }
-  renderAdminGallery();
-}
-
-function adminLogout() {
-  isAdmin = false;
-  adminRole = '';
-  sessionStorage.removeItem('photographer_admin');
-  sessionStorage.removeItem('photographer_admin_role');
-  document.getElementById('adminToolbar').classList.remove('open');
-  document.body.classList.remove('admin-active');
-  closeAdminPanel();
-}
-
-/* ============================================
-   ADMIN: PANELS
-   ============================================ */
-let currentAdminPanel = null;
-
-function openAdminPanel(panel) {
-  closeAdminPanel();
-  const el = document.getElementById('adminPanel' + panel.charAt(0).toUpperCase() + panel.slice(1));
-  if (!el) return;
-  el.classList.add('open');
-  currentAdminPanel = panel;
-  document.querySelectorAll('.admin-tab').forEach(t => t.classList.toggle('active', t.dataset.panel === panel));
-
-  if (panel === 'gallery') renderAdminGallery();
-  if (panel === 'services') renderAdminServices();
-  if (panel === 'about') renderAdminAbout();
-  if (panel === 'testimonials') renderAdminTestimonials();
-  if (panel === 'settings') renderAdminSettings();
-}
-
-function closeAdminPanel() {
-  document.querySelectorAll('.admin-panel').forEach(p => p.classList.remove('open'));
-  document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
-  currentAdminPanel = null;
-}
-
-/* ============================================
-   ADMIN: GALLERY
-   ============================================ */
-async function renderAdminGallery() {
-  const photos = db ? await dbGetAll() : [];
-  photos.sort((a, b) => (a.order || 0) - (b.order || 0));
-  const grid = document.getElementById('adminPhotosGrid');
-
-  grid.innerHTML = photos.map(p => {
-    const url = createObjectURL(p.thumb || p.full);
-    const heroLabel = p.isHero ? '<span class="photo-label hero-label">Hero</span>' : '';
-    const aboutLabel = p.isAbout ? '<span class="photo-label about-label">About</span>' : '';
-    return `<div class="admin-photo-card">
-      ${heroLabel}${aboutLabel}
-      <img src="${url}" alt="${p.title || ''}">
-      <div class="admin-photo-card-overlay">
-        <button class="admin-photo-btn hero" title="Встановити як Hero" onclick="setPhotoAs(${p.id},'hero')">&#9733;</button>
-        <button class="admin-photo-btn" title="Встановити як About" onclick="setPhotoAs(${p.id},'about')" style="color:var(--green)">&#9786;</button>
-        <button class="admin-photo-btn delete" title="Видалити" onclick="deletePhoto(${p.id})">&#10005;</button>
-      </div>
-    </div>`;
-  }).join('');
-
-  renderAdminCategories();
-}
-
-async function handleFileUpload(files) {
-  if (!files.length) return;
-  const categories = getData('categories', DEFAULTS.categories);
-  const category = categories[0] || '';
-  const photos = db ? await dbGetAll() : [];
-  let order = photos.length;
-
-  for (const file of files) {
-    if (!file.type.startsWith('image/')) continue;
-    const full = await processImage(file, 1920, 0.85);
-    const thumb = await processImage(file, 400, 0.7);
-    const name = file.name.replace(/\.[^.]+$/, '').replace(/[-_]/g, ' ');
-    await dbAdd({
-      full, thumb,
-      title: name,
-      category: category,
-      order: order++,
-      isHero: false,
-      isAbout: false,
-      createdAt: Date.now()
-    });
-  }
-
-  renderAdminGallery();
-  renderGallery();
-  renderHero();
-}
-
-async function deletePhoto(id) {
-  if (!confirm('Видалити це фото?')) return;
-  await dbDelete(id);
-  renderAdminGallery();
-  renderGallery();
-  renderHero();
-  renderAbout();
-}
-
-async function setPhotoAs(id, role) {
-  const photos = await dbGetAll();
-  for (const p of photos) {
-    if (role === 'hero') p.isHero = (p.id === id) ? !p.isHero : false;
-    if (role === 'about') p.isAbout = (p.id === id) ? !p.isAbout : false;
-    await dbUpdate(p);
-  }
-  renderAdminGallery();
-  renderHero();
-  renderAbout();
-}
-
-function renderAdminCategories() {
-  const categories = getData('categories', DEFAULTS.categories);
-  const cont = document.getElementById('adminCatManager');
-  cont.innerHTML = '<span style="font-size:.85rem;color:var(--text2);margin-right:8px">Категорії:</span>' +
-    categories.map((c, i) => `<span class="admin-cat-tag">${c} <button onclick="removeCategory(${i})">&#10005;</button></span>`).join('') +
-    `<span class="admin-cat-input"><input type="text" id="newCatInput" placeholder="Нова..." onkeydown="if(event.key==='Enter')addCategory()"><button class="btn btn-sm btn-outline" onclick="addCategory()">+</button></span>`;
-}
-
-function addCategory() {
-  const input = document.getElementById('newCatInput');
-  const val = input.value.trim();
-  if (!val) return;
-  const categories = getData('categories', DEFAULTS.categories);
-  if (!categories.includes(val)) {
-    categories.push(val);
-    setData('categories', categories);
-  }
-  input.value = '';
-  renderAdminCategories();
-  renderGallery();
-}
-
-function removeCategory(index) {
-  const categories = getData('categories', DEFAULTS.categories);
-  categories.splice(index, 1);
-  setData('categories', categories);
-  renderAdminCategories();
-  renderGallery();
-}
-
-/* Drag & drop */
-const uploadZone = document.getElementById('uploadZone');
-uploadZone.addEventListener('dragover', (e) => { e.preventDefault(); uploadZone.classList.add('dragover'); });
-uploadZone.addEventListener('dragleave', () => uploadZone.classList.remove('dragover'));
-uploadZone.addEventListener('drop', (e) => {
-  e.preventDefault();
-  uploadZone.classList.remove('dragover');
-  handleFileUpload(e.dataTransfer.files);
-});
-
-/* ============================================
-   ADMIN: SERVICES
-   ============================================ */
-let editServices = [];
-
-function renderAdminServices() {
-  editServices = JSON.parse(JSON.stringify(getData('services', DEFAULTS.services)));
-  const cont = document.getElementById('adminServicesList');
-  cont.innerHTML = editServices.map((s, i) => `
-    <div class="admin-service-card">
-      <div class="admin-service-card-header">
-        <h4>Послуга ${i + 1}</h4>
-        <button class="btn btn-sm btn-danger" onclick="removeService(${i})">Видалити</button>
-      </div>
-      <div class="form-row" style="margin-bottom:12px">
-        <div class="form-group" style="margin:0"><label>Назва</label><input value="${s.name}" onchange="editServices[${i}].name=this.value"></div>
-        <div class="form-group" style="margin:0"><label>Іконка (emoji/HTML)</label><input value="${s.icon.replace(/"/g, '&quot;')}" onchange="editServices[${i}].icon=this.value"></div>
-      </div>
-      <div class="form-group"><label>Опис</label><textarea onchange="editServices[${i}].description=this.value">${s.description}</textarea></div>
-      <div class="form-row">
-        <div class="form-group" style="margin:0"><label>Ціна</label><input type="number" value="${s.price}" onchange="editServices[${i}].price=Number(this.value)"></div>
-        <div class="form-group" style="margin:0"><label>Валюта</label><input value="${s.currency}" onchange="editServices[${i}].currency=this.value"></div>
-        <div class="form-group" style="margin:0"><label>Префікс</label><input value="${s.prefix || 'від'}" onchange="editServices[${i}].prefix=this.value"></div>
-      </div>
-    </div>
-  `).join('');
-}
-
-function addService() {
-  editServices.push({ id: 's' + Date.now(), icon: '&#128247;', name: 'Нова послуга', description: '', price: 0, currency: 'грн', prefix: 'від' });
-  renderAdminServices();
-}
-
-function removeService(i) {
-  if (!confirm('Видалити послугу?')) return;
-  editServices.splice(i, 1);
-  renderAdminServices();
-}
-
-function saveServices() {
-  setData('services', editServices);
-  renderServices();
-  alert('Збережено!');
-}
-
-/* ============================================
-   ADMIN: ABOUT
-   ============================================ */
-function renderAdminAbout() {
-  const about = getData('about', DEFAULTS.about);
-  document.getElementById('adminAboutBio').value = about.bio;
-  document.getElementById('adminAboutBio2').value = about.bio2 || '';
-  document.getElementById('adminAboutFeatures').value = about.features;
-  document.getElementById('adminStatShoots').value = about.statShoots;
-  document.getElementById('adminStatYears').value = about.statYears;
-  document.getElementById('adminStatClients').value = about.statClients;
-  document.getElementById('adminStatPhotos').value = about.statPhotos;
-}
-
-function saveAbout() {
-  const about = {
-    bio: document.getElementById('adminAboutBio').value,
-    bio2: document.getElementById('adminAboutBio2').value,
-    features: document.getElementById('adminAboutFeatures').value,
-    statShoots: Number(document.getElementById('adminStatShoots').value),
-    statYears: Number(document.getElementById('adminStatYears').value),
-    statClients: Number(document.getElementById('adminStatClients').value),
-    statPhotos: Number(document.getElementById('adminStatPhotos').value)
-  };
-  setData('about', about);
-  renderAbout();
-  animateCounters();
-  alert('Збережено!');
-}
-
-/* ============================================
-   ADMIN: TESTIMONIALS
-   ============================================ */
-let editTestimonials = [];
-
-function renderAdminTestimonials() {
-  editTestimonials = JSON.parse(JSON.stringify(getData('testimonials', DEFAULTS.testimonials)));
-  const cont = document.getElementById('adminTestimonialsList');
-  cont.innerHTML = editTestimonials.map((t, i) => `
-    <div class="admin-testimonial-card">
-      <div class="admin-service-card-header">
-        <h4>Відгук ${i + 1}</h4>
-        <button class="btn btn-sm btn-danger" onclick="removeTestimonial(${i})">Видалити</button>
-      </div>
-      <div class="form-row" style="margin-bottom:12px">
-        <div class="form-group" style="margin:0"><label>Ім'я клієнта</label><input value="${t.name}" onchange="editTestimonials[${i}].name=this.value"></div>
-        <div class="form-group" style="margin:0"><label>Тип зйомки</label><input value="${t.type}" onchange="editTestimonials[${i}].type=this.value"></div>
-        <div class="form-group" style="margin:0"><label>Рейтинг (1-5)</label><input type="number" min="1" max="5" value="${t.rating}" onchange="editTestimonials[${i}].rating=Number(this.value)"></div>
-      </div>
-      <div class="form-group"><label>Текст відгуку</label><textarea onchange="editTestimonials[${i}].text=this.value">${t.text}</textarea></div>
-    </div>
-  `).join('');
-}
-
-function addTestimonial() {
-  editTestimonials.push({ id: 't' + Date.now(), name: '', type: '', text: '', rating: 5 });
-  renderAdminTestimonials();
-}
-
-function removeTestimonial(i) {
-  editTestimonials.splice(i, 1);
-  renderAdminTestimonials();
-}
-
-function saveTestimonials() {
-  setData('testimonials', editTestimonials);
-  renderTestimonials();
-  alert('Збережено!');
-}
-
-/* ============================================
-   ADMIN: SETTINGS
-   ============================================ */
-function renderAdminSettings() {
-  const settings = getData('settings', DEFAULTS.settings);
-  document.getElementById('settingName').value = settings.name;
-  document.getElementById('settingTagline').value = settings.tagline;
-  document.getElementById('settingPhone').value = settings.phone;
-  document.getElementById('settingEmail').value = settings.email;
-  document.getElementById('settingTelegram').value = settings.telegram;
-  document.getElementById('settingInstagram').value = settings.instagram;
-  document.getElementById('settingTgToken').value = settings.tgBotToken;
-  document.getElementById('settingTgChatId').value = settings.tgChatId;
-}
-
-function saveSettings() {
-  const settings = {
-    name: document.getElementById('settingName').value.trim(),
-    tagline: document.getElementById('settingTagline').value.trim(),
-    phone: document.getElementById('settingPhone').value.trim(),
-    email: document.getElementById('settingEmail').value.trim(),
-    telegram: document.getElementById('settingTelegram').value.trim(),
-    instagram: document.getElementById('settingInstagram').value.trim(),
-    tgBotToken: document.getElementById('settingTgToken').value.trim(),
-    tgChatId: document.getElementById('settingTgChatId').value.trim()
-  };
-  setData('settings', settings);
-  renderHero();
-  renderContact();
-  renderServices();
-  alert('Збережено!');
-}
-
-async function testTelegram() {
-  const token = document.getElementById('settingTgToken').value.trim();
-  const chatId = document.getElementById('settingTgChatId').value.trim();
-  const status = document.getElementById('tgTestStatus');
-  if (!token || !chatId) {
-    status.textContent = 'Введіть токен і Chat ID';
-    status.style.color = 'var(--red)';
-    return;
-  }
-  status.textContent = 'Надсилаю...';
-  status.style.color = 'var(--text2)';
-  try {
-    const resp = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ chat_id: chatId, text: '✅ Telegram підключено! Сповіщення працюють.\nСайт: ' + getData('settings', DEFAULTS.settings).name, parse_mode: 'HTML' })
-    });
-    if (resp.ok) {
-      status.textContent = 'Успішно!';
-      status.style.color = 'var(--green)';
-    } else {
-      status.textContent = 'Помилка: перевірте токен і Chat ID';
-      status.style.color = 'var(--red)';
-    }
-  } catch {
-    status.textContent = 'Помилка з\'єднання';
-    status.style.color = 'var(--red)';
-  }
-}
-
-async function changePassword() {
-  const pass = document.getElementById('settingNewPass').value;
-  const confirm = document.getElementById('settingNewPassConfirm').value;
-  if (pass.length < 4) { alert('Мінімум 4 символи'); return; }
-  if (pass !== confirm) { alert('Паролі не збігаються'); return; }
-  const hash = await hashPassword(pass);
-  localStorage.setItem('photographer_admin_hash', hash);
-  document.getElementById('settingNewPass').value = '';
-  document.getElementById('settingNewPassConfirm').value = '';
-  alert('Пароль змінено!');
-}
-
-/* ============================================
-   NAVIGATION & UI
-   ============================================ */
-function toggleMenu() {
-  document.getElementById('mainNav').classList.toggle('open');
-  document.getElementById('burger').classList.toggle('active');
-}
-
-function closeMenu() {
-  document.getElementById('mainNav').classList.remove('open');
-  document.getElementById('burger').classList.remove('active');
-}
-
-// Close mobile menu on link click
-document.querySelectorAll('.nav-link, .nav-cta').forEach(link => {
-  link.addEventListener('click', closeMenu);
-});
-
-// Smooth scroll
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', (e) => {
-    const target = document.querySelector(a.getAttribute('href'));
-    if (target) {
-      e.preventDefault();
-      const offset = document.body.classList.contains('admin-active') ? 120 : 72;
-      window.scrollTo({ top: target.offsetTop - offset, behavior: 'smooth' });
-    }
-  });
-});
-
-// Scroll handler
-let ticking = false;
-window.addEventListener('scroll', () => {
-  if (!ticking) {
-    requestAnimationFrame(() => {
-      const y = window.scrollY;
-      document.getElementById('header').classList.toggle('scrolled', y > 60);
-      document.getElementById('scrollTop').classList.toggle('visible', y > 500);
-      ticking = false;
-    });
-    ticking = true;
-  }
-}, { passive: true });
-
-/* ============================================
-   COUNTER ANIMATION
-   ============================================ */
-let countersAnimated = false;
-function animateCounters() {
-  const counters = document.querySelectorAll('.counter');
-  counters.forEach(counter => {
-    const target = parseInt(counter.dataset.target) || 0;
-    const duration = 2000;
-    const start = performance.now();
-    function step(now) {
-      const elapsed = now - start;
-      const progress = Math.min(elapsed / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-      counter.textContent = Math.round(target * eased).toLocaleString();
-      if (progress < 1) requestAnimationFrame(step);
-    }
-    requestAnimationFrame(step);
-  });
-  countersAnimated = true;
-}
-
-/* ============================================
-   INTERSECTION OBSERVER
-   ============================================ */
-function initAnimations() {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        if (entry.target.closest('#statsSection') && !countersAnimated) {
-          animateCounters();
-        }
-      }
-    });
-  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-
-  document.querySelectorAll('.fade-up, .fade-left, .fade-right').forEach(el => {
-    if (!el.classList.contains('visible')) observer.observe(el);
-  });
-}
-
-/* ============================================
-   INIT
-   ============================================ */
-async function init() {
-  try { await openDB(); } catch (e) { console.warn('IndexedDB unavailable:', e); }
-
-  renderHero();
-  renderGallery();
-  renderServices();
-  renderAbout();
-  renderTestimonials();
-  renderContact();
-  initAnimations();
-
-  document.getElementById('footerYear').textContent = new Date().getFullYear();
-
-  // Auto-login if session active
-  if (sessionStorage.getItem('photographer_admin') === 'true') {
-    const savedRole = sessionStorage.getItem('photographer_admin_role') || 'photographer';
-    activateAdmin(savedRole);
-  }
-
-  // Check for ?admin parameter
-  if (new URLSearchParams(window.location.search).has('admin')) {
-    showAdminLogin();
-  }
-
-  // Keyboard shortcut: Ctrl+Shift+A for admin
-  document.addEventListener('keydown', (e) => {
-    if (e.ctrlKey && e.shiftKey && e.key === 'A') {
-      e.preventDefault();
-      if (isAdmin) adminLogout();
-      else showAdminLogin();
-    }
-  });
-}
-
-document.addEventListener('DOMContentLoaded', init);
-</script>
+<script src="js/app.js"></script>
 </body>
 </html>

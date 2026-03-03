@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sapore — Ресторан італійської кухні</title>
+<meta name="description" content="Ресторан італійської кухні Sapore. Авторська кухня, затишна атмосфера, бронювання столиків.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#f5f0e8;--bg2:#fff;--bg-dark:#1a2e1a;--bg-dark2:#0f1f0f;
+  --cream:#faf6f0;--card:#fff;
+  --text:#2a2a2a;--text2:#5a5a5a;--text3:#999;
+  --accent:#c8a96e;--accent2:#b8944f;--green:#1a2e1a;--burgundy:#8b2635;
+  --border:rgba(0,0,0,.08);--border2:rgba(0,0,0,.12);
+  --font-head:'Playfair Display',serif;--font-body:'Lora',serif;
+  --radius:4px;--transition:.4s cubic-bezier(.25,.46,.45,.94);
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-body);background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit;transition:color var(--transition)}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+::selection{background:var(--accent);color:#fff}
+
+/* SCROLL PROGRESS */
+.scroll-progress{position:fixed;top:0;left:0;height:2px;background:var(--accent);z-index:9999;width:0}
+
+/* HEADER */
+.header{position:fixed;top:0;left:0;right:0;z-index:1000;padding:24px 60px;display:flex;align-items:center;justify-content:space-between;transition:all var(--transition)}
+.header.scrolled{background:rgba(245,240,232,.95);backdrop-filter:blur(12px);padding:16px 60px;box-shadow:0 1px 0 var(--border)}
+.logo{font-family:var(--font-head);font-size:1.8rem;font-weight:500;font-style:italic;letter-spacing:1px;color:var(--green)}
+.nav{display:flex;gap:36px;align-items:center}
+.nav-link{font-family:var(--font-body);font-size:.8rem;letter-spacing:1px;color:var(--text2);transition:color var(--transition);position:relative}
+.nav-link::after{content:'';position:absolute;bottom:-4px;left:50%;width:0;height:1px;background:var(--accent);transition:all var(--transition);transform:translateX(-50%)}
+.nav-link:hover{color:var(--text)}
+.nav-link:hover::after{width:100%}
+.nav-cta{padding:12px 28px;border:1px solid var(--green);border-radius:var(--radius);color:var(--green);font-family:var(--font-body);font-size:.8rem;letter-spacing:1px;font-weight:500;transition:all var(--transition)}
+.nav-cta::after{display:none}
+.nav-cta:hover{background:var(--green);color:#fff}
+.burger{display:none;flex-direction:column;gap:5px;width:26px;cursor:pointer;padding:4px 0}
+.burger span{display:block;height:1.5px;background:var(--text);transition:all var(--transition)}
+.burger.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.burger.active span:nth-child(2){opacity:0}
+.burger.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+
+/* HERO */
+.hero{min-height:100vh;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,#3d5c3d 0%,#1a2e1a 40%,#0f1f0f 100%)}
+.hero-overlay{position:absolute;inset:0;background:rgba(15,31,15,.4)}
+.hero-content{position:relative;z-index:1;text-align:center;color:#fff;padding:40px}
+.hero-badge{display:inline-block;padding:8px 24px;border:1px solid rgba(200,169,110,.5);border-radius:40px;font-size:.7rem;letter-spacing:4px;text-transform:uppercase;color:var(--accent);margin-bottom:32px;opacity:0;animation:fadeUp .8s .3s forwards}
+.hero h1{font-family:var(--font-head);font-size:clamp(3rem,7vw,6.5rem);font-weight:400;font-style:italic;line-height:1.1;margin-bottom:20px;opacity:0;animation:clipReveal 1s .5s forwards}
+@keyframes clipReveal{from{clip-path:inset(100% 0 0 0);opacity:0}to{clip-path:inset(0 0 0 0);opacity:1}}
+.hero-line{width:60px;height:1px;background:var(--accent);margin:0 auto 24px;opacity:0;animation:fadeUp .6s .8s forwards}
+.hero-desc{font-family:var(--font-body);font-size:1rem;color:rgba(255,255,255,.7);max-width:500px;margin:0 auto 40px;line-height:1.8;font-weight:400;opacity:0;animation:fadeUp .6s .9s forwards}
+.hero-cta{display:inline-block;padding:18px 48px;border:1px solid var(--accent);color:var(--accent);font-size:.75rem;text-transform:uppercase;letter-spacing:3px;font-weight:500;border-radius:var(--radius);transition:all var(--transition);opacity:0;animation:fadeUp .6s 1s forwards}
+.hero-cta:hover{background:var(--accent);color:#fff}
+.hero-scroll{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;color:rgba(255,255,255,.4);opacity:0;animation:fadeUp .6s 1.2s forwards}
+.hero-scroll span{font-size:.6rem;letter-spacing:3px;text-transform:uppercase}
+.hero-scroll-dot{width:4px;height:4px;background:var(--accent);border-radius:50%;animation:bounce 2s infinite}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(12px)}}
+@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+
+/* SECTIONS */
+.section{padding:120px 60px}
+.section-dark{background:var(--bg-dark);color:#fff}
+.section-cream{background:var(--cream)}
+.section-header{text-align:center;margin-bottom:72px}
+.section-label{font-size:.7rem;text-transform:uppercase;letter-spacing:5px;color:var(--accent);margin-bottom:16px;font-weight:500}
+.section-dark .section-label{color:var(--accent)}
+.section-title{font-family:var(--font-head);font-size:clamp(2rem,4vw,3.5rem);font-weight:400;font-style:italic;line-height:1.2}
+.section-title em{font-style:normal;color:var(--text3)}
+.section-dark .section-title em{color:rgba(255,255,255,.3)}
+.section-divider{width:40px;height:1px;background:var(--accent);margin:24px auto 0}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-left{opacity:0;transform:translateX(-40px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+.reveal-left.visible{opacity:1;transform:translateX(0)}
+.reveal-right{opacity:0;transform:translateX(40px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+.reveal-right.visible{opacity:1;transform:translateX(0)}
+.stagger:nth-child(1){transition-delay:.05s}.stagger:nth-child(2){transition-delay:.1s}.stagger:nth-child(3){transition-delay:.15s}.stagger:nth-child(4){transition-delay:.2s}.stagger:nth-child(5){transition-delay:.25s}.stagger:nth-child(6){transition-delay:.3s}
+
+/* CONCEPT */
+.concept-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.concept-image{position:relative;aspect-ratio:4/5;border-radius:var(--radius);overflow:hidden}
+.concept-image-bg{width:100%;height:100%;background:linear-gradient(135deg,#e0cbb5 0%,#c8a98a 50%,#a8876a 100%);display:flex;align-items:center;justify-content:center;font-size:5rem}
+.concept-image-frame{position:absolute;top:-12px;left:-12px;width:100%;height:100%;border:1px solid var(--accent);border-radius:var(--radius);pointer-events:none}
+.concept-image-badge{position:absolute;bottom:24px;right:-16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:16px 24px;text-align:center;box-shadow:0 8px 24px rgba(0,0,0,.08);z-index:1}
+.concept-image-badge .num{font-family:var(--font-head);font-size:2rem;color:var(--accent2);line-height:1;font-style:italic}
+.concept-image-badge .label{font-size:.65rem;color:var(--text3);text-transform:uppercase;letter-spacing:2px;margin-top:4px}
+.concept-text .section-label{text-align:left}
+.concept-text h2{font-family:var(--font-head);font-size:clamp(2rem,3.5vw,3rem);font-weight:400;font-style:italic;line-height:1.2;margin-bottom:24px}
+.concept-desc{font-size:.92rem;color:var(--text2);line-height:1.9;margin-bottom:16px;font-weight:400}
+.concept-quote{font-family:var(--font-head);font-size:1.1rem;font-style:italic;color:var(--accent2);padding:20px 0 20px 24px;border-left:2px solid var(--accent);margin:24px 0}
+
+/* MENU */
+.menu-tabs{display:flex;justify-content:center;gap:32px;margin-bottom:48px;flex-wrap:wrap}
+.menu-tab{font-family:var(--font-body);font-size:.8rem;letter-spacing:1px;color:rgba(255,255,255,.4);cursor:pointer;padding:8px 0;position:relative;transition:color var(--transition)}
+.menu-tab.active,.menu-tab:hover{color:#fff}
+.menu-tab.active::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:var(--accent)}
+.menu-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 80px}
+.menu-item{padding:20px 0;border-bottom:1px solid rgba(255,255,255,.06);display:flex;justify-content:space-between;align-items:baseline;gap:16px;transition:all var(--transition);cursor:default}
+.menu-item:hover{padding-left:8px}
+.menu-item-info h4{font-family:var(--font-head);font-size:1.1rem;font-weight:400;margin-bottom:4px;color:#fff}
+.menu-item-info p{font-size:.8rem;color:rgba(255,255,255,.4);font-weight:400}
+.menu-item-dots{flex:1;border-bottom:1px dotted rgba(255,255,255,.15);min-width:40px;margin-bottom:6px}
+.menu-item-price{font-family:var(--font-head);font-size:1.1rem;color:var(--accent);white-space:nowrap}
+
+/* CHEF */
+.chef-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:80px;align-items:center}
+.chef-image{aspect-ratio:3/4;border-radius:var(--radius);overflow:hidden;position:relative}
+.chef-image-bg{width:100%;height:100%;background:linear-gradient(135deg,#2a3a2a,#1a2e1a);display:flex;align-items:center;justify-content:center;font-size:5rem}
+.chef-text h2{font-family:var(--font-head);font-size:clamp(2rem,3.5vw,3rem);font-weight:400;font-style:italic;line-height:1.2;margin-bottom:24px}
+.chef-desc{font-size:.92rem;color:var(--text2);line-height:1.9;margin-bottom:24px;font-weight:400}
+.chef-quote{font-family:var(--font-head);font-size:1.2rem;font-style:italic;color:var(--accent2);margin-top:32px;padding:24px;border:1px solid var(--border);border-radius:var(--radius);position:relative}
+.chef-quote::before{content:'\201C';font-family:var(--font-head);font-size:4rem;color:var(--accent);opacity:.3;position:absolute;top:-8px;left:16px;line-height:1}
+
+/* GALLERY */
+.gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.gallery-item{aspect-ratio:1;border-radius:var(--radius);overflow:hidden;position:relative;cursor:pointer}
+.gallery-item-bg{width:100%;height:100%;transition:transform .6s;display:flex;align-items:center;justify-content:center;font-size:3rem}
+.gallery-item:nth-child(1) .gallery-item-bg{background:linear-gradient(135deg,#e0cbb5,#c8a98a)}
+.gallery-item:nth-child(2) .gallery-item-bg{background:linear-gradient(135deg,#d4bfa8,#a8876a)}
+.gallery-item:nth-child(3) .gallery-item-bg{background:linear-gradient(135deg,#c8a98a,#8b6f4e)}
+.gallery-item:nth-child(4) .gallery-item-bg{background:linear-gradient(135deg,#b89878,#a0785a)}
+.gallery-item:hover .gallery-item-bg{transform:scale(1.08)}
+.gallery-item-overlay{position:absolute;inset:0;background:rgba(26,46,26,.6);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity var(--transition)}
+.gallery-item:hover .gallery-item-overlay{opacity:1}
+.gallery-item-overlay span{color:#fff;font-family:var(--font-head);font-size:1rem;font-style:italic}
+
+/* TESTIMONIALS */
+.testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.testimonial-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:40px;position:relative}
+.testimonial-card::before{content:'\201C';font-family:var(--font-head);font-size:4rem;color:var(--bg);opacity:.6;position:absolute;top:12px;right:24px;line-height:1}
+.testimonial-stars{color:var(--accent);font-size:.8rem;letter-spacing:2px;margin-bottom:16px}
+.testimonial-text{font-size:.9rem;color:var(--text2);line-height:1.9;font-style:italic;margin-bottom:24px}
+.testimonial-author{display:flex;align-items:center;gap:12px}
+.testimonial-avatar{width:40px;height:40px;border-radius:50%;background:var(--cream);display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-size:1rem;color:var(--accent2);font-style:italic}
+.testimonial-name{font-size:.85rem;font-weight:500}
+.testimonial-date{font-size:.75rem;color:var(--text3)}
+
+/* BOOKING */
+.booking-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.booking-info-item{margin-bottom:28px}
+.booking-label{font-size:.65rem;text-transform:uppercase;letter-spacing:4px;color:var(--text3);margin-bottom:6px;font-weight:500}
+.booking-value{font-family:var(--font-head);font-size:1.2rem;font-style:italic}
+.booking-value a{color:var(--text);transition:color var(--transition)}
+.booking-value a:hover{color:var(--accent2)}
+.booking-form{display:flex;flex-direction:column;gap:24px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:48px;box-shadow:0 8px 32px rgba(0,0,0,.06)}
+.booking-form .form-group label{font-size:.65rem;text-transform:uppercase;letter-spacing:3px;color:var(--text3);margin-bottom:8px;display:block;font-weight:500}
+.booking-form .form-group input,.booking-form .form-group textarea,.booking-form .form-group select{width:100%;font-family:var(--font-body);font-size:.9rem;padding:14px 0;border:none;border-bottom:1px solid var(--border);background:transparent;color:var(--text);outline:none;transition:border-color var(--transition)}
+.booking-form .form-group input:focus,.booking-form .form-group textarea:focus,.booking-form .form-group select:focus{border-color:var(--accent)}
+.booking-form .form-group textarea{resize:vertical;min-height:60px}
+.booking-form .form-group select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M6 8L1 3h10z' fill='%23999'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 0 center}
+.booking-submit{align-self:flex-start;padding:16px 48px;background:var(--green);color:#fff;font-family:var(--font-body);font-size:.75rem;text-transform:uppercase;letter-spacing:3px;font-weight:500;border:none;border-radius:var(--radius);cursor:pointer;transition:all var(--transition)}
+.booking-submit:hover{background:var(--accent2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(200,169,110,.2)}
+
+/* FOOTER */
+.footer{background:var(--bg-dark);color:#fff;padding:48px 60px;display:flex;justify-content:space-between;align-items:center}
+.footer-logo{font-family:var(--font-head);font-size:1.4rem;font-style:italic;font-weight:400}
+.footer-copy{font-size:.7rem;color:rgba(255,255,255,.4);letter-spacing:1px}
+.footer-badge{font-size:.7rem;color:rgba(255,255,255,.4)}
+.footer-badge a{color:var(--accent);transition:color var(--transition)}
+
+/* SCROLL TOP */
+.scroll-top{position:fixed;bottom:30px;right:30px;width:44px;height:44px;border-radius:50%;background:var(--bg2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:1rem;z-index:900;opacity:0;visibility:hidden;transition:all var(--transition);cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.08)}
+.scroll-top.visible{opacity:1;visibility:visible}
+.scroll-top:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .concept-grid,.chef-grid,.booking-grid{grid-template-columns:1fr;gap:48px}
+  .gallery-grid{grid-template-columns:repeat(2,1fr)}
+  .testimonials-grid{grid-template-columns:1fr 1fr}
+  .menu-grid{grid-template-columns:1fr}
+}
+@media(max-width:768px){
+  .section{padding:80px 24px}
+  .header{padding:16px 24px}
+  .header.scrolled{padding:12px 24px}
+  .nav{position:fixed;top:0;right:-100%;width:280px;height:100vh;background:var(--bg2);flex-direction:column;padding:80px 32px 32px;gap:24px;transition:right var(--transition);border-left:1px solid var(--border);box-shadow:-8px 0 24px rgba(0,0,0,.1)}
+  .nav.open{right:0}
+  .nav-cta{width:100%;text-align:center}
+  .burger{display:flex}
+  .gallery-grid{grid-template-columns:1fr 1fr}
+  .testimonials-grid{grid-template-columns:1fr}
+  .menu-grid{grid-template-columns:1fr;gap:0}
+  .footer{flex-direction:column;gap:16px;text-align:center;padding:32px 24px}
+}
+@media(max-width:480px){
+  .gallery-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- HEADER -->
+<header class="header" id="header">
+  <a href="#" class="logo">Sapore</a>
+  <nav class="nav" id="mainNav">
+    <a href="#concept" class="nav-link">Концепція</a>
+    <a href="#menu" class="nav-link">Меню</a>
+    <a href="#gallery" class="nav-link">Галерея</a>
+    <a href="#testimonials" class="nav-link">Відгуки</a>
+    <a href="#booking" class="nav-link nav-cta">Забронювати</a>
+  </nav>
+  <button class="burger" id="burger" aria-label="Меню">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Ресторан італійської кухні</div>
+    <h1>Смак, що<br>надихає</h1>
+    <div class="hero-line"></div>
+    <p class="hero-desc">Авторська кухня з найкращих сезонних інгредієнтів. Кожна страва — це історія, створена з любов'ю та увагою до деталей.</p>
+    <a href="#booking" class="hero-cta">Забронювати столик</a>
+  </div>
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="hero-scroll-dot"></div>
+  </div>
+</section>
+
+<!-- CONCEPT -->
+<section class="section" id="concept">
+  <div class="concept-grid">
+    <div class="concept-image reveal-left">
+      <div class="concept-image-bg">&#127837;</div>
+      <div class="concept-image-frame"></div>
+      <div class="concept-image-badge">
+        <div class="num">з 2015</div>
+        <div class="label">року</div>
+      </div>
+    </div>
+    <div class="concept-text reveal-right">
+      <div class="section-label">Наша концепція</div>
+      <h2>Традиції Італії у серці вашого міста</h2>
+      <p class="concept-desc">Ми створили простір, де кожна деталь продумана для вашого задоволення. Від інтер'єру, натхненного тосканськими вілами, до меню, що поєднує класичні рецепти з авторським баченням.</p>
+      <p class="concept-desc">Наші інгредієнти — завжди свіжі та сезонні. Паста ручної роботи, оливкова олія з Апулії, сири з невеликих італійських ферм.</p>
+      <div class="concept-quote">"Кухня — це мова, якою можна висловити гармонію, щастя та красу."</div>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section class="section section-dark" id="menu">
+  <div class="section-header reveal">
+    <div class="section-label">Меню</div>
+    <div class="section-title">Наші <em>страви</em></div>
+    <div class="section-divider"></div>
+  </div>
+  <div class="menu-tabs reveal">
+    <button class="menu-tab active" data-cat="main">Основні</button>
+    <button class="menu-tab" data-cat="pasta">Паста</button>
+    <button class="menu-tab" data-cat="dessert">Десерти</button>
+    <button class="menu-tab" data-cat="wine">Вино</button>
+  </div>
+  <div class="menu-grid" id="menuGrid">
+    <div class="menu-item reveal stagger" data-cat="main">
+      <div class="menu-item-info">
+        <h4>Оссобуко по-міланськи</h4>
+        <p>Телятина, ризотто, гремолата</p>
+      </div>
+      <div class="menu-item-dots"></div>
+      <div class="menu-item-price">680 ₴</div>
+    </div>
+    <div class="menu-item reveal stagger" data-cat="main">
+      <div class="menu-item-info">
+        <h4>Стейк Рібай</h4>
+        <p>Мармурова яловичина, овочі гриль, трюфельне масло</p>
+      </div>
+      <div class="menu-item-dots"></div>
+      <div class="menu-item-price">890 ₴</div>
+    </div>
+    <div class="menu-item reveal stagger" data-cat="main">
+      <div class="menu-item-info">
+        <h4>Сібас на грилі</h4>
+        <p>Середземноморські трави, лимон, каперси</p>
+      </div>
+      <div class="menu-item-dots"></div>
+      <div class="menu-item-price">520 ₴</div>
+    </div>
+    <div class="menu-item reveal stagger" data-cat="main">
+      <div class="menu-item-info">
+        <h4>Вітелло Тоннато</h4>
+        <p>Ніжна телятина, тунцевий соус, каперси</p>
+      </div>
+      <div class="menu-item-dots"></div>
+      <div class="menu-item-price">420 ₴</div>
+    </div>
+    <div class="menu-item reveal stagger" data-cat="pasta" style="display:none">
+      <div class="menu-item-info">
+        <h4>Тальятелле з трюфелем</h4>
+        <p>Свіжа паста, чорний трюфель, пармезан</p>
+      </div>
+      <div class="menu-item-dots"></div>
+      <div class="menu-item-price">580 ₴</div>
+    </div>
+    <div class="menu-item reveal stagger" data-cat="pasta" style="display:none">
+      <div class="menu-item-info">
+        <h4>Равіолі з рікоттою</h4>
+        <p>Рікотта, шпинат, шавлієве масло</p>
+      </div>
+      <div class="menu-item-dots"></div>
+      <div class="menu-item-price">380 ₴</div>
+    </div>
+    <div class="menu-item reveal stagger" data-cat="pasta" style="display:none">
+      <div class="menu-item-info">
+        <h4>Паппарделле Болоньєзе</h4>
+        <p>Домашній рагу, пармезан, базилік</p>
+      </div>
+      <div class="menu-item-dots"></div>
+      <div class="menu-item-price">340 ₴</div>
+    </div>
+    <div class="menu-item reveal stagger" data-cat="pasta" style="display:none">
+      <div class="menu-item-info">
+        <h4>Спагетті Вонголе</h4>
+        <p>Молюски, біле вино, часник, петрушка</p>
+      </div>
+      <div class="menu-item-dots"></div>
+      <div class="menu-item-price">460 ₴</div>
+    </div>
+    <div class="menu-item reveal stagger" data-cat="dessert" style="display:none">
+      <div class="menu-item-info">
+        <h4>Тірамісу</h4>
+        <p>Класичний рецепт з маскарпоне</p>
+      </div>
+      <div class="menu-item-dots"></div>
+      <div class="menu-item-price">220 ₴</div>
+    </div>
+    <div class="menu-item reveal stagger" data-cat="dessert" style="display:none">
+      <div class="menu-item-info">
+        <h4>Панна Котта</h4>
+        <p>Ванільний крем, сезонні ягоди</p>
+      </div>
+      <div class="menu-item-dots"></div>
+      <div class="menu-item-price">180 ₴</div>
+    </div>
+    <div class="menu-item reveal stagger" data-cat="wine" style="display:none">
+      <div class="menu-item-info">
+        <h4>Chianti Classico</h4>
+        <p>Тоскана, Санджовезе, 2020</p>
+      </div>
+      <div class="menu-item-dots"></div>
+      <div class="menu-item-price">1 200 ₴</div>
+    </div>
+    <div class="menu-item reveal stagger" data-cat="wine" style="display:none">
+      <div class="menu-item-info">
+        <h4>Pinot Grigio</h4>
+        <p>Венето, сухе біле, 2021</p>
+      </div>
+      <div class="menu-item-dots"></div>
+      <div class="menu-item-price">900 ₴</div>
+    </div>
+  </div>
+</section>
+
+<!-- CHEF -->
+<section class="section section-cream">
+  <div class="chef-grid">
+    <div class="chef-image reveal-left">
+      <div class="chef-image-bg">&#128104;&#8205;&#127859;</div>
+    </div>
+    <div class="chef-text reveal-right">
+      <div class="section-label">Наш шеф</div>
+      <h2>Марко Россі</h2>
+      <p class="chef-desc">Уродженець Неаполя, Марко має понад 20 років досвіду в найкращих ресторанах Італії та Європи. Його філософія — простота, якість інгредієнтів та повага до традицій.</p>
+      <p class="chef-desc">У 2015 році Марко відкрив Sapore, щоб поділитися справжнім смаком Італії з українцями.</p>
+      <div class="chef-quote">"Найкращі страви народжуються з любові до їжі та поваги до продуктів. Менше — це більше."</div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="section" id="gallery">
+  <div class="section-header reveal">
+    <div class="section-label">Галерея</div>
+    <div class="section-title">Атмосфера <em>Sapore</em></div>
+    <div class="section-divider"></div>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item reveal stagger"><div class="gallery-item-bg">&#127869;</div><div class="gallery-item-overlay"><span>Інтер'єр</span></div></div>
+    <div class="gallery-item reveal stagger"><div class="gallery-item-bg">&#127847;</div><div class="gallery-item-overlay"><span>Страви</span></div></div>
+    <div class="gallery-item reveal stagger"><div class="gallery-item-bg">&#127863;</div><div class="gallery-item-overlay"><span>Вино</span></div></div>
+    <div class="gallery-item reveal stagger"><div class="gallery-item-bg">&#127874;</div><div class="gallery-item-overlay"><span>Десерти</span></div></div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section section-cream" id="testimonials">
+  <div class="section-header reveal">
+    <div class="section-label">Відгуки</div>
+    <div class="section-title">Що кажуть <em>гості</em></div>
+    <div class="section-divider"></div>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial-card reveal stagger">
+      <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <p class="testimonial-text">Неймовірна атмосфера та смак! Тальятелле з трюфелем — найкращі, що я пробувала. Обов'язково повернемося.</p>
+      <div class="testimonial-author"><div class="testimonial-avatar">ОК</div><div><div class="testimonial-name">Олена Ковальчук</div><div class="testimonial-date">Лютий 2026</div></div></div>
+    </div>
+    <div class="testimonial-card reveal stagger">
+      <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <p class="testimonial-text">Святкували річницю тут — все було ідеально. Персонал уважний, кухня на рівні кращих ресторанів Європи.</p>
+      <div class="testimonial-author"><div class="testimonial-avatar">АМ</div><div><div class="testimonial-name">Андрій Мартиненко</div><div class="testimonial-date">Січень 2026</div></div></div>
+    </div>
+    <div class="testimonial-card reveal stagger">
+      <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <p class="testimonial-text">Нарешті справжня італійська кухня у нашому місті. Оссобуко — шедевр. Винна карта теж вражає.</p>
+      <div class="testimonial-author"><div class="testimonial-avatar">ВС</div><div><div class="testimonial-name">Вікторія Степаненко</div><div class="testimonial-date">Грудень 2025</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section class="section" id="booking">
+  <div class="section-header reveal">
+    <div class="section-label">Бронювання</div>
+    <div class="section-title">Забронювати <em>столик</em></div>
+    <div class="section-divider"></div>
+  </div>
+  <div class="booking-grid">
+    <div class="reveal-left">
+      <div class="booking-info-item"><div class="booking-label">Адреса</div><div class="booking-value">вул. Хрещатик, 24</div></div>
+      <div class="booking-info-item"><div class="booking-label">Телефон</div><div class="booking-value"><a href="tel:+380441234567">+380 44 123 45 67</a></div></div>
+      <div class="booking-info-item"><div class="booking-label">Графік</div><div class="booking-value">Пн-Нд: 12:00 — 23:00</div></div>
+      <div class="booking-info-item"><div class="booking-label">Instagram</div><div class="booking-value"><a href="#">@sapore_restaurant</a></div></div>
+    </div>
+    <div class="reveal-right">
+      <form class="booking-form" onsubmit="handleBooking(event)">
+        <div class="form-group"><label>Ваше ім'я</label><input type="text" placeholder="Олена" required></div>
+        <div class="form-group"><label>Телефон</label><input type="tel" placeholder="+380 __ ___ __ __" required></div>
+        <div class="form-group"><label>Дата</label><input type="date" required></div>
+        <div class="form-group"><label>Кількість гостей</label><select><option>2 гості</option><option>3-4 гості</option><option>5-6 гостей</option><option>7+ гостей</option></select></div>
+        <div class="form-group"><label>Побажання</label><textarea placeholder="Особливі побажання, алергії, привід..."></textarea></div>
+        <button type="submit" class="booking-submit">Забронювати</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-logo">Sapore</div>
+  <div class="footer-copy">&copy; 2026 Sapore Restaurant</div>
+  <div class="footer-badge">Створено <a href="https://vadikelson-droid.github.io/vadim-portfolio/" target="_blank">Vadim Dev</a></div>
+</footer>
+
+<button class="scroll-top" id="scrollTop" aria-label="Вгору">&#8593;</button>
+
+<script>
+/* HEADER */
+const header=document.getElementById('header');
+window.addEventListener('scroll',()=>{header.classList.toggle('scrolled',window.scrollY>80)});
+
+/* BURGER */
+const burger=document.getElementById('burger'),nav=document.getElementById('mainNav');
+burger.addEventListener('click',()=>{burger.classList.toggle('active');nav.classList.toggle('open')});
+document.querySelectorAll('.nav-link').forEach(l=>l.addEventListener('click',()=>{burger.classList.remove('active');nav.classList.remove('open')}));
+
+/* SCROLL REVEAL */
+const revealObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el=>revealObs.observe(el));
+
+/* MENU TABS */
+document.querySelectorAll('.menu-tab').forEach(tab=>{
+  tab.addEventListener('click',()=>{
+    document.querySelectorAll('.menu-tab').forEach(t=>t.classList.remove('active'));
+    tab.classList.add('active');
+    const cat=tab.dataset.cat;
+    document.querySelectorAll('.menu-item').forEach(item=>{
+      item.style.display=item.dataset.cat===cat?'flex':'none';
+    });
+  });
+});
+
+/* SCROLL PROGRESS */
+const sp=document.getElementById('scrollProgress');
+window.addEventListener('scroll',()=>{const h=document.documentElement.scrollHeight-window.innerHeight;sp.style.width=(window.scrollY/h)*100+'%'});
+
+/* SCROLL TOP */
+const st=document.getElementById('scrollTop');
+window.addEventListener('scroll',()=>{st.classList.toggle('visible',window.scrollY>600)});
+st.addEventListener('click',()=>{window.scrollTo({top:0,behavior:'smooth'})});
+
+/* SMOOTH SCROLL */
+document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();const t=document.querySelector(a.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth'})})});
+
+/* FORM */
+function handleBooking(e){e.preventDefault();const btn=e.target.querySelector('.booking-submit');btn.textContent='Заброньовано ✓';btn.style.background='#2a9d5c';setTimeout(()=>{btn.textContent='Забронювати';btn.style.background='';e.target.reset()},3000)}
+</script>
+</body>
+</html>
