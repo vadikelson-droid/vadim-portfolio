@@ -7,181 +7,156 @@
 <meta name="description" content="Створюємо сайти, Telegram-ботів та автоматизацію для бізнесу. 12+ проєктів. Від ідеї до запуску за 1 тиждень.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --bg:#09090b;--s1:#111113;--s2:#18181b;--s3:#1f1f23;
-  --border:rgba(255,255,255,.06);--border2:rgba(255,255,255,.1);--border3:rgba(255,255,255,.15);
-  --text:#fafafa;--text2:#a1a1aa;--text3:#71717a;--text4:#52525b;
-  --accent:#6366f1;--accent2:#818cf8;--accent3:#a78bfa;
-  --green:#10b981;--green-bg:rgba(16,185,129,.1);
-  --gold:#f59e0b;--gold-bg:rgba(245,158,11,.1);
-  --pink:#ec4899;--pink-bg:rgba(236,72,153,.1);
-  --blue:#3b82f6;--blue-bg:rgba(59,130,246,.1);
-  --radius:14px;--max-w:1140px;
+  --bg:#f7f8fa;--white:#ffffff;--surface:#f1f3f5;
+  --accent:#4f46e5;--accent2:#6366f1;--accent-light:#eef2ff;--accent-glow:rgba(79,70,229,.08);
+  --text:#111827;--text2:#4b5563;--text3:#9ca3af;
+  --border:#e5e7eb;--border2:#d1d5db;
+  --green:#059669;--green-bg:#ecfdf5;--green-border:#a7f3d0;
+  --gold:#d97706;--gold-bg:#fffbeb;--gold-border:#fde68a;
+  --blue:#2563eb;--blue-bg:#eff6ff;--blue-border:#bfdbfe;
+  --shadow-sm:0 1px 3px rgba(0,0,0,.04);--shadow-md:0 4px 16px rgba(0,0,0,.06);--shadow-lg:0 8px 30px rgba(0,0,0,.08);
+  --radius:12px;--max-w:1100px;
   --ease:cubic-bezier(.16,1,.3,1);
-  --font:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
 }
-html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
-body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
-::selection{background:var(--accent);color:#fff}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{font-family:'Space Grotesk',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+::selection{background:var(--accent-light);color:var(--accent)}
 img{display:block;max-width:100%}
 a{text-decoration:none;color:inherit}
 button{border:none;cursor:pointer;font-family:inherit;background:none}
 
-/* ═══ SCROLLBAR ═══ */
-::-webkit-scrollbar{width:6px}
-::-webkit-scrollbar-track{background:var(--bg)}
-::-webkit-scrollbar-thumb{background:var(--s3);border-radius:3px}
-
 /* ═══ NAV ═══ */
-.nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 32px;height:64px;display:flex;align-items:center;background:rgba(9,9,11,.7);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border);transition:all .3s}
+.nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:60px;display:flex;align-items:center;padding:0 28px;background:rgba(255,255,255,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--border);transition:box-shadow .3s}
+.nav.scrolled{box-shadow:var(--shadow-sm)}
 .nav-inner{max-width:var(--max-w);margin:0 auto;width:100%;display:flex;align-items:center;justify-content:space-between}
-.nav-logo{font-size:1.1rem;font-weight:800;letter-spacing:-.5px;display:flex;align-items:center;gap:10px}
-.nav-logo .mark{width:32px;height:32px;background:linear-gradient(135deg,var(--accent),var(--accent3));border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:800;color:#fff}
-.nav-links{display:flex;gap:28px;align-items:center}
-.nav-a{font-size:.82rem;color:var(--text3);font-weight:500;transition:color .2s;letter-spacing:-.2px}
-.nav-a:hover{color:var(--text)}
-.nav-cta{padding:8px 20px;background:var(--accent);color:#fff;border-radius:8px;font-size:.82rem;font-weight:600;transition:all .3s}
-.nav-cta:hover{background:#4f46e5;box-shadow:0 0 20px rgba(99,102,241,.3)}
-.nav-burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
-.nav-burger span{width:20px;height:1.5px;background:var(--text2);border-radius:2px;transition:all .3s}
+.nav-logo{font-size:1rem;font-weight:700;letter-spacing:-.3px;display:flex;align-items:center;gap:9px;color:var(--text)}
+.nav-logo .mark{width:30px;height:30px;background:var(--accent);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700;color:#fff}
+.nav-links{display:flex;gap:24px;align-items:center}
+.nav-a{font-size:.8rem;color:var(--text2);font-weight:500;transition:color .2s}
+.nav-a:hover{color:var(--accent)}
+.nav-cta{padding:7px 18px;background:var(--accent);color:#fff;border-radius:8px;font-size:.8rem;font-weight:600;transition:all .2s}
+.nav-cta:hover{background:#4338ca;box-shadow:0 2px 12px rgba(79,70,229,.2)}
+.nav-burger{display:none;flex-direction:column;gap:4px;cursor:pointer;padding:4px}
+.nav-burger span{width:18px;height:1.5px;background:var(--text2);border-radius:2px;transition:all .3s}
 
 /* ═══ MOBILE MENU ═══ */
-.mmenu{display:none;position:fixed;inset:0;background:rgba(9,9,11,.95);backdrop-filter:blur(20px);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:32px;opacity:0;pointer-events:none;transition:opacity .3s}
+.mmenu{display:none;position:fixed;inset:0;background:rgba(255,255,255,.97);backdrop-filter:blur(16px);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:28px;opacity:0;pointer-events:none;transition:opacity .3s}
 .mmenu.open{opacity:1;pointer-events:all}
-.mmenu a{font-size:1.4rem;font-weight:600;color:var(--text2);transition:color .2s}
-.mmenu a:hover{color:var(--text)}
-.mmenu-close{position:absolute;top:20px;right:20px;padding:8px}
-.mmenu-close svg{width:24px;height:24px;color:var(--text2)}
+.mmenu a{font-size:1.2rem;font-weight:600;color:var(--text2);transition:color .2s}
+.mmenu a:hover{color:var(--accent)}
+.mmenu-close{position:absolute;top:18px;right:18px;padding:8px}
+.mmenu-close svg{width:22px;height:22px;color:var(--text2)}
 
 /* ═══ HERO ═══ */
-.hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:120px 24px 80px;overflow:hidden}
-.hero-grid{position:absolute;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:64px 64px;mask-image:radial-gradient(ellipse 60% 50% at 50% 50%,#000 30%,transparent 100%)}
-.hero-glow{position:absolute;border-radius:50%;filter:blur(100px);opacity:.15}
-.hero-glow.a{width:500px;height:500px;background:var(--accent);top:-10%;left:-5%}
-.hero-glow.b{width:400px;height:400px;background:var(--accent3);bottom:-5%;right:-5%}
-.hero-content{position:relative;z-index:2;max-width:750px}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;background:var(--s2);border:1px solid var(--border2);border-radius:40px;font-size:.78rem;font-weight:500;color:var(--text2);margin-bottom:28px}
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:120px 24px 80px;position:relative;overflow:hidden;background:#fff}
+.hero-dots{position:absolute;inset:0;background-image:radial-gradient(circle,var(--border) 1px,transparent 1px);background-size:32px 32px;opacity:.5;mask-image:radial-gradient(ellipse 60% 50% at 50% 50%,#000 20%,transparent 100%)}
+.hero-content{position:relative;z-index:2;max-width:680px}
+.hero-badge{display:inline-flex;align-items:center;gap:7px;padding:5px 14px;background:var(--green-bg);border:1px solid var(--green-border);border-radius:40px;font-size:.75rem;font-weight:600;color:var(--green);margin-bottom:24px}
 .hero-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-.hero h1{font-size:clamp(2.4rem,5.5vw,4rem);font-weight:900;letter-spacing:-1.5px;line-height:1.08;margin-bottom:20px}
-.hero h1 .grad{background:linear-gradient(135deg,var(--accent2),var(--accent3),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.hero-p{font-size:clamp(1rem,1.8vw,1.2rem);color:var(--text2);max-width:540px;margin:0 auto 40px;line-height:1.7;font-weight:400}
-.hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:64px}
-.btn-primary{display:inline-flex;align-items:center;gap:8px;padding:12px 28px;background:var(--accent);color:#fff;border-radius:10px;font-size:.88rem;font-weight:600;transition:all .3s}
-.btn-primary:hover{background:#4f46e5;transform:translateY(-1px);box-shadow:0 8px 24px rgba(99,102,241,.25)}
-.btn-primary svg{width:16px;height:16px}
-.btn-ghost{display:inline-flex;align-items:center;gap:8px;padding:12px 28px;background:var(--s2);color:var(--text);border:1px solid var(--border2);border-radius:10px;font-size:.88rem;font-weight:600;transition:all .3s}
-.btn-ghost:hover{border-color:var(--border3);background:var(--s3)}
-
-/* ═══ STATS ═══ */
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.hero h1{font-size:clamp(2.2rem,5vw,3.4rem);font-weight:700;letter-spacing:-1.2px;line-height:1.1;color:var(--text);margin-bottom:18px}
+.hero h1 span{color:var(--accent)}
+.hero-p{font-size:1.05rem;color:var(--text2);max-width:480px;margin:0 auto 36px;line-height:1.7}
+.hero-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:56px}
+.btn-primary{display:inline-flex;align-items:center;gap:7px;padding:11px 24px;background:var(--accent);color:#fff;border-radius:9px;font-size:.85rem;font-weight:600;transition:all .2s}
+.btn-primary:hover{background:#4338ca;transform:translateY(-1px);box-shadow:0 4px 16px rgba(79,70,229,.2)}
+.btn-primary svg{width:15px;height:15px}
+.btn-ghost{display:inline-flex;align-items:center;gap:7px;padding:11px 24px;background:var(--white);color:var(--text);border:1px solid var(--border);border-radius:9px;font-size:.85rem;font-weight:600;transition:all .2s}
+.btn-ghost:hover{border-color:var(--border2);box-shadow:var(--shadow-sm)}
 .stats{display:flex;justify-content:center;gap:48px;flex-wrap:wrap}
 .stat{text-align:center}
-.stat-num{font-size:2.2rem;font-weight:800;letter-spacing:-1px;background:linear-gradient(135deg,var(--text),var(--text2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.stat-lbl{font-size:.78rem;color:var(--text3);margin-top:4px;font-weight:500}
+.stat-num{font-size:2rem;font-weight:700;color:var(--text);letter-spacing:-.5px}
+.stat-lbl{font-size:.75rem;color:var(--text3);margin-top:2px;font-weight:500}
 
 /* ═══ SECTIONS ═══ */
-.section{max-width:var(--max-w);margin:0 auto;padding:100px 24px}
-.sec-header{text-align:center;margin-bottom:56px}
-.sec-tag{display:inline-flex;align-items:center;gap:6px;font-size:.72rem;text-transform:uppercase;letter-spacing:2px;color:var(--accent2);font-weight:600;margin-bottom:16px}
-.sec-tag::before{content:'';width:12px;height:1px;background:var(--accent)}
-.sec-title{font-size:clamp(1.8rem,3.5vw,2.5rem);font-weight:800;letter-spacing:-1px;line-height:1.15;margin-bottom:12px}
-.sec-sub{color:var(--text2);font-size:1rem;max-width:500px;margin:0 auto}
-.sec-dark{background:var(--s1);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.section{max-width:var(--max-w);margin:0 auto;padding:88px 24px}
+.sec-alt{background:#fff}
+.sec-header{text-align:center;margin-bottom:48px}
+.sec-tag{font-size:.7rem;text-transform:uppercase;letter-spacing:2px;color:var(--accent);font-weight:600;margin-bottom:10px}
+.sec-title{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:700;letter-spacing:-.8px;color:var(--text);margin-bottom:10px}
+.sec-sub{color:var(--text2);font-size:.95rem;max-width:440px;margin:0 auto}
 
 /* ═══ REVEAL ═══ */
-.rv{opacity:0;transform:translateY(24px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.rv{opacity:0;transform:translateY(20px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
 .rv.vis{opacity:1;transform:translateY(0)}
-.rv-d1{transition-delay:.08s}.rv-d2{transition-delay:.16s}.rv-d3{transition-delay:.24s}.rv-d4{transition-delay:.32s}.rv-d5{transition-delay:.4s}
+.rv-d1{transition-delay:.07s}.rv-d2{transition-delay:.14s}.rv-d3{transition-delay:.21s}.rv-d4{transition-delay:.28s}
 
 /* ═══ SERVICES ═══ */
-.srv-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-.srv-card{background:var(--s1);border:1px solid var(--border);border-radius:var(--radius);padding:32px 24px;transition:all .3s var(--ease)}
-.srv-card:hover{border-color:var(--border2);transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,.3)}
-.srv-ico{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;font-size:1.3rem}
-.srv-ico.i1{background:rgba(99,102,241,.12);color:var(--accent2)}
-.srv-ico.i2{background:rgba(16,185,129,.12);color:var(--green)}
-.srv-ico.i3{background:rgba(245,158,11,.12);color:var(--gold)}
-.srv-ico.i4{background:rgba(59,130,246,.12);color:var(--blue)}
-.srv-card h3{font-size:1rem;font-weight:700;margin-bottom:8px;letter-spacing:-.3px}
-.srv-card p{font-size:.85rem;color:var(--text3);line-height:1.6}
+.srv-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.srv-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:28px 22px;transition:all .25s var(--ease)}
+.srv-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md);border-color:var(--border2)}
+.srv-ico{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+.srv-ico svg{width:20px;height:20px}
+.srv-ico.i1{background:var(--accent-light)}.srv-ico.i1 svg{color:var(--accent)}
+.srv-ico.i2{background:var(--green-bg)}.srv-ico.i2 svg{color:var(--green)}
+.srv-ico.i3{background:var(--gold-bg)}.srv-ico.i3 svg{color:var(--gold)}
+.srv-ico.i4{background:var(--blue-bg)}.srv-ico.i4 svg{color:var(--blue)}
+.srv-card h3{font-size:.92rem;font-weight:700;margin-bottom:6px;color:var(--text)}
+.srv-card p{font-size:.82rem;color:var(--text2);line-height:1.6}
 
 /* ═══ PORTFOLIO ═══ */
-.port-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
-.port-card{background:var(--s1);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:all .3s var(--ease);display:block;position:relative}
-.port-card:hover{border-color:var(--border2);transform:translateY(-3px);box-shadow:0 16px 48px rgba(0,0,0,.3)}
+.port-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.port-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:all .25s var(--ease);display:block;position:relative}
+.port-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);border-color:var(--border2)}
 .port-card.featured{grid-column:1/-1}
-.port-preview{height:200px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
-.port-preview .ptext{font-size:2.8rem;font-weight:900;letter-spacing:-2px;color:rgba(255,255,255,.12);text-transform:uppercase;position:absolute;user-select:none}
-.port-card.featured .port-preview{height:240px}
-.port-badge{position:absolute;top:12px;right:12px;padding:4px 12px;border-radius:6px;font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
-.port-badge.live{background:var(--green-bg);color:var(--green);border:1px solid rgba(16,185,129,.2)}
-.port-badge.demo{background:var(--blue-bg);color:var(--blue);border:1px solid rgba(59,130,246,.2)}
-.port-badge.pitch{background:var(--gold-bg);color:var(--gold);border:1px solid rgba(245,158,11,.2)}
-.port-badge.prod{background:var(--green-bg);color:var(--green);border:1px solid rgba(16,185,129,.2)}
-.port-link{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.5);opacity:0;transition:opacity .3s;font-size:.85rem;font-weight:600;color:#fff;gap:6px;backdrop-filter:blur(4px)}
-a.port-card:hover .port-link{opacity:1}
-.port-body{padding:24px}
-.port-body h3{font-size:1.05rem;font-weight:700;margin-bottom:6px;letter-spacing:-.3px}
-.port-body p{font-size:.85rem;color:var(--text3);line-height:1.6;margin-bottom:16px}
-.tags{display:flex;flex-wrap:wrap;gap:5px}
-.tag{padding:3px 10px;border-radius:5px;font-size:.7rem;font-weight:600;background:var(--s2);color:var(--text3);border:1px solid var(--border)}
+.port-preview{height:180px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.port-preview .pname{font-size:2.4rem;font-weight:700;letter-spacing:-1.5px;color:rgba(255,255,255,.1);text-transform:uppercase;position:absolute;user-select:none}
+.port-card.featured .port-preview{height:220px}
+.port-badge{position:absolute;top:10px;right:10px;padding:3px 10px;border-radius:6px;font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+.port-badge.live{background:var(--green-bg);color:var(--green);border:1px solid var(--green-border)}
+.port-badge.demo{background:var(--blue-bg);color:var(--blue);border:1px solid var(--blue-border)}
+.port-badge.pitch{background:var(--gold-bg);color:var(--gold);border:1px solid var(--gold-border)}
+.port-badge.prod{background:var(--green-bg);color:var(--green);border:1px solid var(--green-border)}
+.port-hover{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.45);opacity:0;transition:opacity .25s;font-size:.82rem;font-weight:600;color:#fff;gap:5px;backdrop-filter:blur(3px)}
+a.port-card:hover .port-hover{opacity:1}
+.port-body{padding:20px 22px}
+.port-body h3{font-size:.95rem;font-weight:700;margin-bottom:5px;color:var(--text)}
+.port-body p{font-size:.82rem;color:var(--text2);line-height:1.6;margin-bottom:14px}
+.tags{display:flex;flex-wrap:wrap;gap:4px}
+.tag{padding:2px 9px;border-radius:5px;font-size:.68rem;font-weight:600;background:var(--surface);color:var(--text2);border:1px solid var(--border)}
 
 /* ═══ PROCESS ═══ */
-.proc{max-width:640px;margin:0 auto;position:relative;padding-left:60px}
-.proc::before{content:'';position:absolute;left:23px;top:12px;bottom:12px;width:1px;background:linear-gradient(180deg,var(--accent),var(--border),var(--border))}
-.proc-item{display:flex;gap:24px;margin-bottom:36px;position:relative}
-.proc-item:last-child{margin-bottom:0}
-.proc-dot{position:absolute;left:-60px;width:46px;height:46px;border-radius:50%;background:var(--s2);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:800;color:var(--accent2);z-index:1}
-.proc-item h3{font-size:.95rem;font-weight:700;margin-bottom:4px;letter-spacing:-.2px}
-.proc-item p{font-size:.85rem;color:var(--text3);line-height:1.6}
+.proc{max-width:580px;margin:0 auto;position:relative;padding-left:56px}
+.proc::before{content:'';position:absolute;left:19px;top:10px;bottom:10px;width:1.5px;background:var(--border)}
+.proc-step{margin-bottom:32px;position:relative}
+.proc-step:last-child{margin-bottom:0}
+.proc-num{position:absolute;left:-56px;width:40px;height:40px;border-radius:50%;background:var(--accent-light);border:1.5px solid var(--accent);color:var(--accent);display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700;z-index:1}
+.proc-step h3{font-size:.9rem;font-weight:700;color:var(--text);margin-bottom:3px}
+.proc-step p{font-size:.82rem;color:var(--text2);line-height:1.6}
 
 /* ═══ WHY US ═══ */
-.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.why-card{background:var(--s2);border:1px solid var(--border);border-radius:var(--radius);padding:28px 24px;transition:all .3s var(--ease)}
-.why-card:hover{border-color:var(--border2);transform:translateY(-2px)}
-.why-ico{font-size:1.5rem;margin-bottom:14px}
-.why-card h3{font-size:.95rem;font-weight:700;margin-bottom:6px;letter-spacing:-.2px}
-.why-card p{font-size:.83rem;color:var(--text3);line-height:1.6}
-
-/* ═══ PRICING ═══ */
-.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;align-items:start}
-.price-card{background:var(--s1);border:1px solid var(--border);border-radius:var(--radius);padding:36px 28px;transition:all .3s var(--ease);position:relative}
-.price-card:hover{border-color:var(--border2);transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,.3)}
-.price-card.pop{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent),0 8px 32px rgba(99,102,241,.15)}
-.price-pop-tag{position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--accent);color:#fff;font-size:.68rem;font-weight:700;padding:3px 14px;border-radius:20px;letter-spacing:.5px}
-.price-name{font-size:.75rem;text-transform:uppercase;letter-spacing:2px;color:var(--text3);font-weight:600;margin-bottom:8px}
-.price-amount{font-size:2.6rem;font-weight:800;letter-spacing:-2px;margin-bottom:4px}
-.price-amount span{font-size:.9rem;font-weight:400;color:var(--text3)}
-.price-desc{font-size:.85rem;color:var(--text3);padding-bottom:20px;margin-bottom:20px;border-bottom:1px solid var(--border)}
-.price-list{margin-bottom:28px}
-.price-list li{display:flex;align-items:center;gap:10px;padding:6px 0;font-size:.85rem;color:var(--text2)}
-.price-list li::before{content:'✓';color:var(--green);font-weight:700;font-size:.8rem}
-.price-btn{display:block;width:100%;padding:11px;text-align:center;border-radius:8px;font-size:.85rem;font-weight:600;transition:all .3s}
-.price-btn.fill{background:var(--accent);color:#fff}
-.price-btn.fill:hover{background:#4f46e5}
-.price-btn.outline{border:1px solid var(--border2);color:var(--text2)}
-.price-btn.outline:hover{border-color:var(--border3);color:var(--text)}
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.why-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:24px 22px;transition:all .25s var(--ease)}
+.why-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-md);border-color:var(--border2)}
+.why-card svg{margin-bottom:12px}
+.why-card h3{font-size:.9rem;font-weight:700;color:var(--text);margin-bottom:5px}
+.why-card p{font-size:.82rem;color:var(--text2);line-height:1.6}
 
 /* ═══ CTA ═══ */
-.cta-sec{position:relative;padding:80px 24px;text-align:center;overflow:hidden}
-.cta-bg{position:absolute;inset:0;background:linear-gradient(135deg,rgba(99,102,241,.08),rgba(168,85,247,.06));border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
-.cta-content{position:relative;z-index:2;max-width:550px;margin:0 auto}
-.cta-content h2{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;letter-spacing:-1px;margin-bottom:12px}
-.cta-content>p{color:var(--text2);margin-bottom:36px;font-size:1rem}
-.contacts{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:32px}
-.con-item{background:var(--s2);border:1px solid var(--border2);border-radius:10px;padding:16px 24px;display:flex;align-items:center;gap:12px;transition:all .3s}
-.con-item:hover{border-color:var(--accent);background:rgba(99,102,241,.06)}
-.con-item .ic{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;background:var(--s3)}
-.con-item .info .lbl{font-size:.68rem;color:var(--text3);text-transform:uppercase;letter-spacing:1px;font-weight:600}
-.con-item .info a{color:var(--accent2);font-weight:600;font-size:.9rem;transition:color .2s}
-.con-item .info a:hover{color:var(--text)}
-.cta-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.cta-sec{background:var(--accent);padding:64px 24px;text-align:center;position:relative;overflow:hidden}
+.cta-sec::before{content:'';position:absolute;top:-80px;right:-80px;width:300px;height:300px;border-radius:50%;background:rgba(255,255,255,.06)}
+.cta-sec::after{content:'';position:absolute;bottom:-60px;left:-60px;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,.04)}
+.cta-inner{position:relative;z-index:2;max-width:500px;margin:0 auto}
+.cta-inner h2{font-size:clamp(1.4rem,3vw,1.9rem);font-weight:700;color:#fff;margin-bottom:8px;letter-spacing:-.5px}
+.cta-inner>p{color:rgba(255,255,255,.75);margin-bottom:28px;font-size:.95rem}
+.contacts{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:24px}
+.con-item{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);border-radius:10px;padding:12px 20px;display:flex;align-items:center;gap:10px;transition:all .2s;color:#fff}
+.con-item:hover{background:rgba(255,255,255,.2)}
+.con-item .lbl{font-size:.65rem;color:rgba(255,255,255,.55);text-transform:uppercase;letter-spacing:1px;font-weight:600}
+.con-item .val{font-weight:600;font-size:.85rem}
+.cta-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.btn-white{display:inline-flex;align-items:center;gap:7px;padding:11px 24px;background:#fff;color:var(--accent);border-radius:9px;font-size:.85rem;font-weight:600;transition:all .2s}
+.btn-white:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(0,0,0,.1)}
+.btn-white svg{width:15px;height:15px}
+.btn-outline-w{display:inline-flex;align-items:center;gap:7px;padding:11px 24px;background:transparent;color:#fff;border:1px solid rgba(255,255,255,.3);border-radius:9px;font-size:.85rem;font-weight:600;transition:all .2s}
+.btn-outline-w:hover{border-color:rgba(255,255,255,.6);background:rgba(255,255,255,.08)}
 
 /* ═══ FOOTER ═══ */
-.footer{text-align:center;padding:24px;font-size:.78rem;color:var(--text4);border-top:1px solid var(--border)}
+.footer{text-align:center;padding:20px;font-size:.75rem;color:var(--text3)}
 
 /* ═══ RESPONSIVE ═══ */
 @media(max-width:1024px){
@@ -189,44 +164,39 @@ a.port-card:hover .port-link{opacity:1}
   .port-grid{grid-template-columns:1fr}
   .port-card.featured{grid-column:auto}
   .why-grid{grid-template-columns:repeat(2,1fr)}
-  .price-grid{grid-template-columns:1fr}
 }
 @media(max-width:768px){
   .nav-links{display:none}
   .nav-burger{display:flex}
   .mmenu{display:flex}
-  .section{padding:64px 16px}
-  .hero{padding:100px 16px 60px;min-height:auto}
-  .hero h1{font-size:clamp(2rem,7vw,2.8rem)}
-  .stats{gap:28px}
-  .stat-num{font-size:1.8rem}
+  .section{padding:56px 16px}
+  .hero{padding:96px 16px 56px;min-height:auto}
+  .stats{gap:24px}
   .srv-grid{grid-template-columns:1fr}
   .why-grid{grid-template-columns:1fr}
-  .proc{padding-left:52px}
-  .proc-dot{left:-52px;width:40px;height:40px;font-size:.8rem}
-  .port-preview{height:160px}
+  .proc{padding-left:48px}
+  .proc-num{left:-48px;width:36px;height:36px;font-size:.75rem}
+  .port-preview{height:150px}
 }
 @media(max-width:480px){
   .hero-btns{flex-direction:column;align-items:center}
   .hero-btns a{width:100%;justify-content:center}
   .contacts{flex-direction:column;align-items:center}
+  .cta-btns{flex-direction:column;align-items:center}
+  .cta-btns a{width:100%;justify-content:center}
 }
 </style>
 </head>
 <body>
 
 <!-- Nav -->
-<nav class="nav">
+<nav class="nav" id="nav">
   <div class="nav-inner">
-    <a href="#" class="nav-logo">
-      <div class="mark">V</div>
-      Vadim Dev
-    </a>
+    <a href="#" class="nav-logo"><div class="mark">V</div>Vadim Dev</a>
     <div class="nav-links">
       <a href="#services" class="nav-a">Послуги</a>
       <a href="#portfolio" class="nav-a">Портфоліо</a>
       <a href="#process" class="nav-a">Процес</a>
-      <a href="#pricing" class="nav-a">Ціни</a>
       <a href="#contact" class="nav-a">Контакт</a>
       <a href="https://t.me/lord_elson_05" class="nav-cta" target="_blank">Обговорити проєкт</a>
     </div>
@@ -244,19 +214,16 @@ a.port-card:hover .port-link{opacity:1}
   <a href="#services" onclick="this.parentElement.classList.remove('open')">Послуги</a>
   <a href="#portfolio" onclick="this.parentElement.classList.remove('open')">Портфоліо</a>
   <a href="#process" onclick="this.parentElement.classList.remove('open')">Процес</a>
-  <a href="#pricing" onclick="this.parentElement.classList.remove('open')">Ціни</a>
   <a href="#contact" onclick="this.parentElement.classList.remove('open')">Контакт</a>
   <a href="https://t.me/lord_elson_05" class="btn-primary" style="margin-top:12px" target="_blank">Обговорити проєкт</a>
 </div>
 
 <!-- Hero -->
 <section class="hero">
-  <div class="hero-grid"></div>
-  <div class="hero-glow a"></div>
-  <div class="hero-glow b"></div>
+  <div class="hero-dots"></div>
   <div class="hero-content">
     <div class="hero-badge rv"><span class="dot"></span> Приймаємо нові проєкти</div>
-    <h1 class="rv rv-d1">Створюємо <span class="grad">сайти та ботів</span> що приносять клієнтів</h1>
+    <h1 class="rv rv-d1">Створюємо <span>сайти та ботів</span> що приносять клієнтів</h1>
     <p class="hero-p rv rv-d2">Повний цикл розробки: від ідеї до працюючого продукту. Сайти, Telegram-боти, автоматизація бізнес-процесів.</p>
     <div class="hero-btns rv rv-d3">
       <a href="https://t.me/lord_elson_05" class="btn-primary" target="_blank">
@@ -266,18 +233,9 @@ a.port-card:hover .port-link{opacity:1}
       <a href="#portfolio" class="btn-ghost">Дивитись роботи</a>
     </div>
     <div class="stats rv rv-d4">
-      <div class="stat">
-        <div class="stat-num">12+</div>
-        <div class="stat-lbl">Проєктів</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num">3 дні</div>
-        <div class="stat-lbl">Лендінг під ключ</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num">24/7</div>
-        <div class="stat-lbl">Підтримка</div>
-      </div>
+      <div class="stat"><div class="stat-num">12+</div><div class="stat-lbl">Проєктів</div></div>
+      <div class="stat"><div class="stat-num">3 дні</div><div class="stat-lbl">Лендінг під ключ</div></div>
+      <div class="stat"><div class="stat-num">24/7</div><div class="stat-lbl">Підтримка</div></div>
     </div>
   </div>
 </section>
@@ -291,30 +249,22 @@ a.port-card:hover .port-link{opacity:1}
   </div>
   <div class="srv-grid">
     <div class="srv-card rv">
-      <div class="srv-ico i1">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-      </div>
+      <div class="srv-ico i1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
       <h3>Сайти та лендінги</h3>
       <p>Адаптивні сайти від 1 до 10+ сторінок. Мобільна версія, SSL, домен, хостинг — все включено.</p>
     </div>
     <div class="srv-card rv rv-d1">
-      <div class="srv-ico i2">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-      </div>
+      <div class="srv-ico i2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
       <h3>Telegram-боти</h3>
       <p>Боти для замовлень, бронювання, сповіщень, CRM-інтеграції. Працюють 24/7 без вихідних.</p>
     </div>
     <div class="srv-card rv rv-d2">
-      <div class="srv-ico i3">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-      </div>
+      <div class="srv-ico i3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
       <h3>Автоматизація</h3>
       <p>POS-системи, платіжні сервіси, Google Sheets, сповіщення — все працює автоматично.</p>
     </div>
     <div class="srv-card rv rv-d3">
-      <div class="srv-ico i4">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
-      </div>
+      <div class="srv-ico i4"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg></div>
       <h3>Інтернет-магазини</h3>
       <p>Каталог, кошик, фільтри, рейтинги, реєстрація — повний e-commerce функціонал.</p>
     </div>
@@ -322,7 +272,7 @@ a.port-card:hover .port-link{opacity:1}
 </section>
 
 <!-- Portfolio -->
-<div class="sec-dark" id="portfolio">
+<div class="sec-alt" id="portfolio">
   <section class="section">
     <div class="sec-header rv">
       <div class="sec-tag">Портфоліо</div>
@@ -331,208 +281,145 @@ a.port-card:hover .port-link{opacity:1}
     </div>
     <div class="port-grid">
 
-      <!-- 1. Royal Food Bot (Featured) -->
       <div class="port-card featured rv">
         <div class="port-preview" style="background:linear-gradient(135deg,#1e1b4b,#312e81)">
-          <div class="ptext">ROYAL FOOD</div>
+          <div class="pname">Royal Food</div>
           <span class="port-badge prod">PRODUCTION</span>
         </div>
         <div class="port-body">
           <h3>Telegram-бот для ресторану Royal Food</h3>
           <p>Бот приймає замовлення з POS-системи Poster та миттєво надсилає чеки в Telegram. Працює 24/7, обробляє реальні замовлення, підтримує декількох адміністраторів, статистика продажів.</p>
-          <div class="tags">
-            <span class="tag">Python</span><span class="tag">aiogram 3</span><span class="tag">Webhook</span><span class="tag">SQLite</span><span class="tag">aiohttp</span><span class="tag">Nginx</span><span class="tag">VPS</span>
-          </div>
+          <div class="tags"><span class="tag">Python</span><span class="tag">aiogram 3</span><span class="tag">Webhook</span><span class="tag">SQLite</span><span class="tag">aiohttp</span><span class="tag">Nginx</span><span class="tag">VPS</span></div>
         </div>
       </div>
 
-      <!-- 2. Photographer -->
       <a class="port-card rv" href="http://91.219.61.4/photographer/" target="_blank">
-        <div class="port-preview" style="background:linear-gradient(135deg,#2d1f1a,#4a332a)">
-          <div class="ptext" style="color:rgba(232,196,184,.15)">KARINA</div>
+        <div class="port-preview" style="background:linear-gradient(135deg,#44312a,#6b4c3f)">
+          <div class="pname">Karina</div>
           <span class="port-badge live">LIVE</span>
         </div>
-        <div class="port-link">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          Переглянути сайт
-        </div>
+        <div class="port-hover"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Переглянути</div>
         <div class="port-body">
           <h3>Каріна Захараш — Портфоліо фотографа</h3>
-          <p>Повноцінний сайт з галереєю, адмін-панеллю, серверним зберіганням фото, REST API та формою бронювання зйомки.</p>
-          <div class="tags">
-            <span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">JavaScript</span><span class="tag">Python</span><span class="tag">aiohttp</span><span class="tag">SQLite</span><span class="tag">REST API</span>
-          </div>
+          <p>Повноцінний сайт з галереєю, адмін-панеллю, серверним зберіганням фото, REST API та формою бронювання.</p>
+          <div class="tags"><span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">JavaScript</span><span class="tag">Python</span><span class="tag">aiohttp</span><span class="tag">SQLite</span><span class="tag">REST API</span></div>
         </div>
       </a>
 
-      <!-- 3. INFINITY beauty -->
       <a class="port-card rv rv-d1" href="http://91.219.61.4/infinity-beauty/" target="_blank">
-        <div class="port-preview" style="background:linear-gradient(135deg,#2a2318,#3d3020,#2a2318)">
-          <div class="ptext" style="color:rgba(201,169,110,.12)">INFINITY</div>
+        <div class="port-preview" style="background:linear-gradient(135deg,#3d3020,#5a4830)">
+          <div class="pname" style="color:rgba(201,169,110,.12)">Infinity</div>
           <span class="port-badge pitch">PITCH</span>
         </div>
-        <div class="port-link">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          Переглянути сайт
-        </div>
+        <div class="port-hover"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Переглянути</div>
         <div class="port-body">
           <h3>INFINITY beauty — Салон краси, Lloret de Mar</h3>
-          <p>Демо для реального салону. Золоті акценти, реальні фото, прайси, мультимовність (ES/CA/EN/RU/FR), WhatsApp-інтеграція.</p>
-          <div class="tags">
-            <span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">JavaScript</span><span class="tag">i18n</span><span class="tag">5 мов</span>
-          </div>
+          <p>Демо для реального салону в Іспанії. Золоті акценти, реальні фото, прайси, мультимовність (ES/CA/EN/RU/FR).</p>
+          <div class="tags"><span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">JavaScript</span><span class="tag">i18n</span><span class="tag">5 мов</span></div>
         </div>
       </a>
 
-      <!-- 4. Fauria -->
       <a class="port-card rv" href="http://91.219.61.4/fauria/" target="_blank">
-        <div class="port-preview" style="background:linear-gradient(135deg,#0c0c0e,#1a1a1e);border-bottom:2px solid #d4a853">
-          <div class="ptext" style="color:rgba(212,168,83,.1)">FAURIA</div>
+        <div class="port-preview" style="background:linear-gradient(135deg,#0c0c0e,#1e1e22);border-bottom:2px solid #d4a853">
+          <div class="pname" style="color:rgba(212,168,83,.1)">Fauria</div>
           <span class="port-badge pitch">PITCH</span>
         </div>
-        <div class="port-link">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          Переглянути сайт
-        </div>
+        <div class="port-hover"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Переглянути</div>
         <div class="port-body">
           <h3>Grup Fauria — Редизайн автосалону, Іспанія</h3>
-          <p>Кінематографічний преміальний редизайн для реального автосалону. Heritage-таймлайн, 3D-карточки, кастомний курсор.</p>
-          <div class="tags">
-            <span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">JavaScript</span><span class="tag">Анімації</span><span class="tag">Responsive</span>
-          </div>
+          <p>Кінематографічний преміальний редизайн для реального автосалону. Heritage-таймлайн, 3D-карточки.</p>
+          <div class="tags"><span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">JavaScript</span><span class="tag">Анімації</span><span class="tag">Responsive</span></div>
         </div>
       </a>
 
-      <!-- 5. AutoPro -->
       <a class="port-card rv rv-d1" href="http://91.219.61.4/autoservice/" target="_blank">
-        <div class="port-preview" style="background:linear-gradient(135deg,#1a1510,#2d2218);border-bottom:2px solid #ff6b00">
-          <div class="ptext" style="color:rgba(255,107,0,.1)">AUTOPRO</div>
+        <div class="port-preview" style="background:linear-gradient(135deg,#2d2218,#443520);border-bottom:2px solid #ff6b00">
+          <div class="pname" style="color:rgba(255,107,0,.1)">AutoPro</div>
           <span class="port-badge demo">DEMO</span>
         </div>
-        <div class="port-link">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          Переглянути сайт
-        </div>
+        <div class="port-hover"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Переглянути</div>
         <div class="port-body">
           <h3>AutoPro — Сайт автосервісу</h3>
           <p>Преміальний дизайн з анімацією тексту, кастомним курсором, лічильниками та scroll-ефектами.</p>
-          <div class="tags">
-            <span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">JavaScript</span><span class="tag">Анімації</span><span class="tag">Responsive</span>
-          </div>
+          <div class="tags"><span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">JavaScript</span><span class="tag">Анімації</span><span class="tag">Responsive</span></div>
         </div>
       </a>
 
-      <!-- 6. Sapore -->
       <a class="port-card rv" href="http://91.219.61.4/restaurant/" target="_blank">
-        <div class="port-preview" style="background:linear-gradient(135deg,#0f1a0f,#1a2e1a);border-bottom:2px solid #c8a96e">
-          <div class="ptext" style="color:rgba(200,169,110,.1)">SAPORE</div>
+        <div class="port-preview" style="background:linear-gradient(135deg,#0f1a0f,#1e3520);border-bottom:2px solid #c8a96e">
+          <div class="pname" style="color:rgba(200,169,110,.1)">Sapore</div>
           <span class="port-badge demo">DEMO</span>
         </div>
-        <div class="port-link">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          Переглянути сайт
-        </div>
+        <div class="port-hover"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Переглянути</div>
         <div class="port-body">
           <h3>Sapore — Сайт ресторану</h3>
-          <p>Елегантний дизайн з clip-path анімаціями, табами меню, бронюванням столиків та галереєю страв.</p>
-          <div class="tags">
-            <span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">JavaScript</span><span class="tag">Анімації</span><span class="tag">Responsive</span>
-          </div>
+          <p>Елегантний дизайн з clip-path анімаціями, табами меню, бронюванням столиків та галереєю.</p>
+          <div class="tags"><span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">JavaScript</span><span class="tag">Анімації</span><span class="tag">Responsive</span></div>
         </div>
       </a>
 
-      <!-- 7. Bloom -->
       <a class="port-card rv rv-d1" href="http://91.219.61.4/beauty-salon/" target="_blank">
-        <div class="port-preview" style="background:linear-gradient(135deg,#2a1a2a,#3d2040)">
-          <div class="ptext" style="color:rgba(232,160,191,.1)">BLOOM</div>
+        <div class="port-preview" style="background:linear-gradient(135deg,#3d2040,#5a3060)">
+          <div class="pname" style="color:rgba(232,160,191,.1)">Bloom</div>
           <span class="port-badge demo">DEMO</span>
         </div>
-        <div class="port-link">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          Переглянути сайт
-        </div>
+        <div class="port-hover"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Переглянути</div>
         <div class="port-body">
           <h3>Bloom — Салон краси</h3>
           <p>Ніжний преміальний дизайн з floating-частинками, blob-фонами, анімованою галереєю та формою запису.</p>
-          <div class="tags">
-            <span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">JavaScript</span><span class="tag">Анімації</span><span class="tag">Responsive</span>
-          </div>
+          <div class="tags"><span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">JavaScript</span><span class="tag">Анімації</span><span class="tag">Responsive</span></div>
         </div>
       </a>
 
-      <!-- 8. Glow Beauty -->
       <a class="port-card rv" href="demo-beauty-shop/index.html" target="_blank">
-        <div class="port-preview" style="background:linear-gradient(135deg,#2a1028,#4a1848)">
-          <div class="ptext" style="color:rgba(233,30,139,.1)">GLOW</div>
+        <div class="port-preview" style="background:linear-gradient(135deg,#3d1040,#5a1858)">
+          <div class="pname" style="color:rgba(233,30,139,.08)">Glow</div>
           <span class="port-badge demo">DEMO</span>
         </div>
-        <div class="port-link">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          Переглянути сайт
-        </div>
+        <div class="port-hover"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Переглянути</div>
         <div class="port-body">
           <h3>Glow Beauty — Інтернет-магазин</h3>
-          <p>Багатосторінковий магазин косметики: каталог, кошик, реєстрація, рейтинги товарів, хіти продажів, фільтри.</p>
-          <div class="tags">
-            <span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">JavaScript</span><span class="tag">localStorage</span><span class="tag">SPA</span>
-          </div>
+          <p>Багатосторінковий магазин косметики: каталог, кошик, реєстрація, рейтинги, хіти продажів.</p>
+          <div class="tags"><span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">JavaScript</span><span class="tag">localStorage</span><span class="tag">SPA</span></div>
         </div>
       </a>
 
-      <!-- 9. Aroma -->
       <a class="port-card rv rv-d1" href="demo-landing/index.html" target="_blank">
-        <div class="port-preview" style="background:linear-gradient(135deg,#1a0e08,#3d1c0c)">
-          <div class="ptext" style="color:rgba(234,88,12,.1)">AROMA</div>
+        <div class="port-preview" style="background:linear-gradient(135deg,#2d1508,#4a2210)">
+          <div class="pname" style="color:rgba(234,88,12,.08)">Aroma</div>
           <span class="port-badge demo">DEMO</span>
         </div>
-        <div class="port-link">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          Переглянути сайт
-        </div>
+        <div class="port-hover"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Переглянути</div>
         <div class="port-body">
           <h3>Aroma — Лендінг кав'ярні</h3>
           <p>Стильний лендінг з меню, анімаціями та адаптивним дизайном. Готовий за 3 дні.</p>
-          <div class="tags">
-            <span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">Анімації</span><span class="tag">Адаптив</span>
-          </div>
+          <div class="tags"><span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">Анімації</span><span class="tag">Адаптив</span></div>
         </div>
       </a>
 
-      <!-- 10. Lawyer -->
       <a class="port-card rv" href="demo-lawyer/index.html" target="_blank">
-        <div class="port-preview" style="background:linear-gradient(135deg,#0e1520,#1a2f45)">
-          <div class="ptext" style="color:rgba(148,163,184,.08)">LEGAL</div>
+        <div class="port-preview" style="background:linear-gradient(135deg,#10192a,#1e3048)">
+          <div class="pname" style="color:rgba(148,163,184,.07)">Legal</div>
           <span class="port-badge demo">DEMO</span>
         </div>
-        <div class="port-link">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          Переглянути сайт
-        </div>
+        <div class="port-hover"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Переглянути</div>
         <div class="port-body">
           <h3>Сайт-візитка адвоката</h3>
           <p>Елегантний сайт з послугами, відгуками клієнтів та контактною формою.</p>
-          <div class="tags">
-            <span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">Анімації</span><span class="tag">Responsive</span>
-          </div>
+          <div class="tags"><span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">Анімації</span><span class="tag">Responsive</span></div>
         </div>
       </a>
 
-      <!-- 11. Portfolio -->
       <a class="port-card rv rv-d1" href="https://vadikelson-droid.github.io/vadim-portfolio/" target="_blank">
-        <div class="port-preview" style="background:linear-gradient(135deg,#041a14,#064e3b)">
-          <div class="ptext" style="color:rgba(16,185,129,.1)">VADIM</div>
+        <div class="port-preview" style="background:linear-gradient(135deg,#041a14,#08382a)">
+          <div class="pname" style="color:rgba(16,185,129,.08)">Vadim</div>
           <span class="port-badge live">LIVE</span>
         </div>
-        <div class="port-link">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          Переглянути сайт
-        </div>
+        <div class="port-hover"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Переглянути</div>
         <div class="port-body">
           <h3>Портфоліо-сайт розробника</h3>
           <p>Адаптивний мультимовний сайт з анімаціями, формою брифу та Telegram-сповіщеннями.</p>
-          <div class="tags">
-            <span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">JavaScript</span><span class="tag">i18n</span>
-          </div>
+          <div class="tags"><span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">JavaScript</span><span class="tag">i18n</span></div>
         </div>
       </a>
 
@@ -548,46 +435,36 @@ a.port-card:hover .port-link{opacity:1}
     <p class="sec-sub">Чіткі етапи, прозорі терміни</p>
   </div>
   <div class="proc">
-    <div class="proc-item rv">
-      <div class="proc-dot">1</div>
-      <div>
-        <h3>Бриф та структура</h3>
-        <p>Обговорюємо бізнес, збираємо тексти та фото, затверджуємо структуру сайту</p>
-      </div>
+    <div class="proc-step rv">
+      <div class="proc-num">1</div>
+      <h3>Бриф та структура</h3>
+      <p>Обговорюємо бізнес, збираємо тексти та фото, затверджуємо структуру сайту</p>
     </div>
-    <div class="proc-item rv rv-d1">
-      <div class="proc-dot">2</div>
-      <div>
-        <h3>Дизайн та верстка</h3>
-        <p>Створюємо дизайн, верстаємо сторінки, адаптуємо під мобільні пристрої</p>
-      </div>
+    <div class="proc-step rv rv-d1">
+      <div class="proc-num">2</div>
+      <h3>Дизайн та верстка</h3>
+      <p>Створюємо дизайн, верстаємо сторінки, адаптуємо під мобільні пристрої</p>
     </div>
-    <div class="proc-item rv rv-d2">
-      <div class="proc-dot">3</div>
-      <div>
-        <h3>Функціонал та інтеграції</h3>
-        <p>Форми, Telegram-бот, сповіщення, інтеграції з вашими системами</p>
-      </div>
+    <div class="proc-step rv rv-d2">
+      <div class="proc-num">3</div>
+      <h3>Функціонал та інтеграції</h3>
+      <p>Форми, Telegram-бот, сповіщення, інтеграції з вашими системами</p>
     </div>
-    <div class="proc-item rv rv-d3">
-      <div class="proc-dot">4</div>
-      <div>
-        <h3>Деплой та тестування</h3>
-        <p>Домен, хостинг, SSL — все підключаємо, тестуємо, запускаємо</p>
-      </div>
+    <div class="proc-step rv rv-d3">
+      <div class="proc-num">4</div>
+      <h3>Деплой та тестування</h3>
+      <p>Домен, хостинг, SSL — все підключаємо, тестуємо, запускаємо</p>
     </div>
-    <div class="proc-item rv rv-d4">
-      <div class="proc-dot">5</div>
-      <div>
-        <h3>Правки та підтримка</h3>
-        <p>Фінальні правки, навчаємо користуватися, забезпечуємо підтримку</p>
-      </div>
+    <div class="proc-step rv rv-d4">
+      <div class="proc-num">5</div>
+      <h3>Правки та підтримка</h3>
+      <p>Фінальні правки, навчаємо користуватися, забезпечуємо підтримку</p>
     </div>
   </div>
 </section>
 
 <!-- Why Us -->
-<div class="sec-dark">
+<div class="sec-alt">
   <section class="section">
     <div class="sec-header rv">
       <div class="sec-tag">Переваги</div>
@@ -595,44 +472,32 @@ a.port-card:hover .port-link{opacity:1}
     </div>
     <div class="why-grid">
       <div class="why-card rv">
-        <div class="why-ico">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent2)" stroke-width="1.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-        </div>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
         <h3>Швидкість</h3>
         <p>Лендінг за 3 дні. Бот за 5-7 днів. Без місяців очікування.</p>
       </div>
       <div class="why-card rv rv-d1">
-        <div class="why-ico">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.5"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
-        </div>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.5"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
         <h3>Чесна ціна</h3>
         <p>Прозоре ціноутворення. Без прихованих платежів та раптових доплат.</p>
       </div>
       <div class="why-card rv rv-d2">
-        <div class="why-ico">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        </div>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         <h3>Повний цикл</h3>
         <p>Домен, хостинг, SSL, деплой, підтримка — ми беремо все на себе.</p>
       </div>
       <div class="why-card rv">
-        <div class="why-ico">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--pink)" stroke-width="1.5"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
-        </div>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent2)" stroke-width="1.5"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
         <h3>Mobile First</h3>
         <p>Кожен сайт ідеально працює на смартфоні та планшеті.</p>
       </div>
       <div class="why-card rv rv-d1">
-        <div class="why-ico">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-        </div>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
         <h3>Безпека</h3>
         <p>SSL-сертифікат, захищений хостинг, firewall, регулярні бекапи.</p>
       </div>
       <div class="why-card rv rv-d2">
-        <div class="why-ico">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent3)" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-        </div>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
         <h3>Підтримка</h3>
         <p>Не кидаємо після запуску. Обслуговування та правки — включені.</p>
       </div>
@@ -640,119 +505,36 @@ a.port-card:hover .port-link{opacity:1}
   </section>
 </div>
 
-<!-- Pricing -->
-<section class="section" id="pricing">
-  <div class="sec-header rv">
-    <div class="sec-tag">Тарифи</div>
-    <h2 class="sec-title">Зрозумілі ціни</h2>
-    <p class="sec-sub">Без прихованих платежів. Оплата після затвердження результату.</p>
-  </div>
-  <div class="price-grid">
-    <div class="price-card rv">
-      <div class="price-name">Start</div>
-      <div class="price-amount">110€</div>
-      <div class="price-desc">Ідеально для початку. Лендінг з базовим функціоналом.</div>
-      <ul class="price-list">
-        <li>1 сторінка (лендінг)</li>
-        <li>Адаптивна верстка</li>
-        <li>Базові анімації</li>
-        <li>SSL-сертифікат</li>
-        <li>Домен + хостинг</li>
-        <li>Термін: 3-5 днів</li>
-      </ul>
-      <a href="https://t.me/lord_elson_05" class="price-btn outline" target="_blank">Обрати Start</a>
-    </div>
-    <div class="price-card pop rv rv-d1">
-      <div class="price-pop-tag">ПОПУЛЯРНИЙ</div>
-      <div class="price-name">Business</div>
-      <div class="price-amount">180€</div>
-      <div class="price-desc">Для бізнесу, що хоче більше. Сайт + бот + інтеграції.</div>
-      <ul class="price-list">
-        <li>До 5 сторінок</li>
-        <li>Контактна форма</li>
-        <li>Telegram-бот</li>
-        <li>SEO-оптимізація</li>
-        <li>Google Analytics</li>
-        <li>Підтримка 30 днів</li>
-        <li>Термін: 5-7 днів</li>
-      </ul>
-      <a href="https://t.me/lord_elson_05" class="price-btn fill" target="_blank">Обрати Business</a>
-    </div>
-    <div class="price-card rv rv-d2">
-      <div class="price-name">Premium</div>
-      <div class="price-amount">300€</div>
-      <div class="price-desc">Максимум можливостей. Складний проєкт під ключ.</div>
-      <ul class="price-list">
-        <li>До 10+ сторінок</li>
-        <li>Адмін-панель</li>
-        <li>API-інтеграції</li>
-        <li>Мультимовність</li>
-        <li>Складні анімації</li>
-        <li>Підтримка 60 днів</li>
-        <li>Термін: 7-14 днів</li>
-      </ul>
-      <a href="https://t.me/lord_elson_05" class="price-btn outline" target="_blank">Обрати Premium</a>
-    </div>
-  </div>
-</section>
-
 <!-- CTA -->
 <section class="cta-sec" id="contact">
-  <div class="cta-bg"></div>
-  <div class="cta-content">
+  <div class="cta-inner">
     <h2 class="rv">Готові обговорити проєкт?</h2>
     <p class="rv rv-d1">Напишіть — відповімо протягом години</p>
     <div class="contacts rv rv-d2">
       <a class="con-item" href="https://t.me/lord_elson_05" target="_blank">
-        <div class="ic">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="var(--accent2)"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.94 8.13l-1.97 9.3c-.15.67-.54.83-1.1.52l-3.02-2.23-1.46 1.4c-.16.16-.3.3-.61.3l.22-3.06 5.55-5.02c.24-.22-.05-.33-.38-.13L8.69 13.8l-2.95-.92c-.64-.2-.65-.64.14-.95l11.52-4.44c.53-.2 1 .13.82.95l-.28-.31z"/></svg>
-        </div>
-        <div class="info">
-          <div class="lbl">Telegram</div>
-          <span style="color:var(--accent2);font-weight:600;font-size:.9rem">@lord_elson_05</span>
-        </div>
+        <div><div class="lbl">Telegram</div><div class="val">@lord_elson_05</div></div>
       </a>
       <a class="con-item" href="mailto:vadikelson@gmail.com">
-        <div class="ic">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent2)" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-        </div>
-        <div class="info">
-          <div class="lbl">Email</div>
-          <span style="color:var(--accent2);font-weight:600;font-size:.9rem">vadikelson@gmail.com</span>
-        </div>
+        <div><div class="lbl">Email</div><div class="val">vadikelson@gmail.com</div></div>
       </a>
     </div>
     <div class="cta-btns rv rv-d3">
-      <a href="https://t.me/lord_elson_05" class="btn-primary" target="_blank">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      <a href="https://t.me/lord_elson_05" class="btn-white" target="_blank">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
         Написати в Telegram
       </a>
-      <a href="https://vadikelson-droid.github.io/vadim-portfolio/brief.html" class="btn-ghost" target="_blank">Заповнити бриф</a>
+      <a href="https://vadikelson-droid.github.io/vadim-portfolio/brief.html" class="btn-outline-w" target="_blank">Заповнити бриф</a>
     </div>
   </div>
 </section>
 
-<!-- Footer -->
-<footer class="footer">
-  &copy; 2026 Vadim Dev. Всі права захищені.
-</footer>
+<footer class="footer">&copy; 2026 Vadim Dev. Всі права захищені.</footer>
 
 <script>
-/* Scroll reveal */
-const ro = new IntersectionObserver(es => {
-  es.forEach(e => {
-    if (e.isIntersecting) { e.target.classList.add('vis'); ro.unobserve(e.target); }
-  });
-}, { threshold: .08, rootMargin: '0px 0px -20px 0px' });
-document.querySelectorAll('.rv').forEach(el => ro.observe(el));
-
-/* Smooth scroll for nav links */
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', e => {
-    const t = document.querySelector(a.getAttribute('href'));
-    if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
-  });
-});
+const ro=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');ro.unobserve(e.target)}})},{threshold:.08,rootMargin:'0px 0px -20px 0px'});
+document.querySelectorAll('.rv').forEach(el=>ro.observe(el));
+document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'})}})});
+window.addEventListener('scroll',()=>{document.getElementById('nav').classList.toggle('scrolled',scrollY>10)});
 </script>
 </body>
 </html>
