@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>INFINITY beauty — Centre d'estètica | Lloret de Mar</title>
+<meta name="description" content="INFINITY beauty — centro de estética en Lloret de Mar. Manicura, pestañas, cejas, masajes, depilación, keratina, láser y más. Reserva tu cita.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#faf6f1;--bg2:#fff;--cream:#f5ede4;--rose:#f5e6ee;--rose2:#fdf2f8;
+  --gold:#c9a96e;--gold2:#d4bb8a;--gold3:#e8d5b5;--gold-dark:#a68a4e;
+  --text:#1a1a1a;--text2:#6a6a6a;--text3:#9a9a9a;
+  --dark:#1a1a1a;--dark2:#2d2d2d;
+  --border:rgba(201,169,110,.2);
+  --shadow-sm:0 2px 8px rgba(0,0,0,.04);--shadow-md:0 8px 30px rgba(0,0,0,.07);--shadow-lg:0 16px 50px rgba(0,0,0,.1);
+  --font-h:'Cormorant Garamond',Georgia,serif;--font-b:'Montserrat',sans-serif;
+  --ease:cubic-bezier(.16,1,.3,1);--radius:16px;--max-w:1200px;
+}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{font-family:var(--font-b);background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+::selection{background:var(--gold3);color:var(--dark)}
+img{display:block;max-width:100%}
+a{text-decoration:none;color:inherit}
+button{border:none;cursor:pointer;font-family:inherit;background:none}
+ul{list-style:none}
+
+/* ═══ NAV ═══ */
+.nav{position:fixed;top:20px;left:50%;transform:translateX(-50%);z-index:1000;display:flex;align-items:center;gap:28px;padding:12px 36px;background:rgba(255,255,255,.72);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.5);border-radius:60px;box-shadow:0 8px 32px rgba(0,0,0,.06);transition:all .5s var(--ease)}
+.nav.scrolled{background:rgba(255,255,255,.9);box-shadow:0 4px 20px rgba(0,0,0,.08)}
+.nav-logo{font-family:var(--font-h);font-size:1.35rem;font-weight:400;letter-spacing:.02em}
+.nav-logo b{color:var(--gold)}
+.nav-links{display:flex;gap:22px;align-items:center}
+.nav-a{font-size:.7rem;text-transform:uppercase;letter-spacing:1.8px;color:var(--text2);font-weight:500;transition:color .3s}
+.nav-a:hover{color:var(--gold)}
+.nav-cta{padding:9px 22px;background:var(--gold);color:#fff;border-radius:40px;font-size:.7rem;text-transform:uppercase;letter-spacing:1.8px;font-weight:600;transition:all .4s var(--ease)}
+.nav-cta:hover{background:var(--gold-dark);box-shadow:0 6px 20px rgba(201,169,110,.35);transform:translateY(-2px)}
+.nav-burger{display:none;width:24px;height:16px;flex-direction:column;justify-content:space-between;cursor:pointer}
+.nav-burger span{height:1.5px;background:var(--text);border-radius:2px;transition:all .4s var(--ease)}
+
+/* ═══ MOBILE MENU ═══ */
+.mmenu{display:none;position:fixed;inset:0;background:rgba(250,246,241,.97);backdrop-filter:blur(20px);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:28px;opacity:0;pointer-events:none;transition:opacity .4s}
+.mmenu.open{opacity:1;pointer-events:all}
+.mmenu a{font-family:var(--font-h);font-size:1.8rem;font-weight:400;font-style:italic;color:var(--text);transition:color .3s}
+.mmenu a:hover{color:var(--gold)}
+.mmenu-close{position:absolute;top:24px;right:24px;width:40px;height:40px;display:flex;align-items:center;justify-content:center}
+.mmenu-close svg{width:28px;height:28px;color:var(--text)}
+
+/* ═══ HERO ═══ */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden}
+.hero-bg{position:absolute;inset:0}
+.hero-bg img{width:100%;height:100%;object-fit:cover}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(250,246,241,.55) 0%,rgba(250,246,241,.75) 40%,rgba(250,246,241,.88) 100%)}
+.hero-content{position:relative;z-index:2;padding:0 20px;max-width:700px}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;padding:8px 22px;border:1px solid var(--gold3);border-radius:40px;font-size:.72rem;text-transform:uppercase;letter-spacing:2px;color:var(--gold-dark);font-weight:600;margin-bottom:28px;background:rgba(255,255,255,.5);backdrop-filter:blur(8px)}
+.hero-tag .line{width:16px;height:1px;background:var(--gold)}
+.hero h1{font-family:var(--font-h);font-size:clamp(3rem,7vw,5.5rem);font-weight:300;font-style:italic;line-height:1.05;color:var(--text);margin-bottom:8px;letter-spacing:-.02em}
+.hero h1 span{color:var(--gold);font-weight:500}
+.hero-sub{font-family:var(--font-h);font-size:clamp(1.1rem,2vw,1.5rem);font-weight:300;font-style:italic;color:var(--text2);margin-bottom:36px;letter-spacing:.04em}
+.hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.btn-gold{display:inline-flex;align-items:center;gap:8px;padding:14px 34px;background:var(--gold);color:#fff;border-radius:50px;font-size:.78rem;text-transform:uppercase;letter-spacing:1.5px;font-weight:600;transition:all .4s var(--ease)}
+.btn-gold:hover{background:var(--gold-dark);transform:translateY(-2px);box-shadow:0 8px 25px rgba(201,169,110,.3)}
+.btn-outline{display:inline-flex;align-items:center;gap:8px;padding:14px 34px;background:transparent;color:var(--text);border:1.5px solid var(--gold3);border-radius:50px;font-size:.78rem;text-transform:uppercase;letter-spacing:1.5px;font-weight:600;transition:all .4s var(--ease)}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px)}
+.hero-scroll{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:8px}
+.hero-scroll span{font-size:.65rem;text-transform:uppercase;letter-spacing:2px;color:var(--text3)}
+.hero-scroll .line-v{width:1px;height:32px;background:linear-gradient(180deg,var(--gold),transparent);animation:scrollLine 2s infinite}
+@keyframes scrollLine{0%{opacity:1;transform:scaleY(1)}50%{opacity:.3;transform:scaleY(.5)}100%{opacity:1;transform:scaleY(1)}}
+
+/* ═══ REVEAL ═══ */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.rv.vis{opacity:1;transform:translateY(0)}
+.rv-d1{transition-delay:.1s}.rv-d2{transition-delay:.2s}.rv-d3{transition-delay:.3s}.rv-d4{transition-delay:.4s}
+
+/* ═══ SECTION ═══ */
+.section{padding:100px 6%}
+.sec-header{text-align:center;max-width:600px;margin:0 auto 56px}
+.sec-tag{font-size:.7rem;text-transform:uppercase;letter-spacing:2.5px;color:var(--gold);font-weight:600;margin-bottom:12px;display:flex;align-items:center;justify-content:center;gap:10px}
+.sec-tag::before,.sec-tag::after{content:'';width:24px;height:1px;background:var(--gold3)}
+.sec-title{font-family:var(--font-h);font-size:clamp(2rem,4vw,3rem);font-weight:400;font-style:italic;line-height:1.2;color:var(--text);margin-bottom:14px}
+.sec-sub{font-size:.95rem;color:var(--text2);line-height:1.7}
+
+/* ═══ SERVICES ═══ */
+.services{background:var(--bg)}
+.srv-grid{max-width:var(--max-w);margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.srv-card{background:var(--bg2);border-radius:var(--radius);padding:36px 28px;text-align:center;transition:all .4s var(--ease);position:relative;overflow:hidden;border:1px solid transparent}
+.srv-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold3),var(--gold),var(--gold3));transform:scaleX(0);transition:transform .4s var(--ease);transform-origin:center}
+.srv-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-md);border-color:var(--gold3)}
+.srv-card:hover::before{transform:scaleX(1)}
+.srv-icon{width:56px;height:56px;margin:0 auto 20px;background:var(--rose2);border-radius:14px;display:flex;align-items:center;justify-content:center;transition:all .4s var(--ease)}
+.srv-card:hover .srv-icon{background:var(--gold);transform:rotate(-5deg) scale(1.05)}
+.srv-icon svg{width:26px;height:26px;color:var(--gold);transition:color .3s}
+.srv-card:hover .srv-icon svg{color:#fff}
+.srv-card h3{font-family:var(--font-h);font-size:1.25rem;font-weight:500;font-style:italic;margin-bottom:10px;color:var(--text)}
+.srv-card p{font-size:.82rem;color:var(--text2);line-height:1.6}
+
+/* ═══ GALLERY ═══ */
+.gallery{background:var(--rose2)}
+.gal-filters{display:flex;justify-content:center;gap:8px;margin-bottom:40px;flex-wrap:wrap}
+.gal-filter{padding:8px 22px;border-radius:40px;font-size:.72rem;text-transform:uppercase;letter-spacing:1.5px;font-weight:600;color:var(--text2);background:var(--bg2);border:1px solid var(--border);cursor:pointer;transition:all .3s}
+.gal-filter.active,.gal-filter:hover{background:var(--gold);color:#fff;border-color:var(--gold)}
+.gal-grid{max-width:var(--max-w);margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.gal-item{position:relative;border-radius:var(--radius);overflow:hidden;aspect-ratio:1;cursor:pointer}
+.gal-item img{width:100%;height:100%;object-fit:cover;transition:transform .5s var(--ease)}
+.gal-item:hover img{transform:scale(1.08)}
+.gal-item::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(0,0,0,.4) 100%);opacity:0;transition:opacity .3s}
+.gal-item:hover::after{opacity:1}
+.gal-item .gal-label{position:absolute;bottom:14px;left:14px;right:14px;color:#fff;font-size:.78rem;font-weight:600;text-transform:uppercase;letter-spacing:1px;z-index:1;opacity:0;transform:translateY(8px);transition:all .3s}
+.gal-item:hover .gal-label{opacity:1;transform:translateY(0)}
+
+/* ═══ PRECIOS ═══ */
+.precios{background:var(--bg)}
+.precios-grid{max-width:var(--max-w);margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.precio-card{background:var(--bg2);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-sm);transition:all .4s var(--ease)}
+.precio-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
+.precio-header{padding:28px 28px 20px;border-bottom:1px solid var(--cream)}
+.precio-header h3{font-family:var(--font-h);font-size:1.4rem;font-weight:500;font-style:italic;color:var(--text);margin-bottom:4px}
+.precio-header .desde{font-size:.8rem;color:var(--gold);font-weight:600}
+.precio-list{padding:20px 28px 28px}
+.precio-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px dashed var(--cream)}
+.precio-row:last-child{border:none}
+.precio-row .zona{font-size:.88rem;color:var(--text2)}
+.precio-row .price{font-weight:700;color:var(--gold-dark);font-size:.92rem}
+
+/* ═══ ABOUT ═══ */
+.about{background:var(--rose2)}
+.about-grid{max-width:var(--max-w);margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.about-photo{position:relative;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-lg)}
+.about-photo img{width:100%;display:block}
+.about-photo .badge{position:absolute;bottom:-1px;right:-1px;padding:16px 28px;background:var(--gold);color:#fff;font-family:var(--font-h);font-size:1.1rem;font-style:italic;border-radius:var(--radius) 0 0 0}
+.about-text h2{font-family:var(--font-h);font-size:clamp(1.8rem,3vw,2.6rem);font-weight:400;font-style:italic;color:var(--text);margin-bottom:20px;line-height:1.2}
+.about-text h2 span{color:var(--gold)}
+.about-text p{color:var(--text2);font-size:.95rem;line-height:1.8;margin-bottom:16px}
+.about-features{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px}
+.about-feat{display:flex;align-items:flex-start;gap:12px}
+.about-feat .dot{width:8px;height:8px;border-radius:50%;background:var(--gold);margin-top:6px;flex-shrink:0}
+.about-feat span{font-size:.88rem;color:var(--text2);line-height:1.5}
+
+/* ═══ LOCATION ═══ */
+.location{background:var(--bg)}
+.loc-grid{max-width:var(--max-w);margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+.loc-map{border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-sm);height:400px}
+.loc-map iframe{width:100%;height:100%;border:0}
+.loc-info h3{font-family:var(--font-h);font-size:1.6rem;font-weight:500;font-style:italic;margin-bottom:28px;color:var(--text)}
+.loc-detail{display:flex;gap:16px;margin-bottom:24px;align-items:flex-start}
+.loc-detail .icon{width:44px;height:44px;background:var(--rose2);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.loc-detail .icon svg{width:20px;height:20px;color:var(--gold)}
+.loc-detail .lbl{font-size:.78rem;color:var(--text3);margin-bottom:2px;text-transform:uppercase;letter-spacing:1px}
+.loc-detail .val{font-size:.95rem;font-weight:500;color:var(--text)}
+.loc-detail .val a{color:var(--gold);text-decoration:underline;text-underline-offset:3px}
+
+/* ═══ INSTAGRAM ═══ */
+.insta{background:var(--rose2);padding:80px 6%}
+.insta-header{text-align:center;margin-bottom:40px}
+.insta-header h2{font-family:var(--font-h);font-size:2rem;font-weight:400;font-style:italic}
+.insta-header h2 span{color:var(--gold)}
+.insta-header p{font-size:.88rem;color:var(--text2);margin-top:8px}
+.insta-grid{max-width:var(--max-w);margin:0 auto;display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
+.insta-item{aspect-ratio:1;border-radius:12px;overflow:hidden;position:relative;cursor:pointer}
+.insta-item img{width:100%;height:100%;object-fit:cover;transition:transform .5s var(--ease)}
+.insta-item:hover img{transform:scale(1.1)}
+.insta-item::after{content:'';position:absolute;inset:0;background:rgba(201,169,110,.3);opacity:0;transition:opacity .3s}
+.insta-item:hover::after{opacity:1}
+.insta-link{text-align:center;margin-top:32px}
+.insta-link a{display:inline-flex;align-items:center;gap:8px;font-size:.82rem;font-weight:600;color:var(--gold);text-transform:uppercase;letter-spacing:1.5px;padding:12px 30px;border:1.5px solid var(--gold3);border-radius:40px;transition:all .3s}
+.insta-link a:hover{background:var(--gold);color:#fff;border-color:var(--gold)}
+
+/* ═══ CTA ═══ */
+.cta{background:linear-gradient(135deg,var(--gold) 0%,var(--gold-dark) 100%);padding:80px 6%;text-align:center;position:relative;overflow:hidden}
+.cta::before{content:'';position:absolute;top:-100px;right:-100px;width:350px;height:350px;border-radius:50%;background:rgba(255,255,255,.06)}
+.cta::after{content:'';position:absolute;bottom:-80px;left:-80px;width:250px;height:250px;border-radius:50%;background:rgba(255,255,255,.04)}
+.cta h2{font-family:var(--font-h);font-size:clamp(2rem,4vw,3rem);font-weight:300;font-style:italic;color:#fff;margin-bottom:12px;position:relative;z-index:1}
+.cta p{font-size:1rem;color:rgba(255,255,255,.8);margin-bottom:32px;max-width:500px;margin-left:auto;margin-right:auto;position:relative;z-index:1}
+.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1}
+.btn-white{display:inline-flex;align-items:center;gap:8px;padding:14px 34px;background:#fff;color:var(--gold-dark);border-radius:50px;font-size:.8rem;text-transform:uppercase;letter-spacing:1.5px;font-weight:600;transition:all .4s var(--ease)}
+.btn-white:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(0,0,0,.15)}
+.btn-white-outline{display:inline-flex;align-items:center;gap:8px;padding:14px 34px;background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.4);border-radius:50px;font-size:.8rem;text-transform:uppercase;letter-spacing:1.5px;font-weight:600;transition:all .4s var(--ease)}
+.btn-white-outline:hover{border-color:#fff;background:rgba(255,255,255,.1);transform:translateY(-2px)}
+
+/* ═══ FOOTER ═══ */
+.footer{background:var(--dark);color:#fff;padding:60px 6% 28px}
+.footer-inner{max-width:var(--max-w);margin:0 auto}
+.footer-top{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.1)}
+.footer-brand .flogo{font-family:var(--font-h);font-size:1.5rem;font-style:italic;margin-bottom:12px}
+.footer-brand .flogo span{color:var(--gold)}
+.footer-brand p{color:rgba(255,255,255,.5);font-size:.85rem;line-height:1.7;max-width:260px}
+.footer h5{font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:2px;margin-bottom:16px;color:var(--gold2)}
+.footer ul li{margin-bottom:10px}
+.footer ul li a{font-size:.88rem;color:rgba(255,255,255,.55);transition:color .3s}
+.footer ul li a:hover{color:var(--gold2)}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:24px;font-size:.78rem;color:rgba(255,255,255,.35)}
+.footer-socials{display:flex;gap:10px}
+.footer-socials a{width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;transition:all .3s}
+.footer-socials a:hover{background:var(--gold);border-color:var(--gold)}
+.footer-socials a svg{width:16px;height:16px;fill:rgba(255,255,255,.6)}
+.footer-socials a:hover svg{fill:#fff}
+
+/* ═══ WHATSAPP ═══ */
+.wa{position:fixed;bottom:28px;right:28px;z-index:998;width:58px;height:58px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 18px rgba(37,211,102,.4);transition:all .3s;animation:waPulse 3s infinite}
+.wa:hover{transform:scale(1.08)}
+.wa svg{width:26px;height:26px;fill:#fff}
+@keyframes waPulse{0%,100%{box-shadow:0 4px 18px rgba(37,211,102,.4)}50%{box-shadow:0 4px 18px rgba(37,211,102,.4),0 0 0 10px rgba(37,211,102,.08)}}
+.wa-tip{position:absolute;right:68px;top:50%;transform:translateY(-50%);background:#fff;color:var(--text);padding:9px 16px;border-radius:10px;font-size:.82rem;font-weight:500;box-shadow:var(--shadow-md);white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .3s}
+.wa:hover .wa-tip{opacity:1}
+.wa-tip::after{content:'';position:absolute;right:-5px;top:50%;transform:translateY(-50%);border:5px solid transparent;border-left-color:#fff}
+
+/* ═══ RESPONSIVE ═══ */
+@media(max-width:1024px){
+  .srv-grid{grid-template-columns:repeat(2,1fr)}
+  .gal-grid{grid-template-columns:repeat(3,1fr)}
+  .precios-grid{grid-template-columns:1fr}
+  .about-grid{grid-template-columns:1fr;gap:40px}
+  .loc-grid{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:1fr 1fr}
+  .insta-grid{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:768px){
+  .nav-links,.nav-cta{display:none}
+  .nav-burger{display:flex}
+  .mmenu{display:flex}
+  .nav{padding:10px 24px;gap:16px}
+  .section{padding:60px 5%}
+  .hero h1{font-size:clamp(2.4rem,9vw,3.5rem)}
+  .srv-grid{grid-template-columns:1fr}
+  .gal-grid{grid-template-columns:repeat(2,1fr)}
+  .about-features{grid-template-columns:1fr}
+  .loc-map{height:280px}
+  .insta-grid{grid-template-columns:repeat(2,1fr)}
+  .cta-btns{flex-direction:column;align-items:center}
+  .footer-top{grid-template-columns:1fr;gap:28px}
+  .footer-bottom{flex-direction:column;gap:14px;text-align:center}
+  .wa{width:50px;height:50px;bottom:20px;right:20px}
+  .wa svg{width:22px;height:22px}
+  .wa-tip{display:none}
+}
+@media(max-width:480px){
+  .hero-btns{flex-direction:column;align-items:center}
+  .hero-btns .btn-gold,.hero-btns .btn-outline{width:100%;justify-content:center}
+  .gal-grid{grid-template-columns:1fr 1fr;gap:10px}
+}
+</style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav class="nav" id="nav">
+  <a href="#" class="nav-logo"><b>INFINITY</b> beauty</a>
+  <div class="nav-links">
+    <a href="#servicios" class="nav-a">Servicios</a>
+    <a href="#galeria" class="nav-a">Galería</a>
+    <a href="#precios" class="nav-a">Precios</a>
+    <a href="#nosotros" class="nav-a">Nosotros</a>
+    <a href="#contacto" class="nav-a">Contacto</a>
+  </div>
+  <a href="https://wa.me/34647707970" class="nav-cta" target="_blank">Reservar</a>
+  <div class="nav-burger" onclick="document.getElementById('mm').classList.add('open')">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mmenu" id="mm">
+  <button class="mmenu-close" onclick="this.parentElement.classList.remove('open')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
+  <a href="#servicios" onclick="this.parentElement.classList.remove('open')">Servicios</a>
+  <a href="#galeria" onclick="this.parentElement.classList.remove('open')">Galería</a>
+  <a href="#precios" onclick="this.parentElement.classList.remove('open')">Precios</a>
+  <a href="#nosotros" onclick="this.parentElement.classList.remove('open')">Nosotros</a>
+  <a href="#contacto" onclick="this.parentElement.classList.remove('open')">Contacto</a>
+  <a href="https://wa.me/34647707970" class="btn-gold" style="margin-top:16px" target="_blank">Reservar Cita</a>
+</div>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-bg"><img src="img/storefront2.jpg" alt="INFINITY beauty Lloret de Mar"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-tag rv"><span class="line"></span> Centre d'estètica <span class="line"></span></div>
+    <h1 class="rv rv-d1">INFINITY <span>beauty</span></h1>
+    <p class="hero-sub rv rv-d2">Tu belleza, nuestra pasión · Lloret de Mar</p>
+    <div class="hero-btns rv rv-d3">
+      <a href="#servicios" class="btn-gold">Nuestros Servicios</a>
+      <a href="https://wa.me/34647707970" class="btn-outline" target="_blank">Reservar Cita</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>Descubre</span>
+    <div class="line-v"></div>
+  </div>
+</section>
+
+<!-- Services -->
+<section class="section services" id="servicios">
+  <div class="sec-header rv">
+    <div class="sec-tag">Servicios</div>
+    <h2 class="sec-title">Lo que hacemos por ti</h2>
+    <p class="sec-sub">Cuidamos cada detalle para que te sientas radiante</p>
+  </div>
+  <div class="srv-grid">
+    <div class="srv-card rv">
+      <div class="srv-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21c-4.97 0-9-1.79-9-4V5c0 2.21 4.03 4 9 4s9-1.79 9-4v12c0 2.21-4.03 4-9 4z"/><path d="M21 5c0 2.21-4.03 4-9 4S3 7.21 3 5s4.03-4 9-4 9 1.79 9 4z"/></svg>
+      </div>
+      <h3>Manicura & Pedicura</h3>
+      <p>Diseños creativos, esmaltado semipermanente y cuidado completo de tus manos y pies</p>
+    </div>
+    <div class="srv-card rv rv-d1">
+      <div class="srv-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>
+      </div>
+      <h3>Extensiones de Pestañas</h3>
+      <p>Pestañas pelo a pelo y lifting con keratina para una mirada espectacular</p>
+    </div>
+    <div class="srv-card rv rv-d2">
+      <div class="srv-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6.5 6.5c1.5-1.5 4-2 6 0s1.5 4.5 0 6l-6 6-6-6c-1.5-1.5-2-4 0-6s4.5-1.5 6 0z"/><path d="M17.5 6.5c1.5-1.5 4-2 6 0s1.5 4.5 0 6l-6 6"/></svg>
+      </div>
+      <h3>Modelado de Cejas</h3>
+      <p>Diseño de cejas personalizado con hilo, cera o pinzas para enmarcar tu rostro</p>
+    </div>
+    <div class="srv-card rv rv-d3">
+      <div class="srv-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+      </div>
+      <h3>Masajes</h3>
+      <p>Masajes corporales y faciales relajantes y terapéuticos para renovar tu bienestar</p>
+    </div>
+    <div class="srv-card rv">
+      <div class="srv-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      </div>
+      <h3>Maquillaje</h3>
+      <p>Maquillaje profesional para eventos, bodas y ocasiones especiales</p>
+    </div>
+    <div class="srv-card rv rv-d1">
+      <div class="srv-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v8"/><path d="M8 12h8"/></svg>
+      </div>
+      <h3>Depilación</h3>
+      <p>Waxing y sugaring para una piel suave y perfecta. Todas las zonas del cuerpo</p>
+    </div>
+    <div class="srv-card rv rv-d2">
+      <div class="srv-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+      </div>
+      <h3>Keratina & Botox</h3>
+      <p>Tratamientos capilares de alisado con keratina y botox para un cabello brillante</p>
+    </div>
+    <div class="srv-card rv rv-d3">
+      <div class="srv-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+      </div>
+      <h3>Endosphères & Láser</h3>
+      <p>Tecnología avanzada para tratamientos corporales y faciales con resultados visibles</p>
+    </div>
+  </div>
+</section>
+
+<!-- Gallery -->
+<section class="section gallery" id="galeria">
+  <div class="sec-header rv">
+    <div class="sec-tag">Galería</div>
+    <h2 class="sec-title">Nuestro trabajo</h2>
+    <p class="sec-sub">Cada detalle cuenta. Mira algunos de nuestros resultados</p>
+  </div>
+  <div class="gal-grid">
+    <div class="gal-item rv"><img src="img/nails-nude.jpg" alt="Manicura diseño"><div class="gal-label">Manicura</div></div>
+    <div class="gal-item rv rv-d1"><img src="img/lashes.jpg" alt="Extensiones de pestañas"><div class="gal-label">Pestañas</div></div>
+    <div class="gal-item rv rv-d2"><img src="img/brows.jpg" alt="Cejas antes y después"><div class="gal-label">Cejas</div></div>
+    <div class="gal-item rv rv-d3"><img src="img/hair-keratin.jpg" alt="Keratina resultado"><div class="gal-label">Keratina</div></div>
+    <div class="gal-item rv"><img src="img/nails-blue.jpg" alt="Manicura azul"><div class="gal-label">Manicura</div></div>
+    <div class="gal-item rv rv-d1"><img src="img/pedicure.jpg" alt="Pedicura"><div class="gal-label">Pedicura</div></div>
+    <div class="gal-item rv rv-d2"><img src="img/pedicure-blue.jpg" alt="Pedicura azul"><div class="gal-label">Pedicura</div></div>
+    <div class="gal-item rv rv-d3"><img src="img/sugaring.jpg" alt="Sugaring Waxing"><div class="gal-label">Depilación</div></div>
+  </div>
+</section>
+
+<!-- Precios -->
+<section class="section precios" id="precios">
+  <div class="sec-header rv">
+    <div class="sec-tag">Precios</div>
+    <h2 class="sec-title">Nuestras tarifas</h2>
+    <p class="sec-sub">Precios transparentes para todos los tratamientos</p>
+  </div>
+  <div class="precios-grid">
+    <div class="precio-card rv">
+      <div class="precio-header">
+        <h3>Depilación</h3>
+        <div class="desde">Waxing & Sugaring</div>
+      </div>
+      <div class="precio-list">
+        <div class="precio-row"><span class="zona">Cara completa</span><span class="price">30€</span></div>
+        <div class="precio-row"><span class="zona">Labio superior</span><span class="price">10€</span></div>
+        <div class="precio-row"><span class="zona">Axilas</span><span class="price">15€</span></div>
+        <div class="precio-row"><span class="zona">Medias piernas</span><span class="price">25€</span></div>
+        <div class="precio-row"><span class="zona">Piernas completas</span><span class="price">45€</span></div>
+        <div class="precio-row"><span class="zona">Ingles brasileñas</span><span class="price">25€</span></div>
+        <div class="precio-row"><span class="zona">Ingles caribeñas</span><span class="price">30€</span></div>
+        <div class="precio-row"><span class="zona">Brazos enteros</span><span class="price">30€</span></div>
+        <div class="precio-row"><span class="zona">Espalda</span><span class="price">30€</span></div>
+        <div class="precio-row"><span class="zona">Glúteos</span><span class="price">45€</span></div>
+      </div>
+    </div>
+    <div class="precio-card rv rv-d1">
+      <div class="precio-header">
+        <h3>Keratina</h3>
+        <div class="desde">Alisado profesional</div>
+      </div>
+      <div class="precio-list">
+        <div class="precio-row"><span class="zona">20 – 30 cm</span><span class="price">150€</span></div>
+        <div class="precio-row"><span class="zona">30 – 40 cm</span><span class="price">170€</span></div>
+        <div class="precio-row"><span class="zona">40 – 50 cm</span><span class="price">190€</span></div>
+        <div class="precio-row"><span class="zona">50 – 60 cm</span><span class="price">210€</span></div>
+        <div class="precio-row"><span class="zona">60 – 70 cm</span><span class="price">230€</span></div>
+        <div class="precio-row"><span class="zona">70 – 80 cm</span><span class="price">250€</span></div>
+        <div class="precio-row"><span class="zona">Cabello grueso</span><span class="price">+20€</span></div>
+        <div class="precio-row"><span class="zona">Cabello muy grueso</span><span class="price">+10€</span></div>
+      </div>
+    </div>
+    <div class="precio-card rv rv-d2">
+      <div class="precio-header">
+        <h3>Botox Capilar</h3>
+        <div class="desde">Tratamiento nutritivo</div>
+      </div>
+      <div class="precio-list">
+        <div class="precio-row"><span class="zona">20 – 30 cm</span><span class="price">120€</span></div>
+        <div class="precio-row"><span class="zona">30 – 40 cm</span><span class="price">140€</span></div>
+        <div class="precio-row"><span class="zona">40 – 50 cm</span><span class="price">160€</span></div>
+        <div class="precio-row"><span class="zona">50 – 60 cm</span><span class="price">180€</span></div>
+        <div class="precio-row"><span class="zona">60 – 70 cm</span><span class="price">200€</span></div>
+        <div class="precio-row"><span class="zona">70 – 80 cm</span><span class="price">220€</span></div>
+        <div class="precio-row"><span class="zona">Cabello grueso</span><span class="price">+20€</span></div>
+        <div class="precio-row"><span class="zona">Cabello muy grueso</span><span class="price">+30€</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- About -->
+<section class="section about" id="nosotros">
+  <div class="about-grid">
+    <div class="about-photo rv">
+      <img src="img/interior.jpg" alt="Interior INFINITY beauty">
+      <div class="badge">Lloret de Mar</div>
+    </div>
+    <div class="about-text rv rv-d1">
+      <div class="sec-tag" style="justify-content:flex-start">Sobre nosotros</div>
+      <h2>Tu espacio de <span>belleza</span> y bienestar</h2>
+      <p>En INFINITY beauty creemos que cada persona merece sentirse especial. Nuestro centro de estética en Lloret de Mar ofrece un ambiente acogedor y profesional donde cuidamos cada detalle.</p>
+      <p>Trabajamos con productos de alta calidad y técnicas avanzadas para ofrecerte los mejores resultados en todos nuestros tratamientos.</p>
+      <div class="about-features">
+        <div class="about-feat"><div class="dot"></div><span>Productos premium</span></div>
+        <div class="about-feat"><div class="dot"></div><span>Profesionales cualificados</span></div>
+        <div class="about-feat"><div class="dot"></div><span>Ambiente acogedor</span></div>
+        <div class="about-feat"><div class="dot"></div><span>Atención personalizada</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Location -->
+<section class="section location" id="contacto">
+  <div class="sec-header rv">
+    <div class="sec-tag">Contacto</div>
+    <h2 class="sec-title">Ven a vernos</h2>
+  </div>
+  <div class="loc-grid">
+    <div class="loc-map rv">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d746.2!2d2.837269!3d41.708852!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12bb175f686fef15%3A0x2c9a60f537ef4d15!2sINFINITYbeauty!5e0!3m2!1ses!2ses!4v1" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+    <div class="loc-info rv rv-d1">
+      <h3>Información</h3>
+      <div class="loc-detail">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <div><div class="lbl">Dirección</div><div class="val">Av. del Rieral, 74, local 7<br>17310 Lloret de Mar, Girona</div></div>
+      </div>
+      <div class="loc-detail">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+        <div><div class="lbl">Teléfono</div><div class="val"><a href="tel:+34647707970">+34 647 70 79 70</a></div></div>
+      </div>
+      <div class="loc-detail">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5"/></svg></div>
+        <div><div class="lbl">Instagram</div><div class="val"><a href="https://www.instagram.com/infinity_beauty_lloret/" target="_blank">@infinity_beauty_lloret</a></div></div>
+      </div>
+      <div class="loc-detail">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+        <div><div class="lbl">Horario</div><div class="val">Lun – Sáb: con cita previa<br>Domingo: cerrado</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Instagram -->
+<section class="insta">
+  <div class="insta-header rv">
+    <h2>Síguenos en <span>Instagram</span></h2>
+    <p>@infinity_beauty_lloret</p>
+  </div>
+  <div class="insta-grid">
+    <div class="insta-item rv"><img src="img/nails-nude.jpg" alt=""></div>
+    <div class="insta-item rv rv-d1"><img src="img/lashes.jpg" alt=""></div>
+    <div class="insta-item rv rv-d2"><img src="img/hair-keratin.jpg" alt=""></div>
+    <div class="insta-item rv rv-d3"><img src="img/nails-blue.jpg" alt=""></div>
+    <div class="insta-item rv rv-d4"><img src="img/brows.jpg" alt=""></div>
+    <div class="insta-item rv"><img src="img/pedicure.jpg" alt=""></div>
+  </div>
+  <div class="insta-link rv">
+    <a href="https://www.instagram.com/infinity_beauty_lloret/" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="2" width="20" height="20" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.5"/></svg>
+      Ver más en Instagram
+    </a>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <h2>¿Lista para brillar?</h2>
+  <p>Reserva tu cita y déjate mimar por nuestro equipo de profesionales</p>
+  <div class="cta-btns">
+    <a href="https://wa.me/34647707970?text=Hola%2C%20me%20gustaría%20reservar%20una%20cita" class="btn-white" target="_blank">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Reservar por WhatsApp
+    </a>
+    <a href="tel:+34647707970" class="btn-white-outline">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      Llamar
+    </a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="flogo"><span>INFINITY</span> beauty</div>
+        <p>Centre d'estètica en Lloret de Mar. Tu espacio de belleza y bienestar con atención personalizada.</p>
+      </div>
+      <div>
+        <h5>Servicios</h5>
+        <ul>
+          <li><a href="#servicios">Manicura & Pedicura</a></li>
+          <li><a href="#servicios">Pestañas & Cejas</a></li>
+          <li><a href="#servicios">Masajes</a></li>
+          <li><a href="#servicios">Depilación</a></li>
+          <li><a href="#servicios">Keratina & Botox</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Información</h5>
+        <ul>
+          <li><a href="#nosotros">Sobre nosotros</a></li>
+          <li><a href="#precios">Precios</a></li>
+          <li><a href="#galeria">Galería</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Contacto</h5>
+        <ul>
+          <li><a href="tel:+34647707970">+34 647 70 79 70</a></li>
+          <li><a href="https://wa.me/34647707970" target="_blank">WhatsApp</a></li>
+          <li><a href="https://www.instagram.com/infinity_beauty_lloret/" target="_blank">Instagram</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 INFINITY beauty — Lloret de Mar</span>
+      <div class="footer-socials">
+        <a href="https://www.instagram.com/infinity_beauty_lloret/" target="_blank" aria-label="Instagram">
+          <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" fill="none" stroke="rgba(255,255,255,.6)" stroke-width="2"/><circle cx="12" cy="12" r="5" fill="none" stroke="rgba(255,255,255,.6)" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.5" fill="rgba(255,255,255,.6)"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- WhatsApp -->
+<a href="https://wa.me/34647707970?text=Hola%2C%20me%20gustaría%20reservar%20una%20cita" class="wa" target="_blank">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  <div class="wa-tip">¿Reservamos tu cita?</div>
+</a>
+
+<script>
+/* Nav scroll */
+window.addEventListener('scroll',()=>{document.getElementById('nav').classList.toggle('scrolled',scrollY>50)});
+
+/* Reveal */
+const ro=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');ro.unobserve(e.target)}})},{threshold:.1,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.rv').forEach(el=>ro.observe(el));
+</script>
+</body>
+</html>
