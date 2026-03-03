@@ -1,921 +1,758 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vadim Dev — Цифрові рішення для бізнесу</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Vadim Dev — Веб-студія | Сайти, боти, автоматизація</title>
+<meta name="description" content="Створюємо сайти, Telegram-ботів та автоматизацію для бізнесу. 12+ проєктів. Від ідеї до запуску за 1 тиждень.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#09090b;--s1:#111113;--s2:#18181b;--s3:#1f1f23;
+  --border:rgba(255,255,255,.06);--border2:rgba(255,255,255,.1);--border3:rgba(255,255,255,.15);
+  --text:#fafafa;--text2:#a1a1aa;--text3:#71717a;--text4:#52525b;
+  --accent:#6366f1;--accent2:#818cf8;--accent3:#a78bfa;
+  --green:#10b981;--green-bg:rgba(16,185,129,.1);
+  --gold:#f59e0b;--gold-bg:rgba(245,158,11,.1);
+  --pink:#ec4899;--pink-bg:rgba(236,72,153,.1);
+  --blue:#3b82f6;--blue-bg:rgba(59,130,246,.1);
+  --radius:14px;--max-w:1140px;
+  --ease:cubic-bezier(.16,1,.3,1);
+  --font:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+::selection{background:var(--accent);color:#fff}
+img{display:block;max-width:100%}
+a{text-decoration:none;color:inherit}
+button{border:none;cursor:pointer;font-family:inherit;background:none}
 
-        :root {
-            --bg: #f8f9fc;
-            --dark: #1a1a2e;
-            --accent: #6366f1;
-            --accent-dark: #4f46e5;
-            --accent-light: #eef2ff;
-            --text: #2d3748;
-            --text-muted: #64748b;
-            --border: #e2e8f0;
-            --white: #ffffff;
-            --green: #059669;
-            --green-bg: #ecfdf5;
-            --orange: #ea580c;
-            --orange-bg: #fff7ed;
-        }
+/* ═══ SCROLLBAR ═══ */
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--s3);border-radius:3px}
 
-        body {
-            font-family: 'Inter', -apple-system, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
+/* ═══ NAV ═══ */
+.nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 32px;height:64px;display:flex;align-items:center;background:rgba(9,9,11,.7);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border);transition:all .3s}
+.nav-inner{max-width:var(--max-w);margin:0 auto;width:100%;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-size:1.1rem;font-weight:800;letter-spacing:-.5px;display:flex;align-items:center;gap:10px}
+.nav-logo .mark{width:32px;height:32px;background:linear-gradient(135deg,var(--accent),var(--accent3));border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:800;color:#fff}
+.nav-links{display:flex;gap:28px;align-items:center}
+.nav-a{font-size:.82rem;color:var(--text3);font-weight:500;transition:color .2s;letter-spacing:-.2px}
+.nav-a:hover{color:var(--text)}
+.nav-cta{padding:8px 20px;background:var(--accent);color:#fff;border-radius:8px;font-size:.82rem;font-weight:600;transition:all .3s}
+.nav-cta:hover{background:#4f46e5;box-shadow:0 0 20px rgba(99,102,241,.3)}
+.nav-burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+.nav-burger span{width:20px;height:1.5px;background:var(--text2);border-radius:2px;transition:all .3s}
 
-        /* === HERO === */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            background: linear-gradient(135deg, #1a1a2e 0%, #312e81 50%, #1e1b4b 100%);
-            color: #fff;
-            position: relative;
-            overflow: hidden;
-            padding: 40px 20px;
-        }
-        .hero::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background:
-                linear-gradient(90deg, rgba(99,102,241,0.05) 1px, transparent 1px),
-                linear-gradient(rgba(99,102,241,0.05) 1px, transparent 1px);
-            background-size: 60px 60px;
-        }
-        .hero-glow {
-            position: absolute;
-            width: 500px;
-            height: 500px;
-            border-radius: 50%;
-            filter: blur(120px);
-            opacity: 0.3;
-        }
-        .hero-glow.one { background: #818cf8; top: -100px; left: -100px; }
-        .hero-glow.two { background: #a78bfa; bottom: -100px; right: -100px; }
-        .hero-content { position: relative; z-index: 2; max-width: 800px; }
-        .hero-badge {
-            display: inline-block;
-            background: rgba(99,102,241,0.2);
-            color: #a5b4fc;
-            padding: 6px 16px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            margin-bottom: 24px;
-            border: 1px solid rgba(99,102,241,0.3);
-        }
-        .hero h1 {
-            font-size: clamp(2.2rem, 5vw, 3.8rem);
-            font-weight: 900;
-            margin-bottom: 16px;
-            letter-spacing: -1px;
-        }
-        .hero h1 span { color: #a5b4fc; }
-        .hero p {
-            font-size: 1.2rem;
-            color: #c7d2fe;
-            max-width: 600px;
-            margin: 0 auto 36px;
-        }
-        .hero-stats {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            margin-top: 48px;
-        }
-        .hero-stat {
-            text-align: center;
-        }
-        .hero-stat .num {
-            font-size: 2.4rem;
-            font-weight: 800;
-            color: #a5b4fc;
-        }
-        .hero-stat .label {
-            font-size: 0.85rem;
-            color: #94a3b8;
-            margin-top: 4px;
-        }
+/* ═══ MOBILE MENU ═══ */
+.mmenu{display:none;position:fixed;inset:0;background:rgba(9,9,11,.95);backdrop-filter:blur(20px);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:32px;opacity:0;pointer-events:none;transition:opacity .3s}
+.mmenu.open{opacity:1;pointer-events:all}
+.mmenu a{font-size:1.4rem;font-weight:600;color:var(--text2);transition:color .2s}
+.mmenu a:hover{color:var(--text)}
+.mmenu-close{position:absolute;top:20px;right:20px;padding:8px}
+.mmenu-close svg{width:24px;height:24px;color:var(--text2)}
 
-        /* === SECTIONS === */
-        .section {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 80px 20px;
-        }
-        .section-dark {
-            background: var(--dark);
-            color: #fff;
-        }
-        .section-accent {
-            background: linear-gradient(135deg, #f8faff, #eef2ff);
-        }
-        .section-title {
-            text-align: center;
-            font-size: clamp(1.8rem, 3vw, 2.4rem);
-            font-weight: 800;
-            color: var(--dark);
-            margin-bottom: 8px;
-        }
-        .section-dark .section-title { color: #fff; }
-        .section-sub {
-            text-align: center;
-            color: var(--text-muted);
-            margin-bottom: 48px;
-            font-size: 1.05rem;
-        }
-        .section-dark .section-sub { color: #94a3b8; }
+/* ═══ HERO ═══ */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:120px 24px 80px;overflow:hidden}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:64px 64px;mask-image:radial-gradient(ellipse 60% 50% at 50% 50%,#000 30%,transparent 100%)}
+.hero-glow{position:absolute;border-radius:50%;filter:blur(100px);opacity:.15}
+.hero-glow.a{width:500px;height:500px;background:var(--accent);top:-10%;left:-5%}
+.hero-glow.b{width:400px;height:400px;background:var(--accent3);bottom:-5%;right:-5%}
+.hero-content{position:relative;z-index:2;max-width:750px}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;background:var(--s2);border:1px solid var(--border2);border-radius:40px;font-size:.78rem;font-weight:500;color:var(--text2);margin-bottom:28px}
+.hero-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.hero h1{font-size:clamp(2.4rem,5.5vw,4rem);font-weight:900;letter-spacing:-1.5px;line-height:1.08;margin-bottom:20px}
+.hero h1 .grad{background:linear-gradient(135deg,var(--accent2),var(--accent3),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-p{font-size:clamp(1rem,1.8vw,1.2rem);color:var(--text2);max-width:540px;margin:0 auto 40px;line-height:1.7;font-weight:400}
+.hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:64px}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;padding:12px 28px;background:var(--accent);color:#fff;border-radius:10px;font-size:.88rem;font-weight:600;transition:all .3s}
+.btn-primary:hover{background:#4f46e5;transform:translateY(-1px);box-shadow:0 8px 24px rgba(99,102,241,.25)}
+.btn-primary svg{width:16px;height:16px}
+.btn-ghost{display:inline-flex;align-items:center;gap:8px;padding:12px 28px;background:var(--s2);color:var(--text);border:1px solid var(--border2);border-radius:10px;font-size:.88rem;font-weight:600;transition:all .3s}
+.btn-ghost:hover{border-color:var(--border3);background:var(--s3)}
 
-        /* === SERVICES === */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 24px;
-        }
-        .service-card {
-            background: var(--white);
-            border-radius: 16px;
-            padding: 32px 24px;
-            border: 1px solid var(--border);
-            transition: all 0.3s;
-            text-align: center;
-        }
-        .service-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 40px rgba(99,102,241,0.1);
-            border-color: var(--accent);
-        }
-        .service-icon {
-            width: 56px;
-            height: 56px;
-            border-radius: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.6rem;
-            margin: 0 auto 16px;
-        }
-        .service-icon.purple { background: #eef2ff; }
-        .service-icon.green { background: #ecfdf5; }
-        .service-icon.orange { background: #fff7ed; }
-        .service-icon.blue { background: #eff6ff; }
-        .service-card h3 {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--dark);
-            margin-bottom: 8px;
-        }
-        .service-card p {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-        }
+/* ═══ STATS ═══ */
+.stats{display:flex;justify-content:center;gap:48px;flex-wrap:wrap}
+.stat{text-align:center}
+.stat-num{font-size:2.2rem;font-weight:800;letter-spacing:-1px;background:linear-gradient(135deg,var(--text),var(--text2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.stat-lbl{font-size:.78rem;color:var(--text3);margin-top:4px;font-weight:500}
 
-        /* === PORTFOLIO === */
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 24px;
-        }
-        .portfolio-card {
-            background: var(--white);
-            border-radius: 16px;
-            overflow: hidden;
-            border: 1px solid var(--border);
-            transition: all 0.3s;
-        }
-        .portfolio-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 40px rgba(99,102,241,0.12);
-        }
-        a.portfolio-card {
-            text-decoration: none;
-            color: inherit;
-            cursor: pointer;
-        }
-        a.portfolio-card .portfolio-preview::after {
-            content: '&#128279; Переглянути сайт';
-            position: absolute;
-            inset: 0;
-            background: rgba(0,0,0,0.5);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            font-size: 1rem;
-            font-weight: 600;
-            opacity: 0;
-            transition: opacity 0.3s;
-            border-radius: 0;
-        }
-        a.portfolio-card:hover .portfolio-preview::after {
-            opacity: 1;
-        }
-        .portfolio-card.featured {
-            grid-column: 1 / -1;
-        }
-        .portfolio-preview {
-            height: 200px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            position: relative;
-        }
-        .portfolio-preview.bot-bg {
-            background: linear-gradient(135deg, #1e1b4b, #312e81);
-        }
-        .portfolio-preview.web-bg {
-            background: linear-gradient(135deg, #064e3b, #059669);
-        }
-        .portfolio-preview.landing-bg {
-            background: linear-gradient(135deg, #7c2d12, #ea580c);
-        }
-        .portfolio-preview.demo-bg {
-            background: linear-gradient(135deg, #1e3a5f, #3b82f6);
-        }
-        .live-badge {
-            position: absolute;
-            top: 12px;
-            right: 12px;
-            background: #059669;
-            color: #fff;
-            font-size: 0.75rem;
-            font-weight: 600;
-            padding: 4px 10px;
-            border-radius: 20px;
-        }
-        .portfolio-body {
-            padding: 24px;
-        }
-        .portfolio-body h3 {
-            font-size: 1.15rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-        .portfolio-body p {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            margin-bottom: 16px;
-        }
-        .tech-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-        }
-        .tech-tag {
-            background: var(--accent-light);
-            color: var(--accent);
-            font-size: 0.75rem;
-            font-weight: 600;
-            padding: 4px 10px;
-            border-radius: 6px;
-        }
+/* ═══ SECTIONS ═══ */
+.section{max-width:var(--max-w);margin:0 auto;padding:100px 24px}
+.sec-header{text-align:center;margin-bottom:56px}
+.sec-tag{display:inline-flex;align-items:center;gap:6px;font-size:.72rem;text-transform:uppercase;letter-spacing:2px;color:var(--accent2);font-weight:600;margin-bottom:16px}
+.sec-tag::before{content:'';width:12px;height:1px;background:var(--accent)}
+.sec-title{font-size:clamp(1.8rem,3.5vw,2.5rem);font-weight:800;letter-spacing:-1px;line-height:1.15;margin-bottom:12px}
+.sec-sub{color:var(--text2);font-size:1rem;max-width:500px;margin:0 auto}
+.sec-dark{background:var(--s1);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
 
-        /* === WHY US === */
-        .why-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 24px;
-        }
-        .why-card {
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 16px;
-            padding: 28px 24px;
-            text-align: center;
-            transition: all 0.3s;
-        }
-        .why-card:hover {
-            background: rgba(255,255,255,0.1);
-            transform: translateY(-4px);
-        }
-        .why-icon {
-            font-size: 2rem;
-            margin-bottom: 16px;
-        }
-        .why-card h3 {
-            font-size: 1.05rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-        .why-card p {
-            font-size: 0.88rem;
-            color: #94a3b8;
-        }
+/* ═══ REVEAL ═══ */
+.rv{opacity:0;transform:translateY(24px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.rv.vis{opacity:1;transform:translateY(0)}
+.rv-d1{transition-delay:.08s}.rv-d2{transition-delay:.16s}.rv-d3{transition-delay:.24s}.rv-d4{transition-delay:.32s}.rv-d5{transition-delay:.4s}
 
-        /* === WEEK PLAN === */
-        .timeline {
-            max-width: 600px;
-            margin: 0 auto;
-            position: relative;
-        }
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 24px;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: var(--border);
-        }
-        .timeline-item {
-            display: flex;
-            gap: 20px;
-            margin-bottom: 28px;
-            position: relative;
-        }
-        .timeline-dot {
-            width: 50px;
-            height: 50px;
-            min-width: 50px;
-            border-radius: 50%;
-            background: var(--accent-light);
-            color: var(--accent);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 800;
-            font-size: 1rem;
-            z-index: 1;
-        }
-        .timeline-content h3 {
-            font-size: 1rem;
-            font-weight: 700;
-            color: var(--dark);
-            margin-bottom: 4px;
-        }
-        .timeline-content p {
-            font-size: 0.88rem;
-            color: var(--text-muted);
-        }
+/* ═══ SERVICES ═══ */
+.srv-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.srv-card{background:var(--s1);border:1px solid var(--border);border-radius:var(--radius);padding:32px 24px;transition:all .3s var(--ease)}
+.srv-card:hover{border-color:var(--border2);transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,.3)}
+.srv-ico{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;font-size:1.3rem}
+.srv-ico.i1{background:rgba(99,102,241,.12);color:var(--accent2)}
+.srv-ico.i2{background:rgba(16,185,129,.12);color:var(--green)}
+.srv-ico.i3{background:rgba(245,158,11,.12);color:var(--gold)}
+.srv-ico.i4{background:rgba(59,130,246,.12);color:var(--blue)}
+.srv-card h3{font-size:1rem;font-weight:700;margin-bottom:8px;letter-spacing:-.3px}
+.srv-card p{font-size:.85rem;color:var(--text3);line-height:1.6}
 
-        /* === PRICING === */
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 24px;
-            align-items: start;
-        }
-        .pricing-card {
-            background: var(--white);
-            border-radius: 16px;
-            padding: 32px 28px;
-            border: 1px solid var(--border);
-            transition: all 0.3s;
-            position: relative;
-        }
-        .pricing-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 40px rgba(99,102,241,0.1);
-        }
-        .pricing-card.popular {
-            border-color: var(--accent);
-            box-shadow: 0 4px 20px rgba(99,102,241,0.12);
-        }
-        .pricing-card.popular::before {
-            content: 'Популярний';
-            position: absolute;
-            top: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--accent);
-            color: #fff;
-            padding: 4px 16px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-        .pricing-name {
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: var(--text-muted);
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-        .pricing-price {
-            font-size: 2.6rem;
-            font-weight: 800;
-            color: var(--dark);
-            margin-bottom: 4px;
-        }
-        .pricing-price span { font-size: 1rem; font-weight: 400; color: #94a3b8; }
-        .pricing-desc {
-            color: var(--text-muted);
-            font-size: 0.88rem;
-            margin-bottom: 20px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #f1f5f9;
-        }
-        .pricing-features { list-style: none; margin-bottom: 24px; }
-        .pricing-features li {
-            padding: 6px 0;
-            font-size: 0.9rem;
-            color: #334155;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .pricing-features li::before {
-            content: "\2713";
-            color: var(--green);
-            font-weight: 700;
-            flex-shrink: 0;
-        }
+/* ═══ PORTFOLIO ═══ */
+.port-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.port-card{background:var(--s1);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:all .3s var(--ease);display:block;position:relative}
+.port-card:hover{border-color:var(--border2);transform:translateY(-3px);box-shadow:0 16px 48px rgba(0,0,0,.3)}
+.port-card.featured{grid-column:1/-1}
+.port-preview{height:200px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.port-preview .ptext{font-size:2.8rem;font-weight:900;letter-spacing:-2px;color:rgba(255,255,255,.12);text-transform:uppercase;position:absolute;user-select:none}
+.port-card.featured .port-preview{height:240px}
+.port-badge{position:absolute;top:12px;right:12px;padding:4px 12px;border-radius:6px;font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+.port-badge.live{background:var(--green-bg);color:var(--green);border:1px solid rgba(16,185,129,.2)}
+.port-badge.demo{background:var(--blue-bg);color:var(--blue);border:1px solid rgba(59,130,246,.2)}
+.port-badge.pitch{background:var(--gold-bg);color:var(--gold);border:1px solid rgba(245,158,11,.2)}
+.port-badge.prod{background:var(--green-bg);color:var(--green);border:1px solid rgba(16,185,129,.2)}
+.port-link{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.5);opacity:0;transition:opacity .3s;font-size:.85rem;font-weight:600;color:#fff;gap:6px;backdrop-filter:blur(4px)}
+a.port-card:hover .port-link{opacity:1}
+.port-body{padding:24px}
+.port-body h3{font-size:1.05rem;font-weight:700;margin-bottom:6px;letter-spacing:-.3px}
+.port-body p{font-size:.85rem;color:var(--text3);line-height:1.6;margin-bottom:16px}
+.tags{display:flex;flex-wrap:wrap;gap:5px}
+.tag{padding:3px 10px;border-radius:5px;font-size:.7rem;font-weight:600;background:var(--s2);color:var(--text3);border:1px solid var(--border)}
 
-        /* === CTA === */
-        .cta {
-            text-align: center;
-            padding: 80px 20px;
-            background: linear-gradient(135deg, #1a1a2e, #312e81);
-            color: #fff;
-        }
-        .cta h2 {
-            font-size: clamp(1.6rem, 3vw, 2.2rem);
-            font-weight: 800;
-            margin-bottom: 12px;
-        }
-        .cta p { color: #c7d2fe; margin-bottom: 32px; font-size: 1.1rem; }
-        .cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
-        .btn {
-            display: inline-block;
-            padding: 14px 32px;
-            border-radius: 12px;
-            font-weight: 600;
-            font-size: 1rem;
-            text-decoration: none;
-            transition: all 0.2s;
-            cursor: pointer;
-            border: none;
-        }
-        .btn-primary { background: var(--accent); color: #fff; }
-        .btn-primary:hover { background: var(--accent-dark); transform: translateY(-2px); }
-        .btn-outline { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,0.3); }
-        .btn-outline:hover { border-color: #fff; background: rgba(255,255,255,0.1); }
+/* ═══ PROCESS ═══ */
+.proc{max-width:640px;margin:0 auto;position:relative;padding-left:60px}
+.proc::before{content:'';position:absolute;left:23px;top:12px;bottom:12px;width:1px;background:linear-gradient(180deg,var(--accent),var(--border),var(--border))}
+.proc-item{display:flex;gap:24px;margin-bottom:36px;position:relative}
+.proc-item:last-child{margin-bottom:0}
+.proc-dot{position:absolute;left:-60px;width:46px;height:46px;border-radius:50%;background:var(--s2);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:800;color:var(--accent2);z-index:1}
+.proc-item h3{font-size:.95rem;font-weight:700;margin-bottom:4px;letter-spacing:-.2px}
+.proc-item p{font-size:.85rem;color:var(--text3);line-height:1.6}
 
-        /* === CONTACTS === */
-        .contacts-grid {
-            display: flex;
-            justify-content: center;
-            gap: 24px;
-            flex-wrap: wrap;
-        }
-        .contact-item {
-            background: rgba(255,255,255,0.06);
-            border: 1px solid rgba(255,255,255,0.12);
-            border-radius: 14px;
-            padding: 20px 28px;
-            text-align: center;
-            min-width: 200px;
-        }
-        .contact-item .icon { font-size: 1.6rem; margin-bottom: 8px; }
-        .contact-item .label { color: #94a3b8; font-size: 0.8rem; margin-bottom: 4px; }
-        .contact-item a {
-            color: #a5b4fc;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1rem;
-        }
-        .contact-item a:hover { color: #fff; }
+/* ═══ WHY US ═══ */
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.why-card{background:var(--s2);border:1px solid var(--border);border-radius:var(--radius);padding:28px 24px;transition:all .3s var(--ease)}
+.why-card:hover{border-color:var(--border2);transform:translateY(-2px)}
+.why-ico{font-size:1.5rem;margin-bottom:14px}
+.why-card h3{font-size:.95rem;font-weight:700;margin-bottom:6px;letter-spacing:-.2px}
+.why-card p{font-size:.83rem;color:var(--text3);line-height:1.6}
 
-        /* === FOOTER === */
-        .footer {
-            text-align: center;
-            padding: 24px 20px;
-            color: #94a3b8;
-            font-size: 0.8rem;
-            background: #0f0e1a;
-        }
+/* ═══ PRICING ═══ */
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;align-items:start}
+.price-card{background:var(--s1);border:1px solid var(--border);border-radius:var(--radius);padding:36px 28px;transition:all .3s var(--ease);position:relative}
+.price-card:hover{border-color:var(--border2);transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,.3)}
+.price-card.pop{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent),0 8px 32px rgba(99,102,241,.15)}
+.price-pop-tag{position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--accent);color:#fff;font-size:.68rem;font-weight:700;padding:3px 14px;border-radius:20px;letter-spacing:.5px}
+.price-name{font-size:.75rem;text-transform:uppercase;letter-spacing:2px;color:var(--text3);font-weight:600;margin-bottom:8px}
+.price-amount{font-size:2.6rem;font-weight:800;letter-spacing:-2px;margin-bottom:4px}
+.price-amount span{font-size:.9rem;font-weight:400;color:var(--text3)}
+.price-desc{font-size:.85rem;color:var(--text3);padding-bottom:20px;margin-bottom:20px;border-bottom:1px solid var(--border)}
+.price-list{margin-bottom:28px}
+.price-list li{display:flex;align-items:center;gap:10px;padding:6px 0;font-size:.85rem;color:var(--text2)}
+.price-list li::before{content:'✓';color:var(--green);font-weight:700;font-size:.8rem}
+.price-btn{display:block;width:100%;padding:11px;text-align:center;border-radius:8px;font-size:.85rem;font-weight:600;transition:all .3s}
+.price-btn.fill{background:var(--accent);color:#fff}
+.price-btn.fill:hover{background:#4f46e5}
+.price-btn.outline{border:1px solid var(--border2);color:var(--text2)}
+.price-btn.outline:hover{border-color:var(--border3);color:var(--text)}
 
-        /* === ANIMATIONS === */
-        .fade-up {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
-        }
-        .fade-up.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+/* ═══ CTA ═══ */
+.cta-sec{position:relative;padding:80px 24px;text-align:center;overflow:hidden}
+.cta-bg{position:absolute;inset:0;background:linear-gradient(135deg,rgba(99,102,241,.08),rgba(168,85,247,.06));border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.cta-content{position:relative;z-index:2;max-width:550px;margin:0 auto}
+.cta-content h2{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;letter-spacing:-1px;margin-bottom:12px}
+.cta-content>p{color:var(--text2);margin-bottom:36px;font-size:1rem}
+.contacts{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:32px}
+.con-item{background:var(--s2);border:1px solid var(--border2);border-radius:10px;padding:16px 24px;display:flex;align-items:center;gap:12px;transition:all .3s}
+.con-item:hover{border-color:var(--accent);background:rgba(99,102,241,.06)}
+.con-item .ic{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;background:var(--s3)}
+.con-item .info .lbl{font-size:.68rem;color:var(--text3);text-transform:uppercase;letter-spacing:1px;font-weight:600}
+.con-item .info a{color:var(--accent2);font-weight:600;font-size:.9rem;transition:color .2s}
+.con-item .info a:hover{color:var(--text)}
+.cta-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
 
-        /* === RESPONSIVE === */
-        @media (max-width: 768px) {
-            .hero-stats { flex-direction: column; gap: 20px; }
-            .pricing-grid { grid-template-columns: 1fr; }
-            .portfolio-card.featured { grid-column: auto; }
-            .section { padding: 60px 16px; }
-        }
-    </style>
+/* ═══ FOOTER ═══ */
+.footer{text-align:center;padding:24px;font-size:.78rem;color:var(--text4);border-top:1px solid var(--border)}
+
+/* ═══ RESPONSIVE ═══ */
+@media(max-width:1024px){
+  .srv-grid{grid-template-columns:repeat(2,1fr)}
+  .port-grid{grid-template-columns:1fr}
+  .port-card.featured{grid-column:auto}
+  .why-grid{grid-template-columns:repeat(2,1fr)}
+  .price-grid{grid-template-columns:1fr}
+}
+@media(max-width:768px){
+  .nav-links{display:none}
+  .nav-burger{display:flex}
+  .mmenu{display:flex}
+  .section{padding:64px 16px}
+  .hero{padding:100px 16px 60px;min-height:auto}
+  .hero h1{font-size:clamp(2rem,7vw,2.8rem)}
+  .stats{gap:28px}
+  .stat-num{font-size:1.8rem}
+  .srv-grid{grid-template-columns:1fr}
+  .why-grid{grid-template-columns:1fr}
+  .proc{padding-left:52px}
+  .proc-dot{left:-52px;width:40px;height:40px;font-size:.8rem}
+  .port-preview{height:160px}
+}
+@media(max-width:480px){
+  .hero-btns{flex-direction:column;align-items:center}
+  .hero-btns a{width:100%;justify-content:center}
+  .contacts{flex-direction:column;align-items:center}
+}
+</style>
 </head>
 <body>
 
-<!-- HERO -->
+<!-- Nav -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <div class="mark">V</div>
+      Vadim Dev
+    </a>
+    <div class="nav-links">
+      <a href="#services" class="nav-a">Послуги</a>
+      <a href="#portfolio" class="nav-a">Портфоліо</a>
+      <a href="#process" class="nav-a">Процес</a>
+      <a href="#pricing" class="nav-a">Ціни</a>
+      <a href="#contact" class="nav-a">Контакт</a>
+      <a href="https://t.me/lord_elson_05" class="nav-cta" target="_blank">Обговорити проєкт</a>
+    </div>
+    <div class="nav-burger" onclick="document.getElementById('mm').classList.add('open')">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mmenu" id="mm">
+  <button class="mmenu-close" onclick="this.parentElement.classList.remove('open')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
+  <a href="#services" onclick="this.parentElement.classList.remove('open')">Послуги</a>
+  <a href="#portfolio" onclick="this.parentElement.classList.remove('open')">Портфоліо</a>
+  <a href="#process" onclick="this.parentElement.classList.remove('open')">Процес</a>
+  <a href="#pricing" onclick="this.parentElement.classList.remove('open')">Ціни</a>
+  <a href="#contact" onclick="this.parentElement.classList.remove('open')">Контакт</a>
+  <a href="https://t.me/lord_elson_05" class="btn-primary" style="margin-top:12px" target="_blank">Обговорити проєкт</a>
+</div>
+
+<!-- Hero -->
 <section class="hero">
-    <div class="hero-glow one"></div>
-    <div class="hero-glow two"></div>
-    <div class="hero-content">
-        <div class="hero-badge">Цифрові рішення для бізнесу</div>
-        <h1>Ми створюємо <span>сайти та ботів</span> які приносять клієнтів</h1>
-        <p>Повний цикл: від ідеї до працюючого продукту. Сайти, Telegram-боти, автоматизація, реклама.</p>
-        <div class="hero-stats">
-            <div class="hero-stat">
-                <div class="num">12+</div>
-                <div class="label">Проєктів у продакшні</div>
-            </div>
-            <div class="hero-stat">
-                <div class="num">3 дні</div>
-                <div class="label">Середній термін лендінгу</div>
-            </div>
-            <div class="hero-stat">
-                <div class="num">24/7</div>
-                <div class="label">Підтримка та обслуговування</div>
-            </div>
-        </div>
+  <div class="hero-grid"></div>
+  <div class="hero-glow a"></div>
+  <div class="hero-glow b"></div>
+  <div class="hero-content">
+    <div class="hero-badge rv"><span class="dot"></span> Приймаємо нові проєкти</div>
+    <h1 class="rv rv-d1">Створюємо <span class="grad">сайти та ботів</span> що приносять клієнтів</h1>
+    <p class="hero-p rv rv-d2">Повний цикл розробки: від ідеї до працюючого продукту. Сайти, Telegram-боти, автоматизація бізнес-процесів.</p>
+    <div class="hero-btns rv rv-d3">
+      <a href="https://t.me/lord_elson_05" class="btn-primary" target="_blank">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        Написати в Telegram
+      </a>
+      <a href="#portfolio" class="btn-ghost">Дивитись роботи</a>
     </div>
+    <div class="stats rv rv-d4">
+      <div class="stat">
+        <div class="stat-num">12+</div>
+        <div class="stat-lbl">Проєктів</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">3 дні</div>
+        <div class="stat-lbl">Лендінг під ключ</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">24/7</div>
+        <div class="stat-lbl">Підтримка</div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- SERVICES -->
-<section class="section">
-    <h2 class="section-title">Що ми робимо</h2>
-    <p class="section-sub">Комплексні цифрові рішення для малого та середнього бізнесу</p>
-
-    <div class="services-grid fade-up">
-        <div class="service-card">
-            <div class="service-icon purple">&#127760;</div>
-            <h3>Сайти та лендінги</h3>
-            <p>Адаптивні сайти від 1 до 10 сторінок. Мобільна версія, SSL, домен, хостинг — все включено.</p>
-        </div>
-        <div class="service-card">
-            <div class="service-icon green">&#129302;</div>
-            <h3>Telegram-боти</h3>
-            <p>Боти для замовлень, бронювання, сповіщень, CRM-інтеграції. Працюють 24/7 без вихідних.</p>
-        </div>
-        <div class="service-card">
-            <div class="service-icon orange">&#9889;</div>
-            <h3>Автоматизація</h3>
-            <p>Підключаємо POS-системи, платіжні сервіси, Google Sheets, сповіщення — все працює без вас.</p>
-        </div>
-        <div class="service-card">
-            <div class="service-icon blue">&#128200;</div>
-            <h3>Інтернет-магазини</h3>
-            <p>Каталог товарів, кошик, реєстрація, рейтинги, хіти продажів, статистика — повний функціонал.</p>
-        </div>
+<!-- Services -->
+<section class="section" id="services">
+  <div class="sec-header rv">
+    <div class="sec-tag">Послуги</div>
+    <h2 class="sec-title">Що ми робимо</h2>
+    <p class="sec-sub">Комплексні цифрові рішення для бізнесу будь-якого масштабу</p>
+  </div>
+  <div class="srv-grid">
+    <div class="srv-card rv">
+      <div class="srv-ico i1">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+      </div>
+      <h3>Сайти та лендінги</h3>
+      <p>Адаптивні сайти від 1 до 10+ сторінок. Мобільна версія, SSL, домен, хостинг — все включено.</p>
     </div>
+    <div class="srv-card rv rv-d1">
+      <div class="srv-ico i2">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      </div>
+      <h3>Telegram-боти</h3>
+      <p>Боти для замовлень, бронювання, сповіщень, CRM-інтеграції. Працюють 24/7 без вихідних.</p>
+    </div>
+    <div class="srv-card rv rv-d2">
+      <div class="srv-ico i3">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+      </div>
+      <h3>Автоматизація</h3>
+      <p>POS-системи, платіжні сервіси, Google Sheets, сповіщення — все працює автоматично.</p>
+    </div>
+    <div class="srv-card rv rv-d3">
+      <div class="srv-ico i4">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+      </div>
+      <h3>Інтернет-магазини</h3>
+      <p>Каталог, кошик, фільтри, рейтинги, реєстрація — повний e-commerce функціонал.</p>
+    </div>
+  </div>
 </section>
 
-<!-- PORTFOLIO -->
-<section class="section-accent">
-    <div class="section">
-        <h2 class="section-title">Наші роботи</h2>
-        <p class="section-sub">Реальні проєкти, які працюють прямо зараз</p>
-
-        <div class="portfolio-grid">
-            <div class="portfolio-card featured fade-up">
-                <div class="portfolio-preview bot-bg">
-                    <span>&#129302;</span>
-                    <span class="live-badge">PRODUCTION</span>
-                </div>
-                <div class="portfolio-body">
-                    <h3>Telegram-бот для ресторану Royal Food</h3>
-                    <p>Бот приймає замовлення з POS-системи Poster та миттєво надсилає чеки в Telegram. Працює 24/7, обробляє реальні замовлення, підтримує декількох адміністраторів.</p>
-                    <div class="tech-tags">
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">aiogram</span>
-                        <span class="tech-tag">Webhook</span>
-                        <span class="tech-tag">SQLite</span>
-                        <span class="tech-tag">Nginx</span>
-                        <span class="tech-tag">VPS</span>
-                    </div>
-                </div>
-            </div>
-
-            <a class="portfolio-card fade-up" href="demo-beauty-shop/index.html" target="_blank">
-                <div class="portfolio-preview demo-bg" style="background: linear-gradient(135deg, #831843, #e91e8b);">
-                    <span>&#128132;</span>
-                    <span class="live-badge">DEMO</span>
-                </div>
-                <div class="portfolio-body">
-                    <h3>Інтернет-магазин Glow Beauty</h3>
-                    <p>Багатосторінковий магазин косметики: каталог, кошик, реєстрація, рейтинги товарів, хіти продажів, фільтри.</p>
-                    <div class="tech-tags">
-                        <span class="tech-tag">HTML5</span>
-                        <span class="tech-tag">CSS3</span>
-                        <span class="tech-tag">JavaScript</span>
-                        <span class="tech-tag">localStorage</span>
-                        <span class="tech-tag">SPA</span>
-                    </div>
-                </div>
-            </a>
-
-            <a class="portfolio-card fade-up" href="demo-landing/index.html" target="_blank">
-                <div class="portfolio-preview landing-bg">
-                    <span>&#9749;</span>
-                    <span class="live-badge">DEMO</span>
-                </div>
-                <div class="portfolio-body">
-                    <h3>Лендінг для кав'ярні Aroma</h3>
-                    <p>Стильний сайт з меню, анімаціями та адаптивним дизайном. Готовий за 3 дні.</p>
-                    <div class="tech-tags">
-                        <span class="tech-tag">HTML5</span>
-                        <span class="tech-tag">CSS3</span>
-                        <span class="tech-tag">Адаптив</span>
-                        <span class="tech-tag">Анімації</span>
-                    </div>
-                </div>
-            </a>
-
-            <a class="portfolio-card fade-up" href="demo-lawyer/index.html" target="_blank">
-                <div class="portfolio-preview" style="background: linear-gradient(135deg, #1a2332, #2a3f5f);">
-                    <span>&#9878;</span>
-                    <span class="live-badge">DEMO</span>
-                </div>
-                <div class="portfolio-body">
-                    <h3>Сайт-візитка адвоката</h3>
-                    <p>Елегантний сайт з послугами, відгуками клієнтів та контактною формою.</p>
-                    <div class="tech-tags">
-                        <span class="tech-tag">HTML5</span>
-                        <span class="tech-tag">CSS3</span>
-                        <span class="tech-tag">Анімації</span>
-                        <span class="tech-tag">Responsive</span>
-                    </div>
-                </div>
-            </a>
-
-            <a class="portfolio-card fade-up" href="http://91.219.61.4/photographer/" target="_blank">
-                <div class="portfolio-preview" style="background: linear-gradient(135deg, #f8e8e0, #e8c4b8);">
-                    <span style="filter: none;">&#128247;</span>
-                    <span class="live-badge">LIVE</span>
-                </div>
-                <div class="portfolio-body">
-                    <h3>Сайт-портфоліо фотографа Каріна Захараш</h3>
-                    <p>Портфоліо з галереєю, адмін-панеллю, серверним зберіганням фото, послугами та формою бронювання зйомки.</p>
-                    <div class="tech-tags">
-                        <span class="tech-tag">HTML5</span>
-                        <span class="tech-tag">CSS3</span>
-                        <span class="tech-tag">JavaScript</span>
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">aiohttp</span>
-                        <span class="tech-tag">SQLite</span>
-                        <span class="tech-tag">REST API</span>
-                        <span class="tech-tag">Nginx</span>
-                    </div>
-                </div>
-            </a>
-
-            <a class="portfolio-card fade-up" href="http://91.219.61.4/autoservice/" target="_blank">
-                <div class="portfolio-preview" style="background: linear-gradient(135deg, #f5f5f0, #eaeae5); border-bottom: 3px solid #ff6b00;">
-                    <span>&#128663;</span>
-                    <span class="live-badge" style="background: #ff6b00;">DEMO</span>
-                </div>
-                <div class="portfolio-body">
-                    <h3>AutoPro — Сайт автосервісу</h3>
-                    <p>Світлий преміальний дизайн з анімацією тексту, кастомним курсором, лічильниками та scroll-ефектами. WOW-рівень.</p>
-                    <div class="tech-tags">
-                        <span class="tech-tag">HTML5</span>
-                        <span class="tech-tag">CSS3</span>
-                        <span class="tech-tag">JavaScript</span>
-                        <span class="tech-tag">Анімації</span>
-                        <span class="tech-tag">Responsive</span>
-                    </div>
-                </div>
-            </a>
-
-            <a class="portfolio-card fade-up" href="http://91.219.61.4/restaurant/" target="_blank">
-                <div class="portfolio-preview" style="background: linear-gradient(135deg, #1a2e1a, #2d4a2d); border-bottom: 3px solid #c8a96e;">
-                    <span>&#127860;</span>
-                    <span class="live-badge" style="background: #c8a96e; color: #1a2e1a;">DEMO</span>
-                </div>
-                <div class="portfolio-body">
-                    <h3>Sapore — Сайт ресторану</h3>
-                    <p>Елегантний дизайн з clip-path анімаціями, табами меню, бронюванням столиків та галереєю страв.</p>
-                    <div class="tech-tags">
-                        <span class="tech-tag">HTML5</span>
-                        <span class="tech-tag">CSS3</span>
-                        <span class="tech-tag">JavaScript</span>
-                        <span class="tech-tag">Анімації</span>
-                        <span class="tech-tag">Responsive</span>
-                    </div>
-                </div>
-            </a>
-
-            <a class="portfolio-card fade-up" href="http://91.219.61.4/fauria/" target="_blank">
-                <div class="portfolio-preview" style="background: linear-gradient(135deg, #0c0c0e, #1a1a1e); border-bottom: 3px solid #d4a853;">
-                    <span>&#128663;</span>
-                    <span class="live-badge" style="background: #d4a853; color: #0c0c0e;">PITCH</span>
-                </div>
-                <div class="portfolio-body">
-                    <h3>Grup Fauria — Редизайн автосалону</h3>
-                    <p>Кінематографічний преміальний редизайн для реального автосалону в Іспанії. Heritage-таймлайн, 3D-карточки, кастомний курсор.</p>
-                    <div class="tech-tags">
-                        <span class="tech-tag">HTML5</span>
-                        <span class="tech-tag">CSS3</span>
-                        <span class="tech-tag">JavaScript</span>
-                        <span class="tech-tag">Анімації</span>
-                        <span class="tech-tag">Responsive</span>
-                    </div>
-                </div>
-            </a>
-
-            <a class="portfolio-card fade-up" href="http://91.219.61.4/beauty-salon/" target="_blank">
-                <div class="portfolio-preview" style="background: linear-gradient(135deg, #faf5f0, #f0d6e8); border-bottom: 3px solid #e8a0bf;">
-                    <span>&#127804;</span>
-                    <span class="live-badge" style="background: #e8a0bf; color: #2d2d2d;">DEMO</span>
-                </div>
-                <div class="portfolio-body">
-                    <h3>Bloom — Салон краси</h3>
-                    <p>Ніжний преміальний дизайн з floating-частинками, blob-фонами, анімованою галереєю та формою запису.</p>
-                    <div class="tech-tags">
-                        <span class="tech-tag">HTML5</span>
-                        <span class="tech-tag">CSS3</span>
-                        <span class="tech-tag">JavaScript</span>
-                        <span class="tech-tag">Анімації</span>
-                        <span class="tech-tag">Responsive</span>
-                    </div>
-                </div>
-            </a>
-
-            <a class="portfolio-card fade-up" href="https://vadikelson-droid.github.io/vadim-portfolio/" target="_blank">
-                <div class="portfolio-preview web-bg">
-                    <span>&#127968;</span>
-                    <span class="live-badge">LIVE</span>
-                </div>
-                <div class="portfolio-body">
-                    <h3>Портфоліо-сайт розробника</h3>
-                    <p>Адаптивний мультимовний сайт з анімаціями, формою брифу та Telegram-сповіщеннями.</p>
-                    <div class="tech-tags">
-                        <span class="tech-tag">HTML5</span>
-                        <span class="tech-tag">CSS3</span>
-                        <span class="tech-tag">JavaScript</span>
-                        <span class="tech-tag">i18n</span>
-                    </div>
-                </div>
-            </a>
-
-            <a class="portfolio-card fade-up" href="http://91.219.61.4/infinity-beauty/" target="_blank">
-                <div class="portfolio-preview" style="background:linear-gradient(135deg,#faf6f1,#f5e6ee,#e8d5b5)">
-                    <span>💅</span>
-                    <span class="live-badge" style="background:#c9a96e">PITCH</span>
-                </div>
-                <div class="portfolio-body">
-                    <h3>INFINITY beauty — Салон красоти</h3>
-                    <p>Демо-сайт для салону краси в Lloret de Mar. Жіночний дизайн з золотими акцентами, реальні фото, прайси.</p>
-                    <div class="tech-tags">
-                        <span class="tech-tag">HTML5</span>
-                        <span class="tech-tag">CSS3</span>
-                        <span class="tech-tag">JavaScript</span>
-                        <span class="tech-tag">Responsive</span>
-                    </div>
-                </div>
-            </a>
-        </div>
+<!-- Portfolio -->
+<div class="sec-dark" id="portfolio">
+  <section class="section">
+    <div class="sec-header rv">
+      <div class="sec-tag">Портфоліо</div>
+      <h2 class="sec-title">Наші роботи</h2>
+      <p class="sec-sub">Реальні проєкти, які працюють прямо зараз</p>
     </div>
+    <div class="port-grid">
+
+      <!-- 1. Royal Food Bot (Featured) -->
+      <div class="port-card featured rv">
+        <div class="port-preview" style="background:linear-gradient(135deg,#1e1b4b,#312e81)">
+          <div class="ptext">ROYAL FOOD</div>
+          <span class="port-badge prod">PRODUCTION</span>
+        </div>
+        <div class="port-body">
+          <h3>Telegram-бот для ресторану Royal Food</h3>
+          <p>Бот приймає замовлення з POS-системи Poster та миттєво надсилає чеки в Telegram. Працює 24/7, обробляє реальні замовлення, підтримує декількох адміністраторів, статистика продажів.</p>
+          <div class="tags">
+            <span class="tag">Python</span><span class="tag">aiogram 3</span><span class="tag">Webhook</span><span class="tag">SQLite</span><span class="tag">aiohttp</span><span class="tag">Nginx</span><span class="tag">VPS</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Photographer -->
+      <a class="port-card rv" href="http://91.219.61.4/photographer/" target="_blank">
+        <div class="port-preview" style="background:linear-gradient(135deg,#2d1f1a,#4a332a)">
+          <div class="ptext" style="color:rgba(232,196,184,.15)">KARINA</div>
+          <span class="port-badge live">LIVE</span>
+        </div>
+        <div class="port-link">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          Переглянути сайт
+        </div>
+        <div class="port-body">
+          <h3>Каріна Захараш — Портфоліо фотографа</h3>
+          <p>Повноцінний сайт з галереєю, адмін-панеллю, серверним зберіганням фото, REST API та формою бронювання зйомки.</p>
+          <div class="tags">
+            <span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">JavaScript</span><span class="tag">Python</span><span class="tag">aiohttp</span><span class="tag">SQLite</span><span class="tag">REST API</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 3. INFINITY beauty -->
+      <a class="port-card rv rv-d1" href="http://91.219.61.4/infinity-beauty/" target="_blank">
+        <div class="port-preview" style="background:linear-gradient(135deg,#2a2318,#3d3020,#2a2318)">
+          <div class="ptext" style="color:rgba(201,169,110,.12)">INFINITY</div>
+          <span class="port-badge pitch">PITCH</span>
+        </div>
+        <div class="port-link">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          Переглянути сайт
+        </div>
+        <div class="port-body">
+          <h3>INFINITY beauty — Салон краси, Lloret de Mar</h3>
+          <p>Демо для реального салону. Золоті акценти, реальні фото, прайси, мультимовність (ES/CA/EN/RU/FR), WhatsApp-інтеграція.</p>
+          <div class="tags">
+            <span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">JavaScript</span><span class="tag">i18n</span><span class="tag">5 мов</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 4. Fauria -->
+      <a class="port-card rv" href="http://91.219.61.4/fauria/" target="_blank">
+        <div class="port-preview" style="background:linear-gradient(135deg,#0c0c0e,#1a1a1e);border-bottom:2px solid #d4a853">
+          <div class="ptext" style="color:rgba(212,168,83,.1)">FAURIA</div>
+          <span class="port-badge pitch">PITCH</span>
+        </div>
+        <div class="port-link">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          Переглянути сайт
+        </div>
+        <div class="port-body">
+          <h3>Grup Fauria — Редизайн автосалону, Іспанія</h3>
+          <p>Кінематографічний преміальний редизайн для реального автосалону. Heritage-таймлайн, 3D-карточки, кастомний курсор.</p>
+          <div class="tags">
+            <span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">JavaScript</span><span class="tag">Анімації</span><span class="tag">Responsive</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 5. AutoPro -->
+      <a class="port-card rv rv-d1" href="http://91.219.61.4/autoservice/" target="_blank">
+        <div class="port-preview" style="background:linear-gradient(135deg,#1a1510,#2d2218);border-bottom:2px solid #ff6b00">
+          <div class="ptext" style="color:rgba(255,107,0,.1)">AUTOPRO</div>
+          <span class="port-badge demo">DEMO</span>
+        </div>
+        <div class="port-link">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          Переглянути сайт
+        </div>
+        <div class="port-body">
+          <h3>AutoPro — Сайт автосервісу</h3>
+          <p>Преміальний дизайн з анімацією тексту, кастомним курсором, лічильниками та scroll-ефектами.</p>
+          <div class="tags">
+            <span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">JavaScript</span><span class="tag">Анімації</span><span class="tag">Responsive</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 6. Sapore -->
+      <a class="port-card rv" href="http://91.219.61.4/restaurant/" target="_blank">
+        <div class="port-preview" style="background:linear-gradient(135deg,#0f1a0f,#1a2e1a);border-bottom:2px solid #c8a96e">
+          <div class="ptext" style="color:rgba(200,169,110,.1)">SAPORE</div>
+          <span class="port-badge demo">DEMO</span>
+        </div>
+        <div class="port-link">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          Переглянути сайт
+        </div>
+        <div class="port-body">
+          <h3>Sapore — Сайт ресторану</h3>
+          <p>Елегантний дизайн з clip-path анімаціями, табами меню, бронюванням столиків та галереєю страв.</p>
+          <div class="tags">
+            <span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">JavaScript</span><span class="tag">Анімації</span><span class="tag">Responsive</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 7. Bloom -->
+      <a class="port-card rv rv-d1" href="http://91.219.61.4/beauty-salon/" target="_blank">
+        <div class="port-preview" style="background:linear-gradient(135deg,#2a1a2a,#3d2040)">
+          <div class="ptext" style="color:rgba(232,160,191,.1)">BLOOM</div>
+          <span class="port-badge demo">DEMO</span>
+        </div>
+        <div class="port-link">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          Переглянути сайт
+        </div>
+        <div class="port-body">
+          <h3>Bloom — Салон краси</h3>
+          <p>Ніжний преміальний дизайн з floating-частинками, blob-фонами, анімованою галереєю та формою запису.</p>
+          <div class="tags">
+            <span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">JavaScript</span><span class="tag">Анімації</span><span class="tag">Responsive</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 8. Glow Beauty -->
+      <a class="port-card rv" href="demo-beauty-shop/index.html" target="_blank">
+        <div class="port-preview" style="background:linear-gradient(135deg,#2a1028,#4a1848)">
+          <div class="ptext" style="color:rgba(233,30,139,.1)">GLOW</div>
+          <span class="port-badge demo">DEMO</span>
+        </div>
+        <div class="port-link">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          Переглянути сайт
+        </div>
+        <div class="port-body">
+          <h3>Glow Beauty — Інтернет-магазин</h3>
+          <p>Багатосторінковий магазин косметики: каталог, кошик, реєстрація, рейтинги товарів, хіти продажів, фільтри.</p>
+          <div class="tags">
+            <span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">JavaScript</span><span class="tag">localStorage</span><span class="tag">SPA</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 9. Aroma -->
+      <a class="port-card rv rv-d1" href="demo-landing/index.html" target="_blank">
+        <div class="port-preview" style="background:linear-gradient(135deg,#1a0e08,#3d1c0c)">
+          <div class="ptext" style="color:rgba(234,88,12,.1)">AROMA</div>
+          <span class="port-badge demo">DEMO</span>
+        </div>
+        <div class="port-link">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          Переглянути сайт
+        </div>
+        <div class="port-body">
+          <h3>Aroma — Лендінг кав'ярні</h3>
+          <p>Стильний лендінг з меню, анімаціями та адаптивним дизайном. Готовий за 3 дні.</p>
+          <div class="tags">
+            <span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">Анімації</span><span class="tag">Адаптив</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 10. Lawyer -->
+      <a class="port-card rv" href="demo-lawyer/index.html" target="_blank">
+        <div class="port-preview" style="background:linear-gradient(135deg,#0e1520,#1a2f45)">
+          <div class="ptext" style="color:rgba(148,163,184,.08)">LEGAL</div>
+          <span class="port-badge demo">DEMO</span>
+        </div>
+        <div class="port-link">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          Переглянути сайт
+        </div>
+        <div class="port-body">
+          <h3>Сайт-візитка адвоката</h3>
+          <p>Елегантний сайт з послугами, відгуками клієнтів та контактною формою.</p>
+          <div class="tags">
+            <span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">Анімації</span><span class="tag">Responsive</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 11. Portfolio -->
+      <a class="port-card rv rv-d1" href="https://vadikelson-droid.github.io/vadim-portfolio/" target="_blank">
+        <div class="port-preview" style="background:linear-gradient(135deg,#041a14,#064e3b)">
+          <div class="ptext" style="color:rgba(16,185,129,.1)">VADIM</div>
+          <span class="port-badge live">LIVE</span>
+        </div>
+        <div class="port-link">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          Переглянути сайт
+        </div>
+        <div class="port-body">
+          <h3>Портфоліо-сайт розробника</h3>
+          <p>Адаптивний мультимовний сайт з анімаціями, формою брифу та Telegram-сповіщеннями.</p>
+          <div class="tags">
+            <span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">JavaScript</span><span class="tag">i18n</span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </section>
+</div>
+
+<!-- Process -->
+<section class="section" id="process">
+  <div class="sec-header rv">
+    <div class="sec-tag">Процес</div>
+    <h2 class="sec-title">Від ідеї до запуску за тиждень</h2>
+    <p class="sec-sub">Чіткі етапи, прозорі терміни</p>
+  </div>
+  <div class="proc">
+    <div class="proc-item rv">
+      <div class="proc-dot">1</div>
+      <div>
+        <h3>Бриф та структура</h3>
+        <p>Обговорюємо бізнес, збираємо тексти та фото, затверджуємо структуру сайту</p>
+      </div>
+    </div>
+    <div class="proc-item rv rv-d1">
+      <div class="proc-dot">2</div>
+      <div>
+        <h3>Дизайн та верстка</h3>
+        <p>Створюємо дизайн, верстаємо сторінки, адаптуємо під мобільні пристрої</p>
+      </div>
+    </div>
+    <div class="proc-item rv rv-d2">
+      <div class="proc-dot">3</div>
+      <div>
+        <h3>Функціонал та інтеграції</h3>
+        <p>Форми, Telegram-бот, сповіщення, інтеграції з вашими системами</p>
+      </div>
+    </div>
+    <div class="proc-item rv rv-d3">
+      <div class="proc-dot">4</div>
+      <div>
+        <h3>Деплой та тестування</h3>
+        <p>Домен, хостинг, SSL — все підключаємо, тестуємо, запускаємо</p>
+      </div>
+    </div>
+    <div class="proc-item rv rv-d4">
+      <div class="proc-dot">5</div>
+      <div>
+        <h3>Правки та підтримка</h3>
+        <p>Фінальні правки, навчаємо користуватися, забезпечуємо підтримку</p>
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- WHY US -->
-<section class="section-dark">
-    <div class="section">
-        <h2 class="section-title">Чому саме ми</h2>
-        <p class="section-sub">6 причин обрати нас</p>
-
-        <div class="why-grid">
-            <div class="why-card fade-up">
-                <div class="why-icon">&#128640;</div>
-                <h3>Швидкість</h3>
-                <p>Лендінг за 3 дні. Бот за 5-7 днів. Не місяці очікування.</p>
-            </div>
-            <div class="why-card fade-up">
-                <div class="why-icon">&#128176;</div>
-                <h3>Чесна ціна</h3>
-                <p>Прозоре ціноутворення. Без прихованих платежів та доплат.</p>
-            </div>
-            <div class="why-card fade-up">
-                <div class="why-icon">&#128736;</div>
-                <h3>Повний цикл</h3>
-                <p>Домен, хостинг, SSL, деплой — ми беремо на себе все.</p>
-            </div>
-            <div class="why-card fade-up">
-                <div class="why-icon">&#128241;</div>
-                <h3>Мобільна версія</h3>
-                <p>Кожен сайт ідеально працює на телефоні та планшеті.</p>
-            </div>
-            <div class="why-card fade-up">
-                <div class="why-icon">&#128274;</div>
-                <h3>Безпека</h3>
-                <p>SSL-сертифікат, захищений хостинг, регулярні бекапи.</p>
-            </div>
-            <div class="why-card fade-up">
-                <div class="why-icon">&#129309;</div>
-                <h3>Підтримка</h3>
-                <p>Не кидаємо після запуску. Обслуговування та правки — включені.</p>
-            </div>
-        </div>
+<!-- Why Us -->
+<div class="sec-dark">
+  <section class="section">
+    <div class="sec-header rv">
+      <div class="sec-tag">Переваги</div>
+      <h2 class="sec-title">Чому обирають нас</h2>
     </div>
+    <div class="why-grid">
+      <div class="why-card rv">
+        <div class="why-ico">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent2)" stroke-width="1.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        </div>
+        <h3>Швидкість</h3>
+        <p>Лендінг за 3 дні. Бот за 5-7 днів. Без місяців очікування.</p>
+      </div>
+      <div class="why-card rv rv-d1">
+        <div class="why-ico">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.5"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+        </div>
+        <h3>Чесна ціна</h3>
+        <p>Прозоре ціноутворення. Без прихованих платежів та раптових доплат.</p>
+      </div>
+      <div class="why-card rv rv-d2">
+        <div class="why-ico">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3>Повний цикл</h3>
+        <p>Домен, хостинг, SSL, деплой, підтримка — ми беремо все на себе.</p>
+      </div>
+      <div class="why-card rv">
+        <div class="why-ico">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--pink)" stroke-width="1.5"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+        </div>
+        <h3>Mobile First</h3>
+        <p>Кожен сайт ідеально працює на смартфоні та планшеті.</p>
+      </div>
+      <div class="why-card rv rv-d1">
+        <div class="why-ico">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        </div>
+        <h3>Безпека</h3>
+        <p>SSL-сертифікат, захищений хостинг, firewall, регулярні бекапи.</p>
+      </div>
+      <div class="why-card rv rv-d2">
+        <div class="why-ico">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent3)" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3>Підтримка</h3>
+        <p>Не кидаємо після запуску. Обслуговування та правки — включені.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- Pricing -->
+<section class="section" id="pricing">
+  <div class="sec-header rv">
+    <div class="sec-tag">Тарифи</div>
+    <h2 class="sec-title">Зрозумілі ціни</h2>
+    <p class="sec-sub">Без прихованих платежів. Оплата після затвердження результату.</p>
+  </div>
+  <div class="price-grid">
+    <div class="price-card rv">
+      <div class="price-name">Start</div>
+      <div class="price-amount">110€</div>
+      <div class="price-desc">Ідеально для початку. Лендінг з базовим функціоналом.</div>
+      <ul class="price-list">
+        <li>1 сторінка (лендінг)</li>
+        <li>Адаптивна верстка</li>
+        <li>Базові анімації</li>
+        <li>SSL-сертифікат</li>
+        <li>Домен + хостинг</li>
+        <li>Термін: 3-5 днів</li>
+      </ul>
+      <a href="https://t.me/lord_elson_05" class="price-btn outline" target="_blank">Обрати Start</a>
+    </div>
+    <div class="price-card pop rv rv-d1">
+      <div class="price-pop-tag">ПОПУЛЯРНИЙ</div>
+      <div class="price-name">Business</div>
+      <div class="price-amount">180€</div>
+      <div class="price-desc">Для бізнесу, що хоче більше. Сайт + бот + інтеграції.</div>
+      <ul class="price-list">
+        <li>До 5 сторінок</li>
+        <li>Контактна форма</li>
+        <li>Telegram-бот</li>
+        <li>SEO-оптимізація</li>
+        <li>Google Analytics</li>
+        <li>Підтримка 30 днів</li>
+        <li>Термін: 5-7 днів</li>
+      </ul>
+      <a href="https://t.me/lord_elson_05" class="price-btn fill" target="_blank">Обрати Business</a>
+    </div>
+    <div class="price-card rv rv-d2">
+      <div class="price-name">Premium</div>
+      <div class="price-amount">300€</div>
+      <div class="price-desc">Максимум можливостей. Складний проєкт під ключ.</div>
+      <ul class="price-list">
+        <li>До 10+ сторінок</li>
+        <li>Адмін-панель</li>
+        <li>API-інтеграції</li>
+        <li>Мультимовність</li>
+        <li>Складні анімації</li>
+        <li>Підтримка 60 днів</li>
+        <li>Термін: 7-14 днів</li>
+      </ul>
+      <a href="https://t.me/lord_elson_05" class="price-btn outline" target="_blank">Обрати Premium</a>
+    </div>
+  </div>
 </section>
 
-<!-- WHAT WE CAN DO IN 1 WEEK -->
-<section class="section">
-    <h2 class="section-title">Що ми зробимо за 1 тиждень</h2>
-    <p class="section-sub">Реальні терміни, а не обіцянки</p>
-
-    <div class="timeline fade-up">
-        <div class="timeline-item">
-            <div class="timeline-dot">1</div>
-            <div class="timeline-content">
-                <h3>День 1 — Бриф та структура</h3>
-                <p>Обговорюємо ваш бізнес, збираємо тексти та фото, затверджуємо структуру сайту</p>
-            </div>
+<!-- CTA -->
+<section class="cta-sec" id="contact">
+  <div class="cta-bg"></div>
+  <div class="cta-content">
+    <h2 class="rv">Готові обговорити проєкт?</h2>
+    <p class="rv rv-d1">Напишіть — відповімо протягом години</p>
+    <div class="contacts rv rv-d2">
+      <a class="con-item" href="https://t.me/lord_elson_05" target="_blank">
+        <div class="ic">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="var(--accent2)"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.94 8.13l-1.97 9.3c-.15.67-.54.83-1.1.52l-3.02-2.23-1.46 1.4c-.16.16-.3.3-.61.3l.22-3.06 5.55-5.02c.24-.22-.05-.33-.38-.13L8.69 13.8l-2.95-.92c-.64-.2-.65-.64.14-.95l11.52-4.44c.53-.2 1 .13.82.95l-.28-.31z"/></svg>
         </div>
-        <div class="timeline-item">
-            <div class="timeline-dot">2-3</div>
-            <div class="timeline-content">
-                <h3>Дні 2-3 — Дизайн та верстка</h3>
-                <p>Створюємо дизайн, верстаємо сторінки, адаптуємо під мобільні</p>
-            </div>
+        <div class="info">
+          <div class="lbl">Telegram</div>
+          <span style="color:var(--accent2);font-weight:600;font-size:.9rem">@lord_elson_05</span>
         </div>
-        <div class="timeline-item">
-            <div class="timeline-dot">4-5</div>
-            <div class="timeline-content">
-                <h3>Дні 4-5 — Функціонал</h3>
-                <p>Форми, Telegram-бот, сповіщення, інтеграції з вашими системами</p>
-            </div>
+      </a>
+      <a class="con-item" href="mailto:vadikelson@gmail.com">
+        <div class="ic">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent2)" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
         </div>
-        <div class="timeline-item">
-            <div class="timeline-dot">6</div>
-            <div class="timeline-content">
-                <h3>День 6 — Деплой</h3>
-                <p>Домен, хостинг, SSL — все підключаємо, тестуємо, запускаємо</p>
-            </div>
+        <div class="info">
+          <div class="lbl">Email</div>
+          <span style="color:var(--accent2);font-weight:600;font-size:.9rem">vadikelson@gmail.com</span>
         </div>
-        <div class="timeline-item">
-            <div class="timeline-dot">7</div>
-            <div class="timeline-content">
-                <h3>День 7 — Правки та навчання</h3>
-                <p>Фінальні правки, навчаємо вас користуватися ботом/сайтом</p>
-            </div>
-        </div>
+      </a>
     </div>
+    <div class="cta-btns rv rv-d3">
+      <a href="https://t.me/lord_elson_05" class="btn-primary" target="_blank">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        Написати в Telegram
+      </a>
+      <a href="https://vadikelson-droid.github.io/vadim-portfolio/brief.html" class="btn-ghost" target="_blank">Заповнити бриф</a>
+    </div>
+  </div>
 </section>
 
-
-<!-- CTA + CONTACTS -->
-<section class="cta">
-    <h2>Готові обговорити проєкт?</h2>
-    <p>Напишіть нам — відповімо протягом години</p>
-    <div class="contacts-grid" style="margin-bottom: 36px;">
-        <div class="contact-item">
-            <div class="icon">&#128172;</div>
-            <div class="label">Telegram</div>
-
-            <a href="https://t.me/lord_elson_05">@lord_elson_05</a>
-        </div>
-        <div class="contact-item">
-            <div class="icon">&#9993;</div>
-            <div class="label">Email</div>
-            <a href="mailto:vadikelson@gmail.com">vadikelson@gmail.com</a>
-        </div>
-        <div class="contact-item">
-            <div class="icon">&#128187;</div>
-            <div class="label">Портфоліо</div>
-            <a href="https://vadikelson-droid.github.io/vadim-portfolio/">vadim-portfolio</a>
-        </div>
-    </div>
-    <div class="cta-buttons">
-        <a href="https://t.me/lord_elson_05" class="btn btn-primary">Написати в Telegram</a>
-        <a href="https://vadikelson-droid.github.io/vadim-portfolio/brief.html" class="btn btn-outline">Заповнити бриф</a>
-    </div>
-</section>
-
+<!-- Footer -->
 <footer class="footer">
-    &copy; 2026 Vadim Dev. Всі права захищені.
+  &copy; 2026 Vadim Dev. Всі права захищені.
 </footer>
 
 <script>
-    // Scroll reveal animation
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry, i) => {
-            if (entry.isIntersecting) {
-                setTimeout(() => {
-                    entry.target.classList.add('visible');
-                }, i * 80);
-                observer.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.1 });
+/* Scroll reveal */
+const ro = new IntersectionObserver(es => {
+  es.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('vis'); ro.unobserve(e.target); }
+  });
+}, { threshold: .08, rootMargin: '0px 0px -20px 0px' });
+document.querySelectorAll('.rv').forEach(el => ro.observe(el));
 
-    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+/* Smooth scroll for nav links */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  });
+});
 </script>
-
 </body>
 </html>

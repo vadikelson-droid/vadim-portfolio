@@ -29,17 +29,30 @@ button{border:none;cursor:pointer;font-family:inherit;background:none}
 ul{list-style:none}
 
 /* ═══ NAV ═══ */
-.nav{position:fixed;top:20px;left:50%;transform:translateX(-50%);z-index:1000;display:flex;align-items:center;gap:28px;padding:12px 36px;background:rgba(255,255,255,.72);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.5);border-radius:60px;box-shadow:0 8px 32px rgba(0,0,0,.06);transition:all .5s var(--ease)}
+.nav{position:fixed;top:20px;left:50%;transform:translateX(-50%);z-index:1000;display:flex;align-items:center;gap:24px;padding:12px 32px;background:rgba(255,255,255,.72);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.5);border-radius:60px;box-shadow:0 8px 32px rgba(0,0,0,.06);transition:all .5s var(--ease)}
 .nav.scrolled{background:rgba(255,255,255,.9);box-shadow:0 4px 20px rgba(0,0,0,.08)}
 .nav-logo{font-family:var(--font-h);font-size:1.35rem;font-weight:400;letter-spacing:.02em}
 .nav-logo b{color:var(--gold)}
-.nav-links{display:flex;gap:22px;align-items:center}
+.nav-links{display:flex;gap:20px;align-items:center}
 .nav-a{font-size:.7rem;text-transform:uppercase;letter-spacing:1.8px;color:var(--text2);font-weight:500;transition:color .3s}
 .nav-a:hover{color:var(--gold)}
 .nav-cta{padding:9px 22px;background:var(--gold);color:#fff;border-radius:40px;font-size:.7rem;text-transform:uppercase;letter-spacing:1.8px;font-weight:600;transition:all .4s var(--ease)}
 .nav-cta:hover{background:var(--gold-dark);box-shadow:0 6px 20px rgba(201,169,110,.35);transform:translateY(-2px)}
 .nav-burger{display:none;width:24px;height:16px;flex-direction:column;justify-content:space-between;cursor:pointer}
 .nav-burger span{height:1.5px;background:var(--text);border-radius:2px;transition:all .4s var(--ease)}
+
+/* ═══ LANG SWITCHER ═══ */
+.lang-sw{position:relative}
+.lang-btn{display:flex;align-items:center;gap:5px;padding:7px 12px;border-radius:30px;font-size:.68rem;font-weight:600;color:var(--text2);background:rgba(255,255,255,.45);border:1px solid var(--border);cursor:pointer;transition:all .3s;letter-spacing:.5px;text-transform:uppercase;white-space:nowrap}
+.lang-btn:hover{border-color:var(--gold3);color:var(--gold)}
+.lang-btn svg{width:13px;height:13px;flex-shrink:0;transition:transform .3s}
+.lang-sw.open .lang-btn svg{transform:rotate(180deg)}
+.lang-dd{position:absolute;top:calc(100% + 8px);right:0;background:#fff;border-radius:12px;box-shadow:var(--shadow-md);border:1px solid var(--cream);padding:5px 0;min-width:155px;opacity:0;pointer-events:none;transform:translateY(-6px);transition:all .25s var(--ease);z-index:10}
+.lang-sw.open .lang-dd{opacity:1;pointer-events:all;transform:translateY(0)}
+.lang-opt{display:flex;align-items:center;gap:10px;padding:9px 16px;font-size:.82rem;cursor:pointer;transition:background .2s;color:var(--text2)}
+.lang-opt:hover{background:var(--cream)}
+.lang-opt.active{color:var(--gold);font-weight:600}
+.lang-opt .fl{font-size:1.1rem;line-height:1}
 
 /* ═══ MOBILE MENU ═══ */
 .mmenu{display:none;position:fixed;inset:0;background:rgba(250,246,241,.97);backdrop-filter:blur(20px);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:28px;opacity:0;pointer-events:none;transition:opacity .4s}
@@ -48,12 +61,15 @@ ul{list-style:none}
 .mmenu a:hover{color:var(--gold)}
 .mmenu-close{position:absolute;top:24px;right:24px;width:40px;height:40px;display:flex;align-items:center;justify-content:center}
 .mmenu-close svg{width:28px;height:28px;color:var(--text)}
+.mmenu-lang{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.mmenu-lang button{padding:8px 16px;border-radius:30px;font-size:.78rem;font-weight:600;border:1.5px solid var(--gold3);background:transparent;color:var(--text2);cursor:pointer;transition:all .3s}
+.mmenu-lang button.active{background:var(--gold);color:#fff;border-color:var(--gold)}
 
 /* ═══ HERO ═══ */
 .hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden}
 .hero-bg{position:absolute;inset:0}
 .hero-bg img{width:100%;height:100%;object-fit:cover}
-.hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(250,246,241,.55) 0%,rgba(250,246,241,.75) 40%,rgba(250,246,241,.88) 100%)}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(250,246,241,.82) 0%,rgba(250,246,241,.88) 40%,rgba(250,246,241,.95) 100%)}
 .hero-content{position:relative;z-index:2;padding:0 20px;max-width:700px}
 .hero-tag{display:inline-flex;align-items:center;gap:8px;padding:8px 22px;border:1px solid var(--gold3);border-radius:40px;font-size:.72rem;text-transform:uppercase;letter-spacing:2px;color:var(--gold-dark);font-weight:600;margin-bottom:28px;background:rgba(255,255,255,.5);backdrop-filter:blur(8px)}
 .hero-tag .line{width:16px;height:1px;background:var(--gold)}
@@ -218,7 +234,7 @@ ul{list-style:none}
   .insta-grid{grid-template-columns:repeat(3,1fr)}
 }
 @media(max-width:768px){
-  .nav-links,.nav-cta{display:none}
+  .nav-links,.nav-cta,.lang-sw{display:none}
   .nav-burger{display:flex}
   .mmenu{display:flex}
   .nav{padding:10px 24px;gap:16px}
@@ -249,13 +265,20 @@ ul{list-style:none}
 <nav class="nav" id="nav">
   <a href="#" class="nav-logo"><b>INFINITY</b> beauty</a>
   <div class="nav-links">
-    <a href="#servicios" class="nav-a">Servicios</a>
-    <a href="#galeria" class="nav-a">Galería</a>
-    <a href="#precios" class="nav-a">Precios</a>
-    <a href="#nosotros" class="nav-a">Nosotros</a>
-    <a href="#contacto" class="nav-a">Contacto</a>
+    <a href="#servicios" class="nav-a" data-i="nav.srv">Servicios</a>
+    <a href="#galeria" class="nav-a" data-i="nav.gal">Galería</a>
+    <a href="#precios" class="nav-a" data-i="nav.pri">Precios</a>
+    <a href="#nosotros" class="nav-a" data-i="nav.abt">Nosotros</a>
+    <a href="#contacto" class="nav-a" data-i="nav.con">Contacto</a>
   </div>
-  <a href="https://wa.me/34647707970" class="nav-cta" target="_blank">Reservar</a>
+  <div class="lang-sw" id="langSw">
+    <button class="lang-btn" onclick="document.getElementById('langSw').classList.toggle('open')">
+      <span id="langCur">ES</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+    </button>
+    <div class="lang-dd" id="langDd"></div>
+  </div>
+  <a href="https://wa.me/34647707970" class="nav-cta" target="_blank" data-i="nav.book">Reservar</a>
   <div class="nav-burger" onclick="document.getElementById('mm').classList.add('open')">
     <span></span><span></span><span></span>
   </div>
@@ -266,12 +289,13 @@ ul{list-style:none}
   <button class="mmenu-close" onclick="this.parentElement.classList.remove('open')">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
   </button>
-  <a href="#servicios" onclick="this.parentElement.classList.remove('open')">Servicios</a>
-  <a href="#galeria" onclick="this.parentElement.classList.remove('open')">Galería</a>
-  <a href="#precios" onclick="this.parentElement.classList.remove('open')">Precios</a>
-  <a href="#nosotros" onclick="this.parentElement.classList.remove('open')">Nosotros</a>
-  <a href="#contacto" onclick="this.parentElement.classList.remove('open')">Contacto</a>
-  <a href="https://wa.me/34647707970" class="btn-gold" style="margin-top:16px" target="_blank">Reservar Cita</a>
+  <div class="mmenu-lang" id="mmLang"></div>
+  <a href="#servicios" onclick="this.parentElement.classList.remove('open')" data-i="nav.srv">Servicios</a>
+  <a href="#galeria" onclick="this.parentElement.classList.remove('open')" data-i="nav.gal">Galería</a>
+  <a href="#precios" onclick="this.parentElement.classList.remove('open')" data-i="nav.pri">Precios</a>
+  <a href="#nosotros" onclick="this.parentElement.classList.remove('open')" data-i="nav.abt">Nosotros</a>
+  <a href="#contacto" onclick="this.parentElement.classList.remove('open')" data-i="nav.con">Contacto</a>
+  <a href="https://wa.me/34647707970" class="btn-gold" style="margin-top:16px" target="_blank" data-i="nav.book_long">Reservar Cita</a>
 </div>
 
 <!-- Hero -->
@@ -279,16 +303,16 @@ ul{list-style:none}
   <div class="hero-bg"><img src="img/storefront2.jpg" alt="INFINITY beauty Lloret de Mar"></div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <div class="hero-tag rv"><span class="line"></span> Centre d'estètica <span class="line"></span></div>
+    <div class="hero-tag rv"><span class="line"></span> <span data-i="hero.tag">Centre d'estètica</span> <span class="line"></span></div>
     <h1 class="rv rv-d1">INFINITY <span>beauty</span></h1>
-    <p class="hero-sub rv rv-d2">Tu belleza, nuestra pasión · Lloret de Mar</p>
+    <p class="hero-sub rv rv-d2" data-i="hero.sub">Tu belleza, nuestra pasión · Lloret de Mar</p>
     <div class="hero-btns rv rv-d3">
-      <a href="#servicios" class="btn-gold">Nuestros Servicios</a>
-      <a href="https://wa.me/34647707970" class="btn-outline" target="_blank">Reservar Cita</a>
+      <a href="#servicios" class="btn-gold" data-i="hero.btn1">Nuestros Servicios</a>
+      <a href="https://wa.me/34647707970" class="btn-outline" target="_blank" data-i="hero.btn2">Reservar Cita</a>
     </div>
   </div>
   <div class="hero-scroll">
-    <span>Descubre</span>
+    <span data-i="hero.scroll">Descubre</span>
     <div class="line-v"></div>
   </div>
 </section>
@@ -296,66 +320,66 @@ ul{list-style:none}
 <!-- Services -->
 <section class="section services" id="servicios">
   <div class="sec-header rv">
-    <div class="sec-tag">Servicios</div>
-    <h2 class="sec-title">Lo que hacemos por ti</h2>
-    <p class="sec-sub">Cuidamos cada detalle para que te sientas radiante</p>
+    <div class="sec-tag" data-i="srv.tag">Servicios</div>
+    <h2 class="sec-title" data-i="srv.title">Lo que hacemos por ti</h2>
+    <p class="sec-sub" data-i="srv.sub">Cuidamos cada detalle para que te sientas radiante</p>
   </div>
   <div class="srv-grid">
     <div class="srv-card rv">
       <div class="srv-icon">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21c-4.97 0-9-1.79-9-4V5c0 2.21 4.03 4 9 4s9-1.79 9-4v12c0 2.21-4.03 4-9 4z"/><path d="M21 5c0 2.21-4.03 4-9 4S3 7.21 3 5s4.03-4 9-4 9 1.79 9 4z"/></svg>
       </div>
-      <h3>Manicura & Pedicura</h3>
-      <p>Diseños creativos, esmaltado semipermanente y cuidado completo de tus manos y pies</p>
+      <h3 data-i="s1t">Manicura & Pedicura</h3>
+      <p data-i="s1d">Diseños creativos, esmaltado semipermanente y cuidado completo de tus manos y pies</p>
     </div>
     <div class="srv-card rv rv-d1">
       <div class="srv-icon">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>
       </div>
-      <h3>Extensiones de Pestañas</h3>
-      <p>Pestañas pelo a pelo y lifting con keratina para una mirada espectacular</p>
+      <h3 data-i="s2t">Extensiones de Pestañas</h3>
+      <p data-i="s2d">Pestañas pelo a pelo y lifting con keratina para una mirada espectacular</p>
     </div>
     <div class="srv-card rv rv-d2">
       <div class="srv-icon">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6.5 6.5c1.5-1.5 4-2 6 0s1.5 4.5 0 6l-6 6-6-6c-1.5-1.5-2-4 0-6s4.5-1.5 6 0z"/><path d="M17.5 6.5c1.5-1.5 4-2 6 0s1.5 4.5 0 6l-6 6"/></svg>
       </div>
-      <h3>Modelado de Cejas</h3>
-      <p>Diseño de cejas personalizado con hilo, cera o pinzas para enmarcar tu rostro</p>
+      <h3 data-i="s3t">Modelado de Cejas</h3>
+      <p data-i="s3d">Diseño de cejas personalizado con hilo, cera o pinzas para enmarcar tu rostro</p>
     </div>
     <div class="srv-card rv rv-d3">
       <div class="srv-icon">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
       </div>
-      <h3>Masajes</h3>
-      <p>Masajes corporales y faciales relajantes y terapéuticos para renovar tu bienestar</p>
+      <h3 data-i="s4t">Masajes</h3>
+      <p data-i="s4d">Masajes corporales y faciales relajantes y terapéuticos para renovar tu bienestar</p>
     </div>
     <div class="srv-card rv">
       <div class="srv-icon">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg>
       </div>
-      <h3>Maquillaje</h3>
-      <p>Maquillaje profesional para eventos, bodas y ocasiones especiales</p>
+      <h3 data-i="s5t">Maquillaje</h3>
+      <p data-i="s5d">Maquillaje profesional para eventos, bodas y ocasiones especiales</p>
     </div>
     <div class="srv-card rv rv-d1">
       <div class="srv-icon">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v8"/><path d="M8 12h8"/></svg>
       </div>
-      <h3>Depilación</h3>
-      <p>Waxing y sugaring para una piel suave y perfecta. Todas las zonas del cuerpo</p>
+      <h3 data-i="s6t">Depilación</h3>
+      <p data-i="s6d">Waxing y sugaring para una piel suave y perfecta. Todas las zonas del cuerpo</p>
     </div>
     <div class="srv-card rv rv-d2">
       <div class="srv-icon">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
       </div>
-      <h3>Keratina & Botox</h3>
-      <p>Tratamientos capilares de alisado con keratina y botox para un cabello brillante</p>
+      <h3 data-i="s7t">Keratina & Botox</h3>
+      <p data-i="s7d">Tratamientos capilares de alisado con keratina y botox para un cabello brillante</p>
     </div>
     <div class="srv-card rv rv-d3">
       <div class="srv-icon">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
       </div>
-      <h3>Endosphères & Láser</h3>
-      <p>Tecnología avanzada para tratamientos corporales y faciales con resultados visibles</p>
+      <h3 data-i="s8t">Endosphères & Láser</h3>
+      <p data-i="s8d">Tecnología avanzada para tratamientos corporales y faciales con resultados visibles</p>
     </div>
   </div>
 </section>
@@ -363,52 +387,52 @@ ul{list-style:none}
 <!-- Gallery -->
 <section class="section gallery" id="galeria">
   <div class="sec-header rv">
-    <div class="sec-tag">Galería</div>
-    <h2 class="sec-title">Nuestro trabajo</h2>
-    <p class="sec-sub">Cada detalle cuenta. Mira algunos de nuestros resultados</p>
+    <div class="sec-tag" data-i="gal.tag">Galería</div>
+    <h2 class="sec-title" data-i="gal.title">Nuestro trabajo</h2>
+    <p class="sec-sub" data-i="gal.sub">Cada detalle cuenta. Mira algunos de nuestros resultados</p>
   </div>
   <div class="gal-grid">
-    <div class="gal-item rv"><img src="img/nails-nude.jpg" alt="Manicura diseño"><div class="gal-label">Manicura</div></div>
-    <div class="gal-item rv rv-d1"><img src="img/lashes.jpg" alt="Extensiones de pestañas"><div class="gal-label">Pestañas</div></div>
-    <div class="gal-item rv rv-d2"><img src="img/brows.jpg" alt="Cejas antes y después"><div class="gal-label">Cejas</div></div>
-    <div class="gal-item rv rv-d3"><img src="img/hair-keratin.jpg" alt="Keratina resultado"><div class="gal-label">Keratina</div></div>
-    <div class="gal-item rv"><img src="img/nails-blue.jpg" alt="Manicura azul"><div class="gal-label">Manicura</div></div>
-    <div class="gal-item rv rv-d1"><img src="img/pedicure.jpg" alt="Pedicura"><div class="gal-label">Pedicura</div></div>
-    <div class="gal-item rv rv-d2"><img src="img/pedicure-blue.jpg" alt="Pedicura azul"><div class="gal-label">Pedicura</div></div>
-    <div class="gal-item rv rv-d3"><img src="img/sugaring.jpg" alt="Sugaring Waxing"><div class="gal-label">Depilación</div></div>
+    <div class="gal-item rv"><img src="img/nails-nude.jpg" alt="Manicura diseño"><div class="gal-label" data-i="gal.mani">Manicura</div></div>
+    <div class="gal-item rv rv-d1"><img src="img/lashes.jpg" alt="Extensiones de pestañas"><div class="gal-label" data-i="gal.lash">Pestañas</div></div>
+    <div class="gal-item rv rv-d2"><img src="img/brows.jpg" alt="Cejas antes y después"><div class="gal-label" data-i="gal.brow">Cejas</div></div>
+    <div class="gal-item rv rv-d3"><img src="img/hair-keratin.jpg" alt="Keratina resultado"><div class="gal-label" data-i="gal.kera">Keratina</div></div>
+    <div class="gal-item rv"><img src="img/nails-blue.jpg" alt="Manicura azul"><div class="gal-label" data-i="gal.mani">Manicura</div></div>
+    <div class="gal-item rv rv-d1"><img src="img/pedicure.jpg" alt="Pedicura"><div class="gal-label" data-i="gal.pedi">Pedicura</div></div>
+    <div class="gal-item rv rv-d2"><img src="img/pedicure-blue.jpg" alt="Pedicura azul"><div class="gal-label" data-i="gal.pedi">Pedicura</div></div>
+    <div class="gal-item rv rv-d3"><img src="img/sugaring.jpg" alt="Sugaring Waxing"><div class="gal-label" data-i="gal.depi">Depilación</div></div>
   </div>
 </section>
 
 <!-- Precios -->
 <section class="section precios" id="precios">
   <div class="sec-header rv">
-    <div class="sec-tag">Precios</div>
-    <h2 class="sec-title">Nuestras tarifas</h2>
-    <p class="sec-sub">Precios transparentes para todos los tratamientos</p>
+    <div class="sec-tag" data-i="pri.tag">Precios</div>
+    <h2 class="sec-title" data-i="pri.title">Nuestras tarifas</h2>
+    <p class="sec-sub" data-i="pri.sub">Precios transparentes para todos los tratamientos</p>
   </div>
   <div class="precios-grid">
     <div class="precio-card rv">
       <div class="precio-header">
-        <h3>Depilación</h3>
+        <h3 data-i="pri.dep">Depilación</h3>
         <div class="desde">Waxing & Sugaring</div>
       </div>
       <div class="precio-list">
-        <div class="precio-row"><span class="zona">Cara completa</span><span class="price">30€</span></div>
-        <div class="precio-row"><span class="zona">Labio superior</span><span class="price">10€</span></div>
-        <div class="precio-row"><span class="zona">Axilas</span><span class="price">15€</span></div>
-        <div class="precio-row"><span class="zona">Medias piernas</span><span class="price">25€</span></div>
-        <div class="precio-row"><span class="zona">Piernas completas</span><span class="price">45€</span></div>
-        <div class="precio-row"><span class="zona">Ingles brasileñas</span><span class="price">25€</span></div>
-        <div class="precio-row"><span class="zona">Ingles caribeñas</span><span class="price">30€</span></div>
-        <div class="precio-row"><span class="zona">Brazos enteros</span><span class="price">30€</span></div>
-        <div class="precio-row"><span class="zona">Espalda</span><span class="price">30€</span></div>
-        <div class="precio-row"><span class="zona">Glúteos</span><span class="price">45€</span></div>
+        <div class="precio-row"><span class="zona" data-i="z.face">Cara completa</span><span class="price">30€</span></div>
+        <div class="precio-row"><span class="zona" data-i="z.lip">Labio superior</span><span class="price">10€</span></div>
+        <div class="precio-row"><span class="zona" data-i="z.armpits">Axilas</span><span class="price">15€</span></div>
+        <div class="precio-row"><span class="zona" data-i="z.hlegs">Medias piernas</span><span class="price">25€</span></div>
+        <div class="precio-row"><span class="zona" data-i="z.flegs">Piernas completas</span><span class="price">45€</span></div>
+        <div class="precio-row"><span class="zona" data-i="z.braz">Ingles brasileñas</span><span class="price">25€</span></div>
+        <div class="precio-row"><span class="zona" data-i="z.cari">Ingles caribeñas</span><span class="price">30€</span></div>
+        <div class="precio-row"><span class="zona" data-i="z.arms">Brazos enteros</span><span class="price">30€</span></div>
+        <div class="precio-row"><span class="zona" data-i="z.back">Espalda</span><span class="price">30€</span></div>
+        <div class="precio-row"><span class="zona" data-i="z.glut">Glúteos</span><span class="price">45€</span></div>
       </div>
     </div>
     <div class="precio-card rv rv-d1">
       <div class="precio-header">
         <h3>Keratina</h3>
-        <div class="desde">Alisado profesional</div>
+        <div class="desde" data-i="pri.kera_sub">Alisado profesional</div>
       </div>
       <div class="precio-list">
         <div class="precio-row"><span class="zona">20 – 30 cm</span><span class="price">150€</span></div>
@@ -417,14 +441,14 @@ ul{list-style:none}
         <div class="precio-row"><span class="zona">50 – 60 cm</span><span class="price">210€</span></div>
         <div class="precio-row"><span class="zona">60 – 70 cm</span><span class="price">230€</span></div>
         <div class="precio-row"><span class="zona">70 – 80 cm</span><span class="price">250€</span></div>
-        <div class="precio-row"><span class="zona">Cabello grueso</span><span class="price">+20€</span></div>
-        <div class="precio-row"><span class="zona">Cabello muy grueso</span><span class="price">+10€</span></div>
+        <div class="precio-row"><span class="zona" data-i="z.thick">Cabello grueso</span><span class="price">+20€</span></div>
+        <div class="precio-row"><span class="zona" data-i="z.vthick">Cabello muy grueso</span><span class="price">+10€</span></div>
       </div>
     </div>
     <div class="precio-card rv rv-d2">
       <div class="precio-header">
-        <h3>Botox Capilar</h3>
-        <div class="desde">Tratamiento nutritivo</div>
+        <h3 data-i="pri.btx">Botox Capilar</h3>
+        <div class="desde" data-i="pri.btx_sub">Tratamiento nutritivo</div>
       </div>
       <div class="precio-list">
         <div class="precio-row"><span class="zona">20 – 30 cm</span><span class="price">120€</span></div>
@@ -433,8 +457,8 @@ ul{list-style:none}
         <div class="precio-row"><span class="zona">50 – 60 cm</span><span class="price">180€</span></div>
         <div class="precio-row"><span class="zona">60 – 70 cm</span><span class="price">200€</span></div>
         <div class="precio-row"><span class="zona">70 – 80 cm</span><span class="price">220€</span></div>
-        <div class="precio-row"><span class="zona">Cabello grueso</span><span class="price">+20€</span></div>
-        <div class="precio-row"><span class="zona">Cabello muy grueso</span><span class="price">+30€</span></div>
+        <div class="precio-row"><span class="zona" data-i="z.thick">Cabello grueso</span><span class="price">+20€</span></div>
+        <div class="precio-row"><span class="zona" data-i="z.vthick">Cabello muy grueso</span><span class="price">+30€</span></div>
       </div>
     </div>
   </div>
@@ -448,15 +472,15 @@ ul{list-style:none}
       <div class="badge">Lloret de Mar</div>
     </div>
     <div class="about-text rv rv-d1">
-      <div class="sec-tag" style="justify-content:flex-start">Sobre nosotros</div>
-      <h2>Tu espacio de <span>belleza</span> y bienestar</h2>
-      <p>En INFINITY beauty creemos que cada persona merece sentirse especial. Nuestro centro de estética en Lloret de Mar ofrece un ambiente acogedor y profesional donde cuidamos cada detalle.</p>
-      <p>Trabajamos con productos de alta calidad y técnicas avanzadas para ofrecerte los mejores resultados en todos nuestros tratamientos.</p>
+      <div class="sec-tag" style="justify-content:flex-start" data-i="abt.tag">Sobre nosotros</div>
+      <h2 data-ih="abt.title">Tu espacio de <span>belleza</span> y bienestar</h2>
+      <p data-i="abt.p1">En INFINITY beauty creemos que cada persona merece sentirse especial. Nuestro centro de estética en Lloret de Mar ofrece un ambiente acogedor y profesional donde cuidamos cada detalle.</p>
+      <p data-i="abt.p2">Trabajamos con productos de alta calidad y técnicas avanzadas para ofrecerte los mejores resultados en todos nuestros tratamientos.</p>
       <div class="about-features">
-        <div class="about-feat"><div class="dot"></div><span>Productos premium</span></div>
-        <div class="about-feat"><div class="dot"></div><span>Profesionales cualificados</span></div>
-        <div class="about-feat"><div class="dot"></div><span>Ambiente acogedor</span></div>
-        <div class="about-feat"><div class="dot"></div><span>Atención personalizada</span></div>
+        <div class="about-feat"><div class="dot"></div><span data-i="abt.f1">Productos premium</span></div>
+        <div class="about-feat"><div class="dot"></div><span data-i="abt.f2">Profesionales cualificados</span></div>
+        <div class="about-feat"><div class="dot"></div><span data-i="abt.f3">Ambiente acogedor</span></div>
+        <div class="about-feat"><div class="dot"></div><span data-i="abt.f4">Atención personalizada</span></div>
       </div>
     </div>
   </div>
@@ -465,22 +489,22 @@ ul{list-style:none}
 <!-- Location -->
 <section class="section location" id="contacto">
   <div class="sec-header rv">
-    <div class="sec-tag">Contacto</div>
-    <h2 class="sec-title">Ven a vernos</h2>
+    <div class="sec-tag" data-i="loc.tag">Contacto</div>
+    <h2 class="sec-title" data-i="loc.title">Ven a vernos</h2>
   </div>
   <div class="loc-grid">
     <div class="loc-map rv">
       <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d746.2!2d2.837269!3d41.708852!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12bb175f686fef15%3A0x2c9a60f537ef4d15!2sINFINITYbeauty!5e0!3m2!1ses!2ses!4v1" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
     <div class="loc-info rv rv-d1">
-      <h3>Información</h3>
+      <h3 data-i="loc.info">Información</h3>
       <div class="loc-detail">
         <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
-        <div><div class="lbl">Dirección</div><div class="val">Av. del Rieral, 74, local 7<br>17310 Lloret de Mar, Girona</div></div>
+        <div><div class="lbl" data-i="loc.addr">Dirección</div><div class="val">Av. del Rieral, 74, local 7<br>17310 Lloret de Mar, Girona</div></div>
       </div>
       <div class="loc-detail">
         <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
-        <div><div class="lbl">Teléfono</div><div class="val"><a href="tel:+34647707970">+34 647 70 79 70</a></div></div>
+        <div><div class="lbl" data-i="loc.phone">Teléfono</div><div class="val"><a href="tel:+34647707970">+34 647 70 79 70</a></div></div>
       </div>
       <div class="loc-detail">
         <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5"/></svg></div>
@@ -488,7 +512,7 @@ ul{list-style:none}
       </div>
       <div class="loc-detail">
         <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
-        <div><div class="lbl">Horario</div><div class="val">Lun – Sáb: con cita previa<br>Domingo: cerrado</div></div>
+        <div><div class="lbl" data-i="loc.hours">Horario</div><div class="val" data-ih="loc.hours_v">Lun – Vie: 08:30 – 21:00<br>Sáb: 10:00 – 20:00<br>Dom: 10:30 – 16:00</div></div>
       </div>
     </div>
   </div>
@@ -497,7 +521,7 @@ ul{list-style:none}
 <!-- Instagram -->
 <section class="insta">
   <div class="insta-header rv">
-    <h2>Síguenos en <span>Instagram</span></h2>
+    <h2 data-ih="insta.title">Síguenos en <span>Instagram</span></h2>
     <p>@infinity_beauty_lloret</p>
   </div>
   <div class="insta-grid">
@@ -511,23 +535,23 @@ ul{list-style:none}
   <div class="insta-link rv">
     <a href="https://www.instagram.com/infinity_beauty_lloret/" target="_blank">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="2" width="20" height="20" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.5"/></svg>
-      Ver más en Instagram
+      <span data-i="insta.link">Ver más en Instagram</span>
     </a>
   </div>
 </section>
 
 <!-- CTA -->
 <section class="cta">
-  <h2>¿Lista para brillar?</h2>
-  <p>Reserva tu cita y déjate mimar por nuestro equipo de profesionales</p>
+  <h2 data-i="cta.title">¿Lista para brillar?</h2>
+  <p data-i="cta.sub">Reserva tu cita y déjate mimar por nuestro equipo de profesionales</p>
   <div class="cta-btns">
-    <a href="https://wa.me/34647707970?text=Hola%2C%20me%20gustaría%20reservar%20una%20cita" class="btn-white" target="_blank">
+    <a href="https://wa.me/34647707970?text=Hola%2C%20me%20gustaría%20reservar%20una%20cita" class="btn-white" target="_blank" id="ctaWa">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-      Reservar por WhatsApp
+      <span data-i="cta.wa">Reservar por WhatsApp</span>
     </a>
     <a href="tel:+34647707970" class="btn-white-outline">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-      Llamar
+      <span data-i="cta.call">Llamar</span>
     </a>
   </div>
 </section>
@@ -538,29 +562,29 @@ ul{list-style:none}
     <div class="footer-top">
       <div class="footer-brand">
         <div class="flogo"><span>INFINITY</span> beauty</div>
-        <p>Centre d'estètica en Lloret de Mar. Tu espacio de belleza y bienestar con atención personalizada.</p>
+        <p data-i="ft.desc">Centre d'estètica en Lloret de Mar. Tu espacio de belleza y bienestar con atención personalizada.</p>
       </div>
       <div>
-        <h5>Servicios</h5>
+        <h5 data-i="ft.srv">Servicios</h5>
         <ul>
-          <li><a href="#servicios">Manicura & Pedicura</a></li>
-          <li><a href="#servicios">Pestañas & Cejas</a></li>
-          <li><a href="#servicios">Masajes</a></li>
-          <li><a href="#servicios">Depilación</a></li>
-          <li><a href="#servicios">Keratina & Botox</a></li>
+          <li><a href="#servicios" data-i="s1t">Manicura & Pedicura</a></li>
+          <li><a href="#servicios" data-i="ft.srv2">Pestañas & Cejas</a></li>
+          <li><a href="#servicios" data-i="s4t">Masajes</a></li>
+          <li><a href="#servicios" data-i="s6t">Depilación</a></li>
+          <li><a href="#servicios" data-i="s7t">Keratina & Botox</a></li>
         </ul>
       </div>
       <div>
-        <h5>Información</h5>
+        <h5 data-i="ft.info">Información</h5>
         <ul>
-          <li><a href="#nosotros">Sobre nosotros</a></li>
-          <li><a href="#precios">Precios</a></li>
-          <li><a href="#galeria">Galería</a></li>
-          <li><a href="#contacto">Contacto</a></li>
+          <li><a href="#nosotros" data-i="abt.tag">Sobre nosotros</a></li>
+          <li><a href="#precios" data-i="pri.tag">Precios</a></li>
+          <li><a href="#galeria" data-i="gal.tag">Galería</a></li>
+          <li><a href="#contacto" data-i="loc.tag">Contacto</a></li>
         </ul>
       </div>
       <div>
-        <h5>Contacto</h5>
+        <h5 data-i="loc.tag">Contacto</h5>
         <ul>
           <li><a href="tel:+34647707970">+34 647 70 79 70</a></li>
           <li><a href="https://wa.me/34647707970" target="_blank">WhatsApp</a></li>
@@ -580,18 +604,307 @@ ul{list-style:none}
 </footer>
 
 <!-- WhatsApp -->
-<a href="https://wa.me/34647707970?text=Hola%2C%20me%20gustaría%20reservar%20una%20cita" class="wa" target="_blank">
+<a href="https://wa.me/34647707970?text=Hola%2C%20me%20gustaría%20reservar%20una%20cita" class="wa" target="_blank" id="waBtn">
   <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-  <div class="wa-tip">¿Reservamos tu cita?</div>
+  <div class="wa-tip" data-i="wa.tip">¿Reservamos tu cita?</div>
 </a>
 
 <script>
-/* Nav scroll */
-window.addEventListener('scroll',()=>{document.getElementById('nav').classList.toggle('scrolled',scrollY>50)});
+/* ═══ TRANSLATIONS ═══ */
+const LANGS = [
+  {code:'es',label:'Español',flag:'🇪🇸'},
+  {code:'ca',label:'Català',flag:'🏴'},
+  {code:'en',label:'English',flag:'🇬🇧'},
+  {code:'ru',label:'Русский',flag:'🇷🇺'},
+  {code:'fr',label:'Français',flag:'🇫🇷'}
+];
 
-/* Reveal */
-const ro=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');ro.unobserve(e.target)}})},{threshold:.1,rootMargin:'0px 0px -30px 0px'});
-document.querySelectorAll('.rv').forEach(el=>ro.observe(el));
+const T = {
+es:{
+  _title:"INFINITY beauty — Centre d'estètica | Lloret de Mar",
+  _desc:"INFINITY beauty — centro de estética en Lloret de Mar. Manicura, pestañas, cejas, masajes, depilación, keratina, láser y más. Reserva tu cita.",
+  _wa:"Hola, me gustaría reservar una cita",
+  "nav.srv":"Servicios","nav.gal":"Galería","nav.pri":"Precios","nav.abt":"Nosotros","nav.con":"Contacto",
+  "nav.book":"Reservar","nav.book_long":"Reservar Cita",
+  "hero.tag":"Centre d'estètica","hero.sub":"Tu belleza, nuestra pasión · Lloret de Mar",
+  "hero.btn1":"Nuestros Servicios","hero.btn2":"Reservar Cita","hero.scroll":"Descubre",
+  "srv.tag":"Servicios","srv.title":"Lo que hacemos por ti","srv.sub":"Cuidamos cada detalle para que te sientas radiante",
+  "s1t":"Manicura & Pedicura","s1d":"Diseños creativos, esmaltado semipermanente y cuidado completo de tus manos y pies",
+  "s2t":"Extensiones de Pestañas","s2d":"Pestañas pelo a pelo y lifting con keratina para una mirada espectacular",
+  "s3t":"Modelado de Cejas","s3d":"Diseño de cejas personalizado con hilo, cera o pinzas para enmarcar tu rostro",
+  "s4t":"Masajes","s4d":"Masajes corporales y faciales relajantes y terapéuticos para renovar tu bienestar",
+  "s5t":"Maquillaje","s5d":"Maquillaje profesional para eventos, bodas y ocasiones especiales",
+  "s6t":"Depilación","s6d":"Waxing y sugaring para una piel suave y perfecta. Todas las zonas del cuerpo",
+  "s7t":"Keratina & Botox","s7d":"Tratamientos capilares de alisado con keratina y botox para un cabello brillante",
+  "s8t":"Endosphères & Láser","s8d":"Tecnología avanzada para tratamientos corporales y faciales con resultados visibles",
+  "gal.tag":"Galería","gal.title":"Nuestro trabajo","gal.sub":"Cada detalle cuenta. Mira algunos de nuestros resultados",
+  "gal.mani":"Manicura","gal.lash":"Pestañas","gal.brow":"Cejas","gal.kera":"Keratina","gal.pedi":"Pedicura","gal.depi":"Depilación",
+  "pri.tag":"Precios","pri.title":"Nuestras tarifas","pri.sub":"Precios transparentes para todos los tratamientos",
+  "pri.dep":"Depilación","pri.kera_sub":"Alisado profesional","pri.btx":"Botox Capilar","pri.btx_sub":"Tratamiento nutritivo",
+  "z.face":"Cara completa","z.lip":"Labio superior","z.armpits":"Axilas","z.hlegs":"Medias piernas","z.flegs":"Piernas completas",
+  "z.braz":"Ingles brasileñas","z.cari":"Ingles caribeñas","z.arms":"Brazos enteros","z.back":"Espalda","z.glut":"Glúteos",
+  "z.thick":"Cabello grueso","z.vthick":"Cabello muy grueso",
+  "abt.tag":"Sobre nosotros","abt.title":"Tu espacio de <span>belleza</span> y bienestar",
+  "abt.p1":"En INFINITY beauty creemos que cada persona merece sentirse especial. Nuestro centro de estética en Lloret de Mar ofrece un ambiente acogedor y profesional donde cuidamos cada detalle.",
+  "abt.p2":"Trabajamos con productos de alta calidad y técnicas avanzadas para ofrecerte los mejores resultados en todos nuestros tratamientos.",
+  "abt.f1":"Productos premium","abt.f2":"Profesionales cualificados","abt.f3":"Ambiente acogedor","abt.f4":"Atención personalizada",
+  "loc.tag":"Contacto","loc.title":"Ven a vernos","loc.info":"Información",
+  "loc.addr":"Dirección","loc.phone":"Teléfono","loc.hours":"Horario",
+  "loc.hours_v":"Lun – Vie: 08:30 – 21:00<br>Sáb: 10:00 – 20:00<br>Dom: 10:30 – 16:00",
+  "insta.title":"Síguenos en <span>Instagram</span>","insta.link":"Ver más en Instagram",
+  "cta.title":"¿Lista para brillar?","cta.sub":"Reserva tu cita y déjate mimar por nuestro equipo de profesionales",
+  "cta.wa":"Reservar por WhatsApp","cta.call":"Llamar",
+  "ft.desc":"Centre d'estètica en Lloret de Mar. Tu espacio de belleza y bienestar con atención personalizada.",
+  "ft.srv":"Servicios","ft.srv2":"Pestañas & Cejas","ft.info":"Información","wa.tip":"¿Reservamos tu cita?"
+},
+ca:{
+  _title:"INFINITY beauty — Centre d'estètica | Lloret de Mar",
+  _desc:"INFINITY beauty — centre d'estètica a Lloret de Mar. Manicura, pestanyes, celles, massatges, depilació, queratina, làser i més. Reserva la teva cita.",
+  _wa:"Hola, m'agradaria reservar una cita",
+  "nav.srv":"Serveis","nav.gal":"Galeria","nav.pri":"Preus","nav.abt":"Nosaltres","nav.con":"Contacte",
+  "nav.book":"Reservar","nav.book_long":"Reservar Cita",
+  "hero.tag":"Centre d'estètica","hero.sub":"La teva bellesa, la nostra passió · Lloret de Mar",
+  "hero.btn1":"Els nostres serveis","hero.btn2":"Reservar Cita","hero.scroll":"Descobreix",
+  "srv.tag":"Serveis","srv.title":"El que fem per tu","srv.sub":"Cuidem cada detall perquè et sentis radiant",
+  "s1t":"Manicura i Pedicura","s1d":"Dissenys creatius, esmaltat semipermanent i cura completa de les teves mans i peus",
+  "s2t":"Extensions de Pestanyes","s2d":"Pestanyes pèl a pèl i lifting amb queratina per a una mirada espectacular",
+  "s3t":"Modelatge de Celles","s3d":"Disseny de celles personalitzat amb fil, cera o pinces per emmarcar el teu rostre",
+  "s4t":"Massatges","s4d":"Massatges corporals i facials relaxants i terapèutics per renovar el teu benestar",
+  "s5t":"Maquillatge","s5d":"Maquillatge professional per a esdeveniments, casaments i ocasions especials",
+  "s6t":"Depilació","s6d":"Waxing i sugaring per a una pell suau i perfecta. Totes les zones del cos",
+  "s7t":"Queratina i Botox","s7d":"Tractaments capil·lars d'allisat amb queratina i botox per a un cabell brillant",
+  "s8t":"Endosphères i Làser","s8d":"Tecnologia avançada per a tractaments corporals i facials amb resultats visibles",
+  "gal.tag":"Galeria","gal.title":"El nostre treball","gal.sub":"Cada detall compta. Mira alguns dels nostres resultats",
+  "gal.mani":"Manicura","gal.lash":"Pestanyes","gal.brow":"Celles","gal.kera":"Queratina","gal.pedi":"Pedicura","gal.depi":"Depilació",
+  "pri.tag":"Preus","pri.title":"Les nostres tarifes","pri.sub":"Preus transparents per a tots els tractaments",
+  "pri.dep":"Depilació","pri.kera_sub":"Allisat professional","pri.btx":"Botox Capil·lar","pri.btx_sub":"Tractament nutritiu",
+  "z.face":"Cara completa","z.lip":"Llavi superior","z.armpits":"Aixelles","z.hlegs":"Mitges cames","z.flegs":"Cames completes",
+  "z.braz":"Engonals brasilenyes","z.cari":"Engonals caribenyes","z.arms":"Braços sencers","z.back":"Esquena","z.glut":"Glutis",
+  "z.thick":"Cabell gruixut","z.vthick":"Cabell molt gruixut",
+  "abt.tag":"Sobre nosaltres","abt.title":"El teu espai de <span>bellesa</span> i benestar",
+  "abt.p1":"A INFINITY beauty creiem que cada persona mereix sentir-se especial. El nostre centre d'estètica a Lloret de Mar ofereix un ambient acollidor i professional on cuidem cada detall.",
+  "abt.p2":"Treballem amb productes d'alta qualitat i tècniques avançades per oferir-te els millors resultats en tots els nostres tractaments.",
+  "abt.f1":"Productes premium","abt.f2":"Professionals qualificats","abt.f3":"Ambient acollidor","abt.f4":"Atenció personalitzada",
+  "loc.tag":"Contacte","loc.title":"Vine a veure'ns","loc.info":"Informació",
+  "loc.addr":"Adreça","loc.phone":"Telèfon","loc.hours":"Horari",
+  "loc.hours_v":"Dll – Dv: 08:30 – 21:00<br>Ds: 10:00 – 20:00<br>Dg: 10:30 – 16:00",
+  "insta.title":"Segueix-nos a <span>Instagram</span>","insta.link":"Veure més a Instagram",
+  "cta.title":"Preparada per brillar?","cta.sub":"Reserva la teva cita i deixa't estimar pel nostre equip de professionals",
+  "cta.wa":"Reservar per WhatsApp","cta.call":"Trucar",
+  "ft.desc":"Centre d'estètica a Lloret de Mar. El teu espai de bellesa i benestar amb atenció personalitzada.",
+  "ft.srv":"Serveis","ft.srv2":"Pestanyes i Celles","ft.info":"Informació","wa.tip":"Reservem la teva cita?"
+},
+en:{
+  _title:"INFINITY beauty — Beauty Center | Lloret de Mar",
+  _desc:"INFINITY beauty — beauty center in Lloret de Mar. Manicure, lashes, brows, massages, waxing, keratin, laser and more. Book your appointment.",
+  _wa:"Hello, I'd like to book an appointment",
+  "nav.srv":"Services","nav.gal":"Gallery","nav.pri":"Prices","nav.abt":"About","nav.con":"Contact",
+  "nav.book":"Book Now","nav.book_long":"Book Appointment",
+  "hero.tag":"Beauty Center","hero.sub":"Your beauty, our passion · Lloret de Mar",
+  "hero.btn1":"Our Services","hero.btn2":"Book Appointment","hero.scroll":"Discover",
+  "srv.tag":"Services","srv.title":"What we do for you","srv.sub":"We take care of every detail so you feel radiant",
+  "s1t":"Manicure & Pedicure","s1d":"Creative designs, semi-permanent polish and complete care for your hands and feet",
+  "s2t":"Eyelash Extensions","s2d":"Individual eyelash extensions and keratin lifting for a spectacular look",
+  "s3t":"Eyebrow Shaping","s3d":"Personalized eyebrow design with thread, wax or tweezers to frame your face",
+  "s4t":"Massages","s4d":"Relaxing and therapeutic body and facial massages to renew your wellbeing",
+  "s5t":"Makeup","s5d":"Professional makeup for events, weddings and special occasions",
+  "s6t":"Hair Removal","s6d":"Waxing and sugaring for smooth and perfect skin. All body areas",
+  "s7t":"Keratin & Botox","s7d":"Keratin straightening and botox hair treatments for shiny, brilliant hair",
+  "s8t":"Endosphères & Laser","s8d":"Advanced technology for body and facial treatments with visible results",
+  "gal.tag":"Gallery","gal.title":"Our Work","gal.sub":"Every detail matters. See some of our results",
+  "gal.mani":"Manicure","gal.lash":"Eyelashes","gal.brow":"Eyebrows","gal.kera":"Keratin","gal.pedi":"Pedicure","gal.depi":"Hair Removal",
+  "pri.tag":"Prices","pri.title":"Our Rates","pri.sub":"Transparent prices for all treatments",
+  "pri.dep":"Hair Removal","pri.kera_sub":"Professional straightening","pri.btx":"Hair Botox","pri.btx_sub":"Nourishing treatment",
+  "z.face":"Full face","z.lip":"Upper lip","z.armpits":"Armpits","z.hlegs":"Half legs","z.flegs":"Full legs",
+  "z.braz":"Brazilian bikini","z.cari":"Caribbean bikini","z.arms":"Full arms","z.back":"Back","z.glut":"Glutes",
+  "z.thick":"Thick hair","z.vthick":"Very thick hair",
+  "abt.tag":"About Us","abt.title":"Your space of <span>beauty</span> and wellness",
+  "abt.p1":"At INFINITY beauty we believe every person deserves to feel special. Our beauty center in Lloret de Mar offers a welcoming and professional atmosphere where we take care of every detail.",
+  "abt.p2":"We work with high-quality products and advanced techniques to offer you the best results in all our treatments.",
+  "abt.f1":"Premium products","abt.f2":"Qualified professionals","abt.f3":"Welcoming atmosphere","abt.f4":"Personalized attention",
+  "loc.tag":"Contact","loc.title":"Come Visit Us","loc.info":"Information",
+  "loc.addr":"Address","loc.phone":"Phone","loc.hours":"Hours",
+  "loc.hours_v":"Mon – Fri: 08:30 – 21:00<br>Sat: 10:00 – 20:00<br>Sun: 10:30 – 16:00",
+  "insta.title":"Follow us on <span>Instagram</span>","insta.link":"See more on Instagram",
+  "cta.title":"Ready to shine?","cta.sub":"Book your appointment and let our team of professionals pamper you",
+  "cta.wa":"Book via WhatsApp","cta.call":"Call",
+  "ft.desc":"Beauty center in Lloret de Mar. Your space of beauty and wellness with personalized attention.",
+  "ft.srv":"Services","ft.srv2":"Lashes & Brows","ft.info":"Information","wa.tip":"Shall we book your appointment?"
+},
+ru:{
+  _title:"INFINITY beauty — Центр красоты | Льорет-де-Мар",
+  _desc:"INFINITY beauty — центр красоты в Льорет-де-Мар. Маникюр, ресницы, брови, массаж, депиляция, кератин, лазер и многое другое. Запишитесь на приём.",
+  _wa:"Здравствуйте, хочу записаться на приём",
+  "nav.srv":"Услуги","nav.gal":"Галерея","nav.pri":"Цены","nav.abt":"О нас","nav.con":"Контакт",
+  "nav.book":"Записаться","nav.book_long":"Записаться",
+  "hero.tag":"Центр красоты","hero.sub":"Твоя красота — наша страсть · Льорет-де-Мар",
+  "hero.btn1":"Наши услуги","hero.btn2":"Записаться","hero.scroll":"Узнать",
+  "srv.tag":"Услуги","srv.title":"Что мы делаем для вас","srv.sub":"Мы заботимся о каждой детали, чтобы вы сияли",
+  "s1t":"Маникюр и педикюр","s1d":"Креативный дизайн, полуперманентное покрытие и полный уход за руками и ногами",
+  "s2t":"Наращивание ресниц","s2d":"Поресничное наращивание и ламинирование с кератином для выразительного взгляда",
+  "s3t":"Моделирование бровей","s3d":"Индивидуальный дизайн бровей нитью, воском или пинцетом для идеального обрамления лица",
+  "s4t":"Массаж","s4d":"Расслабляющий и терапевтический массаж тела и лица для восстановления вашего самочувствия",
+  "s5t":"Макияж","s5d":"Профессиональный макияж для мероприятий, свадеб и особых случаев",
+  "s6t":"Депиляция","s6d":"Восковая и сахарная депиляция для гладкой и идеальной кожи. Все зоны тела",
+  "s7t":"Кератин и ботокс","s7d":"Кератиновое выпрямление и ботокс для блестящих и здоровых волос",
+  "s8t":"Эндосферы и лазер","s8d":"Передовые технологии для процедур тела и лица с видимым результатом",
+  "gal.tag":"Галерея","gal.title":"Наши работы","gal.sub":"Каждая деталь имеет значение. Посмотрите наши результаты",
+  "gal.mani":"Маникюр","gal.lash":"Ресницы","gal.brow":"Брови","gal.kera":"Кератин","gal.pedi":"Педикюр","gal.depi":"Депиляция",
+  "pri.tag":"Цены","pri.title":"Наши тарифы","pri.sub":"Прозрачные цены на все процедуры",
+  "pri.dep":"Депиляция","pri.kera_sub":"Профессиональное выпрямление","pri.btx":"Ботокс для волос","pri.btx_sub":"Питательное лечение",
+  "z.face":"Лицо полностью","z.lip":"Верхняя губа","z.armpits":"Подмышки","z.hlegs":"Полуноги","z.flegs":"Ноги полностью",
+  "z.braz":"Бразильское бикини","z.cari":"Карибское бикини","z.arms":"Руки полностью","z.back":"Спина","z.glut":"Ягодицы",
+  "z.thick":"Густые волосы","z.vthick":"Очень густые волосы",
+  "abt.tag":"О нас","abt.title":"Ваше пространство <span>красоты</span> и благополучия",
+  "abt.p1":"В INFINITY beauty мы верим, что каждый человек заслуживает чувствовать себя особенным. Наш центр красоты в Льорет-де-Мар предлагает уютную и профессиональную атмосферу, где мы заботимся о каждой детали.",
+  "abt.p2":"Мы работаем с продукцией высокого качества и передовыми техниками, чтобы предложить вам лучшие результаты во всех наших процедурах.",
+  "abt.f1":"Премиальная продукция","abt.f2":"Квалифицированные специалисты","abt.f3":"Уютная атмосфера","abt.f4":"Индивидуальный подход",
+  "loc.tag":"Контакт","loc.title":"Приходите к нам","loc.info":"Информация",
+  "loc.addr":"Адрес","loc.phone":"Телефон","loc.hours":"Расписание",
+  "loc.hours_v":"Пн – Пт: 08:30 – 21:00<br>Сб: 10:00 – 20:00<br>Вс: 10:30 – 16:00",
+  "insta.title":"Подписывайтесь на нас в <span>Instagram</span>","insta.link":"Смотреть в Instagram",
+  "cta.title":"Готовы сиять?","cta.sub":"Запишитесь на приём и доверьтесь нашей команде профессионалов",
+  "cta.wa":"Записаться через WhatsApp","cta.call":"Позвонить",
+  "ft.desc":"Центр красоты в Льорет-де-Мар. Ваше пространство красоты и благополучия с индивидуальным подходом.",
+  "ft.srv":"Услуги","ft.srv2":"Ресницы и брови","ft.info":"Информация","wa.tip":"Записаться на приём?"
+},
+fr:{
+  _title:"INFINITY beauty — Centre d'esthétique | Lloret de Mar",
+  _desc:"INFINITY beauty — centre d'esthétique à Lloret de Mar. Manucure, cils, sourcils, massages, épilation, kératine, laser et plus. Prenez rendez-vous.",
+  _wa:"Bonjour, je voudrais prendre rendez-vous",
+  "nav.srv":"Services","nav.gal":"Galerie","nav.pri":"Prix","nav.abt":"À propos","nav.con":"Contact",
+  "nav.book":"Réserver","nav.book_long":"Prendre rendez-vous",
+  "hero.tag":"Centre d'esthétique","hero.sub":"Votre beauté, notre passion · Lloret de Mar",
+  "hero.btn1":"Nos services","hero.btn2":"Prendre rendez-vous","hero.scroll":"Découvrir",
+  "srv.tag":"Services","srv.title":"Ce que nous faisons pour vous","srv.sub":"Nous prenons soin de chaque détail pour que vous vous sentiez radieuse",
+  "s1t":"Manucure & Pédicure","s1d":"Designs créatifs, vernis semi-permanent et soin complet de vos mains et pieds",
+  "s2t":"Extensions de Cils","s2d":"Extensions cil à cil et lifting à la kératine pour un regard spectaculaire",
+  "s3t":"Modelage des Sourcils","s3d":"Design de sourcils personnalisé au fil, à la cire ou à la pince pour encadrer votre visage",
+  "s4t":"Massages","s4d":"Massages corporels et faciaux relaxants et thérapeutiques pour renouveler votre bien-être",
+  "s5t":"Maquillage","s5d":"Maquillage professionnel pour événements, mariages et occasions spéciales",
+  "s6t":"Épilation","s6d":"Waxing et sugaring pour une peau douce et parfaite. Toutes les zones du corps",
+  "s7t":"Kératine & Botox","s7d":"Traitements capillaires de lissage à la kératine et botox pour des cheveux brillants",
+  "s8t":"Endosphères & Laser","s8d":"Technologie avancée pour les traitements corporels et faciaux avec résultats visibles",
+  "gal.tag":"Galerie","gal.title":"Nos réalisations","gal.sub":"Chaque détail compte. Découvrez quelques-uns de nos résultats",
+  "gal.mani":"Manucure","gal.lash":"Cils","gal.brow":"Sourcils","gal.kera":"Kératine","gal.pedi":"Pédicure","gal.depi":"Épilation",
+  "pri.tag":"Prix","pri.title":"Nos tarifs","pri.sub":"Prix transparents pour tous les traitements",
+  "pri.dep":"Épilation","pri.kera_sub":"Lissage professionnel","pri.btx":"Botox Capillaire","pri.btx_sub":"Traitement nutritif",
+  "z.face":"Visage complet","z.lip":"Lèvre supérieure","z.armpits":"Aisselles","z.hlegs":"Demi-jambes","z.flegs":"Jambes complètes",
+  "z.braz":"Bikini brésilien","z.cari":"Bikini caribéen","z.arms":"Bras entiers","z.back":"Dos","z.glut":"Fessiers",
+  "z.thick":"Cheveux épais","z.vthick":"Cheveux très épais",
+  "abt.tag":"À propos","abt.title":"Votre espace de <span>beauté</span> et bien-être",
+  "abt.p1":"Chez INFINITY beauty, nous croyons que chaque personne mérite de se sentir spéciale. Notre centre d'esthétique à Lloret de Mar offre une ambiance accueillante et professionnelle où nous prenons soin de chaque détail.",
+  "abt.p2":"Nous travaillons avec des produits de haute qualité et des techniques avancées pour vous offrir les meilleurs résultats dans tous nos traitements.",
+  "abt.f1":"Produits premium","abt.f2":"Professionnels qualifiés","abt.f3":"Ambiance accueillante","abt.f4":"Attention personnalisée",
+  "loc.tag":"Contact","loc.title":"Venez nous voir","loc.info":"Informations",
+  "loc.addr":"Adresse","loc.phone":"Téléphone","loc.hours":"Horaires",
+  "loc.hours_v":"Lun – Ven : 08:30 – 21:00<br>Sam : 10:00 – 20:00<br>Dim : 10:30 – 16:00",
+  "insta.title":"Suivez-nous sur <span>Instagram</span>","insta.link":"Voir plus sur Instagram",
+  "cta.title":"Prête à briller ?","cta.sub":"Réservez votre rendez-vous et laissez-vous chouchouter par notre équipe de professionnels",
+  "cta.wa":"Réserver par WhatsApp","cta.call":"Appeler",
+  "ft.desc":"Centre d'esthétique à Lloret de Mar. Votre espace de beauté et bien-être avec attention personnalisée.",
+  "ft.srv":"Services","ft.srv2":"Cils & Sourcils","ft.info":"Informations","wa.tip":"On réserve votre rendez-vous ?"
+}
+};
+
+/* ═══ LANGUAGE SWITCH ═══ */
+let curLang = localStorage.getItem('ib_lang') || 'es';
+
+function setLang(lang) {
+  curLang = lang;
+  localStorage.setItem('ib_lang', lang);
+  const t = T[lang];
+  if (!t) return;
+
+  /* Update html lang */
+  document.documentElement.lang = lang;
+
+  /* Title & meta */
+  document.title = t._title;
+  const meta = document.querySelector('meta[name="description"]');
+  if (meta) meta.content = t._desc;
+
+  /* Text content (data-i) */
+  document.querySelectorAll('[data-i]').forEach(el => {
+    const key = el.getAttribute('data-i');
+    if (t[key] !== undefined) el.textContent = t[key];
+  });
+
+  /* HTML content (data-ih) */
+  document.querySelectorAll('[data-ih]').forEach(el => {
+    const key = el.getAttribute('data-ih');
+    if (t[key] !== undefined) el.innerHTML = t[key];
+  });
+
+  /* WhatsApp links */
+  const waText = encodeURIComponent(t._wa);
+  const waBase = 'https://wa.me/34647707970';
+  document.querySelectorAll('a[href*="wa.me"]').forEach(a => {
+    a.href = waBase + '?text=' + waText;
+  });
+
+  /* Update lang switcher UI */
+  const info = LANGS.find(l => l.code === lang);
+  document.getElementById('langCur').textContent = lang.toUpperCase();
+
+  /* Desktop dropdown active */
+  document.querySelectorAll('#langDd .lang-opt').forEach(el => {
+    el.classList.toggle('active', el.dataset.lang === lang);
+  });
+
+  /* Mobile lang buttons active */
+  document.querySelectorAll('#mmLang button').forEach(el => {
+    el.classList.toggle('active', el.dataset.lang === lang);
+  });
+
+  /* Close dropdown */
+  document.getElementById('langSw').classList.remove('open');
+}
+
+/* Build language dropdown & mobile buttons */
+function buildLangUI() {
+  const dd = document.getElementById('langDd');
+  const mm = document.getElementById('mmLang');
+  LANGS.forEach(l => {
+    /* Desktop dropdown option */
+    const opt = document.createElement('div');
+    opt.className = 'lang-opt' + (l.code === curLang ? ' active' : '');
+    opt.dataset.lang = l.code;
+    opt.innerHTML = '<span class="fl">' + l.flag + '</span> ' + l.label;
+    opt.onclick = () => setLang(l.code);
+    dd.appendChild(opt);
+
+    /* Mobile button */
+    const btn = document.createElement('button');
+    btn.className = l.code === curLang ? 'active' : '';
+    btn.dataset.lang = l.code;
+    btn.textContent = l.code.toUpperCase();
+    btn.onclick = () => setLang(l.code);
+    mm.appendChild(btn);
+  });
+}
+
+buildLangUI();
+if (curLang !== 'es') setLang(curLang);
+
+/* Close dropdown on outside click */
+document.addEventListener('click', e => {
+  const sw = document.getElementById('langSw');
+  if (!sw.contains(e.target)) sw.classList.remove('open');
+});
+
+/* ═══ NAV SCROLL ═══ */
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').classList.toggle('scrolled', scrollY > 50);
+});
+
+/* ═══ REVEAL ═══ */
+const ro = new IntersectionObserver(es => {
+  es.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('vis'); ro.unobserve(e.target); }
+  });
+}, { threshold: .1, rootMargin: '0px 0px -30px 0px' });
+document.querySelectorAll('.rv').forEach(el => ro.observe(el));
 </script>
 </body>
 </html>
