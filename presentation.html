@@ -11,8 +11,8 @@
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --bg:#F0F2FA;--white:#ffffff;--surface:#E6E9F4;--surface-warm:#E2E5F2;
-  --green:#162F5A;--green-hover:#0E2044;--green-light:#DCE3F3;--green-10:rgba(22,47,90,.10);
+  --bg:#EDF2FB;--white:#ffffff;--surface:#E1E9F6;--surface-warm:#DCE5F5;
+  --green:#0B2559;--green-hover:#071B42;--green-light:#D6E1F3;--green-10:rgba(11,37,89,.10);
   --copper:#BF8A1E;--copper-hover:#A07316;--copper-light:#FDF3D8;--copper-10:rgba(191,138,30,.10);
   --gold:#BF8A1E;--gold-bright:#D4A428;
   --text:#0F1729;--text2:#4A5068;--text3:#7D8296;
@@ -40,7 +40,7 @@ button{border:none;cursor:pointer;font-family:inherit;background:none}
 .nav-a::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:1.5px;background:var(--green);transition:width .25s var(--ease)}
 .nav-a:hover::after{width:100%}
 .nav-cta{padding:8px 20px;background:var(--green);color:#fff;border-radius:var(--radius-sm);font-size:.82rem;font-weight:600;transition:all .2s}
-.nav-cta:hover{background:var(--green-hover);box-shadow:0 2px 12px rgba(22,47,90,.15)}
+.nav-cta:hover{background:var(--green-hover);box-shadow:0 2px 12px rgba(11,37,89,.15)}
 .nav-burger{display:none;flex-direction:column;gap:4px;cursor:pointer;padding:4px}
 .nav-burger span{width:18px;height:1.5px;background:var(--text2);border-radius:2px;transition:all .3s}
 
@@ -66,7 +66,7 @@ button{border:none;cursor:pointer;font-family:inherit;background:none}
 .hero-p{font-size:1.1rem;color:var(--text2);max-width:520px;margin-bottom:40px;line-height:1.7}
 .hero-btns{display:flex;gap:12px;flex-wrap:wrap}
 .btn-primary{display:inline-flex;align-items:center;gap:8px;padding:12px 28px;background:var(--green);color:#fff;border-radius:var(--radius-sm);font-size:.88rem;font-weight:600;transition:all .2s;letter-spacing:-.2px}
-.btn-primary:hover{background:var(--green-hover);transform:translateY(-1px);box-shadow:0 4px 20px rgba(22,47,90,.18)}
+.btn-primary:hover{background:var(--green-hover);transform:translateY(-1px);box-shadow:0 4px 20px rgba(11,37,89,.18)}
 .btn-primary svg{width:16px;height:16px}
 .btn-ghost{display:inline-flex;align-items:center;gap:8px;padding:12px 28px;background:transparent;color:var(--text);border:1.5px solid var(--border2);border-radius:var(--radius-sm);font-size:.88rem;font-weight:600;transition:all .2s}
 .btn-ghost:hover{border-color:var(--green);color:var(--green);box-shadow:var(--shadow-sm)}
@@ -114,7 +114,7 @@ button{border:none;cursor:pointer;font-family:inherit;background:none}
 .port-badge.demo{background:var(--copper-light);color:var(--copper-hover);border:1px solid #E8DDB8}
 .port-badge.pitch{background:var(--copper-light);color:var(--copper);border:1px solid #E8D5A0}
 .port-badge.prod{background:var(--copper);color:#fff;border:1px solid var(--copper)}
-.port-hover{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(22,47,90,.55);opacity:0;transition:opacity .3s;font-size:.85rem;font-weight:600;color:#fff;gap:6px;backdrop-filter:blur(4px)}
+.port-hover{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(11,37,89,.55);opacity:0;transition:opacity .3s;font-size:.85rem;font-weight:600;color:#fff;gap:6px;backdrop-filter:blur(4px)}
 a.port-card:hover .port-hover{opacity:1}
 .port-body{padding:22px 24px}
 .port-body h3{font-size:1rem;font-weight:700;margin-bottom:6px;color:var(--text)}
