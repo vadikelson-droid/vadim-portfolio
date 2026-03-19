@@ -1038,25 +1038,19 @@
         form.addEventListener('input', updateProgress);
         form.addEventListener('change', updateProgress);
 
-        // Telegram Bot config
-        const TG_BOT_TOKEN = '7859599362:AAEyToZgVlp_UrNqGMiPXbifTvUBkLQe4WA';
-        const TG_CHAT_ID = '492678324';
+        // Send brief via Google Apps Script proxy (token is safe on server side)
+        const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxvDcrOoVFqIM6e4U3YHeR-Q-X0PFfdFKoPD8rzqV7rEK3MWYgIxoDOg-Sdsxvkv57Xvg/exec';
 
         async function sendToTelegram(text) {
             try {
-                const url = `https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage`;
-                const resp = await fetch(url, {
+                const resp = await fetch(APPS_SCRIPT_URL, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        chat_id: TG_CHAT_ID,
-                        text: text,
-                        parse_mode: 'HTML'
-                    })
+                    body: JSON.stringify({ text: text })
                 });
                 return resp.ok;
             } catch (e) {
-                console.error('Telegram send error:', e);
+                console.error('Send error:', e);
                 return false;
             }
         }
